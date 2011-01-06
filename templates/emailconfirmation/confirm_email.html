@@ -9,8 +9,6 @@
         <h1>{% trans "Email Confirmed" %}</h1>
         
         <p>You have confirmed that {{ email_address.email }} is a valid email address for user '{{ email_address.user }}'.</p>
-        
-        <p>You have confirmed that {{ email_address.email }} is a valid email address for user '{{ email_address.user }}'.</p>
 
     {% else %}
         <p>{% trans "Invalid confirmation key." %}</p>
