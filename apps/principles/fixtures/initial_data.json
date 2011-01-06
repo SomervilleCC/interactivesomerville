@@ -1,0 +1,299 @@
+[
+    {
+        "pk": 1, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "local-jobs", 
+            "body": "We want a fixed percentage of respectable jobs of all types with good wages and benefits for Somerville residents, from construction to permanent.", 
+            "title": "More Local Jobs"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "increase-commercial-economic-development", 
+            "body": "We want to see the creation of squares as destinations, with careful attention to mixed use of commercial/residential, reuse of buildings, and economic development to increase the tax base.", 
+            "title": "Increase Commercial and Economic Development"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "keep-local-businesses", 
+            "body": "We want locally owned, culturally diverse, clean businesses in commercial areas with employees who live in Somerville.", 
+            "title": "Keep and Add Local Businesses"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "keep-somerville-affordable", 
+            "body": "We want to make sure people of all economic means have the ability to afford housing and living costs, so that Somerville residents, such as child care workers, cab drivers, local business employees and others can stay here affordably.", 
+            "title": "Keep Somerville Affordable"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "maintain-diversity", 
+            "body": "We want to preserve and encourage economic and ethnic diversity of residents and businesses.", 
+            "title": "Maintain Our Diversity"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "improve-green-environment", 
+            "body": "We want a safe, environmentally friendly neighborhood with more green space, trees, and gardens; reduction of noise; avoidance of light pollution; and prevention of toxic chemicals in the air.", 
+            "title": "Improve the Green Environment"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "encourage-walking-biking", 
+            "body": "We want to encourage walking and cycling, through safe, bike/ pedestrian friendly design of streets and paths around and between stations.", 
+            "title": "Encourage Walking and Biking"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "create-community-gathering-spaces", 
+            "body": "We want both indoor and outdoor safe, public gathering spaces for community members.", 
+            "title": "Create Community Gathering Spaces"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "improve-access", 
+            "body": "We want above standard, safe access to and between stations for people with disabilities, strollers, and pedestrians in general.", 
+            "title": "Improve Access"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "community-involvement", 
+            "body": "We want to make sure residents are included on an ongoing basis in the plan- ning, design, and zoning changes to the stations and areas around them. Youth, artists, and others should help design stations, with attention to amenities. We need an easy and clear process for residents to address problems as they come up, with ways of immediately resolving unseen impacts.", 
+            "title": "Community Involvement"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "principles.principle", 
+        "fields": {
+            "slug": "connecting-buses-trains", 
+            "body": "We want to ensure inter-modal access between neighborhoods and stations, for new train service to be adequate and speedy, and for existing bus lines to continue to serve areas not connected by train.", 
+            "title": "Connecting Buses and Trains"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Improve Access", 
+            "created": "2010-03-01 15:45:32", 
+            "author": 1, 
+            "principle": 9, 
+            "published": "2010-03-01 15:45:33", 
+            "enable_comments": false, 
+            "longitude": -71.12858,          
+            "latitude": 42.41547,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-improve-access"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Improve the Green Environment", 
+            "created": "2010-03-01 15:45:12", 
+            "author": 1, 
+            "principle": 6, 
+            "published": "2010-03-01 15:45:13", 
+            "enable_comments": false, 
+            "longitude": -71.12309,
+            "latitude": 42.41636,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-improve-green-environment"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Connecting Buses and Trains", 
+            "created": "2010-01-26 15:44:53", 
+            "author": 1, 
+            "principle": 11, 
+            "published": "2010-01-26 15:44:50", 
+            "enable_comments": false, 
+            "longitude": -71.11922,
+            "latitude": 42.40584,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-connection-transportation"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Community Involvement", 
+            "created": "2010-01-26 15:44:30", 
+            "author": 1, 
+            "principle": 10, 
+            "published": "2010-01-26 15:44:31", 
+            "enable_comments": false,
+            "longitude": -71.11390,
+            "latitude": 42.40787,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-community-involvement"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Encourage Walking and Biking", 
+            "created": "2010-01-26 15:44:10", 
+            "author": 1, 
+            "principle": 7, 
+            "published": "2010-01-26 15:44:11", 
+            "enable_comments": false,
+            "longitude": -71.10935,
+            "latitude": 42.40007,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-walking-and-biking"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Maintain Our Diversity", 
+            "created": "2010-01-26 15:43:52", 
+            "author": 1, 
+            "principle": 5, 
+            "published": "2010-01-26 15:43:53", 
+            "enable_comments": false, 
+            "longitude": -71.11369,
+            "latitude": 42.40128,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-maintaining-diversity"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Create Community Gathering Spaces", 
+            "created": "2010-01-26 15:43:34", 
+            "author": 1, 
+            "principle": 8, 
+            "published": "2010-01-26 15:43:34", 
+            "enable_comments": false,
+            "longitude": -71.10480,
+            "latitude": 42.39535,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-community-spaces"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Increase Commercial and Economic Development", 
+            "created": "2010-01-26 15:43:15", 
+            "author": 1, 
+            "principle": 2, 
+            "published": "2010-01-26 15:43:14", 
+            "enable_comments": false,
+            "longitude": -71.11605,
+            "latitude": 42.39969,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-economic-development"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To More Local Jobs", 
+            "created": "2010-01-26 15:42:52", 
+            "author": 1, 
+            "principle": 1, 
+            "published": "2010-01-26 15:42:53", 
+            "enable_comments": false,
+            "longitude": -71.10467,
+            "latitude": 42.39690,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-local-jobs"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Keep and Add Local Businesses", 
+            "created": "2010-01-26 15:42:33", 
+            "author": 1, 
+            "principle": 3, 
+            "published": "2010-01-26 15:42:34", 
+            "enable_comments": false,
+            "longitude": -71.10727,
+            "latitude": 42.39153,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-local-business"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "principles.entry", 
+        "fields": {
+            "status": 1, 
+            "tags": [], 
+            "title": "How To Keep Somerville Affordable", 
+            "created": "2010-01-26 15:42:06", 
+            "author": 1, 
+            "principle": 4, 
+            "published": "2010-01-26 15:42:07", 
+            "enable_comments": false, 
+            "longitude": -71.09807,
+            "latitude": 42.38682,
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat laboris nisi ut aliquip.", 
+            "slug": "howto-affordable-somerville"
+        }
+    }
+]

@@ -1,0 +1,5 @@
+{% load i18n %}
+{% blocktrans %}User '{{ user }}' at interactive-beta.org has given this as an email address.
+
+To confirm this is correct, go to {{ activate_url }}
+{% endblocktrans %}

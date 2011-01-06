@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load idea_tags %}
+{% load markup %}
+{% load theme_tags %}
+{% load humanize %}
+{% load gravatar %}
+{% load comments_tag %}
+
+{% block head_title %}{% blocktrans %}Your Locations | {% endblocktrans %}{% endblock %}
+
+{% block extra_head %}{% endblock %}
+
+{% block body %}  
+    <h1>Your Locations</h1>
+    
+    {% if locations %}
+    {% for location in locations %}
+        <h2><a href="{{ location.get_absolute_url }}">{{ location.title }} </a></h2>
+        <h5><a href="{{ location.get_static_url }}">See map</a></h5>
+
+                {% with location.description|truncatewords:"150" as body %}
+                    {% if location.markup %}
+                           {{ body|force_escape|markdown }}
+                    {% else %}
+                        {{ body|force_escape|linebreaks|safe }}
+                    {% endif %}
+                {% endwith %}
+        
+        <div class="blog-post-meta">
+            {% gravatar location.author 40 %}
+            <p><b>Posted:</b><br />
+                <a href="{% url profile_detail location.author.username %}">{{ location.author.username }}</a> on {{ location.created|date }}</p>
+        </div>
+        
+        {% endfor %}   
+    
+    {% else %}
+        {% trans "No Locations yet." %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load markup %}
+{% load humanize %}
+{% load gravatar %}
+{% load comments_tag %}
+
+<div class="blog-post clearfix">
+    <h2><a href="{{ idea_post.get_absolute_url }}">{{ idea_post.title }} </a></h2>
+    <div class="blog-post-tease">
+        {% if idea_post.tease %}
+             {% with idea_post.tease as body %}
+                {% if idea_post.markup %}
+                        {{ body|force_escape|markdown }}
+                {% else %}
+                    {{ body|force_escape|linebreaks|safe }}
+                {% endif %}
+            {% endwith %}
+        {% else %}
+            {% with idea_post.body|truncatewords:"150" as body %}
+                {% if idea_post.markup %}
+                       {{ body|force_escape|markdown }}
+                {% else %}
+                    {{ body|force_escape|linebreaks|safe }}
+                {% endif %}
+            {% endwith %}
+        {% endif %}
+    </div>
+    <div class="blog-post-meta">
+        {% gravatar idea_post.author 40 %}
+        <p><b>Posted:</b><br />
+            <a href="{% url profile_detail idea_post.author.username %}">{{ idea_post.author.username }}</a> on {{ idea_post.publish|date }}</p>
+    </div>
+</div>

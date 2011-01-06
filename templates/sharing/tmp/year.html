@@ -1,0 +1,18 @@
+{% extends "greenline/base.html" %}
+
+{# Example template for a the calendar year view #}
+
+{% block title %}From the Community for {{ year }}{% endblock %}
+
+{% block content %}
+  <h1>Shared Items in {{ year }}</h1>
+  <p>
+    {% if previous %}<a href="{{ previous_link }}">&larr; {{ previous }}</a>{% endif %}
+    {% if next %}<a href="{{ next_link }}">{{ next }} &rarr;</a>{% endif %}
+  </p>
+  <ul>
+    {% for item in items %}
+      <li>{{ item.timestamp|date:"F j" }}: {{ item }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

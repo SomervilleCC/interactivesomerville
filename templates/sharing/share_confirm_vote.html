@@ -1,0 +1,11 @@
+{% load avatar_tags %}
+{% load voting_tags %}
+
+{% score_for_object object as score %}
+<h5>Votes <span id="score">{{ score.score }}</span> point{{ score.score|pluralize }}
+         after <span id="num_votes">{{ score.num_votes }}</span> vote{{ score.num_votes|pluralize }}</h5>
+<ul>
+    <li><a href="#" onclick="vote('{{ object.object_id }}', 'up');">I like it!</a></li>
+    <li><a href="#" onclick="vote('{{ object.object_id }}', 'down');">I hate it!</a></li>
+    <li><a href="#" onclick="vote('{{ object.object_id }}', 'clear');">I take it back! Clear my vote.</a></li>
+</ul>

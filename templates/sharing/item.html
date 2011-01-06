@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load avatar_tags %}
+{% load gravatar %}
+{% load voting_tags %}
+{% load extra_voting_tags %}
+
+{% block head_title %}{% blocktrans %}Shared Item | {% endblocktrans %}{% endblock %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block body %}
+<div id="content" class="grid_6">
+<div class="shared media">
+  <h3>
+    {% if share.url %}
+      <a href="{{ share.url }}">{{ share.title }}</a>
+    {% else %}
+      {{ share }}
+    {% endif %}
+    {% if share.permalink %}
+      <a href="{{ share.permalink }}">#</a>
+    {% endif %}
+  </h3>
+  <p class="meta">{{ share.timestamp|date:"N jS, Y, P" }}</p>
+</div>
+
+{% endblock %}
+
+{% block extra_body %}
+
+{% endblock %}

@@ -1,0 +1,126 @@
+[
+{
+    "pk": 1, 
+    "model": "ideas.idea", 
+    "fields": {
+        "description": "A Medford resident has taken to the blogosphere to campaign for a Route 16 station on the Green Line extension.A new blog.",
+        "tease": "A Medford resident has taken to the blogosphere",
+        "title": "New blog voices support for Route 16", 
+        "slug" : "slug-one",
+        "markup" : "",
+        "geometry": "POINT (42.417136075599998 -71.127711763299999)", 
+        "author": 1
+    }
+}, 
+{
+    "pk": 2, 
+    "model": "ideas.idea", 
+    "fields": {
+        "description": "Somerville Mayor Joe Curtatone and Monica Lamboy, executive director of the Mayor\u2019s Office of Strategic Planning and Community Development (OSPCD), announce that, as a result of a recent series of visioning meetings and discussions by Somerville\u2019s 60-member Comprehensive Plan Steering Committee, the city has created its first-ever Vision Statement to guide the 20-year comprehensive planning", 
+        "tease": "Somerville Mayor Joe Curtatone and Monica Lamboy, executive director.",
+        "title": "Public transit key part of Vision",
+        "slug" : "slug-two", 
+        "markup" : "",
+        "geometry": "POINT (42.393198910800002 -71.105877718800002)",  
+        "author": 1
+    }
+}, 
+{
+    "pk": 3, 
+    "model": "ideas.idea", 
+    "fields": {
+        "description": "A secondary connection from the Winchester Street neighborhood, over the tracks to the station, should be included as part of the design.",
+        "tease": "A secondary connection from the Winchester Street neighborhood.",
+        "title": "Connection to Winchester Street from Ball Square Station", 
+        "slug" : "slug-three",
+        "markup" : "",
+        "geometry": "POINT (42.399621000000003 -71.109530000000007)", 
+        "author": 1
+    }
+},
+
+{
+    "pk": 4, 
+    "model": "ideas.idea", 
+    "fields": {
+        "description": "The Green Line Extension Design Working Group invites the public to a walk around the location for the Gilman Square Green Line Station on Monday, Nov. 22, at 3 p.m. Meet outside Somerville City Hall, 93 Highland Ave., next to Somerville High School. This is the first of several station area walks to get ideas and feedback.",
+        "tease": "The Green Line Extension Design Working Group invites the public to a walk around the location ",
+        "title": "Gilman Station area walk set for Monday, Nov. 22", 
+        "slug" : "a",
+        "markup" : "",
+        "geometry": "POINT (42.38499 -71.09203)",
+        "author": 1
+    }
+},
+
+{
+    "pk": 5, 
+    "model": "ideas.idea", 
+    "fields": {
+        "description": "MassINC has released a policy report calling for a new approach to state transportation funding. The strategy paper, titled “Next Stop, Massachusetts: Strategies to Build the Bay State’s Transportation Future and Keep our Economy Moving,” calls for regionalizing multi-modal systems that support local economies, allowing voters to have more control over transportation financing and making transportation",
+        "tease": "MassINC has released a policy report calling for a new approach to state transportation funding. ",
+        "title": "MassINC: New approach needed to fund state transportation", 
+        "slug" : "b",
+        "markup" : "",
+        "geometry": "POINT (42.38576 -71.1142)",
+        "author": 1
+    }
+},
+
+{
+    "pk": 6, 
+    "model": "ideas.idea", 
+    "fields": {
+        "description": "The Metropolitan Area Planning Council (MAPC) is finalizing plans for a year-long study to evaluate the impacts and economic development potential surrounding the proposed Green Line station at Mystic Valley Parkway and Boston Avenue on the Medford/Somerville line.",
+        "tease": "The Metropolitan Area Planning Council (MAPC) is finalizing plans for a year-long study.",
+        "title": "MAPC plans year-long study of proposed Route 16 station.", 
+        "slug" : "c",
+        "markup" : "",
+        "geometry": "POINT (42.4217 -71.0905)", 
+        "author": 1
+    }
+},
+
+{
+    "pk": 7, 
+    "model": "ideas.idea", 
+    "fields": {
+        "description": "The second meeting of the Green Line Extension Design Working Group is Monday evening at the Tufts University building at 51 Winthrop Street in Medford (former Sacred Heart Church).",
+        "tease": "The second meeting of the Green Line Extension Design Working Group.",
+        "title" : "Route 16 station study on Design Working Group agenda Monday",
+        "slug" : "d",
+        "markup" : "",
+        "geometry": "POINT (42.4217 -71.0905)", 
+        "author": 1
+    }
+},
+
+{
+    "pk": 8, 
+    "model": "ideas.idea", 
+    "fields": {
+        "description": "The Design Principles subcommittee of the Green Line Extension Design Working Group has scheduled its next two meetings. They are: + Tuesday, October 19, at 5:30 p.m. at the TAB Building, 167 Holland Ave., Somerville.",
+        "tease": "The Design Principles subcommittee of the Green Line Extension ",
+        "title": "GLX Design Principles subcommittee sets meetings.", 
+        "slug" : "e",
+        "markup" : "",
+        "geometry": "POINT (42.4115 -71.1033)", 
+        "author": 1
+    }
+},
+
+{
+    "pk": 9, 
+    "model": "ideas.idea", 
+    "fields": {
+        "description": "The state is moving ahead on Green Line Extension plans, working around its rejection of scandalized Big Dig contractor Parson Brinckerhoff, by including the work PB would have done in an MBTA construction bid that will be decided this winter. ",
+        "tease": "The state is moving ahead on Green Line Extension plans",
+        "title": "MassDOT moving on Green Line Extension despite ousting Big Dig firm.", 
+        "slug" : "",
+        "markup" : "f",
+        "geometry": "POINT (42.4217 -71.0905)", 
+        "author": 1
+    }
+}
+
+]

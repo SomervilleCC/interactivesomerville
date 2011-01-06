@@ -1,0 +1,482 @@
+[
+    {
+        "pk": 1, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "university", 
+            "title": "university"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "bike-path", 
+            "title": "bike path"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "square", 
+            "title": "square"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "shopping-center", 
+            "title": "shopping center"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "recreation-area", 
+            "title": "recreation area"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "pool", 
+            "title": "pool"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "political-center", 
+            "title": "political center"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "museum", 
+            "title": "museum"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "historic-site", 
+            "title": "historic site"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "government-office-building", 
+            "title": "government office building"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "community-garden", 
+            "title": "community garden"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "open-space", 
+            "title": "open space"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "health-center", 
+            "title": "health center"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "cultural-center", 
+            "title": "cultural center"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "place-worship", 
+            "title": "place of worship"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "cemetery", 
+            "title": "cemetery"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "park", 
+            "title": "park"
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "school", 
+            "title": "school"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "library", 
+            "title": "library"
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "location.locationtype", 
+        "fields": {
+            "slug": "station", 
+            "title": "station"
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is Capen St.", 
+            "title": "108 Capen St, Medford, MA 02155", 
+            "geometry": "POINT (-71.1278580000000034 42.4133959999999988)", 
+            "author": 1, 
+            "location_type": 3, 
+            "station": null, 
+            "created": "2010-12-26 14:11:55", 
+            "principle": 4, 
+            "address": "108 Capen St", 
+            "slug": "108-capen-st-medford-ma-02155"
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is 2 Bonner Ave", 
+            "title": "2 Bonner Ave, Somerville, MA 02143", 
+            "geometry": "POINT (-71.0939929999999976 42.3796180000000007)", 
+            "author": 1, 
+            "location_type": 5, 
+            "station": null, 
+            "created": "2010-12-26 14:12:21", 
+            "principle": 5, 
+            "address": "2 Bonner Ave", 
+            "slug": "2-bonner-ave-somerville-ma-02143"
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is 2 Morton St", 
+            "title": "2 Morton St, Somerville, MA 02145", 
+            "geometry": "POINT (-71.0872710000000012 42.3817480000000018)", 
+            "author": 1, 
+            "location_type": 6, 
+            "station": null, 
+            "created": "2010-12-26 14:12:44", 
+            "principle": 6, 
+            "address": "2 Morton St", 
+            "slug": "2-morton-st-somerville-ma-02145"
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is 2 Norton Ave", 
+            "title": "2 Norton Ave, Medford, MA 02155", 
+            "geometry": "POINT (-71.1227860000000049 42.4158529999999985)", 
+            "author": 1, 
+            "location_type": 7, 
+            "station": null, 
+            "created": "2010-12-26 14:13:09", 
+            "principle": 7, 
+            "address": "2 Norton Ave", 
+            "slug": "2-norton-ave-medford-ma-02155"
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is 20 Bailey St", 
+            "title": "20 Bailey St, Somerville, MA 02144", 
+            "geometry": "POINT (-71.1281239999999997 42.4093609999999970)", 
+            "author": 1, 
+            "location_type": 8, 
+            "station": null, 
+            "created": "2010-12-26 14:13:31", 
+            "principle": 8, 
+            "address": "20 Bailey St", 
+            "slug": "20-bailey-st-somerville-ma-02144"
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is 22 Hudson St", 
+            "title": "22 Hudson St, Somerville, MA 02143", 
+            "geometry": "POINT (-71.1042779999999937 42.3895259999999965)", 
+            "author": 1, 
+            "location_type": 9, 
+            "station": null, 
+            "created": "2010-12-26 14:13:48", 
+            "principle": 8, 
+            "address": "22 Hudson St", 
+            "slug": "22-hudson-st-somerville-ma-02143"
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is 220 Harvard Ave", 
+            "title": "220 Harvard Ave, Boston, MA 02134", 
+            "geometry": "POINT (-71.1301119999999969 42.3493149999999972)", 
+            "author": 1, 
+            "location_type": 9, 
+            "station": null, 
+            "created": "2010-12-26 14:14:05", 
+            "principle": 8, 
+            "address": "220 Harvard Ave", 
+            "slug": "220-harvard-ave-boston-ma-02134"
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is 33 Piggott Rd", 
+            "title": "33 Piggott Rd, Medford, MA 02155", 
+            "geometry": "POINT (-71.1239790000000056 42.4137860000000018)", 
+            "author": 1, 
+            "location_type": 10, 
+            "station": null, 
+            "created": "2010-12-26 14:14:26", 
+            "principle": 8, 
+            "address": "33 Piggott Rd", 
+            "slug": "33-piggott-rd-medford-ma-02155"
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is 46 Radcliffe Rd", 
+            "title": "46 Radcliffe Rd, Somerville, MA 02145", 
+            "geometry": "POINT (-71.0948470000000015 42.3892489999999995)", 
+            "author": 1, 
+            "location_type": 11, 
+            "station": null, 
+            "created": "2010-12-26 14:15:04", 
+            "principle": 8, 
+            "address": "46 Radcliffe Rd", 
+            "slug": "46-radcliffe-rd-somerville-ma-02145"
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is 70 Newbern Ave", 
+            "title": "70 Newbern Ave, Medford, MA 02155", 
+            "geometry": "POINT (-71.1098870000000005 42.4000709999999970)", 
+            "author": 1, 
+            "location_type": 10, 
+            "station": null, 
+            "created": "2010-12-26 14:16:28", 
+            "principle": 9, 
+            "address": "70 Newbern Ave", 
+            "slug": "70-newbern-ave-medford-ma-02155"
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is Broadway", 
+            "title": "783 Broadway, Somerville, MA 02144", 
+            "geometry": "POINT (-71.1156239999999968 42.4012310000000028)", 
+            "author": 1, 
+            "location_type": 10, 
+            "station": null, 
+            "created": "2010-12-26 14:17:06", 
+            "principle": 9, 
+            "address": "783 Broadway", 
+            "slug": "783-broadway-somerville-ma-02144"
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is Somerville Ave. near a graveyard (spooky!)", 
+            "title": "436 Somerville Ave, Somerville, MA 02143", 
+            "geometry": "POINT (-71.1019579999999962 42.3819400000000002)", 
+            "author": 1, 
+            "location_type": 10, 
+            "station": null, 
+            "created": "2010-12-26 14:18:17", 
+            "principle": 9, 
+            "address": "436 Boston Avenue, Somerville, MA", 
+            "slug": "436-somerville-ave-somerville-ma-02143"
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "location.location", 
+        "fields": {
+            "description": "This is Greenleaf Ave", 
+            "title": "56 Greenleaf Ave, Medford, MA 02155", 
+            "geometry": "POINT (-71.1188420000000008 42.4118860000000026)", 
+            "author": 1, 
+            "location_type": 10, 
+            "station": null, 
+            "created": "2010-12-26 14:19:05", 
+            "principle": 9, 
+            "address": "56 Greenleaf Ave", 
+            "slug": "56-greenleaf-ave-medford-ma-02155"
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "location.location", 
+        "fields": {
+            "description": "", 
+            "title": "2 Eastman Rd, Somerville, MA 02143", 
+            "geometry": "POINT (-71.1116310000000027 42.3918559999999971)", 
+            "author": 1, 
+            "location_type": null, 
+            "station": null, 
+            "created": "2011-01-05 00:47:18", 
+            "principle": null, 
+            "address": "2 Eastman Road", 
+            "slug": "2-eastman-rd-somerville-ma-02143"
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "location.location", 
+        "fields": {
+            "description": "", 
+            "title": "40 Main St, Somerville, MA 02145", 
+            "geometry": "POINT (-71.0986639999999994 42.3962989999999991)", 
+            "author": 1, 
+            "location_type": null, 
+            "station": null, 
+            "created": "2011-01-05 00:50:26", 
+            "principle": null, 
+            "address": "40 Main St", 
+            "slug": "40-main-st-somerville-ma-02145"
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "location.location", 
+        "fields": {
+            "description": "", 
+            "title": "110 School St, Somerville, MA 02143", 
+            "geometry": "POINT (-71.0991819999999990 42.3861970000000028)", 
+            "author": 1, 
+            "location_type": null, 
+            "station": null, 
+            "created": "2011-01-05 00:51:39", 
+            "principle": null, 
+            "address": "110 School Street", 
+            "slug": "110-school-st-somerville-ma-02143"
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "location.location", 
+        "fields": {
+            "description": "", 
+            "title": "14 Greene St, Somerville, MA 02143", 
+            "geometry": "POINT (-71.1036349999999970 42.3846780000000010)", 
+            "author": 1, 
+            "location_type": null, 
+            "station": null, 
+            "created": "2011-01-05 00:52:48", 
+            "principle": null, 
+            "address": "14 Greene St", 
+            "slug": "14-greene-st-somerville-ma-02143"
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "location.location", 
+        "fields": {
+            "description": "", 
+            "title": "40 Franklin St, Somerville, MA 02145", 
+            "geometry": "POINT (-71.0841920000000016 42.3841529999999977)", 
+            "author": 1, 
+            "location_type": 7, 
+            "station": null, 
+            "created": "2011-01-05 00:53:50", 
+            "principle": 4, 
+            "address": "40 Franklin St", 
+            "slug": "40-franklin-st-somerville-ma-02145"
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "location.location", 
+        "fields": {
+            "description": "", 
+            "title": "Clary St, Cambridge, MA", 
+            "geometry": "POINT (-71.0986249999999984 42.3741780000000006)", 
+            "author": 1, 
+            "location_type": 7, 
+            "station": null, 
+            "created": "2011-01-05 00:54:31", 
+            "principle": 4, 
+            "address": "2 Clary St", 
+            "slug": "clary-st-cambridge-ma"
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "location.location", 
+        "fields": {
+            "description": "", 
+            "title": "2 Palermo St, Cambridge, MA 02141", 
+            "geometry": "POINT (-71.0923329999999964 42.3716840000000019)", 
+            "author": 1, 
+            "location_type": 8, 
+            "station": null, 
+            "created": "2011-01-05 00:55:12", 
+            "principle": 3, 
+            "address": "2 Palermo St", 
+            "slug": "2-palermo-st-cambridge-ma-02141"
+        }
+    }
+]

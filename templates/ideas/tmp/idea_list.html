@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+  {% if idea_list %}
+        {% for idea in idea_list %}
+        <ul>
+          <h4><a href="{{ idea.pk }}">{{ idea.title }}</a>  </h4>
+          <li>{{ idea.body }} </li>
+          <li>{{ idea.author }} </li>
+          <li><a href="{% url idea_list_all %} ">All Ideas</a></li> 
+          <br />
+        {% endfor %}
+      </ul>
+  {%endif%}
+  {% if idea %}
+  <h4>Idea details</h4>
+      <ul>
+        <li>id: {{ idea.id }}</li>
+        <li>body: {{ idea.body }}</li>
+      </ul>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load markup %}
+{% load gravatar %}
+{% load pagination_tags %}
+{% load comments_tag %}
+
+{% block head_title %}{% blocktrans %}Respond | {% endblocktrans %} {{ post.title }}{% endblock %}
+
+{% block extra_head %}{% endblock %}
+
+{% block body %}
+<div id="content" class="grid_6">
+<div class="shared media">
+            {% ifequal idea.author request.user %}
+                <a href="{% url idea_edit idea.id %}">Edit</a>
+            {% endifequal %}
+        </div>        
+        <div style="float: auto;">
+            <a href="{{ idea.get_absolute_url }}">{{ idea.title }} </a>
+                {% if idea.tease %}
+                     {% with idea.tease as body %}
+                        {% if idea.markup %}
+                                {{ body|force_escape|markdown }}
+                        {% else %}
+                            {{ body|force_escape|linebreaks|safe }}
+                        {% endif %}
+                    {% endwith %}
+                {% else %}
+                    {% with idea.body|truncatewords:"150" as body %}
+                        {% if idea.markup %}
+                               {{ body|force_escape|markdown }}
+                        {% else %}
+                            {{ body|force_escape|linebreaks|safe }}
+                        {% endif %}
+                    {% endwith %}
+                {% endif %}
+            <div class="idea-post-meta">
+                {% gravatar idea.author 40 %}
+                <p><b>Posted:</b><br />
+                    <a href="{% url profile_detail idea.author.username %}">{{ idea.author.username }}</a> on {{ idea.publish|date }}</p>
+        </div>
+        <h6>Comment on This Idea:</h6>
+        {% comments idea %}
+</div>
+</div>
+{% endblock %}

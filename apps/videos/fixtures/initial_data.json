@@ -1,0 +1,20 @@
+[
+    {
+        "pk": 1, 
+        "model": "videos.videosource", 
+        "fields": {
+            "home": "http://video.google.com", 
+            "name": "Google", 
+            "embed_template": "http://video.google.com/googleplayer.swf?docId=%s&hl=en"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "videos.videosource", 
+        "fields": {
+            "home": "http://www.youtube.com", 
+            "name": "YouTube", 
+            "embed_template": "http://www.youtube.com/v/%s"
+        }
+    }
+]

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+
+{% block head_title %}{% blocktrans %}Share Something | {% endblocktrans %}{% endblock %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block body %}
+
+
+{% if user.is_authenticated %}
+
+    <h3>Share Something</h3>
+    
+        <form class="uniForm" id="new-share" method="POST" action="">
+        <fieldset class="inlineLabels">
+            {{ form|as_uni_form }}
+            <div class="form_block">
+            <input type="hidden" name="action" value="create" />
+            <input type="submit" value="{% trans "create" %}"/>
+            </div>
+        </fieldset>
+    </form>
+
+{% else %}
+    <p>Please <a href="/account/login/">Log in</a>.</p>
+{% endif %}
+{% endblock %}
+
+{% block extra_body %}
+    {% load jquery_validation %}
+    {% include_validation %}
+    <script type="text/javascript">
+        $(function(){
+            $('#share_form').validate('{% url share_form_validate %}', {type: 'table'});
+        });
+    </script>
+{% endblock %}

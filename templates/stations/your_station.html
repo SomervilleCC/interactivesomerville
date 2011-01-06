@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Your Station | {% endblocktrans %}{% endblock %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block body %}
+<form action="" method="post" id="address-search">
+  <h3>Find Your Station</h3>
+  <div class="row">
+    <label for="id_address">Enter an address below to see what's happening.</label>
+    <input type="text" name="address" id="id_address">
+    <button type="submit">Search</button>
+    <p class="help-text"><strong>EXAMPLES:</strong> 123 Sally Lane, 09875</p>
+  </div>
+</form>
+{% endblock %}
+{% block extra_body %}
+    {% load jquery_validation %}
+    {% include_validation %}
+    <script type="text/javascript">
+        $(function(){
+            $('#station_form').validate('{% url station_form_validate %}', {type: 'table'});
+        });
+    </script>
+{% endblock %}
