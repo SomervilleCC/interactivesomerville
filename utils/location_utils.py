@@ -37,7 +37,7 @@ def transform(stations):
     return stats
     
 def geocode(address):
-    result = Non
+    result = None
     g = geocoders.Google(resource='maps', format_string="%s, Somerville MA")
     try:
         result = g.geocode(address)
