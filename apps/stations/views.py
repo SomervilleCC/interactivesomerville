@@ -102,7 +102,7 @@ def your_station(request, form_class=StationForm, template_name="stations/your_s
     context = {'GOOGLE_API_KEY': lazy_key()}
     station = None
     geom = None
-    title = ''
+    title = None
     
     if request.method == "POST":
         result = None
@@ -119,7 +119,6 @@ def your_station(request, form_class=StationForm, template_name="stations/your_s
         if result:
             title = result[0]
             geom = Point(result[1][0], result[1][1])
-            log.debug('geom is %f, %f:', result[1][0], result[1][1]) 
             latitude = result[1][1]
             longitude = result[1][0]
             nearest = nearest_station_from_geo(geom)

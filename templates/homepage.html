@@ -22,7 +22,7 @@
 //<![CDATA[
     // Global vars, array for holding and clearing overlays.
     var infoBubbleStations = new InfoBubble({maxWidth: 300,borderWidth: 2,borderColor: '#3B7002'});
-    var infoBubblePhotos = new InfoBubble({maxWidth: 200,borderWidth: 1,borderColor: '#3B7002'});
+    var infoBubblePhotos = new InfoBubble({maxWidth: 500, minWidth: 260, borderWidth: 1, borderColor: '#3B7002'});
     var infoBubbleLocations = new InfoBubble({maxWidth: 250,borderWidth: 1,borderColor: '#3B7002'});
     
     var overlays = [];
@@ -175,6 +175,14 @@
             icon: '{{ STATIC_URL }}greenline/images/isicons/photo.png',
             title: '{{ photo.title }}'
         });
+
+        var _{{ photo.photo_id }}contentString = '<div id= markerInfo">' +
+            '<a href="{{ photo.url }}" target="_blank"><img src="{{ photo.small_url }}" alt=""></a> <br>' + 
+            '{{ photo.title }}' + 
+            '</div>';
+            
+    createListenerInfoBubblePhotos(_{{ photo.photo_id }}, _{{ photo.photo_id }}contentString);
+    
     {% endfor %}
     {% endif %}
     
