@@ -101,6 +101,9 @@ def your_station(request, form_class=StationForm, template_name="stations/your_s
         
     context = {'GOOGLE_API_KEY': lazy_key()}
     station = None
+    geom = None
+    title = ''
+    
     if request.method == "POST":
         result = None
         data = request.POST.copy()
@@ -111,11 +114,12 @@ def your_station(request, form_class=StationForm, template_name="stations/your_s
         try:
             result = geocode_to_point_object(location) # result = (str, (Point object))
         except (HTTPError, BadStatusLine):
-            raise BadRequest(request)
+            raise StationBadRequest(request)
             
         if result:
             title = result[0]
             geom = Point(result[1][0], result[1][1])
+            log.debug('geom is %f, %f:', result[1][0], result[1][1]) 
             latitude = result[1][1]
             longitude = result[1][0]
             nearest = nearest_station_from_geo(geom)
@@ -149,13 +153,15 @@ def your_station(request, form_class=StationForm, template_name="stations/your_s
                 exact_distance_in_feet = exact_distance_in_feet[:exact_distance_in_feet.rfind('.')]
             else:
                 raise Exception("Got an error for %s ." % escape(result[0]))
+        else:
+            raise Exception("Unknown geocoding error. Please try another address.")
     else:
         if request.method == 'GET':
             station_form = StationForm()        
             return render_to_response(template_name, {
                 "form": station_form
             }, context_instance=RequestContext(request))
-
+            
     return render_to_response("stations/checkin.html", {
         'name': address,
         'station': station,
