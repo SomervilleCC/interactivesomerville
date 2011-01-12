@@ -211,7 +211,7 @@ google.maps.event.addDomListener(window, 'load', init);
 {% block body %}
     {% if stations %}
         {% for station in stations %}
-            <em>{{ station.name }}</em>
+            <h3>{{ station.name }}</h3>
             {% with station.copy as copy %}    
             <p>{{ copy|force_escape|markdown }}
             <hr>

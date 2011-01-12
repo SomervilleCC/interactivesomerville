@@ -98,7 +98,7 @@ google.maps.event.addDomListener(window, 'load', init);
 </head> 
 
 {% block body %}
-<p>{{ name }} is <b>{{ distance_in_feet }}</b> feet away from {{ station.name }}</p>
+<label>{{ name }} is <b>{{ distance_in_feet }}</b> feet from the proposed {{ station.name }}.</label>
 {% endblock %}
 
 {% block map %}
