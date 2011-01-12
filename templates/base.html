@@ -87,15 +87,16 @@
     {% endif %}    
     
     {% block map %}{% endblock %}
-    
+<br>
     <div id="main">
-        {% block body %}{% endblock %}
-        {% block content %}{% endblock %}
-        
-        {% block extra_body_base %}
-            {% block extra_body %}{% endblock %}
-        {% endblock %}
-    </div>
+    {% block body %}{% endblock %}    
+    {% block extra_body_base %}
+        {% block extra_body %}{% endblock %}
+    {% endblock %}
+    </div>    
+    {% block content %}{% endblock %}
+
+<br>
 {% block footer %}
     <div id="footer">
         <ul class="nav">
