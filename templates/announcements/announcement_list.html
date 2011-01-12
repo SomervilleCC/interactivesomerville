@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Announcements" %}{% endblock %}
+
+{% block body %}
+    <h3>{% trans "Announcements" %}</h3>
+    
+    {% if object_list %}
+    <ul>
+        {% for announcement in object_list %}
+        <li>
+            <a href="{{ announcement.get_absolute_url }}">{{ announcement }}</a> -
+            <a href="{% url announcement_hide announcement.pk %}?next={{ request.path }}">{% trans "Remove" %}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <strong>{% trans "There are no announcements for you." %}</strong>
+    {% endif %}
+{% endblock %}

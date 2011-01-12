@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% blocktrans %}Announcements : {{ object }}{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h3>{{ object }}</h3>
+    <p>{{ object.content }}</p>
+{% endblock %}

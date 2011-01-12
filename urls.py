@@ -24,7 +24,7 @@ urlpatterns = patterns('',
             'extra_context': {
             'ideas':        Idea.objects.order_by('?')[:3], # random ideas.
             'stations':     transform(Station.objects.all()),
-            'photos':       Photo.objects.order_by('?')[:10], # random photos.
+            'photos':       Photo.objects.order_by('?')[:20], # random photos.
             'locations':    Location.objects.all(), # random places.
             'random_station' :  transform(Station.objects.order_by('?')[:1]) # center on random station.
         },
@@ -32,6 +32,7 @@ urlpatterns = patterns('',
     
     # pinax provided
     (r'^account/',  include('account.urls')),
+    (r'^announcements/', include('announcements.urls')),
     (r'^profiles/', include('profiles.urls')),
     (r'^about/',    include('about.urls')),
     (r'^notices/',  include('notification.urls')), # needed for threadedcomments
