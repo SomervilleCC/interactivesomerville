@@ -166,9 +166,9 @@ background:#fff;
 padding:10px 0 30px;
 } */
 
-/* Body Area */
+/* Body Area  F5F8F5 or FBFEFB or F9FFF9 */
 #main {
-background:#F5F8F5;
+background:#F9FFF9;
 padding:10px 10px 5px;
 }
 
@@ -344,3 +344,12 @@ label.num { line-height: 160%; font-size: 16px; }
 #share textarea { padding: 4px 6px; width: 346px; height: 90px; }
 
 form .global-actions .cancel { margin: 0 0 0 10px; }
+
+/*
+THE FOLLOWING ARE OVERRIDES TO PREVIOUSLY INCLUDED CSS
+*/
+
+/* ------------------------------------------------------------------------------ */
+
+/* Overide uniForm's row highlight */
+.uniForm .focused{ background: #F4FFF4; }
