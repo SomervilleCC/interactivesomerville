@@ -169,6 +169,3 @@ def your_station(request, form_class=StationForm, template_name="stations/your_s
         #'distance_in_meters':exact_distance_in_meters,
         'distance_in_feet':exact_distance_in_feet,
     }, context_instance=RequestContext(request))
-    
-#(place, (lat, lng)) = list(geoc.geocode(address, exactly_one=False))[0]
-#log.debug('place, lat and lng are  %s, %s, %s.', place, lat, lng)

@@ -17,11 +17,11 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 # tells Pinax to use the default theme
 PINAX_THEME = 'default'
 
+# following should be set to False for prod
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
 # tells Pinax to serve media through django.views.static.serve.
 SERVE_MEDIA = DEBUG
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     # ('Gerald McCollam', 'gmccollam@gmail.com'),

@@ -14,11 +14,12 @@
   <div class="row">
     <label for="id_address">Enter an address below to find the nearest Greenline station.</label>
     <input type="text" name="address" id="id_address">
-    <button type="submit">Find my station.</button>
-    <p class="help-text"><strong>EXAMPLES:</strong> 83 Highland Avenue, 24 Richdale Ave.</p>
+    <button type="submit">Find my station</button>
+    <p class="help-text"><strong>EXAMPLES:</strong> 83 Highland Avenue, 24 Richdale Ave</p>
   </div>
 </form>
 {% endblock %}
+
 {% block extra_body %}
     {% load jquery_validation %}
     {% include_validation %}
