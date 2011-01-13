@@ -73,23 +73,34 @@ def nearer_station(location, stations):
     return stations[1]
     
 def stations(request, template_name="stations/stations.html"):
-    ''' Return a random Station object, Locations, centered on the Station. '''
+    ''' Return a random Station object, Locations, etc. centered on the Station. '''
 
-    random_station = Station.objects.order_by('?')[:1]
-    locations = Location.objects.all()
+    random_station = transform(Station.objects.order_by('?')[:1])
     
-    transform(random_station)
+    stations = transform(Station.objects.all())
+    # clone stations list for text use
+    stations_text = stations[:]
+        
+    featured = random_station[0].name
+
+    # remove featured stations from text
+    for station in stations_text:
+            if featured == station.name:
+                stations_text.remove(station)
+                break
+            
     bbox = boundingBox(random_station[0].geometry.y, random_station[0].geometry.x, .57) # .57 places it exactly on radius edge
     
     markerpos = (bbox[0], bbox[1])
                 
     return render_to_response(template_name, {
-    'stations': transform(Station.objects.all()),
+    'stations': stations,
+    'stations_text': stations_text,
     'random_station': random_station,
     'markerpos': markerpos,
     'stationname': random_station[0].name,
-    'locations' : locations,
-    'photos':   Photo.objects.all()[:10], # random photos.
+    'locations' : Location.objects.all(),
+    'photos':   Photo.objects.order_by('?')[:20], # random photos.
 
     }, context_instance=RequestContext(request)
     )

@@ -33,7 +33,7 @@
     var infoWindow = new google.maps.InfoWindow();
 
     {% for station in random_station %}
-        var mapCenter = new google.maps.LatLng({{ station.geometry.y }}, {{ station.geometry.x }});
+        var stationCenter = new google.maps.LatLng({{ station.geometry.y }}, {{ station.geometry.x }});
     {% endfor %} 
     
     function applyBikeLayer() {
@@ -45,7 +45,7 @@
     // Create a new map
     var options = {
         'zoom': 15,
-        center: mapCenter,
+        center: stationCenter,
         scaleControl: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         streetViewControl: true,
@@ -242,9 +242,17 @@ google.maps.event.addDomListener(window, 'load', init);
 {% endblock %}
 
 {% block body %}
-    {% if stations %}
-        {% for station in stations %}
-            <h3>{{ station.name }}</h3>
+    {% for station in random_station %}
+        <h3>{{ station.name }}</h3>
+        {% with station.copy as copy %}    
+        <p>{{ copy|force_escape|markdown }}
+        <hr>
+        {% endwith %}
+    {% endfor %} 
+        
+    {% if stations_text %}
+        {% for station in stations_text %}
+            <h5>{{ station.name }}</h5>
             {% with station.copy as copy %}    
             <p>{{ copy|force_escape|markdown }}
             <hr>
