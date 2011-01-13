@@ -67,7 +67,7 @@ def geocode_to_point_object(address):
     result = (title, Point(lnglat))
     return result
     
-def _reverse_geocode(point):
+def reverse_geocode(point):
     ''' Point argument must be tuple: (latitude, longitude)''' 
     geoc = geocoders.Google(lazy_key())
     result = geoc.reverse(point, exactly_one=True) # FIXME: handle multiple results
