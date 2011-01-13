@@ -46,14 +46,14 @@
 
 var route16 = new google.maps.Polyline({
   path: route16coords,
-  strokeColor: "#006400",
+  strokeColor: "#022706",
   strokeOpacity: .6,
   strokeWeight: 3
 });
 
 var unionSq = new google.maps.Polyline({
   path: unionSqcoords,
-  strokeColor: "#006400",
+  strokeColor: "#022706",
   strokeOpacity: .6,
   strokeWeight: 3
 });
