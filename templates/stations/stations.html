@@ -25,15 +25,23 @@
     var infoBubblePhotos = new InfoBubble({maxWidth: 500, minWidth: 260, borderWidth: 1, borderColor: '#3B7002'});
     var infoBubbleLocations = new InfoBubble({maxWidth: 300, borderWidth: 1, borderColor: '#3B7002'});
 
+    var bikeLayer = new google.maps.BicyclingLayer();
+
     var overlays = [];
     var gmarkers = [];
-        
-{% for station in random_station %}
-    var mapCenter = new google.maps.LatLng({{ station.geometry.y }}, {{ station.geometry.x }});
-{% endfor %} 
-        
+    var geocoder = new google.maps.Geocoder();
+    var infoWindow = new google.maps.InfoWindow();
+
+    {% for station in random_station %}
+        var mapCenter = new google.maps.LatLng({{ station.geometry.y }}, {{ station.geometry.x }});
+    {% endfor %} 
+    
+    function applyBikeLayer() {
+        bikeLayer.setMap(map);
+    }
+    
     function init() {
-          
+        
     // Create a new map
     var options = {
         'zoom': 15,
@@ -74,21 +82,37 @@
     map = new google.maps.Map(document.getElementById("map"), options);
 
     // place marker for entering new place info
-    var placemark = new google.maps.LatLng{{ markerpos }};
-
-    var placemarker = new google.maps.MarkerImage('{{ STATIC_URL }}greenline/images/isicons/placemarker.png',
-        new google.maps.Size(30, 38),
-        new google.maps.Point(0,0),
-        new google.maps.Point(6, 20));
+    var placeMark = new google.maps.LatLng{{ markerpos }};
         
     var placeme = new google.maps.Marker({
-        position: placemark,
-        title: 'Place Me!',
-        icon: placemarker,
+        position: placeMark,
+        title: 'Place Me On the Map!',
+        icon: '{{ STATIC_URL }}greenline/images/isicons/placemarker.png',
         map: map,
         draggable: true
     });
-                       
+    
+    // returns reverse geocode for the placeme marker
+    function geocodePosition(pos) {
+    geocoder.geocode({ 
+        placeMark: pos,
+        }, function(results) {
+        if (results && results.length > 0) {
+            infoWindow.setContent(results[0].formatted_address);
+            infoWindow.setPosition(event.placemark);
+            infoWindow.open(map);
+        } else {
+            infoWindow.setContent('Cannot determine address at this location.');
+            infoWindow.open(map);
+        }
+        console.info('this is info...')
+    });
+    }
+              
+    google.maps.event.addListener(placeme, 'dragend', function() {
+        geocodePosition(placeme.getPosition());
+    });
+         
     {% if stations %}{% for station in stations %}
         var {{ station.markerVarName }} = new google.maps.Marker({
             map: map,
@@ -144,6 +168,7 @@
     });
     {% endfor %}
     {% endif %}
+    
 
     {% if locations %}{% for location in locations %}
         var {{ location.markerVarName }} = new google.maps.Marker({
@@ -199,9 +224,11 @@
     
     route16.setMap(map);
     unionSq.setMap(map);
+    applyBikeLayer();
+
 }
 
-google.maps.event.addDomListener(window, 'load', init);    
+google.maps.event.addDomListener(window, 'load', init);
 </script>
 
 {% endblock %}
