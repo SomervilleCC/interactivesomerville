@@ -27,8 +27,15 @@
     
     var overlays = [];
     var gmarkers = []; 
-
+    
+    var bikeLayer = new google.maps.BicyclingLayer();
+      
+    // the map center  
     var mapCenter = new google.maps.LatLng(42.39646, -71.13403);
+
+    function applyBikeLayer() {
+        bikeLayer.setMap(map);
+    }
 
     function init() {
           
@@ -73,16 +80,11 @@
 
     // place marker for entering new place info
     var placemark = new google.maps.LatLng{{ markerpos }};
-
-    var placemarker = new google.maps.MarkerImage('{{ STATIC_URL }}greenline/images/isicons/placemarker.png',
-        new google.maps.Size(30, 38),
-        new google.maps.Point(0,0),
-        new google.maps.Point(6, 20));
         
     var placeme = new google.maps.Marker({
         position: placemark,
         title: 'Place Me!',
-        icon: placemarker,
+        icon: '{{ STATIC_URL }}greenline/images/isicons/placemarker.png',
         map: map,
         draggable: true
     });
@@ -188,6 +190,8 @@
     
     route16.setMap(map);
     unionSq.setMap(map);
+    applyBikeLayer();
+    
 }
 
 google.maps.event.addDomListener(window, 'load', init);    
