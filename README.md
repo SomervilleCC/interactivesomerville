@@ -1,5 +1,5 @@
 ###GREENLINE
-Greenline (aka inTeractiveSomerville) is a tool for VISUALIZING ISSUES, asking questions, learning facts, sharing data, and contributing ideas related to the GREEN LINE EXTENSION in Somerville, MA. 
+Greenline (aka inTeractiveSomerville) is a tool for visualizing issues, asking questions, learning facts, sharing data, and contributing ideas related to the GREEN LINE EXTENSION in Somerville, MA. 
 ###HOW IT WORKS
 The experience is visual, intuitive, fun. Users are invited to register, create an identify, submit content, learn and interact as a community through maps.
 Additional context is provided by: 
