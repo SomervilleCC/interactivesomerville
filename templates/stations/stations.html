@@ -126,7 +126,8 @@
             map: map,
             fillColor: '#A8A890',
             strokeColor: '#FFFFFF',
-            strokeWeight: .6,
+            fillOpacity: .1,
+            strokeWeight: .8,
             radius: 805 // equals .5 mile 
         });
     {{ station.circleVarName }}.bindTo('center', {{ station.markerVarName }}, 'position')
@@ -139,33 +140,13 @@
 
     createListenerInfoBubbleStations({{ station.markerVarName }}, {{ station.markerVarName }}contentString);
     overlays.push({{ station.circleVarName }});
-
-    // Add mouseover events to the radius
-    google.maps.event.addListener({{ station.circleVarName }}, 'mouseover', function(e) {
-
-    // Set color of the radius
-    {{ station.circleVarName }}.setOptions({
-     fillColor: '#C6E182',
-     strokeColor: '#FFFFFF',
-    });
-
-    // Add a doubleclick event to the radius
+    
+    // doubleclick event to focus radius
     google.maps.event.addListener({{ station.circleVarName }}, 'dblclick', function() {
         map.setCenter({{ station.markerVarName }}.position);      
         map.setZoom(15);  
         });
-    });
     
-    // Add a mouseout event to the radius
-    google.maps.event.addListener({{ station.circleVarName }}, 'mouseout', function(e) {
-
-      // Set color back to original
-      {{ station.circleVarName }}.setOptions({
-        fillColor: '#A8A890',
-        strokeColor: '#FFFFFF',
-      });
-
-    });
     {% endfor %}
     {% endif %}
     

@@ -11,7 +11,7 @@ from django.db.models import permalink
 from django.utils import simplejson
 from django.utils.encoding import smart_unicode
 from django_extensions.db.fields import AutoSlugField
-
+from greenline.utils.markdowner import MarkupField
 
 from taggit.managers import TaggableManager
 from sharing.models import SharedItem
@@ -59,7 +59,7 @@ class Idea(models.Model):
     slug            = AutoSlugField(populate_from='title', max_length=64)
 
     address         = models.CharField(max_length=200, help_text="i.e. 83 Highland Avenue", null=True, blank=True)    
-    description     = models.TextField(blank=True, null=True, help_text="A brief description of this idea." )
+    description     = MarkupField(blank=True, null=True, help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>' )
     geometry        = models.PointField(srid=4326, null=True, blank=True)
     tease           = models.TextField('tease', blank=True, editable=False)
     creator_ip      = models.IPAddressField(blank=True, null=True)

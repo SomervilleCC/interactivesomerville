@@ -31,7 +31,7 @@
     var bikeLayer = new google.maps.BicyclingLayer();
       
     // the map center  
-    var mapCenter = new google.maps.LatLng(42.39383, -71.12077);
+    var mapCenter = new google.maps.LatLng(42.39031, -71.11686);
 
     function applyBikeLayer() {
         bikeLayer.setMap(map);
@@ -104,6 +104,7 @@
             map: map,
             fillColor: '#A8A890',
             strokeColor: '#FFFFFF',
+            fillOpacity: .1,
             strokeWeight: .6,
             radius: 805 // equals .5 mile 
         });

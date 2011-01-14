@@ -6,7 +6,10 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django_extensions.db.fields import AutoSlugField
 from django.contrib.contenttypes import generic
+
+from greenline.utils.markdowner import MarkupField
 from taggit.managers import TaggableManager
+
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
@@ -53,7 +56,7 @@ class Station(models.Model):
 
     name = models.CharField(max_length=36, )
     slug = AutoSlugField(populate_from='name')
-    copy = models.TextField(blank=True, null=True)    
+    copy = MarkupField(blank=True, null=True, help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>')    
 
     geometry    = models.PointField(srid=26986) #EPSG:26986 Mass State Plane
     route       = models.ForeignKey(Route, blank=True, null=True)

@@ -19,6 +19,7 @@ from sharing.managers import SharedItemManager
 
 from greenline.utils.parsers import slugify
 from greenline.utils import generics
+from greenline.utils.location_utils import reverse_geocode
 
 CC_LICENSES = (
     ('http://creativecommons.org/licenses/by/2.0/',         'CC Attribution'),
@@ -112,7 +113,11 @@ class Photo(models.Model):
     def geometry(self):
         return Point(self.latitude, self.longitude, srid=4326)
     geometry = property(geometry)
-        
+
+    def address(self):
+        return reverse_geocode(self.latitude, self.longitude)
+    address = property(address)
+            
     ### Image URLs ###
 
     def get_image_url(self, size=None):

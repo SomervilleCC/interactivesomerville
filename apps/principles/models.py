@@ -13,6 +13,8 @@ from django.contrib.auth.models import User
 
 from taggit.managers import TaggableManager
 from django_extensions.db.fields import AutoSlugField
+from greenline.utils.markdowner import MarkupField
+
 from sharing.models import SharedItem
 from greenline.utils.parsers import slugify
 
@@ -85,7 +87,7 @@ class Entry(models.Model):
         blank=True, null=True
         )
 
-    copy = models.TextField(
+    copy = MarkupField(
         help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>'
         )
     
@@ -98,8 +100,8 @@ class Entry(models.Model):
     published       = models.DateTimeField(verbose_name='date published', default=datetime.datetime.now)
     enable_comments = models.BooleanField(default=False)
     
-    shared = generic.GenericRelation(SharedItem)
-    tags = TaggableManager()
+    shared          = generic.GenericRelation(SharedItem)
+    tags            = TaggableManager()
     
     def __unicode__(self):
         return "%s"% (self.title)

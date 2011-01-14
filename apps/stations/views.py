@@ -83,7 +83,7 @@ def stations(request, template_name="stations/stations.html"):
         
     featured = random_station[0].name
 
-    # remove featured stations from text
+    # remove featured station from text
     for station in stations_text:
             if featured == station.name:
                 stations_text.remove(station)
