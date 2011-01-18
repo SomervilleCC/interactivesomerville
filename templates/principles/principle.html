@@ -2,3 +2,36 @@
 
 {% load i18n %}
 {% load uni_form %}
+{% load avatar_tags %}
+{% load theme_tags %}
+{% load comments_tag %}
+{% load typogrify %}
+
+{% block head_title %}{% blocktrans %}Principles | {% endblocktrans %}{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+</script>
+
+{% endblock %}
+
+{% block bodymeta %}{% endblock %}
+
+{% block map %}
+    <div class="mapContainer minor">
+        <div id="map"></div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h2>{{ entry.principle }}</h2>
+    <p>{{ entry.title }}</p>
+    <p>{{ entry.body }}</p>
+    <p>Created by {{ entry.author.author.first_name|default:entry.author.username|title }} on {{ entry.published|date }}. </p>
+    <p>{{ entry.tags }}</p>
+</div>
+{% endblock %}
+
+{% block extra %}
+{% endblock %}

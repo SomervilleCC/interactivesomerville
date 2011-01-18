@@ -89,14 +89,16 @@
     {% block map %}{% endblock %}
 <br>
     <div id="main">
-    {% block body %}{% endblock %}    
+    {% block body %}{% endblock %}
+    {% block content %}{% endblock %}
+    
     {% block extra_body_base %}
         {% block extra_body %}{% endblock %}
     {% endblock %}
     </div>    
-    {% block content %}{% endblock %}
 
 <br>
+
 {% block footer %}
     <div id="footer">
         <ul class="nav">
@@ -124,30 +126,6 @@
 <script type="text/javascript">
 _uacct = "UA-3465389-1";
 urchinTracker();
-</script>
-<script type="text/javascript">
-var uservoiceOptions = {
-  /* required */
-  key: 'interactivesomerville',
-  host: 'interactivesomerville.uservoice.com', 
-  forum: '44091',
-  showTab: true,  
-  /* optional */
-  alignment: 'left',
-  background_color:'#CEEBA8',
-  text_color: 'white',
-  hover_color: '#C9DBC0',
-  lang: 'en'
-};
-
-function _loadUserVoice() {
-  var s = document.createElement('script');
-  s.setAttribute('type', 'text/javascript');
-  s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
-  document.getElementsByTagName('head')[0].appendChild(s);
-}
-_loadSuper = window.onload;
-window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
 </script>
 
 </body>

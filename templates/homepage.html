@@ -2,9 +2,15 @@
 
 {% load i18n %}
 {% load uni_form %}
+{% load humanize %}
+{% load pagination_tags %}
 {% load avatar_tags %}
+{% load gravatar %}
+{% load voting_tags %}
+{% load extra_voting_tags %}
 {% load markup %}
 {% load theme_tags %}
+{% load in_filter %}
 {% load comments_tag %}
 
 {% block head_title %}{% blocktrans %}Welcome | {% endblocktrans %}{% endblock %}
@@ -31,7 +37,7 @@
     var bikeLayer = new google.maps.BicyclingLayer();
       
     // the map center  
-    var mapCenter = new google.maps.LatLng(42.39031, -71.11686);
+    var mapCenter = new google.maps.LatLng(42.39158, -71.11819);
 
     function applyBikeLayer() {
         bikeLayer.setMap(map);
@@ -202,8 +208,6 @@ google.maps.event.addDomListener(window, 'load', init);
 
 </head> 
 
-{% block content %}{% endblock %}
-
 {% block map %}
     <div class="mapContainer minor">
         <div id="map"></div>
@@ -218,4 +222,123 @@ google.maps.event.addDomListener(window, 'load', init);
           <a href="/stations/your_station">Find your station</a>
         </div>
     </div>
+{% endblock %}
+
+{% block content %}
+<div id="content" class="grid_5">
+
+<h2>From the Community</h2>
+  <div class="shared media">
+
+{% autopaginate shares 3 %}
+
+{% votes_by_user user on shares as vote_dict %}
+{% scores_for_objects shares as score_dict %}
+
+    {% for share in shares %}
+    
+    {% dict_entry_for_item share from vote_dict as vote %}
+    {% dict_entry_for_item share from score_dict as score %}
+    
+    <h5>
+    <a href="#" class="author">{{ share.get_owner }}</a> shared a {{ share.content_type }} for <a href="#" class="station">Station Name</a> 
+    <br />
+    <span class="when">Posted {{ share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.</span>
+    </h5>
+    <a href="#"><img src="{{share.content_object.thumbnail_url}}" alt="" width="98" height="70" /></a>
+    <label>{{ share.content_object.title }} </label>
+    <a href="{{ share.get_absolute_url }}" class="more">More</a>
+    </p>
+      <div class="action-bar">
+       <div class="comment-stats">
+         <a href="#" class="comment">X Comments</a>
+         <a href="#" class="comment">Reply</a>
+       </div>
+      <div class="like-stats">
+        <span id="share_{{ share.id }}_score" class="like-count">{{ score.score|default:0 }} point{{ score.score|default:0|pluralize }}</span>
+        <a href="" class="like">LIKE THIS!</a>
+        </div>
+      </div>
+    <br />
+
+  {% endfor %}
+  {% paginate %}
+
+    <div class="comments">
+      <div class="comment"></div>
+    </div>
+  
+  </div>
+</div>
+
+<div id="side" class="grid_6">
+
+<form action="" method="post" id="address-search">
+  <h3>Find Your Station</h3>
+  <div class="row">
+    <label for="id_address">Enter an address below to see what's happening.</label>
+    <input type="text" name="address" id="id_address">
+    <button type="submit">Find my station</button>
+    <p class="help-text"><strong>EXAMPLES:</strong> 83 Highland Avenue, 24 Richdale Ave</p>
+  </div>
+</form>
+
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script type="text/javascript">
+    new TWTR.Widget({
+      version: 2,
+      type: 'profile',
+      rpp: 6,
+      interval: 6000,
+      width: 'auto',
+      height: 300,
+      theme: {
+        shell: {
+          background: '#FAFAFA',
+          color: '#777777'
+        },
+        tweets: {
+          background: '#FAFAFA',
+          color: '#777777',
+          links: '#32a800'
+        }
+      },
+      features: {
+        scrollbar: true,
+        loop: false,
+        live: true,
+        hashtags: true,
+        timestamp: true,
+        avatars: false,
+        behavior: 'all'
+      }
+    }).render().setUser('ISomerville').start();
+    </script>
+</div>
+
+<div class="clear"> </div>
+{% endblock %}
+{% block extra_body %}
+
+<script>
+    function vote(share_id, direction) {
+        $.post(share_id + '/' + direction + 'vote/', function(data) {
+            var jsonResult = eval('(' + data + ')');
+            var new_score = jsonResult.score.score;
+            $('#idea_' + share_id + '_score').text(new_score + ' point' + (new_score == 1 ? '': 's'));
+        });
+        if (direction == 'up') {
+            $('#up_' + share_id).replaceWith('<a id="up_' + share_id + '" href="#" onclick="return false;"><img src="{{ STATIC_URL }}bookmarks/img/up_mod.png"/>');
+            $('#down_' + share_id).replaceWith('<a id="down_' + share_id + '" href="#" onclick="vote(' + share_id + ', \'clear\'); return false;"><img src="{{ STATIC_URL }}bookmarks/img/down_grey.png"/>');
+        }
+        else if (direction == 'down') {
+            $('#up_' + share_id).replaceWith('<a id="up_' + share_id + '" href="#" onclick="vote(' + share_id + ', \'clear\'); return false;"><img src="{{ STATIC_URL }}bookmarks/img/up_grey.png"/>');
+            $('#down_' + share_id).replaceWith('<a id="down_' + share_id + '" href="#" onclick="return false;"><img src="{{ STATIC_URL }}bookmarks/img/down_mod.png"/>');
+        }
+        else { // clear
+            $('#up_' + share_id).replaceWith('<a id="up_' + share_id + '" href="#" onclick="vote(' + share_id + ', \'up\'); return false;"><img src="{{ STATIC_URL }}bookmarks/img/up_grey.png"/>');
+            $('#down_' + share_id).replaceWith('<a id="down_' + share_id + '" href="#" onclick="vote(' + share_id + ', \'down\'); return false;"><img src="{{ STATIC_URL }}bookmarks/img/down_grey.png"/>');
+        }
+    }
+</script>
 {% endblock %}
