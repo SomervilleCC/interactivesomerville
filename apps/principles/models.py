@@ -50,7 +50,8 @@ class Principle(models.Model):
         help_text="Automatically generated from title."
         ) 
         
-    body = models.TextField(blank=True, null=True)
+    body = MarkupField(blank=True, null=True, 
+        help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>' )
 
     def __unicode__(self):
         return u'%s' % self.title
@@ -87,9 +88,8 @@ class Entry(models.Model):
         blank=True, null=True
         )
 
-    copy = MarkupField(
-        help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>'
-        )
+    body = MarkupField(blank=True, null=True, 
+        help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>' )
     
     status          = models.IntegerField(choices=STATUS_CHOICES, default=1)
     
