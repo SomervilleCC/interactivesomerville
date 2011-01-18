@@ -81,6 +81,7 @@ def share_detail(request, share_id):
 
 @login_required
 def new(request, form_class=SharedForm, template_name="sharing/new.html"):
+    ''' coming '''
     if request.method == "POST":
         geometry = None
         is_video = False

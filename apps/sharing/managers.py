@@ -28,11 +28,7 @@ class SharedItemManager(models.Manager):
             instance.save()
             if reconnect:
                 signals.post_save.connect(self.create_or_update, sender=type(instance))
-                
-        
-        # Make sure the item "should" be registered.
-        if not getattr(instance, "greenlinable", True):
-            return
+
         
         # Check to see if the timestamp is being updated, possibly pulling
         # the timestamp from the instance.

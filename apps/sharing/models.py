@@ -17,11 +17,14 @@ from sharing.managers import SharedItemManager
 from greenline.utils.parsers import slugify
 from greenline.utils import generics
 
+from stations.models import Station
+
         
 class SharedItem(models.Model):
-    """An shared object, keyed by the user sharing it."""
+    """An shared object, keyed by the user that shares it."""
     user        = models.ForeignKey(User, related_name='shares', default = 1) # default sharer is always SCC.
     share_date  = models.DateTimeField(verbose_name='date shared', default=datetime.datetime.now)
+    #station     = models.ForeignKey(Station, blank=True, null=True)
     content_type = models.ForeignKey(ContentType, 
                         verbose_name=('content type'),
                         related_name="content_type_set_for_%(class)s")
@@ -37,6 +40,9 @@ class SharedItem(models.Model):
         
     def get_owner(self):
         return str(self.user.username) 
+        
+    def get_station(self):
+        return str(self.station.name) 
         
     objects = SharedItemManager()
     tags = TaggableManager()
