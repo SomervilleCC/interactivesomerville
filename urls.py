@@ -6,13 +6,15 @@ from django.conf.urls.defaults import *
 from django.contrib.auth.views import *
 from django.conf import settings
 
-from greenline.utils.location_utils import *
+from greenline.utils.location_utils import transform, nearest_stations
 
 from photos.models      import Photo
 from location.models    import Location
 from stations.models    import Station
 from ideas.models       import Idea
+from sharing.models     import SharedItem
 from principles.models  import Entry
+
 
 from django.contrib import admin
 admin.autodiscover()
@@ -22,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^$', direct_to_template, {
         "template": "homepage.html",
             'extra_context': {
+            "shares":       SharedItem.objects.all().order_by("-share_date"),
             'ideas':        Idea.objects.order_by('?')[:3], # random ideas.
             'stations':     transform(Station.objects.all()),
             'photos':       Photo.objects.order_by('?')[:20], # random photos.
@@ -41,6 +44,7 @@ urlpatterns = patterns('',
 
     # greenline provided
     (r'^ideas/',    include('ideas.urls')),
+    (r'^principles/', include('principles.urls')),
     (r'^sharing/',  include('sharing.urls')),
     (r'^location/', include('location.urls')),
     (r'^stations/', include('stations.urls')),
