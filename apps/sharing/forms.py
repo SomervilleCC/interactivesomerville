@@ -13,6 +13,13 @@ from uni_form.helpers import FormHelper, Submit, Reset
 from sharing.models import SharedItem
 from django.forms import ModelForm
 
+import logging
+
+log = logging.getLogger("greenline.sharing.forms")
+console = logging.StreamHandler()
+log.addHandler(console)
+log.setLevel(logging.INFO)
+
 PRINCIPLE_CHOICES = ( \
     (1, 'More Local Jobs'), \
     (2, 'Economic Development'), \

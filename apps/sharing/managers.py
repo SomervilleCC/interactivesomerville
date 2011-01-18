@@ -5,13 +5,20 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.encoding import force_unicode
 from tagging.fields import TagField
 
+import logging
+
+log = logging.getLogger("greenline.sharing.managers")
+console = logging.StreamHandler()
+log.addHandler(console)
+log.setLevel(logging.DEBUG)
+
 class SharedItemManager(models.Manager):
     
     def __init__(self):
         super(SharedItemManager, self).__init__()
         self.models_by_name = {}
     
-    def create_or_update(self, instance, timestamp=None, url=None, tags="", source="INTERACTIVE", source_id="", **kwargs):
+    def create_or_update(self, instance, user=None, timestamp=None, url=None, tags="", **kwargs):
         """
         Create or update a SharedItem from some instace.
         """
@@ -40,6 +47,17 @@ class SharedItemManager(models.Manager):
         else:
             update_timestamp = True
                     
+        # Check to see if a request.user is present, possibly pulling
+        # the user from the instance.
+        if hasattr(instance, "user"):
+            pass
+            #log.debug('user is %s.', request.user)
+        #    user = instance.user
+        if user is None:
+            pass
+            #log.debug('user is None')
+        #    user = request.user
+            
         # Ditto for tags.
         if not tags:
             for f in instance._meta.fields:
@@ -58,6 +76,7 @@ class SharedItemManager(models.Manager):
             object_id = force_unicode(instance._get_pk_val()),
             defaults = dict(
                 share_date = timestamp,
+                user = user
             )
         )        
         item.tags = tags

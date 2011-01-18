@@ -19,6 +19,12 @@ from greenline.utils import generics
 
 from stations.models import Station
 
+import logging
+
+log = logging.getLogger("greenline.sharing.models")
+console = logging.StreamHandler()
+log.addHandler(console)
+log.setLevel(logging.INFO)
         
 class SharedItem(models.Model):
     """An shared object, keyed by the user that shares it."""

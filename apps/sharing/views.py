@@ -31,12 +31,12 @@ import settings
 
 import logging
 
-log = logging.getLogger('views')
+log = logging.getLogger("greenline.sharing.views")
 console = logging.StreamHandler()
 log.addHandler(console)
+log.setLevel(logging.DEBUG)
 
-
-def get_shared_object(target_object):
+def _get_shared_object(target_object):
     """
     Return a new (unsaved) shared object.
     """
@@ -92,7 +92,7 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
         comment = data.get("comment")
         related_principle = data.get("related_principle")
         location = data.get("location")
-        log.debug('location is %s.', location)
+        #log.debug('location is %s.', location)
         media_type = data.get("media_type").strip('\'"')
         
         if location:
@@ -106,7 +106,8 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
                 sl = Location(author=request.user, address=location, title=result[0], geometry=geometry) 
                 sl.save_as_shared()
             else:
-                log.debug('we seemed to have failed')
+                pass
+                #log.debug('we seemed to have failed')
         
         if media_type:
             parsed = urlparse(media_type)
@@ -123,18 +124,20 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
                 video_id = parsed.query[2:]
 
         if related_principle:
-            log.debug('principle is %s.', related_principle)
+            pass
+            #log.debug('principle is %s.', related_principle)
             
         if comment:
-            log.debug('comment is %s.', comment)
+            pass
+            #log.debug('comment is %s.', comment)
                     
         if media_type and is_photo:
             if geometry:
-                latest = fetch_single_flickr_photo_with_geo(photo_id, flickr_id, geometry)
-                new = get_shared_object(latest)
+                latest = fetch_single_flickr_photo_with_geo(request, photo_id, flickr_id, geometry)
+                #new = _get_shared_object(latest)
             else:
-                latest = fetch_single_flickr_photo(photo_id, flickr_id)
-                new = get_shared_object(latest)
+                latest = fetch_single_flickr_photo(request, photo_id, flickr_id)
+                #new = _get_shared_object(latest)
                 
         if media_type and is_video:
             if geometry:
