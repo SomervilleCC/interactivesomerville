@@ -41,7 +41,7 @@ def update():
     start_index = 1
     max_results = 50
     while True:
-        log.debug("Fetching videos %s - %s" % (start_index, start_index+max_results-1))
+        #log.debug("Fetching videos %s - %s" % (start_index, start_index+max_results-1))
         feed = feedparser.parse(FEED_URL % (settings.YOUTUBE_USERNAME, start_index, max_results))
         for entry in feed.entries:            
             if 'link' in entry:
@@ -66,7 +66,7 @@ def update():
                 description = description,
             )
         if len(feed.entries) < max_results:
-            log.debug("Ran out of results; finishing.")
+            #log.debug("Ran out of results; finishing.")
             break
             
         start_index += max_results
@@ -119,7 +119,7 @@ def fetch_single_youtube_video_with_geo(video_id, geometry):
 
 @transaction.commit_on_success
 def _handle_video(author, video_id, title, url, tags, date_uploaded, date_received, description):
-    log.debug("Handling video: %s" % smart_str(title))
+    #log.debug("Handling video: %s" % smart_str(title))
     source = VideoSource.objects.get(name="YouTube")
     
     # YouTube API sometimes returns corrupted titles...
@@ -149,7 +149,7 @@ def _handle_video(author, video_id, title, url, tags, date_uploaded, date_receiv
 
 @transaction.commit_on_success
 def _handle_video_with_geo(author, video_id, title, url, tags, date_uploaded, date_received, description, geometry):
-    log.debug("Handling video: %s" % smart_str(title))
+    #log.debug("Handling video: %s" % smart_str(title))
     source = VideoSource.objects.get(name="YouTube")
     
     # YouTube API sometimes returns corrupted titles...

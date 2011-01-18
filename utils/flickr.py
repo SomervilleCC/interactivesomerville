@@ -12,13 +12,10 @@ from sharing.managers import SharedItemManager
 
 from greenline.utils import parsers
 
-log = logging.getLogger('greenline')
+log = logging.getLogger("greenline.flickr")
 console = logging.StreamHandler()
 log.addHandler(console)
-log.setLevel(logging.INFO)
-
-log = logging.getLogger("greenline.flickr")
-
+log.setLevel(logging.DEBUG)
 
 # FlickrClient API
 
@@ -74,17 +71,17 @@ def update():
     last_update_date = datetime.datetime(1969, 12, 31, 19, 0) 
     page = 1
     while True:
-        log.debug("Fetching page %s of photos", page)
+        #log.debug("Fetching page %s of photos", page)
         resp = flickr.groups.pools.getPhotos(group_id=settings.FLICKR_GROUP_ID, extras="license,date_taken", per_page="500", page=str(page))
         photos = resp["photos"]
         if page > photos["pages"]:
-            log.debug("Ran out of photos; stopping.")
+            #log.debug("Ran out of photos; stopping.")
             break
             
         for photodict in photos["photo"]:
             timestamp = parsers.parsedate(str(photodict["datetaken"]))
             if timestamp < last_update_date:
-                log.debug("Hit an old photo (taken %s; last update was %s); stopping.", timestamp, last_update_date)
+                #log.debug("Hit an old photo (taken %s; last update was %s); stopping.", timestamp, last_update_date)
                 break
             
             photo_id = parsers.safeint(photodict["id"])
@@ -94,8 +91,9 @@ def update():
             
         page += 1
 
-def fetch_single_flickr_photo(photo_id, flickr_id):
+def fetch_single_flickr_photo(request, photo_id, flickr_id):
     flickr = FlickrClient(settings.FLICKR_API_KEY)
+    #log.debug('logged in user is %s.', request.user)
 
     licenses = licenses = flickr.photos.licenses.getInfo()
     licenses = dict((l["id"], smart_unicode(l["url"])) for l in licenses["licenses"]["license"])      
@@ -104,16 +102,18 @@ def fetch_single_flickr_photo(photo_id, flickr_id):
         
     #timestamp = parsers.parsedate(resp["photo"]["dates"]["taken"])
     timestamp = datetime.datetime.now()
+    user = request.user
     
     photo_id = parsers.safeint(resp["photo"]["id"])
     license = licenses[resp["photo"]["license"]]
     secret = smart_unicode(resp["photo"]["secret"])
     
-    _handle_photo(flickr, photo_id, secret, license, timestamp)
+    _handle_photo(flickr, user, photo_id, secret, license, timestamp)
     return Photo.objects.latest() #FIXME: concurrency problem
     
-def fetch_single_flickr_photo_with_geo(photo_id, flickr_id, geometry):
+def fetch_single_flickr_photo_with_geo(request, photo_id, flickr_id, geometry):
     flickr = FlickrClient(settings.FLICKR_API_KEY)
+    #log.debug('logged in user is %s.', request.user)
 
     licenses = licenses = flickr.photos.licenses.getInfo()
     licenses = dict((l["id"], smart_unicode(l["url"])) for l in licenses["licenses"]["license"])      
@@ -122,15 +122,16 @@ def fetch_single_flickr_photo_with_geo(photo_id, flickr_id, geometry):
         
     #timestamp = parsers.parsedate(resp["photo"]["dates"]["taken"])
     timestamp = datetime.datetime.now()
+    user = request.user
         
     photo_id = parsers.safeint(resp["photo"]["id"])
     license = licenses[resp["photo"]["license"]]
     secret = smart_unicode(resp["photo"]["secret"])
     
-    _handle_photo_with_geo(flickr, photo_id, secret, license, timestamp, geometry)
+    _handle_photo_with_geo(flickr, user, photo_id, secret, license, timestamp, geometry)
     return Photo.objects.latest() #FIXME: concurrency problem
 
-def _handle_photo_with_geo(flickr, photo_id, secret, license, timestamp, geometry):
+def _handle_photo_with_geo(flickr, user, photo_id, secret, license, timestamp, geometry):
     info = flickr.photos.getInfo(photo_id=photo_id, secret=secret)["photo"]
     server_id = parsers.safeint(info["server"])
     farm_id = parsers.safeint(info["farm"])
@@ -201,13 +202,14 @@ def _handle_photo_with_geo(flickr, photo_id, secret, license, timestamp, geometr
     photo.save()
     
     return SharedItem.objects.create_or_update(
+        user = user,
         instance = photo, 
         timestamp = date_received,
     )
 _handle_photo_with_geo = transaction.commit_on_success(_handle_photo_with_geo)
 
 
-def _handle_photo(flickr, photo_id, secret, license, timestamp):
+def _handle_photo(flickr, user, photo_id, secret, license, timestamp):
     info = flickr.photos.getInfo(photo_id=photo_id, secret=secret)["photo"]
     server_id = parsers.safeint(info["server"])
     farm_id = parsers.safeint(info["farm"])
@@ -238,7 +240,8 @@ def _handle_photo(flickr, photo_id, secret, license, timestamp):
     except KeyError:
         neighbourhood = None
         
-    log.debug("Handling photo: %r (taken %s)" % (title, timestamp))
+    #log.debug("Handling photo: %r (taken %s)" % (title, timestamp))
+    #log.debug("User is: %s" % user)
     photo, created = Photo.objects.get_or_create(
         photo_id      = str(photo_id),
         defaults = dict(
@@ -279,6 +282,7 @@ def _handle_photo(flickr, photo_id, secret, license, timestamp):
     photo.save()
     
     return SharedItem.objects.create_or_update(
+        user = user,
         instance = photo, 
         timestamp = date_received,
     )
