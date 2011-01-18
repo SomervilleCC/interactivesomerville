@@ -12,6 +12,7 @@ from django.utils.safestring import mark_safe
 from django.utils import simplejson
 
 from geopy import geocoders, distance, util
+from stations.models import Station
 import types
 
 import math
@@ -74,6 +75,17 @@ def reverse_geocode(point):
     place = result[0]
     return place  # geopy.util.RichResult
 
+def nearest_stations(geometry):
+    ''' Return the nearest Station object 
+        from a given Point object. '''
+    nearest = []
+    stations = Station.objects.all()
+    for station in stations:
+        station.radius.geometry.transform(4326)
+        if station.radius.geometry.contains(geometry):
+            nearest.append(station.name)
+    return nearest
+    
 # degrees to radians
 def deg2rad(degrees):
     return math.pi*degrees/180.0

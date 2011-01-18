@@ -70,7 +70,8 @@ def update():
     licenses = dict((l["id"], smart_unicode(l["url"])) for l in licenses["licenses"]["license"])
     
     # Handle update by pages until we see photos we've already handled
-    last_update_date = SharedItem.objects.get_last_update_of_model(Photo)
+    # FIXME!
+    last_update_date = datetime.datetime(1969, 12, 31, 19, 0) 
     page = 1
     while True:
         log.debug("Fetching page %s of photos", page)
@@ -101,7 +102,8 @@ def fetch_single_flickr_photo(photo_id, flickr_id):
 
     resp = flickr.photos.getInfo(flickr_id=flickr_id, photo_id=photo_id, extras="license,date_taken")
         
-    timestamp = parsers.parsedate(resp["photo"]["dates"]["taken"])
+    #timestamp = parsers.parsedate(resp["photo"]["dates"]["taken"])
+    timestamp = datetime.datetime.now()
     
     photo_id = parsers.safeint(resp["photo"]["id"])
     license = licenses[resp["photo"]["license"]]
@@ -118,8 +120,9 @@ def fetch_single_flickr_photo_with_geo(photo_id, flickr_id, geometry):
 
     resp = flickr.photos.getInfo(flickr_id=flickr_id, photo_id=photo_id, extras="license,date_taken")
         
-    timestamp = parsers.parsedate(resp["photo"]["dates"]["taken"])
-    
+    #timestamp = parsers.parsedate(resp["photo"]["dates"]["taken"])
+    timestamp = datetime.datetime.now()
+        
     photo_id = parsers.safeint(resp["photo"]["id"])
     license = licenses[resp["photo"]["license"]]
     secret = smart_unicode(resp["photo"]["secret"])
