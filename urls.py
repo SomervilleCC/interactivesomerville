@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     url(r'^$', direct_to_template, {
         "template": "homepage.html",
             'extra_context': {
-            "shares":       SharedItem.objects.all().order_by("-share_date"),
+            "shares":       SharedItem.objects.all().order_by("-share_date")[:15],
             'ideas':        Idea.objects.order_by('?')[:3], # random ideas.
             'stations':     transform(Station.objects.all()),
             'photos':       Photo.objects.order_by('?')[:20], # random photos.
