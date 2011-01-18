@@ -15,6 +15,7 @@ from docutils.core import publish_parts
 from taggit.managers import TaggableManager
 
 from sharing.models import SharedItem
+from stations.models import Station
 from sharing.managers import SharedItemManager
 
 from greenline.utils.parsers import slugify
@@ -107,7 +108,7 @@ class Photo(models.Model):
     url = property(url)
 
     def timestamp(self):
-        return self.date_uploaded
+        return self.date_received
     timestamp = property(timestamp)
 
     def geometry(self):
