@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.db.models import signals
+from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.utils.encoding import force_unicode
 from tagging.fields import TagField
@@ -52,11 +53,9 @@ class SharedItemManager(models.Manager):
         if hasattr(instance, "user"):
             pass
             #log.debug('user is %s.', request.user)
-        #    user = instance.user
         if user is None:
-            pass
+            user = User.objects.get(pk=1)
             #log.debug('user is None')
-        #    user = request.user
             
         # Ditto for tags.
         if not tags:

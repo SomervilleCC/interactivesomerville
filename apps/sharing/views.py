@@ -133,10 +133,10 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
                     
         if media_type and is_photo:
             if geometry:
-                latest = fetch_single_flickr_photo_with_geo(request, photo_id, flickr_id, geometry)
+                latest = fetch_single_flickr_photo_with_geo(photo_id, flickr_id, geometry, request)
                 #new = _get_shared_object(latest)
             else:
-                latest = fetch_single_flickr_photo(request, photo_id, flickr_id)
+                latest = fetch_single_flickr_photo(photo_id, flickr_id, request)
                 #new = _get_shared_object(latest)
                 
         if media_type and is_video:
