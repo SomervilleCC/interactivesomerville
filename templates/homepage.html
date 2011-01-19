@@ -241,13 +241,13 @@ google.maps.event.addDomListener(window, 'load', init);
     {% dict_entry_for_item share from score_dict as score %}
     
     <h5>
-    <a href="#" class="author">{{ share.get_owner }}</a> shared a {{ share.content_type }} for <a href="#" class="station">Station Area</a> 
+    <a href="#" class="author">{{ share.get_owner }}</a> shared a {{ share.content_type }} from the <a href="#" class="station">{{ share.content_object.neighbourhood }}</a> area. 
     <br />
     <span class="when">Posted {{ share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.</span>
     </h5>
     <a href="#"><img src="{{share.content_object.thumbnail_url}}" alt="" width="98" height="70" /></a>
     <label>{{ share.content_object.title }} </label>
-    <a href="{{ share.get_absolute_url }}" class="more">More</a>
+    <a href="#" class="more">More</a>
     </p>
       <div class="action-bar">
        <div class="comment-stats">
@@ -272,7 +272,7 @@ google.maps.event.addDomListener(window, 'load', init);
 </div>
 
 <div id="side" class="grid_6">
-<form action="" method="post" id="address-search">
+<form action="/stations/your_station/" method="post" id="address-search">
   <h3>Find Your Station</h3>
   <div class="row">
     <label for="id_address">Enter an address below to see what's happening.</label>

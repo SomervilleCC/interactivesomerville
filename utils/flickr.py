@@ -19,6 +19,10 @@ log.setLevel(logging.DEBUG)
 
 # FlickrClient API
 
+# FIXME: there is a hell of a lot of repetitive code in here.
+
+user = None
+
 class FlickrError(Exception):
     def __init__(self, code, message):
         self.code, self.message = code, message
@@ -91,7 +95,7 @@ def update():
             
         page += 1
 
-def fetch_single_flickr_photo(request, photo_id, flickr_id):
+def fetch_single_flickr_photo(photo_id, flickr_id, request):
     flickr = FlickrClient(settings.FLICKR_API_KEY)
     #log.debug('logged in user is %s.', request.user)
 
@@ -108,10 +112,10 @@ def fetch_single_flickr_photo(request, photo_id, flickr_id):
     license = licenses[resp["photo"]["license"]]
     secret = smart_unicode(resp["photo"]["secret"])
     
-    _handle_photo(flickr, user, photo_id, secret, license, timestamp)
-    return Photo.objects.latest() #FIXME: concurrency problem
+    _handle_photo(flickr, photo_id, secret, license, timestamp, user)
+    return Photo.objects.latest() #FIXME: concurrency problem?
     
-def fetch_single_flickr_photo_with_geo(request, photo_id, flickr_id, geometry):
+def fetch_single_flickr_photo_with_geo(photo_id, flickr_id, geometry, request):
     flickr = FlickrClient(settings.FLICKR_API_KEY)
     #log.debug('logged in user is %s.', request.user)
 
@@ -128,10 +132,10 @@ def fetch_single_flickr_photo_with_geo(request, photo_id, flickr_id, geometry):
     license = licenses[resp["photo"]["license"]]
     secret = smart_unicode(resp["photo"]["secret"])
     
-    _handle_photo_with_geo(flickr, user, photo_id, secret, license, timestamp, geometry)
-    return Photo.objects.latest() #FIXME: concurrency problem
+    _handle_photo_with_geo(flickr, photo_id, secret, license, timestamp, geometry, user)
+    return Photo.objects.latest() #FIXME: concurrency problem?
 
-def _handle_photo_with_geo(flickr, user, photo_id, secret, license, timestamp, geometry):
+def _handle_photo_with_geo(flickr, photo_id, secret, license, timestamp, geometry, user=None):
     info = flickr.photos.getInfo(photo_id=photo_id, secret=secret)["photo"]
     server_id = parsers.safeint(info["server"])
     farm_id = parsers.safeint(info["farm"])
@@ -201,15 +205,21 @@ def _handle_photo_with_geo(flickr, user, photo_id, secret, license, timestamp, g
     
     photo.save()
     
-    return SharedItem.objects.create_or_update(
-        user = user,
-        instance = photo, 
-        timestamp = date_received,
-    )
+    if user is None:
+        return SharedItem.objects.create_or_update(
+            instance = photo, 
+            timestamp = date_received,
+        )
+    else:
+        return SharedItem.objects.create_or_update(
+            user = user,
+            instance = photo, 
+            timestamp = date_received,
+        )
 _handle_photo_with_geo = transaction.commit_on_success(_handle_photo_with_geo)
 
 
-def _handle_photo(flickr, user, photo_id, secret, license, timestamp):
+def _handle_photo(flickr, photo_id, secret, license, timestamp, user=None):
     info = flickr.photos.getInfo(photo_id=photo_id, secret=secret)["photo"]
     server_id = parsers.safeint(info["server"])
     farm_id = parsers.safeint(info["farm"])
@@ -280,12 +290,20 @@ def _handle_photo(flickr, user, photo_id, secret, license, timestamp):
         photo.neighbourhood = neighbourhood
     
     photo.save()
-    
-    return SharedItem.objects.create_or_update(
-        user = user,
-        instance = photo, 
-        timestamp = date_received,
-    )
+
+    # only None when we run flickr.update()
+    # in this case it will default to SCC admin user
+    if user is None:
+        return SharedItem.objects.create_or_update(
+            instance = photo, 
+            timestamp = date_received,
+        )
+    else:
+        return SharedItem.objects.create_or_update(
+            user = user,
+            instance = photo, 
+            timestamp = date_received,
+        )
 _handle_photo = transaction.commit_on_success(_handle_photo)
 
 def _convert_exif(exif):
