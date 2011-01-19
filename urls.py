@@ -12,19 +12,21 @@ from photos.models      import Photo
 from location.models    import Location
 from stations.models    import Station
 from ideas.models       import Idea
-from sharing.models     import SharedItem
 from principles.models  import Entry
+
+from greenline.utils.preprocessors import *
 
 
 from django.contrib import admin
 admin.autodiscover()
+
 
 urlpatterns = patterns('',
 
     url(r'^$', direct_to_template, {
         "template": "homepage.html",
             'extra_context': {
-            "shares":       SharedItem.objects.all().order_by("-share_date")[:15],
+            "shares":       process_shares(),
             'ideas':        Idea.objects.order_by('?')[:3], # random ideas.
             'stations':     transform(Station.objects.all()),
             'photos':       Photo.objects.order_by('?')[:20], # random photos.

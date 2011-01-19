@@ -48,6 +48,7 @@ class FlickrClient(object):
         url = "http://flickr.com/services/rest/?" + urllib.urlencode(params)
         json = parsers.getjson(url)
         if json.get("stat", "") == "fail":
+            # FIXME redirect to custom error page for Flickr problems.
             raise FlickrError(json["code"], json["message"])
         return json
 
