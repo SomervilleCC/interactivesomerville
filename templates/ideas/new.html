@@ -2,10 +2,14 @@
 
 {% load i18n %}
 {% load uni_form %}
+{% uni_form form helper %}
 
 {% block head_title %}{% blocktrans %}Create an Idea | {% endblocktrans %}{% endblock %}
 
 {% block body %}
+<div id="content" class="grid_6">
+
+{% if user.is_authenticated %}
 
     <h3>Create a New Idea</h3>
 
@@ -18,8 +22,16 @@
             </div>
         </fieldset>
     </form>
+{% else %}
+    <p>Please <a href="/account/login/">Log in</a>.</p>
+{% endif %}
+
+<br />
+</div>
+<div class="clear"> </div>
 
 {% endblock %}
+
 
 {% block extra_body %}
     {% load jquery_validation %}

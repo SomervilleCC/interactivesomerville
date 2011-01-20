@@ -8,7 +8,6 @@
 
 {% block body %}
 <div id="content" class="grid_6">
-<div class="shared media">
 
     <h3>Edit Idea</h3>
 
@@ -26,9 +25,11 @@
     <p>{% trans "You must be the original creator of this idea to edit." %}</p>
     {% endifequal %}
 
+<br />
+</div>
+<div class="clear"> </div>
+
 {% endblock %}
-</div>
-</div>
 
 {% block extra_body %}
     {% load jquery_validation %}
