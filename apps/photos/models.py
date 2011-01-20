@@ -71,9 +71,10 @@ class Photo(models.Model):
     date_received  = models.DateTimeField(blank=True, null=True, default=datetime.datetime.now)
     
     # Location metadata
-    latitude = models.FloatField(null=True)
-    longitude = models.FloatField(null=True)
-    accuracy = models.PositiveSmallIntegerField(null=True, blank=True, editable=False)
+    latitude    = models.FloatField(null=True)
+    longitude   = models.FloatField(null=True)
+    #station     = models.ForeignKey(Station, blank=True, null=True)
+    accuracy    = models.PositiveSmallIntegerField(null=True, blank=True, editable=False)
     
     # Place and neighborhood
     neighbourhood = models.CharField(max_length=25, null=True, blank=True, editable=False) # spelled neighbourhood, not neighborhood!
@@ -119,6 +120,9 @@ class Photo(models.Model):
         return reverse_geocode(self.latitude, self.longitude)
     address = property(address)
             
+    #def station(self):
+    #    return nearest_station(self.geometry)
+    
     ### Image URLs ###
 
     def get_image_url(self, size=None):
