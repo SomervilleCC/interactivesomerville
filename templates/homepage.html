@@ -27,21 +27,61 @@
 
 //<![CDATA[
     // Global vars, array for holding and clearing overlays.
-    var infoBubbleStations = new InfoBubble({maxWidth: 300,borderWidth: 2,borderColor: '#3B7002'});
-    var infoBubblePhotos = new InfoBubble({maxWidth: 500, minWidth: 260, borderWidth: 1, borderColor: '#3B7002'});
+    var infoBubbleStations  = new InfoBubble({maxWidth: 300,borderWidth: 2,borderColor: '#3B7002'});
+    var infoBubblePhotos    = new InfoBubble({maxWidth: 500, minWidth: 260, borderWidth: 1, borderColor: '#3B7002'});
     var infoBubbleLocations = new InfoBubble({maxWidth: 250,borderWidth: 1,borderColor: '#3B7002'});
     
     var overlays = [];
-    var gmarkers = []; 
+    var pmarkers = []; 
+    var lmarkers = []; 
     
     var bikeLayer = new google.maps.BicyclingLayer();
       
     // the map center  
     var mapCenter = new google.maps.LatLng(42.391088, -71.11533);
 
+/**
+ * Show bike and foot path overlay.
+ */
     function applyBikeLayer() {
         bikeLayer.setMap(map);
     }
+
+/**
+ * Shows or hides the radius overlays.
+ */
+    function toggleOverlays(opt_enable) {
+        if (typeof opt_enable == 'undefined') {
+            opt_enable = !overlays[0].getMap();
+        }
+        for (var n = 0, overlay; overlay = overlays[n]; n++) {
+            overlay.setMap(opt_enable ? map : null);
+        }
+    };
+
+/**
+ * Shows or hides the photos.
+ */
+    function togglePhotos(opt_enable) {
+        if (typeof opt_enable == 'undefined') {
+            opt_enable = !pmarkers[0].getMap();
+        }
+        for (var n = 0, pmarker; pmarker = pmarkers[n]; n++) {
+            pmarker.setMap(opt_enable ? map : null);
+        }
+    };
+    
+/**
+ * Shows or hides the locations.
+ */
+    function toggleLocations(opt_enable) {
+        if (typeof opt_enable == 'undefined') {
+            opt_enable = !lmarkers[0].getMap();
+        }
+        for (var n = 0, lmarker; lmarker = lmarkers[n]; n++) {
+            lmarker.setMap(opt_enable ? map : null);
+        }
+    };
 
     function init() {
           
@@ -171,6 +211,8 @@
         '</div>';
 
     createListenerInfoBubbleLocations({{ location.markerVarName }}, {{ location.markerVarName }}contentString);
+    lmarkers.push({{ location.markerVarName }});
+
     
     {% endfor %}
     {% endif %}
@@ -191,6 +233,8 @@
             '</div>';
             
     createListenerInfoBubblePhotos(_{{ photo.photo_id }}, _{{ photo.photo_id }}contentString);
+    pmarkers.push(_{{ photo.photo_id }});
+
     
     {% endfor %}
     {% endif %}
@@ -221,6 +265,12 @@ google.maps.event.addDomListener(window, 'load', init);
           <a href="#">Learn about this project</a>
           <a href="#">View help on using this site</a>
         </div>
+    <div>
+    Toggle on/off:
+    <input onclick="toggleOverlays();" type=button value="Overlays"/>
+    <input onclick="togglePhotos();" type=button value="Photos"/>
+    <input onclick="toggleLocations();" type=button value="Ideas"/>
+   </div>
     </div>
 {% endblock %}
 
@@ -229,7 +279,7 @@ google.maps.event.addDomListener(window, 'load', init);
 
 <h2>From the Community</h2>
 
-<div class="shared media">
+<div class="shared ">
 {% autopaginate shares 3 %}
 
 {% votes_by_user user on shares as vote_dict %}
