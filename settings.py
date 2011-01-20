@@ -21,7 +21,7 @@ PINAX_THEME = 'default'
 DEBUG = True
 # tells Pinax to serve media through django.views.static.serve.
 SERVE_MEDIA = DEBUG
-TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DEBUG = False
 
 ADMINS = (
     # ('Gerald McCollam', 'gmccollam@gmail.com'),

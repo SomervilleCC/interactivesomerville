@@ -13,13 +13,28 @@ from location.models    import Location
 from stations.models    import Station
 from ideas.models       import Idea
 from principles.models  import Entry
+from sharing.models import SharedItem
 
-from greenline.utils.preprocessors import *
+#from greenline.utils.preprocessors import *
 
 
 from django.contrib import admin
 admin.autodiscover()
 
+def process_shares():
+    shares = list(SharedItem.objects.all().order_by("-share_date")[:15])
+    
+    for share in shares:
+        if share.content_type.app_label == 'photos':
+            if share.content_object.neighbourhood:
+                continue
+            else:
+                share.content_object.neighbourhood = u'Somerville'
+            if share.content_object.description:
+                continue
+            else:
+                share.content_object.description = u'Dowloaded from Flickr in the Somerville area.'
+    return shares
 
 urlpatterns = patterns('',
 
@@ -38,6 +53,7 @@ urlpatterns = patterns('',
     # pinax provided
     (r'^account/',  include('account.urls')),
     (r'^announcements/', include('announcements.urls')),
+    (r'^comments/', include('threadedcomments.urls')),
     (r'^profiles/', include('profiles.urls')),
     (r'^about/',    include('about.urls')),
     (r'^notices/',  include('notification.urls')), # needed for threadedcomments

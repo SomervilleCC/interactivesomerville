@@ -53,7 +53,7 @@ class MarkupField(models.TextField):
         super(MarkupField, self).__init__(*args, **kwargs)
 
     def contribute_to_class(self, cls, name):
-        markup_type_field = models.PositiveIntegerField(choices=MARKUP_TYPES, default=PLAIN_TEXT)
+        markup_type_field = models.PositiveIntegerField(choices=MARKUP_TYPES, default=MARKDOWN)
         rendered_field = models.TextField(editable=False)
         cls.add_to_class(_markup_type_field_name(name), markup_type_field)
         cls.add_to_class(_rendered_field_name(name), rendered_field)
