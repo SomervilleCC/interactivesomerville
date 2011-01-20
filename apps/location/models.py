@@ -4,18 +4,20 @@ from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 from django.conf import settings
 from django.db.models import permalink
-from django.contrib.contenttypes import generic
 from django_extensions.db.fields import AutoSlugField
+from django.contrib.contenttypes import generic
 from django.core.exceptions import ValidationError
 
 from taggit.managers import TaggableManager
+
 from sharing.managers import SharedItemManager
 from sharing.models import SharedItem
-from greenline.utils.parsers import slugify
-
 from stations.models import Station, Radius, Route
 from principles.models import Principle
 from greenline.utils.location_utils import geocode_to_point_object
+from greenline.utils.markdowner import MarkupField
+from greenline.utils.parsers import slugify
+
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
@@ -78,7 +80,7 @@ class Location(models.Model):
     slug            = AutoSlugField(populate_from='title', max_length=64)
 
     address         = models.CharField(max_length=200, help_text="i.e. 83 Highland Avenue")    
-    description     = models.TextField(blank=True, null=True, help_text="A brief description of this location." )
+    description     = MarkupField(blank=True, null=True, help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>' )
     geometry        = models.PointField(srid=4326, null=True, blank=True)
     location_type   = models.ForeignKey(LocationType, blank=True, null=True, help_text="i.e. school, park, playground.")
     station         = models.ForeignKey(Station, blank=True, null=True)

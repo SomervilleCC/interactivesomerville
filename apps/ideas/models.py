@@ -59,17 +59,14 @@ class Idea(models.Model):
     slug            = AutoSlugField(populate_from='title', max_length=64)
 
     address         = models.CharField(max_length=200, help_text="i.e. 83 Highland Avenue", null=True, blank=True)    
-    description     = MarkupField(blank=True, null=True, help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>' )
+    copy            = MarkupField(blank=True, null=True, help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>' )
     geometry        = models.PointField(srid=4326, null=True, blank=True)
     tease           = models.TextField('tease', blank=True, editable=False)
-    creator_ip      = models.IPAddressField(blank=True, null=True)
+    creator_ip      = models.IPAddressField(blank=True, null=True, default='127.0.0.1')
     created         = models.DateTimeField(default=datetime.datetime.now)
-    public          = models.IntegerField('public', choices=STATUS_CHOICES, default=1)
+    share           = models.IntegerField('shared', choices=STATUS_CHOICES, default=1)
     publish         = models.DateTimeField(default=datetime.datetime.now)
     
-    markup          = models.CharField("Content Markup", max_length=20,
-                        choices=settings.MARKUP_CHOICES,
-                        null=True, blank=True, editable=False)
     tags            = TaggableManager()
 
     class Meta:
