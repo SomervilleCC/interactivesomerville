@@ -2,13 +2,13 @@ navi {
   cursor: pointer;
   /*width: 60px; 148px;*/
   min-width: 60px;
-  max-width: 148px;
+  max-width: 100px;
   margin: 0;
   padding: 0;
-  background: #0092bf;
+  background: #4f7b41;
   position: fixed;
   left: 0px;
-  top: 194px;
+  top: 325px;
   text-align: center;
   overflow: hidden;
   color: #fff;
@@ -21,7 +21,9 @@ navi #navimenu { display: none;}
 navi:hover #navimenu { display: block;}
 navi:hover #navihdr { display: none; }
 
-navi h2 {
+navi h3 {
+  font-size: 16px;
+  text-transform: uppercase;
   display: block;
   width: 60px;
   margin-left: auto;
@@ -30,7 +32,16 @@ navi h2 {
 
 navi ul {
   text-align: left;
-  width: 148px;
+  width: 118px;
+}
+
+navi li {
+    background: transparent;
+    border: 0px;
+    font-size: 100%;
+    margin:0px;
+    outline: 0px;
+    padding: 0;
 }
 
 navi a {
@@ -41,6 +52,6 @@ navi a {
 }
 
 navi a:hover, navi a:focus  {
-  background:#f14a29;
+  background:#000000;
   outline:0;
 }
