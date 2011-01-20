@@ -6,7 +6,9 @@
 {% block head_title %}{% trans "Signup | " %}{% endblock %}
 
 {% block body %}
-    <h1>{% trans "Sign Up" %}</h1>
+<div id="content" class="grid_6">
+
+    <h3>{% trans "Sign Up" %}</h3>
     
     {% if user.is_authenticated %}
         <p>{% trans "You are already logged in." %}</p>
@@ -16,24 +18,23 @@
         <form class="signup uniForm" id="signup_form" method="post" action="{% url acct_signup %}">
             <fieldset class="inlineLabels">
                 {{ form|as_uni_form }}
-                <div  class="form_blick">
-                    <input type="submit" value="{% trans "Sign Up &raquo;" %}" />
+                <div  class="form_block"><br />
+                    <button type="submit">Sign Up</button>
                 </div>
             </fieldset>
         </form>
-        
+        <br />
         {% url terms as terms_url %}
         {% url privacy as privacy_url %}
-        <p>{% blocktrans %}By clicking "Sign Up", you are indicating that you have read and agree to the <a href="{{ terms_url }}">Terms of Use</a> and <a href="{{ privacy_url }}">Privacy Policy</a>.{% endblocktrans %}</p>
+        <p>{% blocktrans %}By signing up you indicate that you have read and agree to <br /> the <a href="{{ terms_url }}">Terms of Use</a> and <a href="{{ privacy_url }}">Privacy Policy</a>.{% endblocktrans %}</p>
         
         <p>{% blocktrans %}If you have any trouble creating your account, contact us at <a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>.{% endblocktrans %}</p>
-        
-        {# @@@ currently OpenID signup is not supported via signup codes #}
-        {% if not code %}
-            <p>If you have OpenID, <a href="{% url acct_login %}">log in</a> using that to begin using this site with OpenID right away.</p>
-        {% endif %}
     {% endif %}
+    
+</div>
+<div class="clear"> </div>
 {% endblock %}
+
 
 {% block extra_body %}
     {% load jquery_validation %}
