@@ -15,12 +15,16 @@
 {% endblock %}
 
 {% block body %}
+<div id="content" class="grid_8">
+
 	{% for principle in principles %}	
         <div class="column span-16"> 
             <a href="/principles/{{ principle.slug }}">{{ principle.title }}</a>         
               <p class="intro">{{ principle.body }}</p>
           </div> 
     {% endfor %}
+</div>
+<div class="clear"> </div>
 {% endblock %}
 
 {% block extra %}
