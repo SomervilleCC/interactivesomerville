@@ -266,10 +266,10 @@ google.maps.event.addDomListener(window, 'load', init);
           <a href="#">View help on using this site</a>
         </div>
     <div>
-    Toggle on/off:
-    <input onclick="toggleOverlays();" type=button value="Overlays"/>
-    <input onclick="togglePhotos();" type=button value="Photos"/>
-    <input onclick="toggleLocations();" type=button value="Ideas"/>
+    <map-button type="submit" onclick="toggleOverlays();">Overlays</map-button>
+    <map-button type="submit" onclick="togglePhotos();">Photos</map-button>
+    <map-button type="submit" onclick="toggleVideos();">Videos</map-button>
+    <map-button type="submit" onclick="toggleLocations();">Ideas</map-button>
    </div>
     </div>
 {% endblock %}
