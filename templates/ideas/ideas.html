@@ -8,63 +8,57 @@
 {% load pagination_tags %}
 {% load extra_voting_tags %}
 {% load in_filter %}
+{% load comments_tag %}
+
 
 {% block head_title %}{% blocktrans %}Share Ideas | {% endblocktrans %}{% endblock %}
 
 {% block extra_head %}{% endblock %}
 
 {% block body %}
-<div id="content" class="grid_6">
+<div id="content" class="grid_8">
     
     <h2>Ideas from the community</h2>
+    
     {% if ideas %}
-        {% autopaginate ideas 3 %}
-        
-        {% votes_by_user user on ideas as vote_dict %}
-        {% scores_for_objects ideas as score_dict %}
-        
-            {% for idea in ideas %}
+    {% autopaginate ideas 3 %}
+    
+    {% votes_by_user user on ideas as vote_dict %}
+    {% scores_for_objects ideas as score_dict %}
+    
+        {% for idea in ideas %}
 
-                <a href="{{ idea.get_absolute_url }}">{{ idea.title }} </a>
-
-                {% dict_entry_for_item idea from vote_dict as vote %}
-                {% dict_entry_for_item idea from score_dict as score %}
+            {% dict_entry_for_item idea from vote_dict as vote %}
+            {% dict_entry_for_item idea from score_dict as score %}
             
-                {% if user.is_authenticated %}
-                <br />
-                    <a id="up_{{ idea.id }}" href="#" onclick="vote({{ idea.id }}, '{% if vote and vote.is_downvote %}clear{% else %}up{% endif %}'); return false;">
-                        <img src="{{ STATIC_URL }}bookmarks/img/up_{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png"/></a><br />
-                {% endif %}
-                <span id="idea_{{ idea.id }}_score">
-                    {{ score.score|default:0 }} point{{ score.score|default:0|pluralize }}
-                </span><br />
-                {% if user.is_authenticated %}
-                    <a id="down_{{ idea.id }}" href="#" onclick="vote({{ idea.id }}, '{% if vote and vote.is_upvote %}clear{% else %}down{% endif %}'); return false;">
-                        <img id="img_{{ idea.id }}_down" src="{{ STATIC_URL }}bookmarks/img/down_{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png"/></a>
-                {% endif %}
+            <label><a href="{{ idea.get_absolute_url }}">{{ idea.title }} </a></label>
+                    
+            {% if user.is_authenticated %}
+                <a id="up_{{ idea.id }}" href="#" onclick="vote({{ idea.id }}, '{% if vote and vote.is_downvote %}clear{% else %}up{% endif %}'); return false;">
+                    <img src="{{ STATIC_URL }}bookmarks/img/up_{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png"/></a><br />
+            {% endif %}
+            <span id="idea_{{ idea.id }}_score">
+                {{ score.score|default:0 }} point{{ score.score|default:0|pluralize }}
+            </span><br />
+            {% if user.is_authenticated %}
+                <a id="down_{{ idea.id }}" href="#" onclick="vote({{ idea.id }}, '{% if vote and vote.is_upvote %}clear{% else %}down{% endif %}'); return false;">
+                    <img id="img_{{ idea.id }}_down" src="{{ STATIC_URL }}bookmarks/img/down_{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png"/></a>
+            {% endif %}
 
-                    {% if idea.tease %}
-                         {% with idea.copy as body %}
-                            {% if idea.markup %}
-                                    {{ body|force_escape|markdown }}
-                            {% else %}
-                                {{ body|force_escape|linebreaks|safe }}
-                            {% endif %}
-                        {% endwith %}
-                    {% else %}
-                        {% with idea.copy|truncatewords:"150" as body %}
-                            {% if idea.markup %}
-                                   {{ body|force_escape|markdown }}
-                            {% else %}
-                                {{ body|force_escape|linebreaks|safe }}
-                            {% endif %}
-                        {% endwith %}
-                    {% endif %}
-                    <p><b>Posted by:</b><br />
-                        <a href="">{{ idea.author.username }}</a> on {{ idea.publish|date }}</p>
-            {% endfor %}
-        {% paginate %}
+            {% with idea.copy|truncatewords:"150" as body %}
+                {{ body|force_escape|markdown }}
+            {% endwith %}
 
+            <br />        
+            <p><b>Posted by:</b><br />
+                <a href="">{{ idea.author.username }}</a> on {{ idea.publish|date }}</p>
+            
+            {% comments idea %}
+            <br />
+        {% endfor %}
+    
+    {% paginate %}
+        
     {% else %}
         No idea posts yet.
     {% endif %}
