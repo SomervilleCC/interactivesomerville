@@ -31,6 +31,14 @@ text-transform:uppercase;
 padding:4px 12px;
 }
 
+map-button {
+background:#4F7B41;
+border:none;
+color:#fff;
+text-transform:lowercase;
+padding:2px 6px;
+}
+
 a {
 color:#252525;
 }
@@ -351,5 +359,3 @@ THE FOLLOWING ARE OVERRIDES TO PREVIOUSLY INCLUDED CSS
 
 /* ------------------------------------------------------------------------------ */
 
-/* Overide uniForm's row highlight */
-.uniForm .focused{ background: #F4FFF4; }
