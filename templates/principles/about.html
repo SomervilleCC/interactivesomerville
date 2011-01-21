@@ -2,9 +2,12 @@
 
 {% load i18n %}
 {% load uni_form %}
-{% load avatar_tags %}
+{% load humanize %}
+{% load markup %}
 {% load theme_tags %}
+{% load in_filter %}
 {% load comments_tag %}
+
 
 {% block head_title %}{% blocktrans %}About The Principles | {% endblocktrans %}{% endblock %}
 
@@ -17,12 +20,22 @@
 {% block body %}
 <div id="content" class="grid_8">
 
-	{% for principle in principles %}	
-        <div class="column span-16"> 
-            <a href="/principles/{{ principle.slug }}">{{ principle.title }}</a>         
-              <p class="intro">{{ principle.body }}</p>
-          </div> 
+<h2>The 11 Principles</h2>    
+    
+<p><h6>In October 2009, 130 community members came together and voted on 11 core community principles. Collectively, these represent our priorities for the Green Line Extension. CCP along with hundreds of Somerville community members have been working to move these principles forward into action.</p>
+
+<p>There are currently four working groups and a resident advisory team that are working to ensure the communities principles are carried out.</p>
+    
+<p>The 11 Principles are:</p></h6>
+<br />
+    
+    {% for principle in principles %}
+        <label><a href="/principles/#">{{ principle.title }}</a></label>         
+        {% with principle.body|truncatewords:"150" as body %}
+            {{ body|force_escape|markdown }}
+        {% endwith %}
     {% endfor %}
+
 </div>
 <div class="clear"> </div>
 {% endblock %}
