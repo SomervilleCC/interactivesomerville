@@ -11,21 +11,20 @@
 
 {% block head_title %}{% blocktrans %}Share Ideas | {% endblocktrans %}{% endblock %}
 
-{% block extra_head %}
-{% endblock %}
+{% block extra_head %}{% endblock %}
 
 {% block body %}
 <div id="content" class="grid_6">
-    <h1>Ideas from the community</h1>
+    
+    <h2>Ideas from the community</h2>
     {% if ideas %}
-        {% autopaginate ideas 5 %}
+        {% autopaginate ideas 3 %}
         
         {% votes_by_user user on ideas as vote_dict %}
         {% scores_for_objects ideas as score_dict %}
         
             {% for idea in ideas %}
-            <div style="float: left;">
-            <div class="idea-post clearfix">
+
                 <a href="{{ idea.get_absolute_url }}">{{ idea.title }} </a>
 
                 {% dict_entry_for_item idea from vote_dict as vote %}
@@ -33,17 +32,19 @@
             
                 {% if user.is_authenticated %}
                 <br />
-                    <a id="up_{{ idea.id }}" href="#" onclick="vote({{ idea.id }}, '{% if vote and vote.is_downvote %}clear{% else %}up{% endif %}'); return false;"><img src="{{ STATIC_URL }}bookmarks/img/up_{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png"/></a><br />
+                    <a id="up_{{ idea.id }}" href="#" onclick="vote({{ idea.id }}, '{% if vote and vote.is_downvote %}clear{% else %}up{% endif %}'); return false;">
+                        <img src="{{ STATIC_URL }}bookmarks/img/up_{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png"/></a><br />
                 {% endif %}
                 <span id="idea_{{ idea.id }}_score">
                     {{ score.score|default:0 }} point{{ score.score|default:0|pluralize }}
                 </span><br />
                 {% if user.is_authenticated %}
-                    <a id="down_{{ idea.id }}" href="#" onclick="vote({{ idea.id }}, '{% if vote and vote.is_upvote %}clear{% else %}down{% endif %}'); return false;"><img id="img_{{ idea.id }}_down" src="{{ STATIC_URL }}bookmarks/img/down_{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png"/></a>
+                    <a id="down_{{ idea.id }}" href="#" onclick="vote({{ idea.id }}, '{% if vote and vote.is_upvote %}clear{% else %}down{% endif %}'); return false;">
+                        <img id="img_{{ idea.id }}_down" src="{{ STATIC_URL }}bookmarks/img/down_{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png"/></a>
                 {% endif %}
 
                     {% if idea.tease %}
-                         {% with idea.tease as body %}
+                         {% with idea.copy as body %}
                             {% if idea.markup %}
                                     {{ body|force_escape|markdown }}
                             {% else %}
@@ -51,7 +52,7 @@
                             {% endif %}
                         {% endwith %}
                     {% else %}
-                        {% with idea.body|truncatewords:"150" as body %}
+                        {% with idea.copy|truncatewords:"150" as body %}
                             {% if idea.markup %}
                                    {{ body|force_escape|markdown }}
                             {% else %}
@@ -59,18 +60,18 @@
                             {% endif %}
                         {% endwith %}
                     {% endif %}
-                <div class="idea-post-meta">
-                    {% gravatar idea.author 40 %}
-                    <p><b>Posted:</b><br />
-                        <a href="{% url profile_detail idea.author.username %}">{{ idea.author.username }}</a> on {{ idea.publish|date }}</p>
-                </div>
-            </div>
+                    <p><b>Posted by:</b><br />
+                        <a href="">{{ idea.author.username }}</a> on {{ idea.publish|date }}</p>
             {% endfor %}
         {% paginate %}
-        </div?>
+
     {% else %}
         No idea posts yet.
     {% endif %}
+<br />
+</div>
+<div class="clear"> </div>
+{% endblock %}
 
 {% block extra_body %}
 <script> 
@@ -96,7 +97,4 @@
 </script> 
 
 {% endblock %}
-    
-{% endblock %}
-
 

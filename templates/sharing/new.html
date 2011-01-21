@@ -2,7 +2,7 @@
 
 {% load i18n %}
 {% load uni_form %}
-
+{% uni_form form helper %}
 
 {% block head_title %}{% blocktrans %}Share Something | {% endblocktrans %}{% endblock %}
 
@@ -10,7 +10,6 @@
 {% endblock %}
 
 {% block body %}
-
 
 {% if user.is_authenticated %}
 

@@ -223,8 +223,10 @@ google.maps.event.addDomListener(window, 'load', init);
 {% endblock %}
 
 {% block body %}
+<div id="content" class="grid_6">
+
     {% for station in random_station %}
-        <h3>{{ station.name }}</h3>
+        <h2>{{ station.name }}</h2>
         {% with station.copy as copy %}    
         <p>{{ copy|force_escape|markdown }}
         <hr>
@@ -240,4 +242,6 @@ google.maps.event.addDomListener(window, 'load', init);
             {% endwith %}
         {% endfor %}
     {% endif %}
+</div>
+<div class="clear"> </div>
 {% endblock %}
