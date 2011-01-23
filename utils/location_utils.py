@@ -86,6 +86,26 @@ def nearest_stations(geometry):
             nearest.append(station.name)
     return nearest
     
+def nearest_station_from_geo(geometry):
+    ''' Return the nearest Station object 
+        from a given Point object. '''
+    nearest = []
+    stations = Station.objects.all()
+    for station in stations:
+        station.radius.geometry.transform(4326)
+        if station.radius.geometry.contains(geometry):
+            nearest.append(station.name)
+    return nearest
+
+def nearer_station(geometry, stations):
+    ''' Return the nearest Station object[s] 
+        from a given Location object. '''
+    distance1 = distance.distance((geometry.y, geometry.x), (stations[0].latitude, stations[0].longitude))
+    distance2 = distance.distance((geometry.y, geometry.x), (stations[1].latitude, stations[1].longitude))
+    if (distance1 < distance2):
+        return stations[0]
+    return stations[1]
+    
 # degrees to radians
 def deg2rad(degrees):
     return math.pi*degrees/180.0
