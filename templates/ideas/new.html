@@ -11,14 +11,14 @@
 
 {% if user.is_authenticated %}
 
-    <h3>Create a New Idea</h3>
+    <h3>Propose a New Idea</h3>
 
     <form class="uniForm" id="edit-profile" method="POST" action="">
         <fieldset class="inlineLabels">
             {{ idea_form|as_uni_form }}
             <div class="form_block">
             <input type="hidden" name="action" value="create" />
-            <input type="submit" value="{% trans "create" %}"/>
+            <button type="submit">Do It</button>
             </div>
         </fieldset>
     </form>

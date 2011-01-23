@@ -40,6 +40,33 @@
     // the map center  
     var mapCenter = new google.maps.LatLng(42.391088, -71.11533);
 
+
+    function zoomIn() {
+        var zoom = map.getZoom();
+        new_zoom = zoom + 1;
+        map.setZoom(new_zoom);
+    }
+  
+    function zoomOut() {
+        var zoom = map.getZoom();
+        new_zoom = zoom - 1;
+        
+        if (zoom <= 14) { map.setZoom(zoom) }
+        else    
+        { map.setZoom(new_zoom) }
+    }
+
+//    function center() {
+//     var latLngbounds = map.getBounds();
+//     var center = latLngbounds.getCenter();
+//     map.panTo(new google.maps.LatLng(center.lat(), center.lng()));
+//    }
+     
+    function reset() {
+        map.setCenter(mapCenter);
+        map.setZoom(14)
+    }
+    
 /**
  * Show bike and foot path overlay.
  */
@@ -93,6 +120,7 @@
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         streetViewControl: true,
         mapTypeControl: true,
+        zoomControl: false,
         disableDoubleClickZoom: true,
         keyboardShortcuts: false,
         mapTypeControlOptions: {
@@ -254,27 +282,26 @@ google.maps.event.addDomListener(window, 'load', init);
 
 {% block map %}
     <div class="mapContainer minor">
-        <div id="map"></div>
-        <div id="map-intro-message">
-          <a href="" class="close">Close</a>
-          
-          <h3>Get Involved</h3>
-          <p class="focus">
-            <span>The Green Line is coming to Somerville and we need your thoughts! Share your ideas, questions, photos and videos with the community!</span>
-          </p>
-          <a href="#">Learn about this project</a>
-          <a href="#">View help on using this site</a>
+    <div id="map"></div>
+    <div id="map-intro-message">
+      <a href="" class="close">Close</a>
+      
+      <h3>Get Involved</h3>
+      <p class="focus">
+        <span>The Green Line is coming to Somerville and we need your thoughts! Share your ideas, questions, photos and videos with the community!</span>
+      </p>
+      <a href="#">Learn about this project</a>
+      <a href="#">View help on using this site</a>
+    </div>
+        <div>
+        <map-button type="submit" onclick="togglePhotos();">-/+ Photos</map-button>
+        <map-button type="submit" onclick="toggleVideos();">-/+ Videos</map-button>
+        <map-button type="submit" onclick="toggleLocations();">-/+ Ideas</map-button>
+        <map-button type="submit" onclick="toggleOverlays();">-/+ Overlays</map-button>
+        <map-button type="submit" onclick="zoomIn();">+ Zoom</map-button>
+        <map-button type="submit" onclick="zoomOut();">- Zoom</map-button>
+        <map-button type="submit" onclick="reset();">Reset</map-button>
         </div>
-    <div>
-    <map-button type="submit" onclick="togglePhotos();">-/+ Photos</map-button>
-    <map-button type="submit" onclick="toggleVideos();">-/+ Videos</map-button>
-    <map-button type="submit" onclick="toggleLocations();">-/+ Ideas</map-button>
-    <map-button type="submit" onclick="toggleOverlays();">-/+ Overlays</map-button>
-    <map-button type="submit" onclick="zoomIn();">+ Zoom</map-button>
-    <map-button type="submit" onclick="zoomOut();">- Zoom</map-button>
-    <map-button type="submit" onclick="reset();">Reset</map-button>
-
-   </div>
     </div>
 {% endblock %}
 

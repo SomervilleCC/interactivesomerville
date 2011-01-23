@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body %}
+<div id="content" class="grid_6">
 
 {% if user.is_authenticated %}
 
@@ -20,7 +21,7 @@
             {{ form|as_uni_form }}
             <div class="form_block">
             <input type="hidden" name="action" value="create" />
-            <input type="submit" value="{% trans "create" %}"/>
+                <button type="submit">Share It</button>
             </div>
         </fieldset>
     </form>
@@ -28,6 +29,10 @@
 {% else %}
     <p>Please <a href="/account/login/">Log in</a>.</p>
 {% endif %}
+
+<br />
+</div>
+<div class="clear"> </div>
 {% endblock %}
 
 {% block extra_body %}
