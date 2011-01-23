@@ -69,7 +69,7 @@ def shares_index(request, username=None, template_name='sharing/shares.html'):
 
 
 def shares_latest(request, username=None, template_name='sharing/shares.html'):
-    shares = SharedItem.objects.all().order_by("-share_date")
+    shares = SharedItem.objects.all().order_by("-share_date")[:5]
 
     return render_to_response(template_name, {
         "shares": shares,

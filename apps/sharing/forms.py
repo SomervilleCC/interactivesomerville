@@ -33,13 +33,22 @@ PRINCIPLE_CHOICES = ( \
     (10, 'Community Involvement'), \
     (11, 'Connecting Buses and Trains'))
 
+STATION_CHOICES = ( \
+    (1, 'Route 16 Station Area'), \
+    (2, 'College Avenue Station Area'), \
+    (3, 'Ball Square Station Area'), \
+    (4, 'Lowell Street Station Area'), \
+    (5, 'Gilman Square Station Area'), \
+    (6, 'Washinton Street Station Area'), \
+    (7, 'Union Square Station Area'))
+    
 
 class SharedFormGET(forms.Form):
     
     location = forms.CharField(widget=forms.TextInput(attrs={'size':28}), required=True )
-    media_type = forms.URLField(widget=forms.TextInput(attrs={'size':28}), required=False )
-    related_principle = forms.MultipleChoiceField(choices=PRINCIPLE_CHOICES, initial=['1'], required=False)
-    comment = forms.CharField(label="Comment", widget=forms.widgets.Textarea())
+    media = forms.URLField(widget=forms.TextInput(attrs={'size':28}), required=True )
+    station = forms.MultipleChoiceField(choices=STATION_CHOICES, initial=['1'], required=False)
+    comment = forms.CharField(label="Comment", widget=forms.widgets.Textarea(), required=False)
     
     content_type    = forms.CharField(widget=forms.HiddenInput, initial='content_type')
     object_id       = forms.CharField(widget=forms.HiddenInput, initial='object_id')
