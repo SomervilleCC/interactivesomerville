@@ -21,9 +21,7 @@ from sharing.models import SharedItem
 from django.contrib import admin
 admin.autodiscover()
 
-def process_shares():
-    shares = list(SharedItem.objects.all().order_by("-share_date")[:15])
-    
+def process_shares(shares):
     for share in shares:
         if share.content_type.app_label == 'photos':
             if share.content_object.neighbourhood:
@@ -41,11 +39,13 @@ urlpatterns = patterns('',
     url(r'^$', direct_to_template, {
         "template": "homepage.html",
             'extra_context': {
-            "shares":       process_shares(),
+            "shares":       process_shares(list(SharedItem.objects.all().order_by("-share_date")[:15])),
+            'latest_users': User.objects.all().order_by('-date_joined')[:5],
+            'latest_entries': Entry.objects.filter(status=2).order_by('-publish')[:5],
             'ideas':        Idea.objects.order_by('?')[:3], # random ideas.
-            'stations':     transform(Station.objects.all()),
             'photos':       Photo.objects.order_by('?')[:20], # random photos.
             'locations':    Location.objects.all(), # random places.
+            'stations':     transform(Station.objects.all()),
             'random_station' :  transform(Station.objects.order_by('?')[:1]) # center on random station.
         },
     }, name="home"),
