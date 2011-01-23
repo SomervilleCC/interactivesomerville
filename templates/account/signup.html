@@ -14,12 +14,13 @@
         <p>{% trans "You are already logged in." %}</p>
     {% else %}
         <p>{% trans "Already have an account?" %} <a href="{% url acct_login %}">{% trans "Log In" %}</a>!</p>
-        
         <form class="signup uniForm" id="signup_form" method="post" action="{% url acct_signup %}">
             <fieldset class="inlineLabels">
                 {{ form|as_uni_form }}
                 <div  class="form_block"><br />
+                    <input id="terms" type="checkbox" name="terms"> <label id="lterms" for="terms">Promise <strong>you are human</strong></label>
                     <button type="submit">Sign Up</button>
+
                 </div>
             </fieldset>
         </form>
@@ -32,6 +33,7 @@
     {% endif %}
     
 </div>
+
 <div class="clear"> </div>
 {% endblock %}
 

@@ -1,0 +1,96 @@
+form input, form textarea {
+	font-family: Georgia, Constantia, "Times New Roman", Times, serif;
+	border: 1px solid #CCC;
+	font-size: 1em;
+	padding: .3em;
+}
+
+form input:focus, form textarea:focus {
+	border-color: #0C0;
+}
+	
+form input#name, form input#email {
+	width: 250px;
+}
+
+ul, li {
+    list-style: none;
+    margin-left: 0;
+}
+
+dd {
+	margin-bottom: 1em;
+}
+
+li.link-twitter {
+	background: url("http://refreshboston.org/img/icons/icon-twitter.png") no-repeat 0 .1em;
+}
+
+li.link-flickr {
+	background: url("http://refreshboston.org/img/icons/icon-flickr.png") no-repeat 0 .1em;
+}
+
+li.link-upcoming {
+	background: url("http://refreshboston.org/img/icons/icon-upcoming.png") no-repeat 0 .1em;
+}
+
+li.link-mixx {
+	background: url("http://refreshboston.org/img/icons/icon-mixx.png") no-repeat 0 .1em;
+}
+
+li.link-facebook {
+	background: url("http://refreshboston.org/img/icons/icon-facebook.png") no-repeat 0 .1em;
+}
+
+li.link-speakerrate {
+	background: url("http://refreshboston.org/img/icons/icon-speakerrate.png") no-repeat 0 .1em;
+}
+
+li.link-pdf {
+	background: url("http://refreshboston.org/img/icons/icon-pdf.png") no-repeat 0 .1em;
+}
+
+li.link-slideshare {
+	background: url("http://refreshboston.org/img/icons/icon-slideshare.png") no-repeat 0 .1em;
+}
+
+#rb-about p:first-line {
+	font-weight: bold;
+}
+
+#rb-about p {
+	font-variant: small-caps;
+	font-size: 1.4em;
+}
+
+#rb-sponsorship dl dt {
+	font-weight: bold;
+}
+
+#rb-events dl {
+	margin-bottom: 0;
+}
+
+#rb-events dt {
+	clear: left;
+	font-weight: normal;
+	font-style: italic;
+	float: left;
+	width: 4em;
+}
+
+#rb-events dd {
+	font-weight: bold;
+	margin-bottom: .4em;
+}
+
+#rb-sponsors dl, #rb-sponsors p {
+	font-size: 1.2em;
+}
+
+#rb-sponsors dt img {
+	background-color: #FFF;
+	border: 2px solid #9fda74;
+	padding: 8px;
+	margin-bottom: 5px;
+}
