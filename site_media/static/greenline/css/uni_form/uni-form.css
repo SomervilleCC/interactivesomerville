@@ -89,6 +89,7 @@
 .uniForm .ctrlHolder textarea:focus{ outline: none; /* Get rid of the 'glow' effect in WebKit, optional */ }
 .uniForm div.focused .formHint{ color: #333; }
 
+
 /* Columns (they are floated left by default) */
 .uniForm .col{ width: 47.9%; /* <- Required property */ margin: 0 2% 20px 0; }
 /* Use .first and .last classes to control the layout/spacing of your columns */
