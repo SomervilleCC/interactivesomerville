@@ -79,6 +79,7 @@ class Photo(models.Model):
     # Place and neighborhood
     neighbourhood = models.CharField(max_length=25, null=True, blank=True, editable=False) # spelled neighbourhood, not neighborhood!
     
+    shared = generic.GenericRelation(SharedItem)
     tags = TaggableManager()
     
     class Meta:
@@ -153,4 +154,3 @@ class Photo(models.Model):
         return self.taken_by == getattr(settings, "FLICKR_USERNAME", "")
     taken_by_me = property(taken_by_me)
     
-    shared = generic.GenericRelation(SharedItem)
