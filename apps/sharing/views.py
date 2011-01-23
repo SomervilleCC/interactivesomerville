@@ -90,9 +90,8 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
         data = request.POST.copy()
                 
         comment = data.get("comment")
-        related_principle = data.get("related_principle")
+        station = data.get("station")
         location = data.get("location")
-        #log.debug('location is %s.', location)
         media_type = data.get("media_type").strip('\'"')
         
         if location:

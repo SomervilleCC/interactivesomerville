@@ -82,7 +82,7 @@ def new(request, form_class=IdeaForm, template_name="ideas/new.html"):
                     idea.creator_ip = request.META['REMOTE_ADDR']
                 idea.save()
                 # @@@ should message be different if published?
-                request.user.message_set.create(message="Successfully saved post '%s'" % idea.title)
+                request.user.message_set.create(message="Successfully saved idea '%s'" % idea.title)
 
                 return HttpResponseRedirect(reverse("idea_list_yours"))
         else:

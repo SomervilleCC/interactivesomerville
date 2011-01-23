@@ -138,7 +138,7 @@ class Location(models.Model):
     class Meta:
         get_latest_by = 'created'
         
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
         if not self.address:
             raise ValidationError(u'Location object must be initialized with an address.')
             
@@ -156,10 +156,10 @@ class Location(models.Model):
         else:
             raise Exception(u'Failed to geocode address.')
                 
-        super(Location, self).save()
+        super(Location, self).save(force_insert, force_update)
         
     def save_as_shared(self):            
-        super(Location, self).save()
+        super(Location, self).save(force_insert, force_update)
         
 
 

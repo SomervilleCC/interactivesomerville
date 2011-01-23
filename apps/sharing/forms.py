@@ -45,10 +45,11 @@ STATION_CHOICES = ( \
 
 class SharedFormGET(forms.Form):
     
-    location = forms.CharField(widget=forms.TextInput(attrs={'size':28}), required=True )
-    media = forms.URLField(widget=forms.TextInput(attrs={'size':28}), required=True )
+    location = forms.CharField(widget=forms.TextInput(attrs={'size':28}), required=True, help_text="Put this share on the map. (i.e. 83 Highland Avenue). ")
+    media = forms.URLField(label="Photo or Video", widget=forms.TextInput(attrs={'size':28}), required=True, 
+        help_text='Enter a link to Flickr or Youtube. <a href="">Help with Flickr</a>')
     station = forms.MultipleChoiceField(choices=STATION_CHOICES, initial=['1'], required=False)
-    comment = forms.CharField(label="Comment", widget=forms.widgets.Textarea(), required=False)
+    comment = forms.CharField(label="Comment or Question", widget=forms.widgets.Textarea(), required=False)
     
     content_type    = forms.CharField(widget=forms.HiddenInput, initial='content_type')
     object_id       = forms.CharField(widget=forms.HiddenInput, initial='object_id')
