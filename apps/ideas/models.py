@@ -16,6 +16,7 @@ from greenline.utils.markdowner import MarkupField
 from taggit.managers import TaggableManager
 from sharing.models import SharedItem
 from greenline.utils.location_utils import geocode_to_point_object
+from stations.models import Station
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
@@ -50,24 +51,26 @@ class Idea(models.Model):
         (1, 'No'),
     )
     
-    author          = models.ForeignKey(User, blank=True, null=True) # individual user, usually the creator
-    
+    author          = models.ForeignKey(User, blank=True, null=True) # individual user, usually the creator    
     title           = models.CharField(
                         max_length = 100, 
-                        help_text = 'A short name for this idea.')
+                        help_text = 'A brief title for this idea.')
     
     slug            = AutoSlugField(populate_from='title', max_length=64)
 
-    address         = models.CharField(max_length=200, help_text="i.e. 83 Highland Avenue", null=True, blank=True)    
-    copy            = MarkupField(blank=True, null=True, help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>' )
+    address         = models.CharField(max_length=200, help_text="Place this idea on the map. (i.e. 83 Highland Avenue)", null=True, blank=True)    
+    station         = models.ForeignKey(Station, blank=True, null=True, default=3, help_text='Associate idea with a station.')
+    copy            = MarkupField(help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>', null=True, blank=True )
     geometry        = models.PointField(srid=4326, null=True, blank=True)
     tease           = models.TextField('tease', blank=True, editable=False)
     creator_ip      = models.IPAddressField(blank=True, null=True, default='127.0.0.1')
     created         = models.DateTimeField(default=datetime.datetime.now)
-    share           = models.IntegerField('shared', choices=STATUS_CHOICES, default=1)
     publish         = models.DateTimeField(default=datetime.datetime.now)
+    share           = models.IntegerField('shared', choices=STATUS_CHOICES, default=0, editable=False)
     
-    tags            = TaggableManager()
+    objects         = models.GeoManager()
+    shared          = generic.GenericRelation(SharedItem, editable=False, default=0)
+    tags            = TaggableManager(verbose_name="Tags", help_text="A comma-separated list of tags.", through=None, blank=True)
 
     class Meta:
         verbose_name        = 'idea'
@@ -126,9 +129,10 @@ class Idea(models.Model):
             self.geometry = result[1]
             
         super(Idea, self).save(force_insert, force_update)
+        
+    def save_as_shared(self):            
+        super(Idea, self).save(force_insert, force_update)
 
-    shared = generic.GenericRelation(SharedItem)
-    tags = TaggableManager()
         
 # handle notification of new comments
 from threadedcomments.models import ThreadedComment

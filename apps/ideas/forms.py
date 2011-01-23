@@ -7,7 +7,7 @@ class IdeaForm(forms.ModelForm):
     
     class Meta:
         model = Idea
-        exclude = ('author', 'creator_ip', 'created', 'publish', 'geometry', 'slug', )
+        exclude = ('author', 'creator_ip', 'created', 'publish', 'geometry', 'slug', 'markup',  )
     
     def __init__(self, user=None, *args, **kwargs):
         self.user = user
