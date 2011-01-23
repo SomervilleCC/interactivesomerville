@@ -1,0 +1,59 @@
+[
+    {
+        "pk": 3, 
+        "model": "ideas.idea", 
+        "fields": {
+            "creator_ip": "127.0.0.1", 
+            "title": "Brickbottom neighborhood squeezed by Greenline", 
+            "geometry": "POINT (-71.0843749999999943 42.3757140000000021)", 
+            "author": 1, 
+            "share": 0, 
+            "publish": "2011-01-21 00:35:06", 
+            "tease": "", 
+            "created": "2011-01-21 00:35:06", 
+            "copy_markup_type": 2, 
+            "address": "1 Fitchburg St", 
+            "copy_rendered": "<p>If you look at Somerville's Brickbottom neighborhood from above, you'll see a tangled spaghetti bowl of train tracks. </p>\n<p>And it's only going to get more complicated with the Green Line extension: new tracks, a maintenance facility, and possibly more commuter rail traffic.</p>", 
+            "copy": "If you look at Somerville's Brickbottom neighborhood from above, you'll see a tangled spaghetti bowl of train tracks. \r\n\r\nAnd it's only going to get more complicated with the Green Line extension: new tracks, a maintenance facility, and possibly more commuter rail traffic.", 
+            "slug": "brickbottom-neighborhood-squeezed-by-greenline"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "ideas.idea", 
+        "fields": {
+            "creator_ip": "127.0.0.1", 
+            "title": "Sound barriers on the Green Line", 
+            "geometry": "POINT (-71.0982659999999953 42.3866960000000006)", 
+            "author": 1, 
+            "share": 0, 
+            "publish": "2011-01-21 00:19:19", 
+            "tease": "", 
+            "created": "2011-01-21 00:19:19", 
+            "copy_markup_type": 2, 
+            "address": "83 Highland Avenue", 
+            "copy_rendered": "<p>Transportation Secretary Jeff Mullan today is there and records video as the MBTA begins clearing the Mattapan High Speed Line with a jet blower following the December 26-27 winter storm. </p>\n<p>The jet blower shortens the process of clearing and leaves traditional equipment available for other snow clearing duties.  A noisy but highly effective strategy. </p>", 
+            "copy": "Transportation Secretary Jeff Mullan today is there and records video as the MBTA begins clearing the Mattapan High Speed Line with a jet blower following the December 26-27 winter storm. \r\n\r\nThe jet blower shortens the process of clearing and leaves traditional equipment available for other snow clearing duties.  A noisy but highly effective strategy. ", 
+            "slug": "another-goodsound-barriers-on-the-green-line"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "ideas.idea", 
+        "fields": {
+            "creator_ip": "127.0.0.1", 
+            "title": "MAPC Route 16 Kickoff", 
+            "geometry": null, 
+            "author": 1, 
+            "share": 0, 
+            "publish": "2011-01-21 00:12:46", 
+            "tease": "", 
+            "created": "2011-01-21 00:12:46", 
+            "copy_markup_type": 2, 
+            "address": "388 High Street, Medford, MA", 
+            "copy_rendered": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius arcu nec quam feugiat elementum. </p>\n<p>In at lorem purus, non cursus lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam id felis nec lectus accumsan imperdiet.</p>", 
+            "copy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius arcu nec quam feugiat elementum. \r\n\r\nIn at lorem purus, non cursus lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam id felis nec lectus accumsan imperdiet.", 
+            "slug": "mapc-route-16-kickoff"
+        }
+    }
+]
