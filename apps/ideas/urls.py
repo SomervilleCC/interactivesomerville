@@ -39,5 +39,6 @@ urlpatterns = patterns('',
             model=Idea,
             template_object_name='idea',
             template_name='ideas/idea_confirm_vote.html',
-            allow_xmlhttprequest=True)),
+            allow_xmlhttprequest=True)
+            ),
 )
