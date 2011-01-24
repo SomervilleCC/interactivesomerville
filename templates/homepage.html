@@ -337,7 +337,7 @@ google.maps.event.addDomListener(window, 'load', init);
       <div class="action-bar">
        <div class="comment-stats">
          <a href="#" class="comment">X Comments</a>
-         <a href="#" class="comment">Reply</a>
+        <a href="javascript:toggle_comment_form({{ share.id }})" class="comment">Reply</a>
        </div>
       <div class="like-stats">
         <span id="share_{{ share.id }}_score" class="like-count">{{ score.score|default:0 }} point{{ score.score|default:0|pluralize }}</span>

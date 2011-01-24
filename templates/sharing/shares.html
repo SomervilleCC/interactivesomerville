@@ -1,56 +1,75 @@
 {% extends "base.html" %}
 
 {% load i18n %}
-{% load humanize %}
-{% load pagination_tags %}
 {% load avatar_tags %}
 {% load gravatar %}
+{% load markup %}
 {% load voting_tags %}
+{% load pagination_tags %}
 {% load extra_voting_tags %}
+{% load in_filter %}
+{% load comments_tag %}
 
 
-{% block head_title %}{% blocktrans %}From the community | {% endblocktrans %}{% endblock %}
+{% block head_title %}{% blocktrans %}Share Ideas | {% endblocktrans %}{% endblock %}
 
-{% block extra_head %}
-{% endblock %}
+{% block extra_head %}{% endblock %}
 
 {% block body %}
-
-<p>Shares from <b>The Community</b> go here...</p>
-
-{% autopaginate shares 3 %}
-
-{% votes_by_user user on shares as vote_dict %}
-{% scores_for_objects shares as score_dict %}
-
-    {% for share in shares %}
+<div id="content" class="grid_6">
     
-    {% dict_entry_for_item share from vote_dict as vote %}
-    {% dict_entry_for_item share from score_dict as score %}
+    <h2>Shares from the community</h2>
+
+    {% if shares %}
+    {% autopaginate shares 3 %}
     
-    <p> {% gravatar user 30 %} <a href="">{{ share.shared_by.username }}</a>
-        {{ share.share.username }}</a> shared a 
-        {{ share.content_type }}. Posted 
-        {{ share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.
-    <p> {{ share.content_object.title }} </p>
+    {% votes_by_user user on share as vote_dict %}
+    {% scores_for_objects share as score_dict %}
+    
+        {% for share in shares %}
+        
+            {% dict_entry_for_item share from vote_dict as vote %}
+            {% dict_entry_for_item share from score_dict as score %}
+            
+            <label><a href="{{ share.get_absolute_url }}">{{ share.title }} </a></label>
+                    
+            {% if user.is_authenticated %}
+                <a id="up_{{ share.id }}" href="#" onclick="vote({{ share.id }}, '{% if vote and vote.is_downvote %}clear{% else %}up{% endif %}'); return false;">
+                    <img src="{{ STATIC_URL }}bookmarks/img/up_{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png"/></a><br />
+            {% endif %}
+            <span id="share{{ share.id }}_score">
+                {{ score.score|default:0 }} point{{ score.score|default:0|pluralize }}
+            </span><br />
+            {% if user.is_authenticated %}
+                <a id="down_{{ share.id }}" href="#" onclick="vote({{ share.id }}, '{% if vote and vote.is_upvote %}clear{% else %}down{% endif %}'); return false;">
+                    <img id="img_{{ share.id }}_down" src="{{ STATIC_URL }}bookmarks/img/down_{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png"/></a>
+            {% endif %}
+                
+            <p> <a href="">{{ share.shared_by.username }}</a>
+                {{ share.share.username }}</a> shared a 
+                {{ share.content_type }}. Posted 
+                {{ share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.
+            <p> {{ share.content_object.title }} </p>
 
-  <p><a href="{{ share.get_absolute_url }}">Full Entry</a></p>
+            <p><a href="{{ share.get_absolute_url }}">Full Entry</a></p>
+            
+            <br />        
+            <p><b>Posted by:</b><br />
+                <a href="">{{ share.author.username }}</a> on {{ share.publish|date }}</p>
+            
+            {% comments share %}
+            <br />
+        {% endfor %}
+        
+    {% paginate %}
 
-  {% if user.is_authenticated %}
-      <a id="up_{{ share.id }}" href="#" onclick="vote({{ share.id }}, '{% if vote and vote.is_downvote %}clear{% else %}up{% endif %}'); return false;"><img src="{{ STATIC_URL }}bookmarks/img/up_{% if vote and vote.is_upvote %}mod{% else %}grey{% endif %}.png"/></a><br />
-  {% endif %}
-  <span id="share_{{ share.id }}_score">
-      {{ score.score|default:0 }} point{{ score.score|default:0|pluralize }}
-  </span><br />
-  {% if user.is_authenticated %}
-      <a id="down_{{ share.id }}" href="#" onclick="vote({{ share.id }}, '{% if vote and vote.is_upvote %}clear{% else %}down{% endif %}'); return false;"><img id="img_{{ share.id }}_down" src="{{ STATIC_URL }}bookmarks/img/down_{% if vote and vote.is_downvote %}mod{% else %}grey{% endif %}.png"/></a>
-  {% endif %}
-  
-  <hr />
-  {% endfor %}
-  {% paginate %}
-
-
+    {% else %}
+        No shares posts yet.
+    {% endif %}
+    
+<br />
+</div>
+<div class="clear"> </div>
 {% block extra_body %}{% endblock %}
 
 <script>
