@@ -36,6 +36,10 @@ def process_shares(shares):
 
 urlpatterns = patterns('',
 
+    url(r'^help/', direct_to_template, {
+        "template": "help/main.html",
+    }, name="help"),
+    
     url(r'^$', direct_to_template, {
         "template": "homepage.html",
             'extra_context': {
