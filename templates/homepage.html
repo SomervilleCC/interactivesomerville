@@ -38,10 +38,12 @@
     
     var bikeLayer = new google.maps.BicyclingLayer();
       
-    // the map center  
-    var mapCenter = new google.maps.LatLng(42.391088, -71.11533);
+    // the map center when intro div is present  
+    var introMapCenter = new google.maps.LatLng(42.391088, -71.11533);
 
-
+    // the map center when intro div is absent  
+    var mapCenter = new google.maps.LatLng(42.38831, -71.09952);
+    
     function zoomIn() {
         var zoom = map.getZoom();
         new_zoom = zoom + 1;
@@ -58,7 +60,7 @@
     }
 
     function center() {
-     map.panTo(new google.maps.LatLng(42.39158, -71.10386));
+     map.panTo(mapCenter);
     }
      
     function reset() {
@@ -114,7 +116,7 @@
     // Create a new map
     var options = {
         'zoom': 14,
-        center: mapCenter,
+        center: introMapCenter,
         scaleControl: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         streetViewControl: true,
