@@ -75,6 +75,12 @@ def shares_latest(request, username=None, template_name='sharing/shares.html'):
         "shares": shares,
     },context_instance=RequestContext(request))
 
+@login_required
+def your_shares(request, template_name="sharing/your_shares.html"):
+    return render_to_response(template_name, {
+        "shares": SharedItem.objects.filter(user=request.user),
+    }, context_instance=RequestContext(request))
+    
 def share_detail(request, share_id):
     return object_detail(request, SharedItem.objects.select_related(), object_id=share_id,
         template_object_name='share', template_name='sharing/item.html')
@@ -94,22 +100,16 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
         location = data.get("location")
         media = data.get("media").strip('\'"')
         
-        if location:
-            try:
-                result = geocode(location)
-            except UnboundLocalError:
-                return SharePostBadRequest(
-                    "Geocoding error for %s ." % escape(result))
-            if result:
-                geometry = Point(result[1][1], result[1][0])
-                sl = Location(author=request.user, address=location, title=result[0], geometry=geometry) 
-                sl.save_as_shared()
-            else:
-                pass
-                #log.debug('we seemed to have failed')
-        
+        if comment:
+            #pass
+            log.debug('comment is %s.', comment)
+            
+        if station:
+            #pass
+            log.debug('station is %s.', station)
+            
         if media:
-            parsed = urlparse(media_type)
+            parsed = urlparse(media)
             provider = parsed.netloc.split('.')
 
             if 'flickr' in provider:
@@ -122,27 +122,35 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
                 is_video = True
                 video_id = parsed.query[2:]
 
-        if station:
-            pass
-            #log.debug('principle is %s.', related_principle)
-            
-        if comment:
-            pass
-            #log.debug('comment is %s.', comment)
-                    
         if media and is_photo:
             if geometry:
                 latest = fetch_single_flickr_photo_with_geo(photo_id, flickr_id, geometry, request)
-                #new = _get_shared_object(latest)
+                return HttpResponseRedirect(reverse("shares_list_yours"))
             else:
                 latest = fetch_single_flickr_photo(photo_id, flickr_id, request)
-                #new = _get_shared_object(latest)
+                return HttpResponseRedirect(reverse("shares_list_yours"))
                 
         if media and is_video:
             if geometry:
                 latest = fetch_single_youtube_video_with_geo(video_id, geometry)
             else:
                 latest = fetch_single_youtube_video(video_id)
+                
+        if location:
+            try:
+                result = geocode(location)
+            except UnboundLocalError:
+                return SharePostBadRequest(
+                    "Geocoding error for %s ." % escape(result))
+            if result:
+                geometry = Point(result[1][1], result[1][0])
+                sl = Location(user=request.user, address=location, title=result[0], geometry=geometry) 
+                sl.save_as_shared()
+                return HttpResponseRedirect(reverse("shares_list_yours"))
+
+            else:
+                pass
+                #log.debug('we seemed to have failed')
 
         if request.POST["action"] == "create":
             share_form = form_class(request.user, request.POST)

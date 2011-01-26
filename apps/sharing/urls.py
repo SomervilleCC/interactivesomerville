@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^$', view=share_views.shares_latest, name="shares_index"),
     url(r'^latest/$', view=share_views.shares_latest, name="shares_index"),
     url(r'^new/$', view=share_views.new, name="share_new"),
+    url(r'^your_shares/$', view=share_views.your_shares, name='shares_list_yours'),
     url(r'^submit/$', direct_to_template, {"template": "sharing/submit.html"}, name="submit"),
     url(r'^(?P<share_id>\d+)/$', share_views.share_detail,  name='share_detail'),
     

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load idea_tags %}
+{% load markup %}
+{% load theme_tags %}
+{% load humanize %}
+{% load gravatar %}
+{% load comments_tag %}
+
+{% block head_title %}{% blocktrans %}Your Shares | {% endblocktrans %}{% endblock %}
+
+{% block extra_head %}{% endblock %}
+
+{% block body %}
+<div id="content" class="grid_6">
+
+    <h2>Things you've shared.</h2>
+    
+    {% if shares %}
+    {% for share in shares %}
+        <label>You shared a {{ share.content_type }}, {{ share.content_object.title }}  </a></label><span class="when">Posted {{ share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.</span>
+            <hr />
+        {% endfor %}
+    {% else %}
+        {% trans "No ideas yet." %}
+    {% endif %}
+<br />
+</div>
+<div class="clear"> </div>
+{% endblock %}
+
+
+
+    <a href="#" class="author">You </a> shared a {{ share.content_type }} from the <a href="#" class="station">{{ share.content_object.neighbourhood }}</a> area. 
+    <br />
+    <span class="when">Posted {{ share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.</span>
+    </h5>
+    
+    <label>{{ share.content_object.title }} </label>
