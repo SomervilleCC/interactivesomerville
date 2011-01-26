@@ -82,7 +82,7 @@ def share_detail(request, share_id):
 @login_required
 def new(request, form_class=SharedForm, template_name="sharing/new.html"):
     ''' coming '''
-    if request.method == "POST":
+    if request.method == "POST" and request.POST["action"] == "create":
         geometry = None
         is_video = False
         is_photo = False
@@ -92,7 +92,7 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
         comment = data.get("comment")
         station = data.get("station")
         location = data.get("location")
-        media_type = data.get("media_type").strip('\'"')
+        media = data.get("media").strip('\'"')
         
         if location:
             try:
@@ -108,7 +108,7 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
                 pass
                 #log.debug('we seemed to have failed')
         
-        if media_type:
+        if media:
             parsed = urlparse(media_type)
             provider = parsed.netloc.split('.')
 
@@ -122,7 +122,7 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
                 is_video = True
                 video_id = parsed.query[2:]
 
-        if related_principle:
+        if station:
             pass
             #log.debug('principle is %s.', related_principle)
             
@@ -130,7 +130,7 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
             pass
             #log.debug('comment is %s.', comment)
                     
-        if media_type and is_photo:
+        if media and is_photo:
             if geometry:
                 latest = fetch_single_flickr_photo_with_geo(photo_id, flickr_id, geometry, request)
                 #new = _get_shared_object(latest)
@@ -138,7 +138,7 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
                 latest = fetch_single_flickr_photo(photo_id, flickr_id, request)
                 #new = _get_shared_object(latest)
                 
-        if media_type and is_video:
+        if media and is_video:
             if geometry:
                 latest = fetch_single_youtube_video_with_geo(video_id, geometry)
             else:
