@@ -1,95 +1,152 @@
-form input, form textarea {
-	border: 1px solid #CCC;
-	font-size: 1em;
-	padding: .3em;
+ol {
+margin-left: 2em;
 }
 
-form input:focus, form textarea:focus {
-	border-color: #0C0;
-}
-	
-form input#name, form input#email {
-	width: 250px;
+ol li {
+list-style-type: decimal;
 }
 
-ul, li {
-    list-style: none;
-    margin-left: 0;
+ul li.bullist {
+list-style-type: disc;
+margin: 0px 0px 0.3em 2em;
 }
 
-dd {
-	margin-bottom: 1em;
+/*- SECONDARY CONTENT
+----------------------------------------------------------------------*/
+
+section {
+display: block;
 }
 
-li.link-twitter {
-	background: url("http://refreshboston.org/img/icons/icon-twitter.png") no-repeat 0 .1em;
+.secondaryContent {
+    width:34%;
+    float:left;
+    margin-top:60px;
+    margin-left:100px;
+
 }
 
-li.link-flickr {
-	background: url("http://refreshboston.org/img/icons/icon-flickr.png") no-repeat 0 .1em;
+.secondaryContent p {
+    font-size:100%;
+    line-height:1.5em;
+    margin-bottom:15px;
 }
 
-li.link-upcoming {
-	background: url("http://refreshboston.org/img/icons/icon-upcoming.png") no-repeat 0 .1em;
+
+.box {
+    background:#f5f5ef;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    padding:20px;
+    margin-bottom:40px;
 }
 
-li.link-mixx {
-	background: url("http://refreshboston.org/img/icons/icon-mixx.png") no-repeat 0 .1em;
+.deck {
+padding-bottom: 5px;
+text-align: center;
 }
 
-li.link-facebook {
-	background: url("http://refreshboston.org/img/icons/icon-facebook.png") no-repeat 0 .1em;
+.board {
+border-top: ;
+padding-top: 25px;
 }
 
-li.link-speakerrate {
-	background: url("http://refreshboston.org/img/icons/icon-speakerrate.png") no-repeat 0 .1em;
+.box h3,
+.box p {
+    text-shadow: #fffff7 0px 1px 0px;
 }
 
-li.link-pdf {
-	background: url("http://refreshboston.org/img/icons/icon-pdf.png") no-repeat 0 .1em;
+.box img {
+    margin-bottom:10px;
 }
 
-li.link-slideshare {
-	background: url("http://refreshboston.org/img/icons/icon-slideshare.png") no-repeat 0 .1em;
+.largeLink  {
+    text-decoration:none;
 }
 
-#rb-about p:first-line {
-	font-weight: bold;
+.largeLink p  {
+    font-size:95%;
+    margin-bottom:0;
 }
 
-#rb-about p {
-	font-variant: small-caps;
-	font-size: 1.4em;
+.largeLink:hover .box  {
+    background:#f7eae9;
 }
 
-#rb-sponsorship dl dt {
-	font-weight: bold;
+.largeLink:hover img  {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
 }
 
-#rb-events dl {
-	margin-bottom: 0;
+.largeLink:hover .box p  {
+    color:#cc2a2a;
 }
 
-#rb-events dt {
-	clear: left;
-	font-weight: normal;
-	font-style: italic;
-	float: left;
-	width: 4em;
+/*- vanity styles ----------
+
+::selection {background: #c80000; color: #F1F1F1;}
+*/
+
+
+/*- MEMBERSHIP
+----------------------------------------------------------------------*/
+.members {
+    margin-bottom:40px;
 }
 
-#rb-events dd {
-	font-weight: bold;
-	margin-bottom: .4em;
+.members h3 img {
+    margin-bottom:0px;
 }
 
-#rb-sponsors dl, #rb-sponsors p {
-	font-size: 1.2em;
+.members h3 {
+    margin-bottom:0px;
+    text-align:center;
 }
 
-#rb-sponsors dt img {
-	background-color: #FFF;
-	border: 2px solid #9fda74;
-	padding: 8px;
-	margin-bottom: 5px;
+.members ul {
+    text-align:center;
+    list-style-type:none;
+}
+
+.members ul li {
+    font-family:Georgia, "Times New Roman", Times, serif;
+    line-height:1em;
+    border-bottom:1px dashed #d3d3d3;
+    padding:7px 0px 7px 0px;
+}
+
+.members ul li:last-child {
+    border-bottom:none;
+}
+
+.members ul li a {
+    text-decoration:none;
+}
+
+.members ul li a:hover {
+    text-decoration:underline;
+}
+
+.members ul li a:active,
+.members ul li a:focus {
+    color:#0079ce;
+}
+
+.members ul li span {
+    font-size:80%;
+    color:#363535;
+}
+
+.decoration ul {
+    margin-bottom:10px;
+}
+
+.swirl {
+    margin-bottom:0px;
+    display:block;
+    margin:0 auto;
 }

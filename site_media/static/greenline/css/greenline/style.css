@@ -37,6 +37,7 @@ border:none;
 color:#fff;
 text-transform:lowercase;
 padding:1px 3px;
+cursor: crosshair;
 }
 
 a {
@@ -123,7 +124,7 @@ margin:0 10px 0 3px;
 background:url(../../images/logo.png) no-repeat;
 display:block;
 height:78px;
-left:40px;
+left:100px;
 outline:0 none;
 position:absolute;
 text-indent:-999em;
@@ -342,7 +343,6 @@ padding:0 0 0 10px;
 padding-top:20px;
 }
 
-
 textarea, input { font: 13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif; }
 form .row { margin: 0 0 30px 0; }
 label.num strong { font: 700 20px "Helvetica Neue",sans-serif; margin: 0 6px 0 0; }
@@ -356,32 +356,71 @@ form .global-actions .cancel { margin: 0 0 0 10px; }
 /*
 THE FOLLOWING ARE ADDED IN by GM
 */
-
-form .instruct{
-	position:absolute;
-	top:0;
-	left:0;
-	z-index:1000;
-	width:45%;
-	margin:0 0 0 8px;
-	padding:8px 10px 10px 10px;
-	border:1px solid #e6e6e6;
-	background:#f5f5f5;
-	visibility:hidden;
-	opacity:0;
-	font-size:105%;
-	-webkit-transition: opacity 350ms ease-out;
-	   -moz-transition: opacity 350ms ease-out;
-	     -o-transition: opacity 350ms ease-out;
-	        transition: opacity 350ms ease-out;
+big_numeral {
+    font-family: helvetica, sans-serif;
+    color: #B7B7B7;
+    font-size: 32px;
 }
-form .instruct small{
-	line-height:120%;
-	font-size:80%;
-	color:#444;
+
+whisper {
+    font-family: Helvetica Neue, Arial, 'Liberation Sans', FreeSans, sans-serif;
+    color:#4E443C;
+    font-variant: small-caps; 
+    text-transform: none; font-weight: bold; margin-bottom: 0;
+}
+
+para_start {
+    font-family: Helvetica Neue, Arial, 'Liberation Sans', FreeSans, sans-serif;
+    font-size: .8em;
+    font-weight: bold;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+para {
+    font-family: Helvetica Neue, Arial, 'Liberation Sans', FreeSans, sans-serif;
+    font-size: 14px;
+    margin-top: .5em; color: #666;
+}
+
+para_text {
+    font-family: Helvetica Neue, Arial, 'Liberation Sans', FreeSans, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #444;
+}
+ 
+h1 {
+    font-size: 48px;
+}
+ 
+/*h2 {
+    font-size: 36px;
+}
+ 
+h3 {
+    font-size: 24px;
+}
+*/ 
+h4 {
+    font-size: 21px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+img{border:solid .5px #CCC; border-radius:10px; -moz-border-radius:10px;;}
+
+
 
 /*
-THE FOLLOWING ARE OVERRIDES TO PREVIOUSLY INCLUDED CSS
+THE FOLLOWING ARE OVERRIDES TO PREVIOUSLY INCLUDED STYLES
 */
 
 /* ------------------------------------------------------------------------------ */
