@@ -37,7 +37,7 @@ border:none;
 color:#fff;
 text-transform:lowercase;
 padding:1px 3px;
-cursor: crosshair;
+cursor: pointer;
 }
 
 a {
@@ -79,7 +79,7 @@ background:#ededed;
 #header {
 background:#4f7b41;
 height:130px;
-margin-bottom:30px;
+margin-bottom:20px;
 overflow:hidden;
 position:relative;
 text-transform:uppercase;
@@ -90,7 +90,7 @@ border-left:1px solid #608753;
 height:130px;
 position:absolute;
 right:0;
-width:530px;
+width:570px;
 }
 
 #header .nav {
@@ -124,7 +124,7 @@ margin:0 10px 0 3px;
 background:url(../../images/logo.png) no-repeat;
 display:block;
 height:78px;
-left:100px;
+left:80px;
 outline:0 none;
 position:absolute;
 text-indent:-999em;
