@@ -3,13 +3,7 @@
 {% load ifsetting_tag %}
 {% load analytics %}
 
-
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="ie6 ielt8"> <![endif]--> 
-<!--[if IE 7 ]>    <html lang="en" class="ie7 ielt8"> <![endif]--> 
-<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> 
-<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-
 <html xmlns="http://www.w3.org/1999/xhtml"dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"xml:lang="{{ LANGUAGE_CODE }}"lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -20,6 +14,13 @@
     <meta name="description" content="Description" />
     <meta name="keywords" content="Keywords" />
     <title>{% block head_title %}{% endblock %}{% if SITE_NAME %}{{ SITE_NAME }}{% endif %}</title>
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
     <!--[if IE]><style>
         div {
             zoom: 1; /* trigger hasLayout */
@@ -55,7 +56,7 @@
                     <li class="stations"><a href="/stations">Stations</a></li>
                     <li class="ideas"><a href="/ideas">Ideas</a></li>
                     <li class="principles"><a href="/principles/about">Principles</a></li>
-                    <li class="help"><a href="#">Help</a></li>
+                    <li class="help"><a href="/help">Help</a></li>
                 </ul>
                 <div id="user-box">
                 {% block login %}
@@ -100,23 +101,23 @@
     <div id="main">
     {% block body %}{% endblock %}
     {% block content %}{% endblock %}
-    </div>    
-
+    </div>
 <br>
 
 {% block footer %}
-    <div id="footer">
-        <ul class="nav">
-            <li><a href="{% url about %}">{% trans "About"%}</a></li>
-            <li><a href="{% url terms %}">{% trans "Terms"%}</a></li>
-            <li><a href="{% url privacy %}">{% trans "Privacy"%}</a></li>
-            <li><a href="{% url fun %}">{% trans "Having Fun Yet?"%}</a></li>
-        </ul>
-        <p class="copyright">
-            {% trans "&copy; 2011 Somerville Community Corporation"%}
-        </p>
-        <div class="clear"> </div>
-    </div>
+<div id="footer">
+    <ul class="nav">
+        <li><a href="{% url about %}">{% trans "About"%}</a></li>
+        <li><a href="{% url terms %}">{% trans "Terms"%}</a></li>
+        <li><a href="{% url privacy %}">{% trans "Privacy"%}</a></li>
+        <li><a href="{% url fun %}">{% trans "Having Fun Yet?"%}</a></li>
+    </ul>
+    <p class="copyright">
+        {% trans "&copy; 2011 Somerville Community Corporation"%}
+    </p>
+    
+    <div class="clear"> </div>
+</div>
     
    <div class="flickr" style="font-size:12px; color:#888; text-align: right;">
     <a href="http://www.flickr.com/groups/interactivesomerville/" target="_blank"><img src='{{ STATIC_URL }}greenline/images/isicons/flickr.png' alt="Flickr" style="border:0;float:right;margin:0 5px;" align="right"></a>Our photos are uploaded and geotagged using Flickr.<br>Visit our group page by clicking this icon:</div>
