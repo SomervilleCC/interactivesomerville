@@ -78,10 +78,7 @@ def near_stations(location):
     for station in stations:
         distances.append(distance.distance((location.geometry.y, location.geometry.x), (station.latitude, station.longitude)))
     return distances    
-#    minimum = min(distances)
-#    maximum = max(distances)
-#    return (minimum, maximum)
-    
+
 def nearer_station(location, stations):
     ''' Takes a location (Point) object and a tuple of two Station objects'''
     distance1 = distance.distance((location.y, location.x), (stations[0].latitude, stations[0].longitude))

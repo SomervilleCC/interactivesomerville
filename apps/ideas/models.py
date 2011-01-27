@@ -130,10 +130,22 @@ class Idea(models.Model):
             
         super(Idea, self).save(force_insert, force_update)
         
-    def save_as_shared(self):            
-        super(Idea, self).save(force_insert, force_update)
+    def save_as_shared(self):
+        result = super(Idea, self).save()
+        if result is None:
+            # default to SCC admin user
+            if self.author == None:
+                return SharedItem.objects.create_or_update(
+                    instance = self, 
+                    timestamp = datetime.datetime.now(),
+                )
+            else:
+                return SharedItem.objects.create_or_update(
+                    user = self.author,
+                    instance = self, 
+                    timestamp = datetime.datetime.now(),
+                )
 
-        
 # handle notification of new comments
 from threadedcomments.models import ThreadedComment
 def new_comment(sender, instance, **kwargs):

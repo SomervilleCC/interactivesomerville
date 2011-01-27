@@ -21,7 +21,6 @@ kwargs = {
     # set common filter params here
     }
 
-
 def idea(request, username, year, month, slug, template_name="ideas/idea.html"):
     ''' return a single idea by user'''
     idea = Idea.objects.filter(slug=slug, publish__year=int(year), publish__month=int(month)).filter(author__username=username)

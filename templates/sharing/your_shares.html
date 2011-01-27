@@ -19,7 +19,7 @@
     
     {% if shares %}
     {% for share in shares %}
-        <label>You shared a {{ share.content_type }}, {{ share.content_object.title }}  </a></label><span class="when">Posted {{ share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.</span>
+        <label>You shared a {{ share.content_type }}, {{ share.content_object.title }}</label><span class="when">Posted {{share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.</span>
             <hr />
         {% endfor %}
     {% else %}
@@ -30,11 +30,3 @@
 <div class="clear"> </div>
 {% endblock %}
 
-
-
-    <a href="#" class="author">You </a> shared a {{ share.content_type }} from the <a href="#" class="station">{{ share.content_object.neighbourhood }}</a> area. 
-    <br />
-    <span class="when">Posted {{ share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.</span>
-    </h5>
-    
-    <label>{{ share.content_object.title }} </label>

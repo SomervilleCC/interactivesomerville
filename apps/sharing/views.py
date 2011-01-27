@@ -101,8 +101,10 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
         media = data.get("media").strip('\'"')
         
         if comment:
-            #pass
-            log.debug('comment is %s.', comment)
+            pass
+        else:
+            comment = ''
+            #log.debug('comment is %s.', comment)
             
         if station:
             #pass
@@ -132,9 +134,11 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
                 
         if media and is_video:
             if geometry:
-                latest = fetch_single_youtube_video_with_geo(video_id, geometry)
+                latest = fetch_single_youtube_video_with_geo(video_id, geometry, request)
+                return HttpResponseRedirect(reverse("shares_list_yours"))
             else:
-                latest = fetch_single_youtube_video(video_id)
+                latest = fetch_single_youtube_video(video_id, request)
+                return HttpResponseRedirect(reverse("shares_list_yours"))
                 
         if location:
             try:
@@ -144,14 +148,14 @@ def new(request, form_class=SharedForm, template_name="sharing/new.html"):
                     "Geocoding error for %s ." % escape(result))
             if result:
                 geometry = Point(result[1][1], result[1][0])
-                sl = Location(user=request.user, address=location, title=result[0], geometry=geometry) 
-                sl.save_as_shared()
+                loc = Location(author=request.user, address=location, title=result[0], geometry=geometry, description=comment) 
+                share = loc.save_as_shared()
+                share.save()
                 return HttpResponseRedirect(reverse("shares_list_yours"))
-
             else:
                 pass
                 #log.debug('we seemed to have failed')
-
+                
         if request.POST["action"] == "create":
             share_form = form_class(request.user, request.POST)
     else:

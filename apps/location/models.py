@@ -18,6 +18,12 @@ from greenline.utils.location_utils import geocode_to_point_object
 from greenline.utils.markdowner import MarkupField
 from greenline.utils.parsers import slugify
 
+import logging
+
+log = logging.getLogger("greenline.sharing.models")
+console = logging.StreamHandler()
+log.addHandler(console)
+log.setLevel(logging.DEBUG)
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
@@ -156,19 +162,20 @@ class Location(models.Model):
         else:
             raise Exception(u'Failed to geocode address.')
                 
-        super(Location, self).save(force_insert, force_update)
+        super(Location, self).save()
         
-    def save_as_shared(self):            
-        super(Location, self).save(force_insert, force_update)
-        
-
-
-#    def geocode(self, location):
-#        location = urllib.quote_plus(location)
-#        request = "http://maps.google.com/maps/geo?q=%s&output=%s&key=%s" % (location, output, settings.GOOGLE_API_KEY)
-#        data = urllib.urlopen(request).read()
-#        dlist = data.split(',')
-#        if dlist[0] == '200':
-#            return "%s,%s" % (dlist[2], dlist[3])
-#        else:
-#            return ','
+    def save_as_shared(self):
+        result = super(Location, self).save()
+        if result is None:
+            # default to SCC admin user
+            if self.author == None:
+                return SharedItem.objects.create_or_update(
+                    instance = self, 
+                    timestamp = datetime.datetime.now(),
+                )
+            else:
+                return SharedItem.objects.create_or_update(
+                    user = self.author,
+                    instance = self, 
+                    timestamp = datetime.datetime.now(),
+                )
