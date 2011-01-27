@@ -47,7 +47,7 @@ urlpatterns = patterns('',
             'latest_users': User.objects.all().order_by('-date_joined')[:5],
             'latest_entries': Entry.objects.filter(status=2).order_by('-publish')[:5],
             'ideas':        Idea.objects.order_by('?')[:3], # random ideas.
-            'photos':       Photo.objects.order_by('?')[:20], # random photos.
+            'photos':       Photo.objects.all().order_by("-date_received")[:10],
             'locations':    Location.objects.all(), # random places.
             'stations':     transform(Station.objects.all()),
             'random_station' :  transform(Station.objects.order_by('?')[:1]) # center on random station.
