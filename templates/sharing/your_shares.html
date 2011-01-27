@@ -18,12 +18,12 @@
     <h2>Things you've shared.</h2>
     
     {% if shares %}
-    {% for share in shares %}
+        {% for share in shares %}
         <label>You shared a {{ share.content_type }}, {{ share.content_object.title }}</label><span class="when">Posted {{share.share_date|timesince|truncatewords:2|cut:"."|cut:","}} ago.</span>
             <hr />
         {% endfor %}
     {% else %}
-        {% trans "No ideas yet." %}
+        {% trans "No shared items yet." %}
     {% endif %}
 <br />
 </div>
