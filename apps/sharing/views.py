@@ -38,7 +38,7 @@ log.setLevel(logging.DEBUG)
 
 def _get_shared_object(target_object):
     """
-    Return a new (unsaved) shared object.
+    Returns a new (unsaved) shared object.
     """
     new_share = SharedItem(
         content_type = ContentType.objects.get_for_model(target_object),
@@ -61,14 +61,30 @@ class SharePostBadRequest(http.HttpResponseBadRequest):
             self.content = render_to_string("sharing/400-debug.html", {"why": why})
 
 def shares_index(request, username=None, template_name='sharing/shares.html'):
+    """
+    Return all shared objects.
+    
+    """
     shares = SharedItem.objects.all()
 
     return render_to_response(template_name, {
         "shares": shares,
     },context_instance=RequestContext(request))
 
+def share_detail(request, share_id):
+    """
+    A shared item, in detail.
+    
+    """
+    return object_detail(request, SharedItem.objects.select_related(), object_id=share_id,
+        template_object_name='share', template_name='sharing/item.html')
+
 @login_required
 def shares_latest(request, username=None, template_name='sharing/shares.html'):
+    """
+    Return 5 most recent shares.
+    
+    """
     shares = list(SharedItem.objects.all().order_by("-share_date")[:5])
 
     return render_to_response(template_name, {
@@ -77,17 +93,34 @@ def shares_latest(request, username=None, template_name='sharing/shares.html'):
 
 @login_required
 def your_shares(request, template_name="sharing/your_shares.html"):
+    """
+    Return all shares for this user.
+    
+    """
     return render_to_response(template_name, {
         "shares": SharedItem.objects.filter(user=request.user),
     }, context_instance=RequestContext(request))
-    
-def share_detail(request, share_id):
-    return object_detail(request, SharedItem.objects.select_related(), object_id=share_id,
-        template_object_name='share', template_name='sharing/item.html')
 
 @login_required
-def new(request, form_class=SharedForm, template_name="sharing/new.html"):
-    ''' coming '''
+def new(request, form_class=SharedForm, success_url=None, 
+        extra_context=None, template_name="sharing/new.html"):
+    """
+    Creates a new shared object.
+    
+    **Optional arguments:**
+    
+    ``extra_context``
+        A dictionary of variables to add to the template context.
+    
+    """
+    if success_url is None:
+        pass
+        #success_url = reverse('shares_list_yours', kwargs={ 'username': request.user.username })
+        
+    if extra_context is None:
+        extra_context = {}
+    context = RequestContext(request)
+                              
     if request.method == "POST" and request.POST["action"] == "create":
         geometry = None
         is_video = False
