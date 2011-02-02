@@ -39,10 +39,10 @@
     var bikeLayer = new google.maps.BicyclingLayer();
       
     // the map center when intro div is present  
-    var introMapCenter = new google.maps.LatLng(42.391088, -71.11533);
+    var introMapCenter = new google.maps.LatLng(42.39668, -71.13055);
 
     // the map center when intro div is absent  
-    var mapCenter = new google.maps.LatLng(42.38831, -71.09952);
+    var mapCenter = new google.maps.LatLng(42.39659, -71.10832);
     
     function zoomIn() {
         var zoom = map.getZoom();
@@ -54,7 +54,7 @@
         var zoom = map.getZoom();
         new_zoom = zoom - 1;
         
-        if (zoom <= 14) { map.setZoom(zoom) }
+        if (zoom <= 13) { map.setZoom(zoom) }
         else    
         { map.setZoom(new_zoom) }
     }
@@ -65,7 +65,7 @@
      
     function reset() {
         map.setCenter(mapCenter);
-        map.setZoom(14)
+        map.setZoom(13)
     }
 
 /**
@@ -115,7 +115,7 @@
           
     // Create a new map
     var options = {
-        'zoom': 14,
+        'zoom': 13,
         center: introMapCenter,
         scaleControl: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
