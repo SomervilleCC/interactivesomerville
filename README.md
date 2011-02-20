@@ -45,7 +45,7 @@ We will install the latest stable release of Pinax (at this writing, 0.7.3). Fir
 
 You might want to install PIL first. For more information on installing PIL, see [Installing PIL](http://pinaxproject.com/docs/0.7/pil/#ref-pil).
 
-If you've got PIL working, good for you. Now we're going to make a slight adjustment to Pinax's default installation. Go to the directory where you've downloaded the tarball:
+If you've got PIL working, good for you. Now we're going to make a slight adjustment to Pinax's default installation. By default Pinax 0.7.3 runs Django 1.0.4. We're going to change this to run Django 1.1.1. Go to the directory where you've downloaded the tarball and unpack it:
 
     $ tar xvfz Pinax-0.7.3-bundle.tar.gz    
     $ cd Pinax-0.7.3-bundle/requirements/base
@@ -62,16 +62,16 @@ And edit the libs.txt file, changing line #17 from Django==1.0.4 to Django==1.1.
     $ vi Pinax-0.7.3-bundle/requirements/libs.txt
     $ <change required django version>  
 
-Now you're ready for the actual Pinax install. Pinax uses [virtualenv](http://pypi.python.org/pypi/virtualenv), it will install this for you:
+Now you're ready for the actual Pinax install. Pinax uses [virtualenv](http://pypi.python.org/pypi/virtualenv). It will install this for you as part of the Pinax installation:
 
     $ cd <path-to>/Pinax-0.7.3-bundle   
     $ python scripts/pinax-boot.py <path-to-virtual-env-to-create>
 
-For example, if you want the virtualenv location to be in your home directory, you would say:
+The argument passed to pinax-boot.py is the location of the virtualenv root directory. If you want this location to be in your home directory, for example, you would say:
 
     $ python scripts/pinax-boot.py ~/pinax-env
     
-Pinax recommends [virtualenvwrapper](http://www.doughellmann.com/projects/virtualenvwrapper/) along with virtualenv. If you choose to use it, then the above becomes:
+Pinax also recommends [virtualenvwrapper](http://www.doughellmann.com/projects/virtualenvwrapper/) along with virtualenv. If you choose to use this, then the above becomes:
 
     $ python scripts/pinax-boot.py $WORKON_HOME/pinax-env   
 
@@ -92,3 +92,8 @@ And see if it runs:
     (pinax-env)$ cd mytest/ 
     (pinax-env)$ python manage.py syncdb    
     (pinax-env)$ python manage.py runserver 
+    
+##Installation - Spatial Database
+
+
+
