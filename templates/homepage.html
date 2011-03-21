@@ -61,11 +61,13 @@
 
     function center() {
      map.panTo(mapCenter);
+     map.setZoom(14)
+
     }
      
     function reset() {
-        map.setCenter(introMapCenter);
-        map.setZoom(13)
+        map.setCenter(mapCenter);
+        map.setZoom(14)
     }
 
 /**
@@ -115,7 +117,7 @@
           
     // Create a new map
     var options = {
-        'zoom': 13,
+        'zoom': 14,
         center: introMapCenter,
         scaleControl: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
