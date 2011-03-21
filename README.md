@@ -18,7 +18,7 @@ OSX, Linux, or other Unix flavor...
  * Pinax **0.7.3**
  * Postgresql **8.3**, **8.4**
  * PostGIS **1.4** or **1.5**
- * gdal (more on this later)
+ * libgdal
 
 ####Optional but helpful:
  * pip
@@ -41,59 +41,111 @@ Web sites have many common elements: registration, a blog, wiki, photos, tagging
 
 Django is a _web framework_. Pinax is a _meta-web-framework_ built on top of Django. You can safely forget the word _meta_ and all of this will work just fine.
 
-We will install the latest stable release of Pinax (at this writing, 0.7.3). First download the tarball _Pinax-0.7.3-bundle.tar.gz_ [here](http://pinaxproject.com/downloads/). Then go to Pinax's install documentation [here](http://pinaxproject.com/docs/0.7/install/).
+We install the latest stable release of Pinax (at this writing, 0.7.3). Download the tarball _Pinax-0.7.3-bundle.tar.gz_ [here](http://pinaxproject.com/downloads/). Then go to Pinax's install documentation [here](http://pinaxproject.com/docs/0.7/install/).
 
-You might want to install PIL first. For more information on installing PIL, see [Installing PIL](http://pinaxproject.com/docs/0.7/pil/#ref-pil).
-
-If you've got PIL working, good for you. Now we're going to make a slight adjustment to Pinax's default installation. By default Pinax 0.7.3 runs Django 1.0.4. We're going to change this to run Django 1.1.1. Go to the directory where you've downloaded the tarball and unpack it:
+We'll make a slight adjustment to Pinax's default installation. Pinax 0.7.3 runs Django 1.0.4 by default but we're going to run Django 1.1.1. Go into the directory where you've downloaded the tarball and unpack:
 
     $ tar xvfz Pinax-0.7.3-bundle.tar.gz    
-    $ cd Pinax-0.7.3-bundle/requirements/base
-    $ wget http://media.djangoproject.com/releases/1.1.1/Django-1.1.1.tar.gz
+    $ cd Pinax-0.7.3-bundle/requirements
 
-If you don't have _wget_, figure out another way to get Django-1.1.1.tar.gz into that directory.
+Using a text editor, edit the libs.txt file:
 
-Next, delete the other Django tarball (This step is not absolutely necessary, but it won't hurt.):
+    $ vi libs.txt
+    $ (change line 18 from Django==1.0.4 to Django==1.1.1)
+    $ (change line 21 from geopy==0.93dev-r0 to geopy==0.94)
 
-    $ rm Pinax-0.7.3-bundle/requirements/base/Django-1.0.4.tar.gz
+Next, edit the Pinax script pinax-boot.py, lines 1134 to 1143, so that they now read:
 
-And edit the libs.txt file, changing line #17 from Django==1.0.4 to Django==1.1.1:
+    $   PINAX_MUST_HAVES = {
+    $       'setuptools-git': ('0.3.4', 'setuptools_git-0.3.4.tar.gz'),
+    $       'setuptools-dummy': ('0.0.3', 'setuptools_dummy-0.0.3.tar.gz'),
+    $       'Django': ('1.1.1', 'Django-1.1.1.tar.gz'),
+    $   }
 
-    $ vi Pinax-0.7.3-bundle/requirements/libs.txt
-    $ <change required django version>  
+    $   DJANGO_VERSIONS = (
+    $       # '1.0.4',
+    $       '1.1.1',
+    $   )
 
-Now you're ready for the actual Pinax install. Pinax uses [virtualenv](http://pypi.python.org/pypi/virtualenv). It will install this for you as part of the Pinax installation:
+Save and cd back up to the Pinax install directory:
 
     $ cd <path-to>/Pinax-0.7.3-bundle   
-    $ python scripts/pinax-boot.py <path-to-virtual-env-to-create>
 
-The argument passed to pinax-boot.py is the location of the virtualenv root directory. If you want this location to be in your home directory, for example, you would say:
+Now issue the following command:
 
-    $ python scripts/pinax-boot.py ~/pinax-env
+    $ ./scripts/pinax-boot.py --no-site-packages --distribute ~/greenline
+
+The last argument to pinax-boot.py (~/greenline) is the location of the virtualenv root directory.
     
-Pinax also recommends [virtualenvwrapper](http://www.doughellmann.com/projects/virtualenvwrapper/) along with virtualenv. If you choose to use this, then the above becomes:
+Pinax also recommends [virtualenvwrapper](http://www.doughellmann.com/projects/virtualenvwrapper/) along with virtualenv. If you use this, then the above command becomes:
 
-    $ python scripts/pinax-boot.py $WORKON_HOME/pinax-env   
+    $ ./scripts/pinax-boot.py --no-site-packages --distribute  $WORKON_HOME/greenline   
 
-Executing the pinax-boot command prints out a bunch of stuff. To get to work you now run:
+Executing pinax-boot.py in this way sets up an isolated virtualenv. Once this is done, then execute:
 
-    $ workon pinax-env 
+    $ workon greenline 
     
-Alternatively if you're not using [virtualenvwrapper](http://www.doughellmann.com/projects/virtualenvwrapper/) you type:
+If you're not using [virtualenvwrapper](http://www.doughellmann.com/projects/virtualenvwrapper/) alternatively you type:
 
-    $ source <path-to-virtual-env-created>/bin/activate 
+    $ source <path-to-virtual-env>/bin/activate 
+
+Check that Django and Pinax are behaving well together by creating and running a test app. At this point you should be running inside your virtualenv:
+
+    (greenline)$ pinax-admin clone_project social_project mytest
+    (greenline)$ cd mytest
+    (greenline)$ ./manage.py runserver
+
+You should see Pinax's social app running at http://localhost:8000. 
     
-To test that Django and Pinax are behaving well together, you should create a quick test app in Pinax:
+To run Greenline you install some additional libs located in greenline's src requirements.txt file. Clone the repository and cd into that directory:
 
-    (pinax-env)$ pinax-admin clone_project social_project mytest  
+    (greenline)$ git clone git@github.com:gerlad/greenline.git
+    (greenline)$ cd greenline
     
-And see if it runs:
+Now execute the following:
 
-    (pinax-env)$ cd mytest/ 
-    (pinax-env)$ python manage.py syncdb    
-    (pinax-env)$ python manage.py runserver 
+    (greenline)$ pip install -r requirements.txt
     
-##Installation - Spatial Database
+    
+##Installation - PostGIS
 
+Installing Postgresql and PostGIS depends on your platform; here's some help:
+
+####On Ubuntu 9.10 (Karmic)
+    
+    apt-get install python2.6 \
+    python2.6-dev \
+    build-essential \
+    git \
+    subversion \
+    postgresql-8.3-postgis \
+    libgdal1-1.5.0 \
+    libgdal1-dev \
+    libxml2 \
+    libxml2-dev \
+    libxslt1.1 \
+    libxslt1-dev \
+    libproj0 \
+    libproj-dev \
+    unzip \
+    wget
+    
+####On Mac OS X
+
+Using  [Homebrew](http://blog.apps.chicagotribune.com/2010/02/17/quick-install-pythonpostgis-geo-stack-on-snow-leopard/).
+
+Using  [MacPorts](http://www.macports.org/).
+
+    $ port install git-core postgresql83 postgis gdal libxml2 libxslt
+
+There are many possible permutations of postgresl version and platform. If you're running Mac X here's a good place [to start](http://docs.djangoproject.com/en/1.2/ref/contrib/gis/install/#mac-os-x) for that OS.
+
+There's excellent documentation provided by the Django Project on GIS support in general, specifically for running [GeoDjango](http://docs.djangoproject.com/en/1.2/ref/contrib/gis/install/).
+
+##Installation - Creating the spatial database template
+
+Once you have the basic postgresql and PostGIS installs complete, you'll want to setup a spatial template. The are a number of steps involved in the process of enabling spatial functionality, thus we create a template that can be reused. 
+
+A good resource for completing this step can be found [here](http://docs.djangoproject.com/en/1.2/ref/contrib/gis/install/#creating-a-spatial-database-template-for-postgis)
 
 
