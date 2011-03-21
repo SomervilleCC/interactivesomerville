@@ -45,7 +45,7 @@ urlpatterns = patterns('',
             'extra_context': {
             "shares":       process_shares(list(SharedItem.objects.all().order_by("-share_date")[:15])),
             'latest_users': User.objects.all().order_by('-date_joined')[:5],
-            'latest_entries': Entry.objects.filter(status=2).order_by('-publish')[:5],
+            'latest_entries': Entry.objects.filter(status=2).order_by('-published')[:5],
             'ideas':        Idea.objects.order_by('?')[:3], # random ideas.
             'photos':       Photo.objects.all().order_by("-date_received")[:10],
             'locations':    Location.objects.all(), # random places.
