@@ -54,18 +54,18 @@ Using a text editor, edit the libs.txt file:
     $ (change line 18 from Django==1.0.4 to Django==1.1.1)
     $ (change line 21 from geopy==0.93dev-r0 to geopy==0.94)
 
-Next, edit the Pinax script pinax-boot.py, lines 1134 to 1143, so that they now read:
+Next, edit the Pinax script pinax-boot.py, lines 1134 to 1143, so that they read:
 
-    $   PINAX_MUST_HAVES = {
-    $       'setuptools-git': ('0.3.4', 'setuptools_git-0.3.4.tar.gz'),
-    $       'setuptools-dummy': ('0.0.3', 'setuptools_dummy-0.0.3.tar.gz'),
-    $       'Django': ('1.1.1', 'Django-1.1.1.tar.gz'),
-    $   }
+       PINAX_MUST_HAVES = {
+           'setuptools-git': ('0.3.4', 'setuptools_git-0.3.4.tar.gz'),
+           'setuptools-dummy': ('0.0.3', 'setuptools_dummy-0.0.3.tar.gz'),
+           'Django': ('1.1.1', 'Django-1.1.1.tar.gz'),
+       }
 
-    $   DJANGO_VERSIONS = (
-    $       # '1.0.4',
-    $       '1.1.1',
-    $   )
+       DJANGO_VERSIONS = (
+           # '1.0.4',
+           '1.1.1',
+       )
 
 Save and cd back up to the Pinax install directory:
 
@@ -146,6 +146,36 @@ There's excellent documentation provided by the Django Project on GIS support in
 
 Once you have the basic postgresql and PostGIS installs complete, you'll want to setup a spatial template. The are a number of steps involved in the process of enabling spatial functionality, thus we create a template that can be reused. 
 
-A good resource for completing this step can be found [here](http://docs.djangoproject.com/en/1.2/ref/contrib/gis/install/#creating-a-spatial-database-template-for-postgis)
+A good resource for completing this step can be found [here](http://docs.djangoproject.com/en/1.2/ref/contrib/gis/install/#creating-a-spatial-database-template-for-postgis).
+
+##Complete
+
+Whew! If you've come this far we can build and run the project now.
+
+Cd into the directory where you've downloaded the code:
+
+    $ cd <path-to-greenline-src>
+
+Move the file 'deploy_template.py' to 'deploy_local.py':
+    
+    $ mv deploy_template.py deploy_local.py
+    
+Edit the file deploy_local.py, entering your database name (default=greenline), user (default=postgres) and password:
+
+    DATABASE_ENGINE = 'postgresql_psycopg2'
+    DATABASE_NAME = 'greenline'
+    DATABASE_USER = 'postgres'
+    DATABASE_PASSWORD = ''  # supply your postgres password
+    DATABASE_HOST = ''
+    DATABASE_PORT = ''
+    
+Sync the database:
+
+    $ ./manage.py syncdb
+    
+Run the project:
+
+    $ ./manage.py runserver
+
 
 
