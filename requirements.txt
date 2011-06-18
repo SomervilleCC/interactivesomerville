@@ -1,4 +1,4 @@
-BeautifulSoup==3.0.7a
+BeautifulSoup==3.2.0
 Django==1.2.5
 Markdown==2.0.1
 PIL==1.1.7

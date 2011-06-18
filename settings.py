@@ -31,7 +31,9 @@ MANAGERS = ADMINS
 
 # debug toolbar settings
 INTERNAL_IPS = ('127.0.0.1',)
-INTERCEPT_REDIRECTS = False
+DEBUG_TOOLBAR_CONFIG = {
+	'INTERCEPT_REDIRECTS' : False,
+}
 
 DATABASE_ENGINE     = deploy_config.DATABASE_ENGINE
 DATABASE_NAME       = deploy_config.DATABASE_NAME
