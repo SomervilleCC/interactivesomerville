@@ -55,7 +55,7 @@ psycopg2==2.4
 python-dateutil==1.4.1
 python-openid==2.2.4
 python-twitter==0.6
-python-yadis==1.1.0
+# python-yadis==1.1.0
 pytz==2009l
 setuptools-dummy==0.0.3
 setuptools-git==0.3.4
