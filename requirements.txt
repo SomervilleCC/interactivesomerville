@@ -1,5 +1,5 @@
 BeautifulSoup==3.0.7a
-Django==1.1.1
+Django==1.2.5
 Markdown==2.0.1
 PIL==1.1.7
 Pinax==0.7.3

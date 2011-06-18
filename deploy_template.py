@@ -1,6 +1,6 @@
 import os
 
-DATABASE_ENGINE = 'postgresql_psycopg2'
+DATABASE_ENGINE = 'django.contrib.gis.db.backends.postgis'
 DATABASE_NAME = 'greenline'
 DATABASE_USER = 'postgres'
 DATABASE_PASSWORD = ''  # supply your postgres password
