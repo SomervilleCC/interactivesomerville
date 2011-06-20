@@ -11,6 +11,43 @@ from greenline.utils.location_utils import *
 
 import settings
 
+def index(request):
+    """
+    Output a full description of each principle.
+    """
+    principles = Principle.objects.all()
+    context = {'principles': principles}
+    return render_to_response('principles/index.html', context,
+        RequestContext(request))
+
+def detail(request, principle_slug):
+	"""
+	Output principle detail page with all related content.
+	"""
+	
+	principle = get_object_or_404(Principle.objects, slug=principle_slug)
+	
+	entries = Entry.objects.filter(principle=principle)
+	
+	return render_to_response('principles/detail.html',{
+		'principle': principle,
+		'entries': entries,
+	}, RequestContext(request))
+
+def entry(request, principle_slug, entry_slug):
+	"""
+	Output a full individual entry; this is the view for an entry's permalink.
+	"""
+	
+	principle = get_object_or_404(Principle.objects, slug=principle_slug)
+	
+	entry = get_object_or_404(Entry.objects, principle=principle, slug=entry_slug)
+
+	context = {
+		'entry': entry,
+	}
+	return render_to_response('principles/entry.html', context, RequestContext(request))
+
 
 def entry_index(request):
     """
@@ -34,17 +71,6 @@ def entry_index(request):
     return render_to_response('principles/entry_index.html', context,
         RequestContext(request))
         
-def entry_detail(request, slug):
-    """
-    Output a full individual entry; this is the view for an entry's permalink.
-    """
-    entry = get_object_or_404(Entry.objects.published(), slug=slug)
-    context = {
-        'entry': entry,
-        }
-    return render_to_response('principles/entry_detail.html', context,
-        RequestContext(request))
-        
 def entry_archive_year(request, year):
     """Output the published entries for a given year."""
     entries = get_list_or_404(Entry.objects.published(), published__year=year)
@@ -62,14 +88,7 @@ def entry_archive_year(request, year):
     return render_to_response('principles/entry_archive_year.html', context,
         RequestContext(request))
 
-def about(request):
-    """
-    Output a full description of each principle.
-    """
-    principles = Principle.objects.all()
-    context = {'principles': principles}
-    return render_to_response('principles/about.html', context,
-        RequestContext(request))
+
 
 def entry_detail_year(request, year, slug):
     """

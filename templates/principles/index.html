@@ -9,7 +9,7 @@
 {% load comments_tag %}
 
 
-{% block head_title %}{% blocktrans %}About The Principles | {% endblocktrans %}{% endblock %}
+{% block head_title %}{% blocktrans %}The Principles | {% endblocktrans %}{% endblock %}
 
 {% block js %}
 <script type="text/javascript">
@@ -27,7 +27,7 @@
 <p>The 11 Principles are:</p>
     
     {% for principle in principles %}
-        <label><a href="/principles/#">{{ principle.title }}</a></label>         
+        <label><a href="{{ principle.get_absolute_url }}">{{ principle.title }}</a></label>         
         {% with principle.body|truncatewords:"150" as body %}
             {{ body|force_escape|markdown }}
         {% endwith %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load humanize %}
+{% load markup %}
+{% load theme_tags %}
+{% load in_filter %}
+{% load comments_tag %}
+
+
+{% block head_title %}{{ principle.title }}{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+</script>
+
+{% endblock %}
+
+{% block body %}
+<div id="content" class="grid_8">
+
+<div class="small"><a href="/principles">Principles</a></div>
+
+<h2>{{ principle.title }}</h2>    
+    
+{{ principle.body|force_escape|markdown }}
+
+{% for entry in entries %}
+	<h3><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h3>
+	
+	{{ entry.body|force_escape|markdown }}
+	
+{% endfor %}
+
+</div>
+<div class="clear"> </div>
+{% endblock %}
+
+{% block extra %}
+{% endblock %}

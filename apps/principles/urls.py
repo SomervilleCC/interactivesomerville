@@ -24,7 +24,7 @@ from principles.forms import PrincipleForm
 import principles.views as principle_views
 
 urlpatterns = patterns('',
-    url(r'^$', principle_views.entry_index, name='principle_entry_detail'),
-    url(r'^about/$', view=principle_views.about, name="about"),
-    url(r'^(?P<slug>[-\w]+)/$',view=principle_views.entry_detail, name="principle_entry_detail"),
+    url(r'^$', principle_views.index, name='principle_index'),
+	url(r'^(?P<principle_slug>[-\w]+)/$',view=principle_views.detail, name="principle_detail"),
+	url(r'^(?P<principle_slug>[-\w]+)/(?P<entry_slug>[-\w]+)/$',view=principle_views.entry, name="principle_entry"),
 )

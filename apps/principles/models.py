@@ -41,26 +41,30 @@ PRINCIPLE_CHOICES = ( \
 
 class Principle(models.Model):
 
-    title = models.CharField(
-        max_length=200, 
-        help_text='Name of this principle.'
-        )
+	title = models.CharField(
+		max_length=200, 
+		help_text='Name of this principle.'
+		)
 
-    slug = models.SlugField(
-        help_text="Automatically generated from title."
-        ) 
-        
-    body = MarkupField(blank=True, null=True, 
-        help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>' )
+	slug = models.SlugField(
+		help_text="Automatically generated from title."
+		) 
+    
+	body = MarkupField(blank=True, null=True, 
+		help_text='Use <a href="http://daringfireball.net/projects/markdown/syntax">Markdown-syntax</a>' )
 
-    def __unicode__(self):
-        return u'%s' % self.title
+	def __unicode__(self):
+		return u'%s' % self.title
 
-    class Meta:
-        verbose_name = 'principle'
-        verbose_name_plural = 'principles'
-        db_table = 'principles'
-        
+	class Meta:
+		verbose_name = 'principle'
+		verbose_name_plural = 'principles'
+		db_table = 'principles'
+	
+	#@permalink
+	def get_absolute_url(self):
+		return '/principles/%s' % self.slug
+		#return ('principle_detail', None, { 'slug': self.slug, })
         
 class Entry(models.Model):
     ''' Represents an entry on one of the 11 Principles.'''
@@ -121,9 +125,10 @@ class Entry(models.Model):
         mark.append('Marker')
         return ''.join(mark)
             
-    @permalink
+    # @permalink
     def get_absolute_url(self):
-        return ('principle_entry_detail', None, { 'slug': self.slug } )
+		return "/principles/%s/%s" % (self.principle.slug, self.slug)
+		# return ('principle_entry', None, { 'slug': self.slug } )
 
     class Meta:
         db_table = u'principles_entry'
