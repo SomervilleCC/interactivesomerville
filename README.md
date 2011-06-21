@@ -6,3 +6,11 @@ _Greenline_ (aka Interactive Somerville) is a tool for visualizing issues, askin
 
 This is a fresh start, intentended to migrate the existing code base to Pinax 0.9.
 
+### Requirements ###
+
+* [Pinax fresh-start](https://github.com/pinax/pinax/tree/fresh-start)  
+`$ pip install --extra-index=http://dist.pinaxproject.com/fresh-start/ Pinax`
+
+* [Psycopg](http://www.initd.org/psycopg/)  
+`$ pip install psycopg2`
+
