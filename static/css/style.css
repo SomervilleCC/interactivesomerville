@@ -1,0 +1,467 @@
+html {
+background:#dcdede;
+}
+
+body {
+background:url(../img/bg-box.png) repeat-y center top;
+color:#252525;
+}
+
+h1,h2,h3 {
+text-transform:uppercase;
+}
+
+h2 {
+background:url(../img/effects/focus-border.png) repeat-x bottom left;
+padding:0 0 12px;
+}
+
+label {
+color:#444;
+display:block;
+font:italic 17px "Times", serif;
+margin:0 0 8px;
+}
+
+button {
+background:#69a356;
+border:none;
+color:#fff;
+text-transform:uppercase;
+padding:4px 12px;
+}
+
+map-button {
+background:#4F7B41;
+border:none;
+color:#fff;
+text-transform:lowercase;
+padding:1px 3px;
+cursor: pointer;
+}
+
+a {
+color:#252525;
+}
+
+a:hover {
+text-decoration:none;
+}
+
+.nav li {
+display:inline;
+list-style:none;
+margin:0 0 0 20px;
+}
+
+.nav a,#user-box a {
+color:#fff;
+font-size:14px;
+font-weight:700;
+letter-spacing:0.07em;
+text-decoration:none;
+}
+
+.nav a:hover,#user-box a:hover {
+text-decoration:underline;
+}
+
+a.like {
+background:url(../img/effects/like.png) no-repeat left center;
+padding:0 0 0 18px;
+}
+
+#container {
+background:#ededed;
+}
+
+/* Header Styles */
+#header {
+background:#4f7b41;
+height:130px;
+margin-bottom:20px;
+overflow:hidden;
+position:relative;
+text-transform:uppercase;
+}
+
+#header .controls {
+border-left:1px solid #608753;
+height:130px;
+position:absolute;
+right:0;
+width:570px;
+}
+
+#header .nav {
+bottom:0;
+position:absolute;
+padding:0 0 18px 25px;
+}
+
+#user-box {
+border-bottom:1px solid #608753;
+height:32px;
+position:absolute;
+text-align:right;
+top:0;
+width:380px;
+padding:10px 150px 0 0;
+}
+
+#user-box a {
+font-size:12px;
+letter-spacing:0.04em;
+}
+
+#user-box .forgot {
+font-size:10px;
+font-weight:400;
+margin:0 10px 0 3px;
+}
+
+#logo {
+background:url(../img/logo.png) no-repeat;
+display:block;
+height:78px;
+left:80px;
+outline:0 none;
+position:absolute;
+text-indent:-999em;
+top:24px;
+width:308px;
+}
+
+#header .share {
+background:url(../img/header-share.png) no-repeat;
+display:block;
+height:115px;
+outline:0 none;
+position:absolute;
+right:42px;
+text-indent:-999em;
+width:107px;
+z-index:10;
+}
+
+/* Footer */
+#footer .nav {
+background:#252525;
+float:left;
+width:550px;
+padding:30px 0;
+}
+
+#footer .nav a {
+color:#e2e2e2;
+font-size:12px;
+}
+
+#footer .copyright {
+background:#4F7B41;
+color:#e2e2e2;
+float:right;
+letter-spacing:0.04em;
+text-align:center;
+text-transform:uppercase;
+width:410px;
+padding:30px 0;
+}
+
+
+/* Body Area (mtrythall original) */
+/* #main {
+background:#fff;
+padding:10px 0 30px;
+} */
+
+/* Body Area  F5F8F5 or FBFEFB or F9FFF9 */
+#main {
+background:#f8f8f8;
+padding:10px 10px 5px;
+}
+
+/* Shared Widget */
+.shared {
+margin:0 0 30px;
+}
+
+.shared h5 {
+font-size:12px;
+font-weight:400;
+margin:0 0 10px;
+}
+
+.shared h5 .author {
+font-size:14px;
+font-weight:700;
+}
+
+.shared .station {
+font-weight:700;
+}
+
+.shared .when {
+color:#898989;
+}
+
+.shared p {
+font-size:12px;
+}
+
+.shared .more {
+display:inline-block;
+font-weight:700;
+text-transform:uppercase;
+margin:8px 0 0;
+}
+
+.shared .action-bar {
+background:#a7a4a4;
+font-size:11px;
+overflow:hidden;
+padding:6px 10px;
+}
+
+.shared .action-bar a,.shared .action-bar span {
+color:#fff;
+text-transform:uppercase;
+}
+
+.shared .action-bar .comment-stats {
+float:left;
+width:50%;
+}
+
+.shared .action-bar .comment-stats a {
+margin:0 14px 0 0;
+}
+
+.shared .action-bar .like-stats {
+float:right;
+text-align:right;
+width:50%;
+}
+
+.shared .action-bar .like-stats a {
+margin:0 0 0 14px;
+}
+
+/* Map Styles */
+.mapContainer {
+position:relative;
+}
+
+#map-intro-message {
+background:#252525;
+left:100px;
+position:absolute;
+text-align:center;
+top:24px;
+width:220px;
+z-index:1000;
+padding:30px 20px 20px;
+}
+
+#map-intro-message h3 {
+color:#fff;
+font-size:26px;
+letter-spacing:0.07em;
+text-transform:uppercase;
+margin:0 0 6px;
+}
+
+#map-intro-message a {
+color:#69a356;
+display:inline-block;
+font-size:11px;
+letter-spacing:0.04em;
+text-transform:uppercase;
+margin:0 0 6px;
+}
+
+#map-intro-message .close {
+color:#fff;
+font-size:10px;
+position:absolute;
+right:8px;
+text-decoration:none;
+top:6px;
+}
+
+.focus {
+background:url(../img/effects/focus-border.png) repeat-x top left;
+color:#b7b7b7;
+font:italic 1.1em/120% Times,"Times New Roman",serif;
+margin:0 0 6px;
+padding:16px 0 0;
+}
+
+.focus span {
+background:url(../img/effects/focus-border.png) repeat-x bottom left;
+display:block;
+padding:0 0 16px;
+}
+
+/* Refactor */
+#side {
+background:#f8f8f8;
+width:460px;
+padding:20px;
+}
+
+#address-search h3 {
+font-size:23px;
+margin:0 0 14px;
+}
+
+#address-search label {
+margin:0 0 16px;
+}
+
+#address-search input {
+float:left;
+font-size:13px;
+width:270px;
+margin:0 10px 10px 0;
+padding:3px 5px;
+}
+
+#address-search button {
+float:left;
+padding:6px 12px;
+	cursor: pointer;
+}
+
+#address-search .help-text {
+clear:both;
+color:#898989;
+font-size:12px;
+padding:0 0 0 10px;
+}
+
+#content {
+padding-top:20px;
+}
+
+textarea, input { font: 13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif; }
+form .row { margin: 0 0 30px 0; }
+label.num strong { font: 700 20px "Helvetica Neue",sans-serif; margin: 0 6px 0 0; }
+label.num { line-height: 160%; font-size: 16px; }
+
+#share input { width: 350px; }
+#share textarea { padding: 4px 6px; width: 346px; height: 90px; }
+
+form .global-actions .cancel { margin: 0 0 0 10px; }
+
+/*
+THE FOLLOWING ARE ADDED IN by GM
+*/
+big_numeral {
+    font-family: helvetica, sans-serif;
+    color: #B7B7B7;
+    font-size: 32px;
+}
+
+whisper {
+    font-family: Helvetica Neue, Arial, 'Liberation Sans', FreeSans, sans-serif;
+    color:#4E443C;
+    font-variant: small-caps; 
+    text-transform: none; font-weight: bold; margin-bottom: 0;
+}
+
+para_start {
+    font-family: Helvetica Neue, Arial, 'Liberation Sans', FreeSans, sans-serif;
+    font-size: .8em;
+    font-weight: bold;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+para {
+    font-family: Helvetica Neue, Arial, 'Liberation Sans', FreeSans, sans-serif;
+    font-size: 14px;
+    margin-top: .5em; color: #666;
+}
+
+para_text {
+    font-family: Helvetica Neue, Arial, 'Liberation Sans', FreeSans, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #444;
+}
+ 
+h1 {
+    font-size: 48px;
+}
+ 
+/*h2 {
+    font-size: 36px;
+}
+ 
+h3 {
+    font-size: 24px;
+}
+*/ 
+h4 {
+    font-size: 21px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+img{border:solid .5px #CCC; border-radius:10px; -moz-border-radius:10px;;}
+
+/*<p class="tagspan">
+    <span id="tags_14"><a href="/user/geraldmc/markdown">markdown</a> <a href="/user/geraldmc/github">github</a> </span>
+  </p>
+*/
+
+  
+.tagspan{border-right:1px solid #bbb;
+         padding-right:.5em;
+         margin-right:.5em;
+         font-size: 12px;
+}
+p.tagspan{
+    border-right:none;
+    padding-right:0;
+    margin-right:0;
+}
+
+.tagspan a{
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #C9D7F1;
+    border-right: 1px solid #C9D7F1;
+    color:#888;
+    line-height: 1.8;
+    margin-right: 5px;
+    padding: 1px 5px;
+    white-space:nowrap;
+}
+.tagspan a:hover{
+    background-color: #0066cc;
+    color: #fff;
+    text-decoration: none;
+}
+
+/*
+THE FOLLOWING ARE OVERRIDES TO PREVIOUSLY INCLUDED STYLES
+*/
+
+/* ------------------------------------------------------------------------------ */
+
+/*
+THE FOLLOWING ARE ADDED IN by CSPANRING
+*/
+
+ul#messages {
+	list-style-type: none;
+	text-align: right;
+}

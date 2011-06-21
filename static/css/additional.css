@@ -1,0 +1,152 @@
+ol {
+margin-left: 2em;
+}
+
+ol li {
+list-style-type: decimal;
+}
+
+ul li.bullist {
+list-style-type: disc;
+margin: 0px 0px 0.3em 2em;
+}
+
+/*- SECONDARY CONTENT
+----------------------------------------------------------------------*/
+
+section {
+display: block;
+}
+
+.secondaryContent {
+    width:34%;
+    float:left;
+    margin-top:60px;
+    margin-left:100px;
+
+}
+
+.secondaryContent p {
+    font-size:100%;
+    line-height:1.5em;
+    margin-bottom:15px;
+}
+
+
+.box {
+    background:#f5f5ef;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    padding:20px;
+    margin-bottom:40px;
+}
+
+.deck {
+padding-bottom: 5px;
+text-align: center;
+}
+
+.board {
+border-top: ;
+padding-top: 25px;
+}
+
+.box h3,
+.box p {
+    text-shadow: #fffff7 0px 1px 0px;
+}
+
+.box img {
+    margin-bottom:10px;
+}
+
+.largeLink  {
+    text-decoration:none;
+}
+
+.largeLink p  {
+    font-size:95%;
+    margin-bottom:0;
+}
+
+.largeLink:hover .box  {
+    background:#f7eae9;
+}
+
+.largeLink:hover img  {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.largeLink:hover .box p  {
+    color:#cc2a2a;
+}
+
+/*- vanity styles ----------
+
+::selection {background: #c80000; color: #F1F1F1;}
+*/
+
+
+/*- MEMBERSHIP
+----------------------------------------------------------------------*/
+.members {
+    margin-bottom:40px;
+}
+
+.members h3 img {
+    margin-bottom:0px;
+}
+
+.members h3 {
+    margin-bottom:0px;
+    text-align:center;
+}
+
+.members ul {
+    text-align:center;
+    list-style-type:none;
+}
+
+.members ul li {
+    font-family:Georgia, "Times New Roman", Times, serif;
+    line-height:1em;
+    border-bottom:1px dashed #d3d3d3;
+    padding:7px 0px 7px 0px;
+}
+
+.members ul li:last-child {
+    border-bottom:none;
+}
+
+.members ul li a {
+    text-decoration:none;
+}
+
+.members ul li a:hover {
+    text-decoration:underline;
+}
+
+.members ul li a:active,
+.members ul li a:focus {
+    color:#0079ce;
+}
+
+.members ul li span {
+    font-size:80%;
+    color:#363535;
+}
+
+.decoration ul {
+    margin-bottom:10px;
+}
+
+.swirl {
+    margin-bottom:0px;
+    display:block;
+    margin:0 auto;
+}
