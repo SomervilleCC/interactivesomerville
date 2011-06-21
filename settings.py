@@ -180,6 +180,7 @@ INSTALLED_APPS = [
     "profiles",
 
 	# greenline
+	"south",
 	"participation",
 ]
 
