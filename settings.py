@@ -178,6 +178,9 @@ INSTALLED_APPS = [
     # project
     "about",
     "profiles",
+
+	# greenline
+	"participation",
 ]
 
 FIXTURE_DIRS = [
