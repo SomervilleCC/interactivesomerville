@@ -15,7 +15,11 @@ urlpatterns = patterns("",
 #    url(r"^$", direct_to_template, {
 #        "template": "homepage.html",
 #    }, name="home"),
-    url(r'^$', "participation.views.home", name="home"),
+	url(r"^$", "participation.views.home", name="home"),
+
+	url(r"^station-areas/$", "participation.views.station_areas_list", name="station_areas_list"),
+	url(r"^station-areas/(?P<slug>[-\w]+)/$", "participation.views.station_area_detail", name="station_area_detail"),
+
     url(r"^admin/invite_user/$", "pinax.apps.signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^about/", include("about.urls")),

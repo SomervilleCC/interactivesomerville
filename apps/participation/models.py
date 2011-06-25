@@ -24,6 +24,11 @@ class Station(models.Model):
 	
 	def __unicode__(self):
 		return u"%s"% (self.name)
+		
+	@permalink
+	def get_absolute_url(self):
+		# return '/principles/%s' % self.slug
+		return ("station_area_detail", None, { "slug": self.slug, })
 
 class Line(models.Model):
 	""" The Greenline """
