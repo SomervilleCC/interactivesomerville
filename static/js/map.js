@@ -6,10 +6,10 @@ var greenline = {
 	}
 };
 
-greenline.createBasemap = function () {
+greenline.createBasemap = function (mapdiv) {
 	
 	// map
-	greenline.map = new google.maps.Map(document.getElementById("map"));
+	greenline.map = new google.maps.Map(document.getElementById(mapdiv));
 
 	// simple map style
 	var simple_style =  [

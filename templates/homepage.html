@@ -103,7 +103,7 @@
 	function initialize() {
 		
 		// basemap
-		greenline.createBasemap();
+		greenline.createBasemap('map');
 		
 		// zoom and center
 		greenline.map.setOptions({
@@ -140,7 +140,7 @@
 			radius: 804.67 // 804.67m = 0.5mi
 		});
 		s_{{ station.id }}_area.bindTo('center', s_{{ station.id }}, 'position');
-		greenline.createInfoBubble('station', s_{{ station.id }}, '<div class="infobubble"><span class="title">{{ station.name }}</span><p>{{ station.desc|truncatewords:30 }}<br><a href="">Explore the Station Area!</a></p></div>');
+		greenline.createInfoBubble('station', s_{{ station.id }}, '<div class="infobubble"><span class="title">{{ station.name }}</span><p>{{ station.desc|truncatewords:30 }}<br><a href="{{ station.get_absolute_url }}">Explore the Station Area!</a></p></div>');
 		{% endfor %}
 		
 		{% for line in lines %}		
