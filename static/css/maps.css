@@ -73,3 +73,23 @@
 .station #map {
     height: 45em;
 }
+
+.infobubble {
+	min-width: 100px;
+	max-width: 200px;
+}
+
+.infobubble > .title {
+	font-weight: bold;
+	font-size: 14px;
+	color: #4F7B41;
+}
+
+.infobubble > p {
+	margin-bottom: 0px;
+}
+
+.infobubble > p a {
+	font-weight: bold;
+	color: #4F7B41;
+}

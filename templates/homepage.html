@@ -19,7 +19,7 @@
     <div id="the_map"class="mapContainer minor">
     <div id="map"></div>
     <div id="map-intro-message">
-    <a href="javascript:document.getElementById('the_map').removeChild(document.getElementById('map-intro-message')); center();" class="close">Close</a>
+    <a href="javascript:document.getElementById("the_map").removeChild(document.getElementById("map-intro-message")); center();" class="close">Close</a>
   
       <h3>Get Involved</h3>
       <p class="focus">
@@ -53,7 +53,7 @@
 		{% csrf_token %}
 		<h2>Find Your Station</h2>
 		<div class="row">
-			<label for="id_address">Enter an address below to see what's happening.</label>
+			<label for="id_address">Enter an address below to see what"s happening.</label>
 			<input type="text" name="address" id="id_address">
 			<button type="submit">Find my station</button>
 			<p class="help-text"><strong>EXAMPLES:</strong> 83 Highland Avenue, 24 Richdale Ave</p>
@@ -63,20 +63,20 @@
 	<script type="text/javascript">
 		new TWTR.Widget({
 			version: 2,
-			type: 'profile',
+			type: "profile",
 			rpp: 6,
 			interval: 6000,
-			width: 'auto',
+			width: "auto",
 			height: 300,
 			theme: {
 				shell: {
-					background: '#FAFAFA',
-					color: '#777777'
+					background: "#FAFAFA",
+					color: "#777777"
 				},
 				tweets: {
-					background: '#FAFAFA',
-					color: '#777777',
-					links: '#32a800'
+					background: "#FAFAFA",
+					color: "#777777",
+					links: "#32a800"
 				}
 			},
 			features: {
@@ -86,268 +86,63 @@
 				hashtags: true,
 				timestamp: true,
 				avatars: false,
-				behavior: 'all'
+				behavior: "all"
 			}
-		}).render().setUser('ISomerville').start();
+		}).render().setUser("ISomerville").start();
 	</script>
 </div>
 {% endblock %}
 
+{% block body_onload %}initialize(){% endblock %}
+
 {% block extra_body %}
-
+<script src="{{ STATIC_URL }}js/map.js" type="text/javascript"></script>
 <script type="text/javascript">
+		
+	function initialize() {
+		
+		// basemap
+		greenline.createBasemap();
+		
+		// zoom and center
+		greenline.map.setOptions({
+			zoom: 13,
+			center: new google.maps.LatLng(42.397, -71.13)
+		});
+		
+		// station icon
+		var s_icon = new google.maps.MarkerImage("{{ STATIC_URL }}img/isicons/train.png",
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		);
+		var s_shadow = new google.maps.MarkerImage("{{ STATIC_URL }}img/isicons/shadow.png",
+			new google.maps.Size(51,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		);
+		{% for station in stations %}
+		var s_{{ station.id }}_ll = new google.maps.LatLng({{ station.geometry.y }},{{ station.geometry.x }});
+		var s_{{ station.id }} = new google.maps.Marker({
+			position: s_{{ station.id }}_ll, 
+			map: greenline.map,
+			title:"{{ station.name }}",
+			shadow: s_shadow,
+			icon: s_icon
+		});
+		var s_{{ station.id }}_area = new google.maps.Circle({
+			map: greenline.map,
+			fillColor: '#4F7B41',
+			strokeColor: '#FFFFFF',
+			fillOpacity: .3,
+			strokeWeight: .6,
+			radius: 804.67 // 804.67m = 0.5mi
+		});
+		s_{{ station.id }}_area.bindTo('center', s_{{ station.id }}, 'position');
+		greenline.createInfoBubble('station', s_{{ station.id }}, '<div class="infobubble"><span class="title">{{ station.name }}</span><p>{{ station.desc|truncatewords:30 }}<br><a href="">Explore the Station Area!</a></p></div>');
+		{% endfor %}
+	}
 
-//<![CDATA[
-    // Global vars, array for holding and clearing overlays.
-    var infoBubbleStations  = new InfoBubble({maxWidth: 300,borderWidth: 2,borderColor: '#3B7002'});
-    var infoBubblePhotos    = new InfoBubble({maxWidth: 500, minWidth: 260, borderWidth: 1, borderColor: '#3B7002'});
-    var infoBubbleLocations = new InfoBubble({maxWidth: 250,borderWidth: 1,borderColor: '#3B7002'});
-    
-    var overlays = [];
-    var pmarkers = []; 
-    var lmarkers = []; 
-    
-    var bikeLayer = new google.maps.BicyclingLayer();
-      
-    // the map center when intro div is present  
-    var introMapCenter = new google.maps.LatLng(42.39668, -71.13055);
-
-    // the map center when intro div is absent  
-    var mapCenter = new google.maps.LatLng(42.39659, -71.10832);
-    
-    function zoomIn() {
-        var zoom = map.getZoom();
-        new_zoom = zoom + 1;
-        map.setZoom(new_zoom);
-    }
-  
-    function zoomOut() {
-        var zoom = map.getZoom();
-        new_zoom = zoom - 1;
-        
-        if (zoom <= 13) { map.setZoom(zoom) }
-        else    
-        { map.setZoom(new_zoom) }
-    }
-
-    function center() {
-     map.panTo(mapCenter);
-     map.setZoom(14)
-
-    }
-     
-    function reset() {
-        map.setCenter(mapCenter);
-        map.setZoom(14)
-    }
-
-/**
- * Show bike and foot path overlay.
- */
-    function applyBikeLayer() {
-        bikeLayer.setMap(map);
-    }
-
-/**
- * Shows or hides the radius overlays.
- */
-    function toggleOverlays(opt_enable) {
-        if (typeof opt_enable == 'undefined') {
-            opt_enable = !overlays[0].getMap();
-        }
-        for (var n = 0, overlay; overlay = overlays[n]; n++) {
-            overlay.setMap(opt_enable ? map : null);
-        }
-    };
-
-/**
- * Shows or hides the photos.
- */
-    function togglePhotos(opt_enable) {
-        if (typeof opt_enable == 'undefined') {
-            opt_enable = !pmarkers[0].getMap();
-        }
-        for (var n = 0, pmarker; pmarker = pmarkers[n]; n++) {
-            pmarker.setMap(opt_enable ? map : null);
-        }
-    };
-    
-/**
- * Shows or hides the locations.
- */
-    function toggleLocations(opt_enable) {
-        if (typeof opt_enable == 'undefined') {
-            opt_enable = !lmarkers[0].getMap();
-        }
-        for (var n = 0, lmarker; lmarker = lmarkers[n]; n++) {
-            lmarker.setMap(opt_enable ? map : null);
-        }
-    };
-
-    function init() {
-          
-    // Create a new map
-    var options = {
-        'zoom': 14,
-        center: introMapCenter,
-        scaleControl: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        streetViewControl: true,
-        mapTypeControl: true,
-        zoomControl: false,
-        disableDoubleClickZoom: true,
-        keyboardShortcuts: false,
-        mapTypeControlOptions: {
-        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-        }
-    };
-
-    function createListenerInfoBubbleStations(marker, contentString) { 
-        google.maps.event.addListener(marker, 'click', function() {
-              infoBubbleStations.setContent(contentString);
-              infoBubbleStations.open(map, marker);
-            });
-    }
-    
-    function createListenerInfoBubblePhotos(marker, contentString) { 
-        google.maps.event.addListener(marker, 'click', function() {
-              infoBubblePhotos.setContent(contentString);
-              infoBubblePhotos.open(map, marker);
-            });
-    }
-    
-    function createListenerInfoBubbleLocations(marker, contentString) { 
-        google.maps.event.addListener(marker, 'click', function() {
-              infoBubbleLocations.setContent(contentString);
-              infoBubbleLocations.open(map, marker);
-            });
-    }
-    
-    // the map
-    map = new google.maps.Map(document.getElementById("map"), options);
-
-    // place marker for entering new place info
-    var placemark = new google.maps.LatLng{{ markerpos }};
-        
-    var placeme = new google.maps.Marker({
-        position: placemark,
-        title: 'Place Me!',
-        icon: '{{ STATIC_URL }}greenline/images/isicons/placemarker.png',
-        map: map,
-        draggable: true
-    });
-                       
-    {% if stations %}
-    {% for station in stations %}
-        var {{ station.markerVarName }} = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng({{ station.latitude }}, {{ station.longitude}}),
-            draggable: false,
-            shadow: '{{ STATIC_URL }}greenline/images/isicons/shadow.png',
-            icon: '{{ STATIC_URL }}greenline/images/isicons/train.png',
-            title: '{{ station.name }}'
-        });
-
-        var {{ station.circleVarName }} = new google.maps.Circle({
-            map: map,
-            fillColor: '#A8A890',
-            strokeColor: '#FFFFFF',
-            fillOpacity: .1,
-            strokeWeight: .6,
-            radius: 805 // equals .5 mile 
-        });
-
-    {{ station.circleVarName }}.bindTo('center', {{ station.markerVarName }}, 'position')
-    overlays.push({{ station.circleVarName }});
-
-    {% with station.copy|truncatewords:"80" as copy %}    
-    var {{ station.markerVarName }}contentString = '<div id= markerInfo">' +
-        '{{ station.name }}' +
-        '</div>';
-    {% endwith %}
-
-    createListenerInfoBubbleStations({{ station.markerVarName }}, {{ station.markerVarName }}contentString);
-    
-    // Add mouseover events to the radius
-    google.maps.event.addListener({{ station.circleVarName }}, 'mouseover', function(e) {
-
-      // Set color of the radius
-      {{ station.circleVarName }}.setOptions({
-        fillColor: '#C6E182',
-        strokeColor: '#FFFFFF',
-      });
-      
-
-      // Add a doubleclick event to the radius
-      google.maps.event.addListener({{ station.circleVarName }}, 'dblclick', function() {
-            map.setCenter({{ station.markerVarName }}.position);      
-            map.setZoom(15);  
-        });
-
-    });
-    // Add a mouseout event to the radius
-    google.maps.event.addListener({{ station.circleVarName }}, 'mouseout', function(e) {
-
-      // Set color back to original
-      {{ station.circleVarName }}.setOptions({
-        fillColor: '#A8A890',
-        strokeColor: '#FFFFFF',
-      });
-
-    });
-    {% endfor %}
-    {% endif %}
-
-    {% if locations %}{% for location in locations %}
-        var {{ location.markerVarName }} = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng({{ location.latitude }}, {{ location.longitude }}),
-            draggable: false,
-            shadow: '{{ STATIC_URL }}greenline/images/isicons/shadow.png',
-            icon: '{{ STATIC_URL }}greenline/images/isicons/place.png',
-            title: '{{ location.title }}'
-        });
-        
-    var {{ location.markerVarName }}contentString = '<div id= markerInfo">' +
-        '<label> {{ location.title }} </label>' +
-        '</div>';
-
-    createListenerInfoBubbleLocations({{ location.markerVarName }}, {{ location.markerVarName }}contentString);
-    lmarkers.push({{ location.markerVarName }});
-
-    
-    {% endfor %}
-    {% endif %}
-    
-    {% if photos %}{% for photo in photos %}
-        var _{{ photo.photo_id }} = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng({{ photo.latitude }}, {{ photo.longitude }}),
-            draggable: false,
-            shadow: '{{ STATIC_URL }}greenline/images/isicons/shadow.png',
-            icon: '{{ STATIC_URL }}greenline/images/isicons/photo.png',
-            title: '{{ photo.title }}'
-        });
-
-        var _{{ photo.photo_id }}contentString = '<div id= markerInfo">' +
-            '<a href="{{ photo.url }}" target="_blank"><img src="{{ photo.small_url }}" alt=""></a> <br>' + 
-            '<label>{{ photo.title }} </label>' + 
-            '</div>';
-            
-    createListenerInfoBubblePhotos(_{{ photo.photo_id }}, _{{ photo.photo_id }}contentString);
-    pmarkers.push(_{{ photo.photo_id }});
-
-    
-    {% endfor %}
-    {% endif %}
-    
-    route16.setMap(map);
-    unionSq.setMap(map);
-    applyBikeLayer();
-    
-}
-
-google.maps.event.addDomListener(window, 'load', init);    
 </script>
 
 {% endblock %}

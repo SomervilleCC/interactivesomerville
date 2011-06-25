@@ -29,7 +29,7 @@
         {% endcompress %}
     </head>
     
-    <body class="{% block body_class %}{% endblock %}">
+    <body class="{% block body_class %}{% endblock %}" onload="{% block body_onload %}{% endblock %}">
 		<div id="container" class="container_12">
 			
 			{% block header %}
