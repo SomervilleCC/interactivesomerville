@@ -6,6 +6,7 @@
 # Put project-specific requirements here.
 # See http://pip-installer.org/requirement-format.html for more information.
 
+GPolyEncode==0.1.1
 psycopg2==2.4.2
 South==0.7.3
 Markdown==2.0.3
