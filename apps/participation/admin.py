@@ -1,10 +1,10 @@
-from participation.models import Station
+from participation.models import Station, Line
 from django.contrib.gis import admin
 
 class StationAdmin(admin.OSMGeoAdmin):
 	fieldsets = [
 		(None, 
-		{"fields": ["name", "slug", "desc"]}),
+		{"fields": ["name", "slug", "desc", ]}),
 		("Map",
 		{"fields": ["geometry"]}),
 	]
@@ -13,3 +13,4 @@ class StationAdmin(admin.OSMGeoAdmin):
 	prepopulated_fields = {"slug": ("name",)}
 
 admin.site.register(Station, StationAdmin)
+admin.site.register(Line, admin.OSMGeoAdmin)

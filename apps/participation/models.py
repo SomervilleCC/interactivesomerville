@@ -6,7 +6,7 @@ from greenline.utils.markdowner import MarkupField
 try:
 	from south.modelsinspector import add_introspection_rules
 	add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.PointField'])
-	add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.LineStringField'])
+	add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.MultiLineStringField'])
 	add_introspection_rules([], ['^greenline\.utils\.markdowner\.MarkupField'])
 except ImportError:
 	pass
@@ -23,3 +23,9 @@ class Station(models.Model):
 	
 	def __unicode__(self):
 		return u"%s"% (self.name)
+
+class Line(models.Model):
+	""" The Greenline """
+	
+	geometry = models.MultiLineStringField(geography=True)
+	objects = models.GeoManager()
