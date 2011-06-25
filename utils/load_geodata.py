@@ -13,7 +13,7 @@ def stations(verbose=True):
 	lm.save(strict=True, verbose=verbose)
 	
 line_mapping = {
-	'geometry' : 'MULTILINESTRING',
+	'geometry' : 'LINESTRING',
 }
 line_shp = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/line_4326.shp'))
 

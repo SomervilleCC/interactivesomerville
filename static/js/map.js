@@ -1,7 +1,8 @@
 // global greenline object
 var greenline = {
 	infobubble: {
-		station: new InfoBubble({maxWidth: 400, minborderWidth: 2, borderColor: '#4F7B41'})
+		station: new InfoBubble({maxWidth: 400, minborderWidth: 2, borderColor: '#4F7B41'}),
+		photo: new InfoBubble({maxWidth: 400, minborderWidth: 2, borderColor: '#4F7B41'})
 	}
 };
 
@@ -124,5 +125,15 @@ greenline.createInfoBubble = function (type, marker, contentstring) {
 		greenline.infobubble[type].setContent(contentstring);
 		greenline.infobubble[type].open(greenline.map, marker);
 	});
+}
+
+// encoded polylines for google maps
+greenline.decodeLevels = function (encodedLevelsString) {
+	var decodedLevels = [];
+	for (var i = 0; i < encodedLevelsString.length; ++i) {
+		var level = encodedLevelsString.charCodeAt(i) - 63;
+		decodedLevels.push(level);
+	}
+	return decodedLevels;
 }
 
