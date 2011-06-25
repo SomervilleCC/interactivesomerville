@@ -51,12 +51,12 @@ text-decoration:none;
 .nav li {
 display:inline;
 list-style:none;
-margin:0 0 0 20px;
+margin:0 0 0 30px;
 }
 
 .nav a,#user-box a {
 color:#fff;
-font-size:14px;
+font-size:20px;
 font-weight:700;
 letter-spacing:0.07em;
 text-decoration:none;
@@ -96,7 +96,7 @@ width:570px;
 #header .nav {
 bottom:0;
 position:absolute;
-padding:0 0 18px 25px;
+padding:0 0 10px 25px;
 }
 
 #user-box {
