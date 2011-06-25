@@ -27,7 +27,6 @@ class Station(models.Model):
 		
 	@permalink
 	def get_absolute_url(self):
-		# return '/principles/%s' % self.slug
 		return ("station_area_detail", None, { "slug": self.slug, })
 
 class Line(models.Model):
@@ -45,3 +44,7 @@ class Theme(models.Model):
 	
 	def __unicode__(self):
 		return u'%s' % self.title
+		
+	@permalink
+	def get_absolute_url(self):
+		return ("theme_detail", None, { "slug": self.slug, })
