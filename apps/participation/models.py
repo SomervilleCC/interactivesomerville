@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from django.db.models import permalink
 
 from greenline.utils.markdowner import MarkupField
 
@@ -29,3 +30,13 @@ class Line(models.Model):
 	
 	geometry = models.LineStringField(geography=True)
 	objects = models.GeoManager()
+	
+class Theme(models.Model):
+	""" A theme to guide and categorize user contributions and conversations"""
+	
+	title = models.CharField(max_length=100)
+	slug = models.SlugField(max_length=100)
+	desc = MarkupField("Description", blank=True, null=True, help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
+	
+	def __unicode__(self):
+		return u'%s' % self.title

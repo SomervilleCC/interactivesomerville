@@ -96,5 +96,126 @@
         "fields": {
             "geometry": "LINESTRING (-71.0778114975616830 42.3713499548010333, -71.0806603314609333 42.3738112004329466, -71.0825671614576464 42.3750581182085284, -71.0841741825596927 42.3766866969068374, -71.0855337432793135 42.3781201313192852, -71.0879260748612580 42.3808894565382062, -71.0901162028937108 42.3829847686444268, -71.0916435197276400 42.3846568128774166, -71.0924602108921846 42.3854648203313076, -71.0930149128682274 42.3859460914722419, -71.0936578199210771 42.3865122550854565, -71.0946936142689481 42.3870985960247140, -71.0953588683260733 42.3873727913479073, -71.0975946705413548 42.3884264039399810, -71.0999207433784619 42.3894777132981275, -71.1015389276548007 42.3902088676096085, -71.1027147865954561 42.3907204349321063, -71.1033970424983863 42.3910987154390853, -71.1043818777447996 42.3917505795029967, -71.1052082418918587 42.3924037710072454, -71.1058777188335114 42.3931989107982972, -71.1068685810037380 42.3945334408888996, -71.1095027272185973 42.3981146497183943, -71.1103215127649548 42.3992726549266905, -71.1119935006336590 42.4013447601340800, -71.1142441320834990 42.4044856661862681, -71.1151121838072555 42.4056257468025777, -71.1161539211061466 42.4068783776216449, -71.1171188985400846 42.4082592174760507, -71.1179122811588655 42.4091809907022039, -71.1191740011736897 42.4102565582623328, -71.1205243137050047 42.4113699961566510, -71.1225015587845064 42.4130767162514530, -71.1277117633041485 42.4171360756013627)"
         }
+    },
+    {
+        "pk": 1, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want a fixed percentage of respectable jobs of all types with good wages and benefits for Somerville residents, from construction to permanent.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want a fixed percentage of respectable jobs of all types with good wages and benefits for Somerville residents, from construction to permanent.", 
+            "slug": "more-local-jobs", 
+            "title": "More Local Jobs"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want to see the creation of squares as destinations, with careful attention to mixed use of commercial/residential, reuse of buildings, and economic development to increase the tax base.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want to see the creation of squares as destinations, with careful attention to mixed use of commercial/residential, reuse of buildings, and economic development to increase the tax base.", 
+            "slug": "increase-commercial-and-economic-development", 
+            "title": "Increase Commercial and Economic Development"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want locally owned, culturally diverse, clean businesses in commercial areas with employees who live in Somerville.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want locally owned, culturally diverse, clean businesses in commercial areas with employees who live in Somerville.", 
+            "slug": "keep-and-add-local-businesses", 
+            "title": "Keep and Add Local Businesses"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want to make sure people of all economic means have the ability to afford housing and living costs, so that Somerville residents, such as child care workers, cab drivers, local business employees and others can stay here affordably.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want to make sure people of all economic means have the ability to afford housing and living costs, so that Somerville residents, such as child care workers, cab drivers, local business employees and others can stay here affordably.", 
+            "slug": "keep-somerville-affordable", 
+            "title": "Keep Somerville Affordable"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want to preserve and encourage economic and ethnic diversity of residents and businesses.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want to preserve and encourage economic and ethnic diversity of residents and businesses.", 
+            "slug": "maintain-our-diversity", 
+            "title": "Maintain Our Diversity"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want a safe, environmentally friendly neighborhood with more green space, trees, and gardens; reduction of noise; avoidance of light pollution; and prevention of toxic chemicals in the air.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want a safe, environmentally friendly neighborhood with more green space, trees, and gardens; reduction of noise; avoidance of light pollution; and prevention of toxic chemicals in the air.", 
+            "slug": "improve-green-environment", 
+            "title": "Improve the Green Environment"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want to encourage walking and cycling, through safe, bike/ pedestrian friendly design of streets and paths around and between stations.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want to encourage walking and cycling, through safe, bike/ pedestrian friendly design of streets and paths around and between stations.", 
+            "slug": "encourage-walking-and-biking", 
+            "title": "Encourage Walking and Biking"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want both indoor and outdoor safe, public gathering spaces for community members.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want both indoor and outdoor safe, public gathering spaces for community members.", 
+            "slug": "create-community-gathering-spaces", 
+            "title": "Create Community Gathering Spaces"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want above standard, safe access to and between stations for people with disabilities, strollers, and pedestrians in general.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want above standard, safe access to and between stations for people with disabilities, strollers, and pedestrians in general.", 
+            "slug": "improve-access", 
+            "title": "Improve Access"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want to make sure residents are included on an ongoing basis in the plan- ning, design, and zoning changes to the stations and areas around them. Youth, artists, and others should help design stations, with attention to amenities. We need an easy and clear process for residents to address problems as they come up, with ways of immediately resolving unseen impacts.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want to make sure residents are included on an ongoing basis in the plan- ning, design, and zoning changes to the stations and areas around them. Youth, artists, and others should help design stations, with attention to amenities. We need an easy and clear process for residents to address problems as they come up, with ways of immediately resolving unseen impacts.", 
+            "slug": "community-involvement", 
+            "title": "Community Involvement"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "participation.theme", 
+        "fields": {
+            "desc_rendered": "<p>We want to ensure inter-modal access between neighborhoods and stations, for new train service to be adequate and speedy, and for existing bus lines to continue to serve areas not connected by train.</p>", 
+            "desc_markup_type": 2, 
+            "desc": "We want to ensure inter-modal access between neighborhoods and stations, for new train service to be adequate and speedy, and for existing bus lines to continue to serve areas not connected by train.", 
+            "slug": "connecting-buses-and-trains", 
+            "title": "Connecting Buses and Trains"
+        }
     }
 ]
