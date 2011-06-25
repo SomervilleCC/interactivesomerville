@@ -304,9 +304,8 @@ padding:0 0 16px;
 }
 
 /* Refactor */
-#side {
+.side {
 background:#f8f8f8;
-width:460px;
 padding:20px;
 }
 
@@ -322,7 +321,7 @@ margin:0 0 16px;
 #address-search input {
 float:left;
 font-size:13px;
-width:270px;
+width:220px;
 margin:0 10px 10px 0;
 padding:3px 5px;
 }
@@ -340,7 +339,7 @@ font-size:12px;
 padding:0 0 0 10px;
 }
 
-#content {
+.content {
 padding-top:20px;
 }
 
