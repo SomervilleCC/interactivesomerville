@@ -3,6 +3,8 @@
 {% load i18n %}
 {% load ifsetting_tag %}
 
+{% load participation_tags %}
+
 {% block head_title %}{% blocktrans %}Welcome{% endblocktrans %}{% endblock %}
 
 {% block extra_head %}
@@ -144,7 +146,7 @@
 		
 		{% for line in lines %}		
 		var l_{{ line.id }} = new google.maps.Polyline({
-			path: google.maps.geometry.encoding.decodePath("{{ line.encoded.points }}"),
+			path: google.maps.geometry.encoding.decodePath("{{ line.encoded.points|fixbackslash }}"),
 			levels: greenline.decodeLevels("{{ line.encoded.levels }}"),
 			strokeColor: '#4F7B41',
 			strokeOpacity: 0.9,
