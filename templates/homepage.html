@@ -29,15 +29,6 @@
       <a href="/about">Learn about this project</a>
       <a href="/help">View help on using this site</a>
     </div>
-        <div>
-        <map-button type="submit" onclick="togglePhotos();">-/+ Photos</map-button>
-        <map-button type="submit" onclick="toggleVideos();">-/+ Videos</map-button>
-        <map-button type="submit" onclick="toggleLocations();">-/+ Ideas</map-button>
-        <map-button type="submit" onclick="toggleOverlays();">-/+ Overlays</map-button>
-        <map-button type="submit" onclick="zoomIn();">+ Zoom</map-button>
-        <map-button type="submit" onclick="zoomOut();">- Zoom</map-button>
-        <map-button type="submit" onclick="reset();">Reset</map-button>
-        </div>
     </div>
 {% endblock %}
 
@@ -52,7 +43,7 @@
 <div class="grid_5">
 	<form action="#" method="post" id="address-search">
 		{% csrf_token %}
-		<h2>Find Your Station</h2>
+		<h2>Find Your Station Area</h2>
 		<div class="row">
 			<label for="id_address">Enter an address below to see what"s happening.</label>
 			<input type="text" name="address" id="id_address">
