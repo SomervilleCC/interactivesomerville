@@ -51,7 +51,7 @@ class Theme(models.Model):
 	desc = MarkupField("Description", blank=True, null=True, help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
 	
 	def __unicode__(self):
-		return u'%s' % self.title
+		return u"%s" % self.title
 		
 	@permalink
 	def get_absolute_url(self):
@@ -80,8 +80,8 @@ class Idea(models.Model):
 		get_latest_by = 'created'
 	
 	def __unicode__(self):
-		return self.id
+		return u"%i" % self.id
 		
-	#@permalink
-	#def get_absolute_url(self):
-	#	return ("idea_detail", None, { "slug": self.id, })
+	@permalink
+	def get_absolute_url(self):
+		return ("idea_detail", None, { "slug": self.id, })
