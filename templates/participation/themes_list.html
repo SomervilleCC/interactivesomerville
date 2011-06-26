@@ -14,17 +14,17 @@
 {% block body_class %}{% endblock %}
 
 {% block body %}
-<div class="grid_11 content">	
+<div class="grid_12">	
 	<h2>Themes</h2>
 	<p>Something general about the Themes</p>
 </div>
 
 {% for theme in themes %}
-<div class="grid_6 content">
+<div class="grid_7">
 	<h3><a href="{{ theme.get_absolute_url }}" title="{{ station.title }}">{{ theme.title }}</a></h3>
 	{{ theme.desc_as_html }}
 </div>
-<div class="grid_5 side">
+<div class="grid_5">
 	<div>comments, ideas, photos, videos, etc...</div>
 </div>
 {% endfor %}

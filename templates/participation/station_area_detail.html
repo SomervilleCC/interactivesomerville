@@ -17,13 +17,13 @@
 {% block body_class %}{% endblock %}
 
 {% block body %}
-<div class="grid_6 content">	
-	<h2>{{ station.name }}</h2>
+<div class="grid_12"><h2>{{ station.name }}</h2></div>
+<div class="grid_7">	
 	<div id="station_map">map</div>
 	{{ station.desc_as_html }}
 </div>
 
-<div class="grid_5 side">
+<div class="grid_5">
 	<div>comments, ideas, photos, videos, etc...</div>
 </div>
 {% endblock %}

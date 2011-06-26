@@ -178,7 +178,7 @@ padding:10px 0 30px;
 /* Body Area  F5F8F5 or FBFEFB or F9FFF9 */
 #main {
 background:#f8f8f8;
-padding:10px 10px 5px;
+padding:10px 0 5px;
 }
 
 /* Shared Widget */
@@ -306,7 +306,7 @@ padding:0 0 16px;
 /* Refactor */
 .side {
 background:#f8f8f8;
-padding:20px;
+
 }
 
 #address-search h3 {
@@ -409,6 +409,7 @@ h4 {
 
 h5 {
     font-size: 18px;
+	margin-bottom: 8px;
 }
 
 h6 {
@@ -463,4 +464,10 @@ THE FOLLOWING ARE ADDED IN by CSPANRING
 ul#messages {
 	list-style-type: none;
 	text-align: right;
+}
+
+.meta {
+	font-size: x-small;
+	text-align: right;
+}
 }

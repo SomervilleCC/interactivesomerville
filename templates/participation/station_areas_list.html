@@ -14,17 +14,17 @@
 {% block body_class %}{% endblock %}
 
 {% block body %}
-<div class="grid_11 content">	
+<div class="grid_12">	
 	<h2>Station Areas</h2>
 	<p>Something general about the Station Areas</p>
 </div>
 
 {% for station in stations %}
-<div class="grid_6 content">
+<div class="grid_7">
 	<h3><a href="{{ station.get_absolute_url }}" title="{{ station.name }}">{{ station.name }}</a></h3>
 	{{ station.desc_as_html }}
 </div>
-<div class="grid_5 side">
+<div class="grid_5">
 	<div>comments, ideas, photos, videos, etc...</div>
 </div>
 {% endfor %}
