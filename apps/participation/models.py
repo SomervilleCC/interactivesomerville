@@ -70,7 +70,7 @@ class Idea(models.Model):
 	
 	ip = models.IPAddressField(default='127.0.0.1')
 	created = models.DateTimeField(auto_now_add=True)
-	last_modified = models.DateTimeField(auto_now=True)
+	last_modified = models.DateTimeField(auto_now_add=True, auto_now=True)
 	
 	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
 	objects = models.GeoManager()

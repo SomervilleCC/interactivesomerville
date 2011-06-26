@@ -1,4 +1,4 @@
-from participation.models import Station, Line, Theme
+from participation.models import Station, Line, Theme, Idea
 from django.contrib.gis import admin
 
 class StationAdmin(admin.OSMGeoAdmin):
@@ -21,6 +21,23 @@ class ThemeAdmin(admin.ModelAdmin):
 	search_fields = ("title", "desc",)
 	prepopulated_fields = {"slug": ("title",)}
 
+class IdeaAdmin(admin.OSMGeoAdmin):
+	fieldsets = [
+		(None,
+		{"fields": ["desc"]}),
+		("Map",
+		{"fields": ["geometry"]}),
+		("Relations",
+		{"fields": ["author", "station", "theme",]}),
+		("Meta",
+		{"fields": ["ip",]}),
+	]
+	list_display = ("id", "station", "theme",)
+	list_filter = ["station", "theme",]
+	date_hierarchy = "last_modified"
+	search_fields = ("desc",)
+
 admin.site.register(Station, StationAdmin)
 admin.site.register(Line, admin.OSMGeoAdmin)
 admin.site.register(Theme, ThemeAdmin)
+admin.site.register(Idea, IdeaAdmin)
