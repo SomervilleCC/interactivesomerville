@@ -14,8 +14,8 @@
       .uniForm .resetButton{ float: left; }
       .uniForm .primaryAction{ font-weight: bold; }
     
-    /* Overide uniForm's row highlight */
-        .uniForm .focused{ background: #F4FFF4; }
+    /* This class gets added to div.ctrlHolder to highlight the row */
+    .uniForm .focused{ background: #fffcdf; }
       
       /* .inlineLabel is used for inputs within labels - checkboxes and radio buttons */
       .uniForm .inlineLabel input,
@@ -73,7 +73,7 @@
     .uniForm .inlineLabels .selectInput,
     .uniForm .inlineLabels select{ width: 45%; /* <- Required property */ }
     
-    .uniForm .inlineLabels textarea{  width: 45%; /* <- Required property */ height: 6em; }
+    .uniForm .inlineLabels textarea{  width: 45%; /* <- Required property */ height: 12em; }
 
     .uniForm .inlineLabels .formHint{ margin-top: 0; margin-left: 47%; font-size: .9em; color: #777; position: static; }
     
@@ -88,7 +88,6 @@
 .uniForm .ctrlHolder .textInput:focus{ outline: none; /* Get rid of the 'glow' effect in WebKit, optional */ }
 .uniForm .ctrlHolder textarea:focus{ outline: none; /* Get rid of the 'glow' effect in WebKit, optional */ }
 .uniForm div.focused .formHint{ color: #333; }
-
 
 /* Columns (they are floated left by default) */
 .uniForm .col{ width: 47.9%; /* <- Required property */ margin: 0 2% 20px 0; }
