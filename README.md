@@ -4,12 +4,71 @@ _Greenline_ (aka Interactive Somerville) is a tool for visualizing issues, askin
 
 ## Fresh Start ##
 
-This is a fresh start, intentended to migrate the existing code base to [Pinax 0.9 fresh-start](https://github.com/pinax/pinax/tree/fresh-start)  .
+This is a fresh start, intentended to migrate the existing code base to [Pinax 0.9 fresh-start](https://github.com/pinax/pinax/tree/fresh-start).
 
-### Getting started ###
+A Pinax basic project served as starting point.
 
-* Recommended: create a [virtualenv](http://www.virtualenv.org/)
+### Installation and getting started ###
 
-* Install all project and Pinax requirements:  
-`$ pip install -r requirements/project.txt`
+#### Create a virtual environment (recommended)
+
+Follow documentation at [virtualenv](http://www.virtualenv.org/).
+
+#### Checkout the project
+
+    $ git clone git://github.com/cspanring/greenline.git
+
+#### Install all project requirements (Django, Pinax, etc.):
+
+    $ cd greenline
+    $ pip install -r requirements/project.txt
+
+#### Install PostgreSQL/PostGIS and geographic libaries
+
+    $ sudo apt-get install binutils python-setuptools postgresql-8.4-postgis postgresql-server-dev-8.4 python-psycopg2 gdal-bin python-gdal libproj-dev
+
+#### Create PostGIS template
+
+...on Ubuntu 10.10 with PostGIS 1.5 for instance:
+
+    $ sudo su postgres
+    $ POSTGIS_SQL_PATH=/usr/share/postgresql/8.4/contrib/postgis-1.5
+    $ createdb -E UTF8 template_postgis
+    $ createlang -d template_postgis plpgsql
+    $ psql -d postgres -c "UPDATE pg_database SET datistemplate='true' WHERE datname='template_postgis';"
+    $ psql -d postgres -c "update pg_database set datistemplate = false where datname = 'template_postgis';"
+    $ psql -d template_postgis -f     $POSTGIS_SQL_PATH/postgis.sql
+    $ psql -d template_postgis -f     $POSTGIS_SQL_PATH/spatial_ref_sys.sql
+    $ psql -d template_postgis -c "GRANT ALL ON geometry_columns TO PUBLIC;"
+    $ psql -d template_postgis -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
+    $ psql -d template_postgis -c "GRANT ALL ON geography_columns TO PUBLIC;"
+
+#### Create greenline database user
+
+    $ createuser greenline
+    $ #Shall the new role be a superuser? (y/n) n
+    $ #Shall the new role be allowed to create databases? (y/n) y
+    $ #Shall the new role be allowed to create more new roles? (y/n) n
+    $ psql
+    $ ALTER ROLE greenline WITH password 'password';
+    $ \q
+    $ exit
+
+#### Create new user greenline
+
+    $ sudo adduser greenline
+
+#### Create greenline database
+
+    $ sudo su - greenline
+    $ createdb greenline -T template_postgis
+
+#### Add your database configuration
+
+.. to `settings.py` or create a `local_settings.py` (recommended)
+
+#### Syncronize database and run the development server
+
+    $ python manage.py syncdb
+    $ python manage.py runserver
 
