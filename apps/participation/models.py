@@ -84,4 +84,4 @@ class Idea(models.Model):
 		
 	@permalink
 	def get_absolute_url(self):
-		return ("idea_detail", None, { "slug": self.id, })
+		return ("idea_detail", None, { "id": self.id, })

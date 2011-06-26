@@ -34,10 +34,15 @@
 
 {% block body %}
 <div class="grid_7">
-	<h2>From the Community</h2>
-	<div class="shared">
-		<div class="comments"></div>
-	</div>
+	<h2>Recent Community Activity</h2>
+	<ul class="activitystream">
+	{% for idea in ideas %}
+	<li>
+		<div><a href="{{ idea.get_absolute_url }}" class="title">Idea #{{ idea.pk }}</a>: {{ idea.desc_rendered|striptags|truncatewords:30 }}</div>
+		<div class="meta">Posted by <span class="author">{{ idea.author.first_name }}</span> on <span class="timestamp">{{ idea.last_modified|date:"F dS Y" }}</span></div>
+	</li>
+	{% endfor %}
+	</ul>
 </div>
 	
 <div class="grid_5">

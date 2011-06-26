@@ -9,12 +9,16 @@ from participation.forms import IdeaForm
 import gpolyencode
 
 def home(request):
+	""" Homepage, including Activity Stream. """
 	
 	stations = Station.objects.all()
+	
+	ideas = Idea.objects.all()[:5]
 	
 	return render_to_response("homepage.html", {
 			"stations": stations,
 			"lines": lines(),
+			"ideas": ideas,
 		}, 
 		context_instance=RequestContext(request))
 
@@ -111,7 +115,12 @@ def add_idea(request):
 			ideaform.save()
 			return redirect("idea_detail", id=idea.id)
 		else:
-			return render_to_response("participation/form.html", )
+			return render_to_response("participation/form.html", {
+				"ideaform": ideaform,
+				"stations": Station.objects.all().order_by('id'),
+				"lines": lines(),
+			},
+			context_instance=RequestContext(request))
 	else:
 		return redirect("share") # empty share form
 
