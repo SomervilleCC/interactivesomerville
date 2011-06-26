@@ -1,7 +1,7 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 
-from participation.models import Station, Line, Theme
+from participation.models import Station, Line, Theme, Idea
 
 import gpolyencode
 
@@ -15,6 +15,7 @@ def home(request):
 		context_instance=RequestContext(request))
 
 def lines():
+	""" Query Greenline and return encoded polylines optimized for Google Maps. """
 	lines = Line.objects.all()
 	
 	# encode linestrings
@@ -55,4 +56,13 @@ def theme_detail(request, slug):
 	return render_to_response("participation/theme_detail.html", {
 			"theme": theme,
 		},
+		context_instance=RequestContext(request))
+		
+def idea_detail(request, id):
+	idea = get_object_or_404(Idea.objects.select_related(), pk=id)
+	
+	return render_to_response("participation/idea_detail.html", {
+			"idea": idea,
+			"lines": lines() if idea.station else None # render lines only in combination with station
+		}, 
 		context_instance=RequestContext(request))
