@@ -1,6 +1,6 @@
 from django.forms import ModelForm, HiddenInput
 
-from participation.models import Idea
+from greenline.apps.participation.models import Idea
 
 class IdeaForm(ModelForm):
 	class Meta:

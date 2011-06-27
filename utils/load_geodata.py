@@ -1,6 +1,6 @@
 import os
 from django.contrib.gis.utils import LayerMapping
-from participation.models import Station, Line
+from greenline.apps.participation.models import Station, Line
 
 station_mapping = {
 	'name' : 'NAME', 

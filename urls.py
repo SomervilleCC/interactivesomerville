@@ -15,22 +15,22 @@ urlpatterns = patterns("",
 #    url(r"^$", direct_to_template, {
 #        "template": "homepage.html",
 #    }, name="home"),
-	url(r"^$", "participation.views.home", name="home"),
+	url(r"^$", "greenline.apps.participation.views.home", name="home"),
 
-	url(r"^station-areas/$", "participation.views.station_areas_list", name="station_areas_list"),
-	url(r"^station-areas/(?P<slug>[-\w]+)/$", "participation.views.station_area_detail", name="station_area_detail"),
+	url(r"^station-areas/$", "greenline.apps.participation.views.station_areas_list", name="station_areas_list"),
+	url(r"^station-areas/(?P<slug>[-\w]+)/$", "greenline.apps.participation.views.station_area_detail", name="station_area_detail"),
 	
-	url(r"^themes/$", "participation.views.themes_list", name="themes_list"),
-	url(r"^themes/(?P<slug>[-\w]+)/$", "participation.views.theme_detail", name="theme_detail"),
+	url(r"^themes/$", "greenline.apps.participation.views.themes_list", name="themes_list"),
+	url(r"^themes/(?P<slug>[-\w]+)/$", "greenline.apps.participation.views.theme_detail", name="theme_detail"),
 	
-	url(r"^ideas/(?P<id>[-\w]+)/$", "participation.views.idea_detail", name="idea_detail"),
+	url(r"^ideas/(?P<id>[-\w]+)/$", "greenline.apps.participation.views.idea_detail", name="idea_detail"),
 	
-	url(r"^share/$", "participation.views.share", name="share"),
-	url(r"^share/idea/$", "participation.views.add_idea", name="add_idea"),
+	url(r"^share/$", "greenline.apps.participation.views.share", name="share"),
+	url(r"^share/idea/$", "greenline.apps.participation.views.add_idea", name="add_idea"),
 
     url(r"^admin/invite_user/$", "pinax.apps.signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^admin/", include(admin.site.urls)),
-    url(r"^about/", include("about.urls")),
+    url(r"^about/", include("greenline.apps.about.urls")),
     url(r"^account/", include("pinax.apps.account.urls")),
     url(r"^openid/", include(PinaxConsumer().urls)),
     url(r"^profiles/", include("idios.urls")),

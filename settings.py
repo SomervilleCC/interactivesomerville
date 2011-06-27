@@ -169,6 +169,8 @@ INSTALLED_APPS = [
     "announcements",
     "pagination",
     "idios",
+	"south",
+	"gunicorn",
     
     # Pinax
     "pinax.apps.account",
@@ -176,12 +178,11 @@ INSTALLED_APPS = [
     "pinax.apps.analytics",
     
     # project
-    "about",
-    "profiles",
+    "greenline.apps.about",
+    "greenline.apps.profiles",
 
 	# greenline
-	"south",
-	"participation",
+	"greenline.apps.participation",
 ]
 
 FIXTURE_DIRS = [

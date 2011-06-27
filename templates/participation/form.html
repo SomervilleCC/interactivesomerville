@@ -26,7 +26,7 @@
 </div>
 
 <div class="grid_5">
-	<form action="{% url participation.views.add_idea %}" method="post" class="uniForm">
+	<form action="{% url greenline.apps.participation.views.add_idea %}" method="post" class="uniForm">
 		{% csrf_token %}
 		{{ ideaform|as_uni_form }}
 	<input type="submit" value="Submit" />

@@ -1,4 +1,4 @@
-from participation.models import Station, Line, Theme, Idea
+from greenline.apps.participation.models import Station, Line, Theme, Idea
 from django.contrib.gis import admin
 
 class StationAdmin(admin.OSMGeoAdmin):
