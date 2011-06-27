@@ -119,7 +119,7 @@ MIDDLEWARE_CLASSES = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-ROOT_URLCONF = "greenline.urls"
+ROOT_URLCONF = "interactivesomerville.urls"
 
 TEMPLATE_DIRS = [
     os.path.join(PROJECT_ROOT, "templates"),
@@ -169,6 +169,7 @@ INSTALLED_APPS = [
     "announcements",
     "pagination",
     "idios",
+	"south",
     
     # Pinax
     "pinax.apps.account",
@@ -179,8 +180,7 @@ INSTALLED_APPS = [
     "about",
     "profiles",
 
-	# greenline
-	"south",
+	# interactivesomerville
 	"participation",
 ]
 

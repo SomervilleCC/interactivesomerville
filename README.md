@@ -1,10 +1,10 @@
-# Greenline #
+# Interactive Somerville #
 
-_Greenline_ (aka Interactive Somerville) is a tool for visualizing issues, asking questions, learning facts, and contributing ideas related to the Greenline Extension Project in Somerville, MA.
+_Interactive Somerville_ is a tool for visualizing issues, asking questions, learning facts, and contributing ideas related to the Greenline Extension Project in Somerville, MA.
 
 ## Fresh Start ##
 
-This is a fresh start, intentended to migrate the existing code base to [Pinax 0.9 fresh-start](https://github.com/pinax/pinax/tree/fresh-start).
+This is a fresh start, intentended to migrate the existing code base in the [`legacy` branch](https://github.com/SomervilleCC/interactivesomerville/tree/legacy) to [Pinax 0.9 fresh-start](https://github.com/pinax/pinax/tree/fresh-start).
 
 A Pinax basic project served as starting point.
 
