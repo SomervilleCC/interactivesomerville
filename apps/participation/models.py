@@ -2,7 +2,7 @@ from django.contrib.gis.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
 
-from greenline.utils.markdowner import MarkupField
+from utils.markdowner import MarkupField
 
 # workaround for South custom fields issues 
 try:
