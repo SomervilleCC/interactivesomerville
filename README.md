@@ -12,7 +12,7 @@ A Pinax basic project served as starting point.
 
 #### Create a virtual environment (recommended)
 
-Follow the documentation at [virtualenv](http://www.virtualenv.org/) or [virtualenvwrapper](http://pypi.python.org/pypi/virtualenvwrapper). If you're using virtualenvwrapper, then create a new virtual environment with
+Follow documentation at [virtualenv](http://www.virtualenv.org/). If virtualenv and [virtualenvwrapper](http://pypi.python.org/pypi/virtualenvwrapper) are already installed, then run
 
     $ mkvirtualenv interactivesomerville --no-site-packages
 
@@ -87,6 +87,5 @@ Please see [GeoDjango installation docs](https://docs.djangoproject.com/en/1.3/r
     $ python manage.py syncdb
     $ python manage.py runserver
 
-#### Test the application
-
 ...in your localhost at [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
