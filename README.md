@@ -4,7 +4,7 @@ _Interactive Somerville_ is a tool for visualizing issues, asking questions, lea
 
 ## Fresh Start ##
 
-This is a fresh start, intentended to migrate the existing code base in the [`legacy` branch](https://github.com/SomervilleCC/interactivesomerville/tree/legacy) to [Pinax 0.9 fresh-start](https://github.com/pinax/pinax/tree/fresh-start).
+This is a fresh start, intentended to migrate the existing code base for Pinax 0.7 in the [legacy branch](https://github.com/SomervilleCC/interactivesomerville/tree/legacy) to [Pinax 0.9 fresh-start](https://github.com/pinax/pinax/tree/fresh-start).
 
 A Pinax basic project served as starting point.
 
@@ -12,15 +12,17 @@ A Pinax basic project served as starting point.
 
 #### Create a virtual environment (recommended)
 
-Follow documentation at [virtualenv](http://www.virtualenv.org/).
+Follow the documentation at [virtualenv](http://www.virtualenv.org/) or [virtualenvwrapper](http://pypi.python.org/pypi/virtualenvwrapper). If you're using virtualenvwrapper, then create a new virtual environment with
+
+    $ mkvirtualenv interactivesomerville --no-site-packages
 
 #### Checkout the project
 
-    $ git clone git://github.com/cspanring/greenline.git
+    $ git clone git://github.com/SomervilleCC/interactivesomerville.git
 
 #### Install all project requirements (Django, Pinax, etc.):
 
-    $ cd greenline
+    $ cd interactivesomerville
     $ pip install -r requirements/project.txt
 
 #### Install PostgreSQL/PostGIS and geographic libaries
@@ -37,33 +39,46 @@ Follow documentation at [virtualenv](http://www.virtualenv.org/).
     $ createlang -d template_postgis plpgsql
     $ psql -d postgres -c "UPDATE pg_database SET datistemplate='true' WHERE datname='template_postgis';"
     $ psql -d postgres -c "update pg_database set datistemplate = false where datname = 'template_postgis';"
-    $ psql -d template_postgis -f     $POSTGIS_SQL_PATH/postgis.sql
-    $ psql -d template_postgis -f     $POSTGIS_SQL_PATH/spatial_ref_sys.sql
+    $ psql -d template_postgis -f $POSTGIS_SQL_PATH/postgis.sql
+    $ psql -d template_postgis -f $POSTGIS_SQL_PATH/spatial_ref_sys.sql
     $ psql -d template_postgis -c "GRANT ALL ON geometry_columns TO PUBLIC;"
     $ psql -d template_postgis -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
     $ psql -d template_postgis -c "GRANT ALL ON geography_columns TO PUBLIC;"
 
-#### Create greenline database user
+Please see [GeoDjango installation docs](https://docs.djangoproject.com/en/1.3/ref/contrib/gis/install/) for more detailed information and troubleshooting.
 
-    $ createuser greenline
+#### Create interactivesomerville database user
+
+    $ createuser interactivesomerville
     $ #Shall the new role be a superuser? (y/n) n
     $ #Shall the new role be allowed to create databases? (y/n) y
     $ #Shall the new role be allowed to create more new roles? (y/n) n
     $ psql
-    $ ALTER ROLE greenline WITH password 'password';
+    $ ALTER ROLE interactivesomerville WITH password 'password';
     $ \q
     $ exit
 
-#### Create new user greenline
+#### Create new user interactivesomerville
 
-    $ sudo adduser greenline
+    $ sudo adduser interactivesomerville
 
-#### Create greenline database
+#### Create interactivesomerville database
 
-    $ sudo su - greenline
-    $ createdb greenline -T template_postgis
+    $ sudo su - interactivesomerville
+    $ createdb interactivesomerville -T template_postgis
 
 #### Add your database configuration
+
+    DATABASES = {
+	    "default": {
+	        "ENGINE": "django.contrib.gis.db.backends.postgis",
+	        "NAME": "interactivesomerville",
+	        "USER": "interactivesomerville",
+	        "PASSWORD": "password",
+	        "HOST": "",
+	        "PORT": "",
+	    }
+	}
 
 .. to `settings.py` or create a `local_settings.py` (recommended)
 
@@ -72,3 +87,6 @@ Follow documentation at [virtualenv](http://www.virtualenv.org/).
     $ python manage.py syncdb
     $ python manage.py runserver
 
+#### Test the application
+
+...in your localhost at [http://127.0.0.1:8000](http://127.0.0.1:8000)
