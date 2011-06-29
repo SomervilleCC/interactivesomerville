@@ -23,6 +23,8 @@ urlpatterns = patterns("",
 	url(r"^themes/$", "participation.views.themes_list", name="themes_list"),
 	url(r"^themes/(?P<slug>[-\w]+)/$", "participation.views.theme_detail", name="theme_detail"),
 	
+	url(r"^shareditem/(?P<id>[-\w]+)/$", "participation.views.shareditem_detail", name="shareditem_detail"),
+	
 	url(r"^ideas/(?P<id>[-\w]+)/$", "participation.views.idea_detail", name="idea_detail"),
 	url(r"^meetingnotes/(?P<id>[-\w]+)/$", "participation.views.meetingnote_detail", name="meetingnote_detail"),
 	

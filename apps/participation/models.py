@@ -86,6 +86,9 @@ class Shareditem(models.Model):
 	def __unicode__(self):
 		return u"%i" % self.id
 	
+	@permalink
+	def get_absolute_url(self):
+		return ("shareditem_detail", None, { "id": self.id, })
 	
 class Idea(Shareditem):
 	""" A user submitted idea relating to a station area, theme. """

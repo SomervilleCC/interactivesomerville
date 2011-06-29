@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 
-from participation.models import Station, Line, Theme, Idea, Meetingnote
+from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote
 from participation.forms import IdeaForm
 
 import gpolyencode
@@ -13,12 +13,12 @@ def home(request):
 	
 	stations = Station.objects.all()
 	
-	ideas = Idea.objects.all()[:5]
+	activities = Shareditem.objects.all()[:10]
 	
 	return render_to_response("homepage.html", {
 			"stations": stations,
 			"lines": lines(),
-			"ideas": ideas,
+			"activities": activities,
 		}, 
 		context_instance=RequestContext(request))
 
@@ -75,7 +75,18 @@ def theme_detail(request, slug):
 		},
 		context_instance=RequestContext(request))
 
-		
+
+def shareditem_detail(request, id):
+
+	shareditem = get_object_or_404(Shareditem.objects.select_related(), pk=id)
+
+	return render_to_response("participation/shareditem_detail.html", {
+			"shareditem": shareditem,
+			"lines": lines() if shareditem.station else None # render lines only in combination with station
+		}, 
+		context_instance=RequestContext(request))
+
+
 def idea_detail(request, id):
 
 	idea = get_object_or_404(Idea.objects.select_related(), pk=id)
