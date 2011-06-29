@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 
-from participation.models import Station, Line, Theme, Idea
+from participation.models import Station, Line, Theme, Idea, Meetingnote
 from participation.forms import IdeaForm
 
 import gpolyencode
@@ -124,6 +124,15 @@ def add_idea(request):
 	else:
 		return redirect("share") # empty share form
 
+def meetingnote_detail(request, id):
+
+	meetingnote = get_object_or_404(Meetingnote.objects.select_related(), pk=id)
+
+	return render_to_response("participation/meetingnote_detail.html", {
+			"meetingnote": meetingnote,
+			"lines": lines() if meetingnote.station else None # render lines only in combination with station
+		}, 
+		context_instance=RequestContext(request))
 
 
 

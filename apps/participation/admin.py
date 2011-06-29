@@ -1,4 +1,4 @@
-from participation.models import Station, Line, Theme, Idea
+from participation.models import Station, Line, Theme, Idea, Meetingnote
 from django.contrib.gis import admin
 
 class StationAdmin(admin.OSMGeoAdmin):
@@ -36,8 +36,25 @@ class IdeaAdmin(admin.OSMGeoAdmin):
 	list_filter = ["station", "theme",]
 	date_hierarchy = "last_modified"
 	search_fields = ("desc",)
+	
+class MeetingnoteAdmin(admin.OSMGeoAdmin):
+	fieldsets = [
+		(None,
+		{"fields": ["desc", "meeting_date", "note_file", "note_url"]}),
+		("Map",
+		{"fields": ["geometry"]}),
+		("Relations",
+		{"fields": ["author", "station", "theme",]}),
+		("Meta",
+		{"fields": ["ip",]}),
+	]
+	list_display = ("id", "station", "theme",)
+	list_filter = ["station", "theme",]
+	date_hierarchy = "last_modified"
+	search_fields = ("desc",)
 
 admin.site.register(Station, StationAdmin)
 admin.site.register(Line, admin.OSMGeoAdmin)
 admin.site.register(Theme, ThemeAdmin)
 admin.site.register(Idea, IdeaAdmin)
+admin.site.register(Meetingnote, MeetingnoteAdmin)

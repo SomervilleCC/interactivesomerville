@@ -24,6 +24,7 @@ urlpatterns = patterns("",
 	url(r"^themes/(?P<slug>[-\w]+)/$", "participation.views.theme_detail", name="theme_detail"),
 	
 	url(r"^ideas/(?P<id>[-\w]+)/$", "participation.views.idea_detail", name="idea_detail"),
+	url(r"^meetingnotes/(?P<id>[-\w]+)/$", "participation.views.meetingnote_detail", name="meetingnote_detail"),
 	
 	url(r"^share/$", "participation.views.share", name="share"),
 	url(r"^share/idea/$", "participation.views.add_idea", name="add_idea"),
