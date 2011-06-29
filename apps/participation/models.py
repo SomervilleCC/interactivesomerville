@@ -94,6 +94,7 @@ class Meetingnote(models.Model):
 	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
 	meeting_date = models.DateField(blank=True, null=True,)
 	note_file = ContentTypeRestrictedFileField(
+		help_text="Please upload only .pdf or .doc", 
 		upload_to="meetingnotes", 
 		content_types=["application/pdf", "application/msword", "text/plain", "application/vnd.oasis.opendocument.text", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"], 
 		max_upload_size=2621440,
