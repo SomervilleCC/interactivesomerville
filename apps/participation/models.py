@@ -59,12 +59,17 @@ class Theme(models.Model):
 	def get_absolute_url(self):
 		return ("theme_detail", None, { "slug": self.slug, })
 		
-
-class Idea(models.Model):
-	""" A user submitted idea relating to a station area, theme. """
+		
+class Shareditem(models.Model):
+	""" Parent model for all shared items on the page. """
 	
-	# keep it simple: textfield only
+	ITEMTYPES = (
+		('i', 'Idea'),
+		('m', 'Meeting Note'),
+	)
+	
 	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
+	itemtype = models.CharField(max_length=1, choices=ITEMTYPES, )
 	
 	station = models.ForeignKey('Station', null=True, blank=True)
 	theme = models.ForeignKey('Theme', null=True, blank=True)
@@ -74,24 +79,32 @@ class Idea(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	last_modified = models.DateTimeField(auto_now_add=True, auto_now=True)
 	
-	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
-	objects = models.GeoManager()
-	
 	class Meta:
 		ordering = ('-created', 'author')
 		get_latest_by = 'created'
 	
 	def __unicode__(self):
 		return u"%i" % self.id
+	
+	
+class Idea(Shareditem):
+	""" A user submitted idea relating to a station area, theme. """
+	
+	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
+	objects = models.GeoManager()
+	
+	def save(self, *args, **kwargs):
+		self.itemtype = "i"
+		super(Idea, self).save(*args, **kwargs)
 		
 	@permalink
 	def get_absolute_url(self):
 		return ("idea_detail", None, { "id": self.id, })
+			
 		
-class Meetingnote(models.Model):
+class Meetingnote(Shareditem):
 	""" A Meeting Notes/Minutes document provided via file upload or as linked resource. """
 	
-	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
 	meeting_date = models.DateField(blank=True, null=True,)
 	note_file = ContentTypeRestrictedFileField(
 		help_text="Please upload only .pdf or .doc", 
@@ -102,23 +115,12 @@ class Meetingnote(models.Model):
 	)
 	note_url = models.URLField("URL to external notes", null=True, blank=True)
 	
-	station = models.ForeignKey('Station', null=True, blank=True)
-	theme = models.ForeignKey('Theme', null=True, blank=True)
-	author = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user))
-	
-	ip = models.IPAddressField(default='127.0.0.1')
-	created = models.DateTimeField(auto_now_add=True)
-	last_modified = models.DateTimeField(auto_now_add=True, auto_now=True)
-	
 	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
 	objects = models.GeoManager()
 	
-	class Meta:
-		ordering = ('-created', 'author')
-		get_latest_by = 'created'
-	
-	def __unicode__(self):
-		return u"%i" % self.id
+	def save(self, *args, **kwargs):
+		self.itemtype = "m"
+		super(Meetingnote, self).save(*args, **kwargs)
 		
 	@permalink
 	def get_absolute_url(self):

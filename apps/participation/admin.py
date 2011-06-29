@@ -1,4 +1,4 @@
-from participation.models import Station, Line, Theme, Idea, Meetingnote
+from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote
 from django.contrib.gis import admin
 
 class StationAdmin(admin.OSMGeoAdmin):
@@ -21,10 +21,24 @@ class ThemeAdmin(admin.ModelAdmin):
 	search_fields = ("title", "desc",)
 	prepopulated_fields = {"slug": ("title",)}
 
+class ShareditemAdmin(admin.ModelAdmin):
+	fieldsets = [
+		(None,
+		{"fields": ["desc", "itemtype",]}),
+		("Relations",
+		{"fields": ["author", "station", "theme",]}),
+		("Meta",
+		{"fields": ["ip",]}),
+	]
+	list_display = ("id", "itemtype", "station", "theme",)
+	list_filter = ["itemtype", "station", "theme",]
+	date_hierarchy = "last_modified"
+	search_fields = ("desc",)
+
 class IdeaAdmin(admin.OSMGeoAdmin):
 	fieldsets = [
 		(None,
-		{"fields": ["desc"]}),
+		{"fields": ["desc",]}),
 		("Map",
 		{"fields": ["geometry"]}),
 		("Relations",
@@ -40,7 +54,7 @@ class IdeaAdmin(admin.OSMGeoAdmin):
 class MeetingnoteAdmin(admin.OSMGeoAdmin):
 	fieldsets = [
 		(None,
-		{"fields": ["desc", "meeting_date", "note_file", "note_url"]}),
+		{"fields": ["desc", "meeting_date", "note_file", "note_url", ]}),
 		("Map",
 		{"fields": ["geometry"]}),
 		("Relations",
@@ -56,5 +70,6 @@ class MeetingnoteAdmin(admin.OSMGeoAdmin):
 admin.site.register(Station, StationAdmin)
 admin.site.register(Line, admin.OSMGeoAdmin)
 admin.site.register(Theme, ThemeAdmin)
+admin.site.register(Shareditem, ShareditemAdmin)
 admin.site.register(Idea, IdeaAdmin)
 admin.site.register(Meetingnote, MeetingnoteAdmin)
