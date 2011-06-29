@@ -10,7 +10,8 @@ try:
 	from south.modelsinspector import add_introspection_rules
 	add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.PointField'])
 	add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.LineStringField'])
-	add_introspection_rules([], ['^greenline\.utils\.markdowner\.MarkupField'])
+	add_introspection_rules([], ['^utils\.markdowner\.MarkupField'])
+	add_introspection_rules([], ['^utils\.fileupload\.ContentTypeRestrictedFileField'])
 except ImportError:
 	pass
 
@@ -22,8 +23,8 @@ def get_sentinel_user():
 class Station(models.Model):
 	""" A Greenline station """
 	
-	name = models.CharField(max_length=36)
-	slug = models.SlugField(max_length=36)
+	name = models.CharField(max_length=50)
+	slug = models.SlugField(max_length=50)
 	desc = MarkupField("Description", blank=True, null=True, help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
 	
 	geometry = models.PointField(geography=True) # default SRS 4326
@@ -63,7 +64,7 @@ class Idea(models.Model):
 	""" A user submitted idea relating to a station area, theme. """
 	
 	# keep it simple: textfield only
-	desc = MarkupField("Description", blank=True, null=True, help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
+	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
 	
 	station = models.ForeignKey('Station', null=True, blank=True)
 	theme = models.ForeignKey('Theme', null=True, blank=True)
@@ -92,7 +93,7 @@ class Meetingnote(models.Model):
 	
 	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
 	meeting_date = models.DateField(blank=True, null=True,)
-	note_file = ContentTypeRestrictedFileField("Meeting notes file (pdf or doc)", 
+	note_file = ContentTypeRestrictedFileField(
 		upload_to="meetingnotes", 
 		content_types=["application/pdf", "application/msword", "text/plain", "application/vnd.oasis.opendocument.text", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"], 
 		max_upload_size=2621440,

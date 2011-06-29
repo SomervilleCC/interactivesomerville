@@ -19,11 +19,11 @@ class ContentTypeRestrictedFileField(FileField):
             250MB - 214958080
             500MB - 429916160
     """
-    def __init__(self, *args, **kwargs):
-        self.content_types = kwargs.pop("content_types")
-        self.max_upload_size = kwargs.pop("max_upload_size")
+    def __init__(self, content_types=None, max_upload_size=None, **kwargs):
+        self.content_types = content_types
+        self.max_upload_size = max_upload_size
 
-        super(ContentTypeRestrictedFileField, self).__init__(*args, **kwargs)
+        super(ContentTypeRestrictedFileField, self).__init__(**kwargs)
 
     def clean(self, *args, **kwargs):        
         data = super(ContentTypeRestrictedFileField, self).clean(*args, **kwargs)
