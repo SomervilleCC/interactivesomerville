@@ -55,21 +55,20 @@ def station_area_detail(request, slug):
 def themes_list(request):
 
 	themes = Theme.objects.all().order_by('id')
+	activities = Shareditem.objects.filter(theme__isnull=False).select_subclasses()
+	lines = get_greenline()
 
-	return render_to_response("participation/themes_list.html", {
-			"themes": themes,
-		}, 
-		context_instance=RequestContext(request))
+	return render_to_response("participation/themes_list.html", locals(), context_instance=RequestContext(request))
 
 		
 def theme_detail(request, slug):
 
 	theme = get_object_or_404(Theme.objects, slug=slug)
+	# TODO: paginate
+	activities = Shareditem.objects.filter(theme=theme).select_subclasses()
+	lines = get_greenline()
 
-	return render_to_response("participation/theme_detail.html", {
-			"theme": theme,
-		},
-		context_instance=RequestContext(request))
+	return render_to_response("participation/theme_detail.html", locals(), context_instance=RequestContext(request))
 
 
 def idea_detail(request, id):

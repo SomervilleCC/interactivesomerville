@@ -23,6 +23,14 @@
 </div>
 
 <div class="grid_5">
-	<div>comments, ideas, photos, videos, etc...</div>
+	<h5>Recent Community Activity</h5>
+	<ul class="activitystream">
+	{% for activity in activities %}
+	<li>
+		<div><a href="{{ activity.get_absolute_url }}" class="title">{{ activity.get_itemtype_display }}</a>: {{ activity.desc_rendered|striptags|truncatewords:30 }}</div>
+		<div class="meta">Posted by <span class="author">{% firstof activity.author.username activity.author.first_name %}</span> on <span class="timestamp">{{ activity.last_modified|date:"F dS Y" }}</span></div>
+	</li>
+	{% endfor %}
+	</ul>
 </div>
 {% endblock %}
