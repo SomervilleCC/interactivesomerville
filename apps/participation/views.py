@@ -8,31 +8,29 @@ from participation.forms import IdeaForm
 
 import gpolyencode
 
+
+def get_greenline():
+	""" Query Greenline and return encoded polylines optimized for Google Maps. """
+	
+	greenline = Line.objects.all()
+	
+	# encode linestrings
+	encoder = gpolyencode.GPolyEncoder()
+	for line in greenline:
+		line.encoded = encoder.encode(line.geometry.coords)
+		
+	return greenline
+	
+
 def home(request):
 	""" Homepage, including Activity Stream. """
 	
 	stations = Station.objects.all()
-	
 	activities = Shareditem.objects.all()[:10].select_subclasses()
+	lines = get_greenline()
 	
-	return render_to_response("homepage.html", {
-			"stations": stations,
-			"lines": lines(),
-			"activities": activities,
-		}, 
+	return render_to_response("homepage.html", locals(), 
 		context_instance=RequestContext(request))
-
-def lines():
-	""" Query Greenline and return encoded polylines optimized for Google Maps. """
-	
-	lines = Line.objects.all()
-	
-	# encode linestrings
-	encoder = gpolyencode.GPolyEncoder()
-	for line in lines:
-		line.encoded = encoder.encode(line.geometry.coords)
-		
-	return lines
 
 	
 def station_areas_list(request):
@@ -49,9 +47,12 @@ def station_area_detail(request, slug):
 
 	station = get_object_or_404(Station.objects, slug=slug)
 	
+	# TODO: paginate
+	activities = Shareditem.objects.filter(station=station).select_subclasses()
+	
 	return render_to_response("participation/station_area_detail.html", {
 			"station": station,
-			"lines": lines(),
+			"lines": get_greenline(),
 		},
 		context_instance=RequestContext(request))
 
@@ -82,7 +83,7 @@ def idea_detail(request, id):
 	
 	return render_to_response("participation/idea_detail.html", {
 			"idea": idea,
-			"lines": lines() if idea.station else None # render lines only in combination with station
+			"lines": get_greenline() if idea.station else None # render lines only in combination with station
 		}, 
 		context_instance=RequestContext(request))
 
@@ -96,7 +97,7 @@ def share(request):
 	return render_to_response("participation/form.html", {
 		"ideaform": ideaform,
 		"stations": Station.objects.all().order_by('id'),
-		"lines": lines(),
+		"lines": get_greenline(),
 		}, 
 		context_instance=RequestContext(request))
 
@@ -118,7 +119,7 @@ def add_idea(request):
 			return render_to_response("participation/form.html", {
 				"ideaform": ideaform,
 				"stations": Station.objects.all().order_by('id'),
-				"lines": lines(),
+				"lines": get_greenline(),
 			},
 			context_instance=RequestContext(request))
 	else:
@@ -130,7 +131,7 @@ def meetingnote_detail(request, id):
 
 	return render_to_response("participation/meetingnote_detail.html", {
 			"meetingnote": meetingnote,
-			"lines": lines() if meetingnote.station else None # render lines only in combination with station
+			"lines": get_greenline() if meetingnote.station else None # render lines only in combination with station
 		}, 
 		context_instance=RequestContext(request))
 
