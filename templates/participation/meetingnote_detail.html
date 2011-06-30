@@ -32,8 +32,8 @@
 <div class="grid_5">
 	{% if meetingnote.geometry or meetingnote.station %}<div id="idea_map">map</div>{% endif %}
 	{% if meetingnote.station or meetingnote.theme %}<h5>This Meeting Note relates to</h5>{% endif %}
-	{% if meetingnote.station %}<div>Station Area: <a href="{{ idea.station.get_absolute_url }}">{{ meetingnote.station.name }}</a></div>{% endif %}
-	{% if meetingnote.theme %}<div>Theme: <a href="{{ idea.theme.get_absolute_url }}">{{ meetingnote.theme.title }}</a></div>{% endif %}
+	{% if meetingnote.station %}<div>Station Area: <a href="{{ meetingnote.station.get_absolute_url }}">{{ meetingnote.station.name }}</a></div>{% endif %}
+	{% if meetingnote.theme %}<div>Theme: <a href="{{ meetingnote.theme.get_absolute_url }}">{{ meetingnote.theme.title }}</a></div>{% endif %}
 </div>
 {% endblock %}
 
