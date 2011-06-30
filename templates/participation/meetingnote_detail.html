@@ -21,11 +21,11 @@
 <div class="grid_7">
 	{% if meetingnote.meeting_date %}<h5>For meeting on {{ meetingnote.meeting_date }}</h3>{% endif %}
 	{{ meetingnote.desc_as_html }}
-	<h5>Downloads:</h5>
+	{% if meetingnote.note_file or meetingnote.note_url %}<h5>Downloads:</h5>
 	<ul>
-		<li><a href="{{ meetingnote.note_file.url }}">{{ meetingnote.note_file.name|slice:"13:" }}</a></li>
-		<li><a href="{{ meetingnote.note_url }}">{{ meetingnote.note_url }}</a></li>
-	</ul>
+		{% if meetingnote.note_file %}<li><a href="{{ meetingnote.note_file.url }}">{{ meetingnote.note_file.name|slice:"13:" }}</a></li>{% endif %}
+		{% if meetingnote.note_url %}<li><a href="{{ meetingnote.note_url }}">{{ meetingnote.note_url }}</a></li>{% endif %}
+	</ul>{% endif %}
 	<div class="meta">Posted by <span class="author">{% firstof meetingnote.author.username meetingnote.author.first_name %}</span> on <span class="timestamp">{{ meetingnote.last_modified|date:"F dS Y" }}</span></div>
 </div>
 
