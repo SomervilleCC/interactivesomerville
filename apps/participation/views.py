@@ -13,7 +13,7 @@ def home(request):
 	
 	stations = Station.objects.all()
 	
-	activities = Shareditem.objects.all()[:10]
+	activities = Shareditem.objects.all()[:10].select_subclasses()
 	
 	return render_to_response("homepage.html", {
 			"stations": stations,
@@ -73,17 +73,6 @@ def theme_detail(request, slug):
 	return render_to_response("participation/theme_detail.html", {
 			"theme": theme,
 		},
-		context_instance=RequestContext(request))
-
-
-def shareditem_detail(request, id):
-
-	shareditem = get_object_or_404(Shareditem.objects.select_related(), pk=id)
-
-	return render_to_response("participation/shareditem_detail.html", {
-			"shareditem": shareditem,
-			"lines": lines() if shareditem.station else None # render lines only in combination with station
-		}, 
 		context_instance=RequestContext(request))
 
 

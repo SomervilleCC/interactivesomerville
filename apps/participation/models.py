@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 from utils.markdowner import MarkupField
 from utils.fileupload import ContentTypeRestrictedFileField
+from model_utils.managers import InheritanceManager
 
 # workaround for South custom fields issues 
 try:
@@ -79,16 +80,14 @@ class Shareditem(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	last_modified = models.DateTimeField(auto_now_add=True, auto_now=True)
 	
+	objects = InheritanceManager()
+	
 	class Meta:
 		ordering = ('-created', 'author')
 		get_latest_by = 'created'
 	
 	def __unicode__(self):
 		return u"%i" % self.id
-	
-	@permalink
-	def get_absolute_url(self):
-		return ("shareditem_detail", None, { "id": self.id, })
 	
 class Idea(Shareditem):
 	""" A user submitted idea relating to a station area, theme. """
