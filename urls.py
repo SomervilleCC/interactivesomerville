@@ -19,6 +19,8 @@ urlpatterns = patterns("",
 
 	url(r"^station-areas/$", "participation.views.station_areas_list", name="station_areas_list"),
 	url(r"^station-areas/(?P<slug>[-\w]+)/$", "participation.views.station_area_detail", name="station_area_detail"),
+
+	url(r"^getstation/$", "participation.views.get_nearest_station", name="get_nearest_station"),
 	
 	url(r"^themes/$", "participation.views.themes_list", name="themes_list"),
 	url(r"^themes/(?P<slug>[-\w]+)/$", "participation.views.theme_detail", name="theme_detail"),

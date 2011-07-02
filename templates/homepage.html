@@ -46,16 +46,13 @@
 </div>
 	
 <div class="grid_5">
-	<form action="#" method="post" id="address-search">
-		{% csrf_token %}
-		<h2>Find Your Station Area</h2>
-		<div class="row">
-			<label for="id_address">Enter an address below to see what"s happening.</label>
-			<input type="text" name="address" id="id_address">
-			<button type="submit">Find my station</button>
-			<p class="help-text"><strong>EXAMPLES:</strong> 83 Highland Avenue, 24 Richdale Ave</p>
-		</div>
-	</form>
+	<h2>Find Your Station Area</h2>
+	<div class="row" id="address-search">
+		<label id="user_address_label" for="address">Enter your address below to see what's happening.</label>
+		<input type="text" id="user_address">
+		<button id="find_station">Find my Station Area</button>
+		<p class="help-text"><strong>Example:</strong> 83 Highland Avenue, Somerville</p>
+	</div>
 	<script src="http://widgets.twimg.com/j/2/widget.js"></script>
 	<script type="text/javascript">
 		new TWTR.Widget({
@@ -113,7 +110,7 @@
 			new google.maps.Point(0,0),
 			new google.maps.Point(16,37)
 		);
-		var s_shadow = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/shadow.png',
+		greenline.shadow = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/shadow.png',
 			new google.maps.Size(51,37),
 			new google.maps.Point(0,0),
 			new google.maps.Point(16,37)
@@ -124,7 +121,7 @@
 			position: s_{{ station.id }}_ll, 
 			map: greenline.map,
 			title:"{{ station.name }}",
-			shadow: s_shadow,
+			shadow: greenline.shadow,
 			icon: s_icon
 		});
 		var s_{{ station.id }}_area = new google.maps.Circle({
@@ -152,6 +149,68 @@
 		});	
 		{% endfor %}
 		
+		$('#find_station').bind('click', function() {
+			getStation ();
+		});
+		$('#user_address').bind('keypress', function(e) {
+			// 'enter'
+			var code = (e.keyCode ? e.keyCode : e.which);
+			if (e.keyCode==13) getStation ();
+		});
+		
+	}
+	
+	// find closest station for entered address
+	function getStation () {
+		
+		var geocoder = new google.maps.Geocoder();
+		var address = $('#user_address').val();
+		
+		geocoder.geocode( { 'address': address }, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				
+				var user_address_ll = results[0].geometry.location;
+				
+				var user_bounds = new google.maps.LatLngBounds(user_address_ll);
+				
+				var user_address_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/location.png',
+					new google.maps.Size(32,37),
+					new google.maps.Point(0,0),
+					new google.maps.Point(16,37)
+				);
+				
+				// remove previous marker if user tries multiple times
+				if (greenline.user_address_marker) greenline.user_address_marker.setMap(null);
+				
+				greenline.user_address_marker = new google.maps.Marker({
+					position: user_address_ll, 
+					map: greenline.map,
+					title: "Your Address",
+					shadow: greenline.shadow,
+					icon: user_address_icon
+				});
+				
+				// get nearest station
+				$.get("/getstation/", { 
+						'lat': user_address_ll.lat(), 
+						'lng': user_address_ll.lng()
+					},
+					function(station){
+						$('#user_address_label').html('<strong><a href="' + station.url + '" title="' + station.name + '"> '+ station.name + '</a></strong> is your closest station. <a href="' + station.url + '" title="' + station.name + '">Go there!</a>');
+						
+						var user_station_ll = new google.maps.LatLng(station.lat,station.lng);
+						user_bounds.extend(user_station_ll);
+						
+						// zoom and center map
+						greenline.map.fitBounds(user_bounds);
+						if ( greenline.map.getZoom() > 15 ) greenline.map.setZoom(15); // min zoom
+						
+					}, "json");
+				
+			} else {
+				$('#address-search p.help-text').html('<strong>Sorry, we couldn\'t find your address.</strong>');
+			}
+		});
 	}
 
 </script>

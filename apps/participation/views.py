@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.gis.geos import fromstr
+from django.utils import simplejson
 
 from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle
 from participation.forms import IdeaForm
@@ -50,6 +52,20 @@ def station_area_detail(request, slug):
 	lines = get_greenline()
 	
 	return render_to_response("participation/station_area_detail.html", locals(), context_instance=RequestContext(request))
+
+
+def get_nearest_station(request):
+	""" Find the nearest station for a lat/lon coordinate pair. """
+		
+	try:
+		location = fromstr("POINT(%s %s)" % (request.GET['lng'], request.GET['lat']), srid=4326)
+		# find nearest station
+		station = Station.objects.distance(location).order_by("distance")[0]
+		# json response
+		response = dict(name=station.name, url=station.get_absolute_url(), lat=station.geometry.y, lng=station.geometry.x)
+		return HttpResponse( simplejson.dumps(response), content_type = "application/javascript; charset=utf8" )
+	except:
+		return redirect("home")
 
 	
 def themes_list(request):
