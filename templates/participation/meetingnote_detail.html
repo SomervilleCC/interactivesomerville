@@ -5,7 +5,7 @@
 
 {% load participation_tags %}
 
-{% block head_title %}Idea #{{ meetingnote.id }}{% endblock %}
+{% block head_title %}Meeting Note #{{ meetingnote.id }}{% endblock %}
 
 {% block extra_head %}
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=geometry&amp;sensor=false&amp;language=en"></script>
@@ -19,7 +19,7 @@
 {% block body %}
 <div class="grid_12"><h2>Meeting Note #{{ meetingnote.id }}</h2></div>
 <div class="grid_7">
-	{% if meetingnote.meeting_date %}<h5>For meeting on {{ meetingnote.meeting_date }}</h3>{% endif %}
+	{% if meetingnote.meeting_date %}<h5>Meeting held on {{ meetingnote.meeting_date }}</h5>{% endif %}
 	{{ meetingnote.desc_as_html }}
 	{% if meetingnote.note_file or meetingnote.note_url %}<h5>Downloads:</h5>
 	<ul>
@@ -30,7 +30,7 @@
 </div>
 
 <div class="grid_5">
-	{% if meetingnote.geometry or meetingnote.station %}<div id="idea_map">map</div>{% endif %}
+	{% if meetingnote.geometry or meetingnote.station %}<div id="meetingnote_map">map</div>{% endif %}
 	{% if meetingnote.station or meetingnote.theme %}<h5>This Meeting Note relates to</h5>{% endif %}
 	{% if meetingnote.station %}<div>Station Area: <a href="{{ meetingnote.station.get_absolute_url }}">{{ meetingnote.station.name }}</a></div>{% endif %}
 	{% if meetingnote.theme %}<div>Theme: <a href="{{ meetingnote.theme.get_absolute_url }}">{{ meetingnote.theme.title }}</a></div>{% endif %}
@@ -47,7 +47,7 @@
 	function initialize() {
 		
 		// basemap
-		greenline.createBasemap('idea_map');
+		greenline.createBasemap('meetingnote_map');
 		
 		var shadow = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/shadow.png',
 			new google.maps.Size(51,37),
