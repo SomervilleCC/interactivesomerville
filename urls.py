@@ -25,6 +25,7 @@ urlpatterns = patterns("",
 	
 	url(r"^ideas/(?P<id>[-\w]+)/$", "participation.views.idea_detail", name="idea_detail"),
 	url(r"^meetingnotes/(?P<id>[-\w]+)/$", "participation.views.meetingnote_detail", name="meetingnote_detail"),
+	url(r"^newsarticle/(?P<id>[-\w]+)/$", "participation.views.newsarticle_detail", name="newsarticle_detail"),
 	
 	url(r"^share/$", "participation.views.share", name="share"),
 	url(r"^share/idea/$", "participation.views.add_idea", name="add_idea"),

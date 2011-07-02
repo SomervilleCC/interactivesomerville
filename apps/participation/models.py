@@ -65,26 +65,27 @@ class Shareditem(models.Model):
 	""" Parent model for all shared items on the page. """
 	
 	ITEMTYPES = (
-		('i', 'Idea'),
-		('m', 'Meeting Note'),
+		("i", "Idea"),
+		("m", "Meeting Note"),
+		('n', "Newspaper Article")
 	)
 	
 	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
 	itemtype = models.CharField(max_length=1, choices=ITEMTYPES, )
 	
-	station = models.ForeignKey('Station', null=True, blank=True)
-	theme = models.ForeignKey('Theme', null=True, blank=True)
+	station = models.ForeignKey("Station", null=True, blank=True)
+	theme = models.ForeignKey("Theme", null=True, blank=True)
 	author = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user))
 	
-	ip = models.IPAddressField(default='127.0.0.1')
+	ip = models.IPAddressField(default="127.0.0.1")
 	created = models.DateTimeField(auto_now_add=True)
 	last_modified = models.DateTimeField(auto_now_add=True, auto_now=True)
 	
 	objects = InheritanceManager()
 	
 	class Meta:
-		ordering = ('-created', 'author')
-		get_latest_by = 'created'
+		ordering = ("-created", "author")
+		get_latest_by = "created"
 	
 	def __unicode__(self):
 		return u"%i" % self.id
@@ -109,7 +110,7 @@ class Meetingnote(Shareditem):
 	
 	meeting_date = models.DateField(blank=True, null=True,)
 	note_file = ContentTypeRestrictedFileField(
-		help_text="Please upload only .pdf or .doc", 
+		help_text="Please upload only .pdf or .doc, max. 2.5MB.", 
 		upload_to="meetingnotes", 
 		content_types=["application/pdf", "application/msword", "text/plain", "application/vnd.oasis.opendocument.text", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"], 
 		max_upload_size=2621440,
@@ -127,3 +128,20 @@ class Meetingnote(Shareditem):
 	@permalink
 	def get_absolute_url(self):
 		return ("meetingnote_detail", None, { "id": self.id, })
+		
+		
+class Newsarticle(Shareditem):
+	""" A Newspaper article as linked resource. """
+
+	url = models.URLField("Article URL", null=True, blank=True)
+
+	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
+	objects = models.GeoManager()
+
+	def save(self, *args, **kwargs):
+		self.itemtype = "n"
+		super(Newsarticle, self).save(*args, **kwargs)
+
+	@permalink
+	def get_absolute_url(self):
+		return ("newsarticle_detail", None, { "id": self.id, })

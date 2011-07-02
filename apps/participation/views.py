@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 
-from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote
+from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle
 from participation.forms import IdeaForm
 
 import gpolyencode
@@ -122,15 +122,17 @@ def add_idea(request):
 def meetingnote_detail(request, id):
 
 	meetingnote = get_object_or_404(Meetingnote.objects.select_related(), pk=id)
+	lines = get_greenline() if meetingnote.station else None
 
-	return render_to_response("participation/meetingnote_detail.html", {
-			"meetingnote": meetingnote,
-			"lines": get_greenline() if meetingnote.station else None # render lines only in combination with station
-		}, 
-		context_instance=RequestContext(request))
+	return render_to_response("participation/meetingnote_detail.html", locals(), context_instance=RequestContext(request))
 
 
+def newsarticle_detail(request, id):
 
+	newsarticle = get_object_or_404(Newsarticle.objects.select_related(), pk=id)
+	lines = get_greenline() if newsarticle.station else None
+
+	return render_to_response("participation/newsarticle_detail.html", locals(), context_instance=RequestContext(request))
 
 
 
