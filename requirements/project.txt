@@ -17,4 +17,5 @@ textile==2.1.5
 docutils==0.7
 mercurial==1.8
 wsgiref==0.1.2
--e git://github.com/worldcompany/djangoembed.git@c0e3cd5a55315eb1f502938b9e5ecd261bbb4efe#egg=djangoembed-0.1.1-py2.7-dev
+-e git://github.com/worldcompany/djangoembed.git@c0e3cd5a55315eb1f502938b9e5ecd261bbb4efe#egg=djangoembed-0.1.1-py2.7-dev'
+
