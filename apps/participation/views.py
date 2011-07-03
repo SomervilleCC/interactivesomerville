@@ -5,10 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.gis.geos import fromstr
 from django.utils import simplejson
 
-from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle
+from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle, Media
 from participation.forms import IdeaForm
 
 import gpolyencode
+import oembed
 
 
 def get_greenline():
@@ -150,5 +151,21 @@ def newsarticle_detail(request, id):
 
 	return render_to_response("participation/newsarticle_detail.html", locals(), context_instance=RequestContext(request))
 
+
+def media_detail(request, id):
+	
+	media = get_object_or_404(Media.objects.select_related(), pk=id)
+	
+	oembed.autodiscover()
+	resource = oembed.site.embed(media.url)
+	
+	if resource.provider_name == u"Flickr":
+		embed_code = "<a href='%s'><img src='%s' width='%s' height='%s' alt='%s' ></a>" % (media.url, resource.url, resource.width, resource.height, resource.title)
+	else:
+		embed_code = resource.html
+	
+	lines = get_greenline() if media.station else None
+
+	return render_to_response("participation/media_detail.html", locals(), context_instance=RequestContext(request))
 
 

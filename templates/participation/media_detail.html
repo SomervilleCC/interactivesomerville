@@ -1,0 +1,117 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% load participation_tags %}
+
+{% block head_title %}{{ resource.type|title }} #{{ media.id }}{% endblock %}
+
+{% block extra_head %}
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=geometry&amp;sensor=false&amp;language=en"></script>
+<script src="{{ STATIC_URL }}js/infobubble-compiled.js"type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/vote.js"type="text/javascript"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/maps.css" type="text/css" media="all" charset="utf-8" />
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block body %}
+<div class="grid_12"><h2>{{ resource.type|title }} #{{ media.id }}</h2></div>
+<div class="grid_7">
+	{{ media.desc_as_html }}
+	{% if media.url %}{{ embed_code|safe }}{% endif %}
+	<div class="meta">Posted by <span class="author">{% firstof media.author.username media.author.first_name %}</span> on <span class="timestamp">{{ media.last_modified|date:"F dS Y" }}</span></div>
+</div>
+
+<div class="grid_5">
+	{% if media.geometry or media.station %}<div id="media_map">map</div>{% endif %}
+	{% if media.station or media.theme %}<h5>This {{ resource.type|title }} relates to</h5>{% endif %}
+	{% if media.station %}<div>Station Area: <a href="{{ media.station.get_absolute_url }}">{{ media.station.name }}</a></div>{% endif %}
+	{% if media.theme %}<div>Theme: <a href="{{ media.theme.get_absolute_url }}">{{ media.theme.title }}</a></div>{% endif %}
+</div>
+{% endblock %}
+
+{% block body_onload %}{% if media.geometry or media.station %}initialize(){% endif %}{% endblock %}
+
+{% block extra_body %}
+{% if media.geometry or media.station %}
+<script src="{{ STATIC_URL }}js/map.js" type="text/javascript"></script>
+<script type="text/javascript">
+		
+	function initialize() {
+		
+		// basemap
+		greenline.createBasemap('media_map');
+		
+		var shadow = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/shadow.png',
+			new google.maps.Size(51,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		);
+		
+		{% if media.geometry %}
+		var media_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/{{ resource.type }}.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		);
+		var media_ll = new google.maps.LatLng({{ media.geometry.y }},{{ media.geometry.x }});
+		var media = new google.maps.Marker({
+			position: media_ll, 
+			map: greenline.map,
+			title: "{{ resource.type|title }} Location",
+			shadow: shadow,
+			icon: media_icon
+		});
+		{% endif %}
+		
+		{% if media.station %}
+		// station icon
+		var s_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/train.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		);
+		var s_{{ media.station.id }}_ll = new google.maps.LatLng({{ media.station.geometry.y }},{{ media.station.geometry.x }});
+		var s_{{ media.station.id }} = new google.maps.Marker({
+			position: s_{{ media.station.id }}_ll, 
+			map: greenline.map,
+			title:"{{ idea.station.name }}",
+			shadow: shadow,
+			icon: s_icon
+		});
+		var s_{{ media.station.id }}_area = new google.maps.Circle({
+			map: greenline.map,
+			fillColor: '#4F7B41',
+			strokeColor: '#FFFFFF',
+			fillOpacity: .3,
+			strokeWeight: .6,
+			radius: 804.67 // 804.67m = 0.5mi
+		});
+		s_{{ media.station.id }}_area.bindTo('center', s_{{ media.station.id }}, 'position');
+		{% endif %}
+		
+		{% for line in lines %}		
+		var l_{{ line.id }} = new google.maps.Polyline({
+			path: google.maps.geometry.encoding.decodePath("{{ line.encoded.points|fixbackslash }}"),
+			levels: greenline.decodeLevels("{{ line.encoded.levels }}"),
+			strokeColor: '#4F7B41',
+			strokeOpacity: 0.9,
+			strokeWeight: 6,
+			zoomFactor: {{ line.encoded.zoomFactor }}, 
+			numLevels: {{ line.encoded.numLevels }},
+			map: greenline.map
+		});	
+		{% endfor %}
+		
+		// zoom and center
+		greenline.map.setOptions({
+			zoom: 15,
+			center: {% if media.geometry %}media_ll{% else %}s_{{ media.station.id }}_ll{% endif %}
+		});
+		
+	}
+</script>
+{% endif %}
+{% endblock %}

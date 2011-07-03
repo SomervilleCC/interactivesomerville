@@ -1,4 +1,4 @@
-from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle
+from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle, Media
 from django.contrib.gis import admin
 
 class StationAdmin(admin.OSMGeoAdmin):
@@ -82,6 +82,22 @@ class NewsarticleAdmin(admin.OSMGeoAdmin):
 	list_filter = ["station", "theme",]
 	date_hierarchy = "last_modified"
 	search_fields = ("desc",)
+	
+class MediaAdmin(admin.OSMGeoAdmin):
+	fieldsets = [
+		(None,
+		{"fields": ["desc", "url", ]}),
+		("Map",
+		{"fields": ["geometry"]}),
+		("Relations",
+		{"fields": ["author", "station", "theme",]}),
+		("Meta",
+		{"fields": ["ip",]}),
+	]
+	list_display = ("id", "station", "theme",)
+	list_filter = ["station", "theme",]
+	date_hierarchy = "last_modified"
+	search_fields = ("desc",)
 
 admin.site.register(Station, StationAdmin)
 admin.site.register(Line, admin.OSMGeoAdmin)
@@ -90,3 +106,4 @@ admin.site.register(Shareditem, ShareditemAdmin)
 admin.site.register(Idea, IdeaAdmin)
 admin.site.register(Meetingnote, MeetingnoteAdmin)
 admin.site.register(Newsarticle, NewsarticleAdmin)
+admin.site.register(Media, MediaAdmin)

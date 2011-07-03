@@ -6,7 +6,8 @@ from utils.markdowner import MarkupField
 from utils.fileupload import ContentTypeRestrictedFileField
 from model_utils.managers import InheritanceManager
 
-# workaround for South custom fields issues 
+
+# South introspection rules for unsupported fields
 try:
 	from south.modelsinspector import add_introspection_rules
 	add_introspection_rules([], ['^django\.contrib\.gis\.db\.models\.fields\.PointField'])
@@ -15,6 +16,7 @@ try:
 	add_introspection_rules([], ['^utils\.fileupload\.ContentTypeRestrictedFileField'])
 except ImportError:
 	pass
+
 
 def get_sentinel_user():
 	""" Cascading rule if user is removed. """
@@ -67,7 +69,8 @@ class Shareditem(models.Model):
 	ITEMTYPES = (
 		("i", "Idea"),
 		("m", "Meeting Note"),
-		('n', "Newspaper Article")
+		('n', "Newspaper Article"),
+		('e', "External Media"),
 	)
 	
 	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
@@ -89,6 +92,7 @@ class Shareditem(models.Model):
 	
 	def __unicode__(self):
 		return u"%i" % self.id
+	
 	
 class Idea(Shareditem):
 	""" A user submitted idea relating to a station area, theme. """
@@ -145,3 +149,23 @@ class Newsarticle(Shareditem):
 	@permalink
 	def get_absolute_url(self):
 		return ("newsarticle_detail", None, { "id": self.id, })
+		
+		
+class Media(Shareditem):
+	""" An external media item (photo, video, etc.) linked with oEmbed. """
+
+	url = models.URLField(null=True, blank=True)
+
+	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
+	objects = models.GeoManager()
+
+	class Meta:
+		verbose_name_plural = "Media"
+
+	def save(self, *args, **kwargs):
+		self.itemtype = "m"
+		super(Media, self).save(*args, **kwargs)
+
+	@permalink
+	def get_absolute_url(self):
+		return ("media_detail", None, { "id": self.id, })

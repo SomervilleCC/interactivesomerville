@@ -25,9 +25,10 @@ urlpatterns = patterns("",
 	url(r"^themes/$", "participation.views.themes_list", name="themes_list"),
 	url(r"^themes/(?P<slug>[-\w]+)/$", "participation.views.theme_detail", name="theme_detail"),
 	
-	url(r"^ideas/(?P<id>[-\w]+)/$", "participation.views.idea_detail", name="idea_detail"),
-	url(r"^meetingnotes/(?P<id>[-\w]+)/$", "participation.views.meetingnote_detail", name="meetingnote_detail"),
-	url(r"^newsarticle/(?P<id>[-\w]+)/$", "participation.views.newsarticle_detail", name="newsarticle_detail"),
+	url(r"^ideas/(?P<id>\d+)/$", "participation.views.idea_detail", name="idea_detail"),
+	url(r"^meetingnotes/(?P<id>\d+)/$", "participation.views.meetingnote_detail", name="meetingnote_detail"),
+	url(r"^newsarticle/(?P<id>\d+)/$", "participation.views.newsarticle_detail", name="newsarticle_detail"),
+	url(r"^media/(?P<id>\d+)/$", "participation.views.media_detail", name="media_detail"),
 	
 	url(r"^share/$", "participation.views.share", name="share"),
 	url(r"^share/idea/$", "participation.views.add_idea", name="add_idea"),
