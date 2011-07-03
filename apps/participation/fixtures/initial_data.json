@@ -219,51 +219,1235 @@
         }
     }, 
     {
+        "pk": 79, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>The Lowell Neighborhood - Transforming a Residential Area</strong></p>\n<p>Video made in preparation to the greenline extention to Somerville.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:50:34", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": 4, 
+            "last_modified": "2011-07-03 11:55:42", 
+            "desc": "**The Lowell Neighborhood - Transforming a Residential Area**\r\n\r\nVideo made in preparation to the greenline extention to Somerville."
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>What do you want to see in Ball Sq.</strong></p>\n<p>Student video about ball sq.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:49:04", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": 5, 
+            "last_modified": "2011-07-03 11:54:25", 
+            "desc": "**What do you want to see in Ball Sq.**\r\n\r\nStudent video about ball sq."
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>What do you like about Union Sq.</strong></p>\n<p>A student video about Union Sq.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:47:35", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": 1, 
+            "last_modified": "2011-07-03 11:53:34", 
+            "desc": "**What do you like about Union Sq.**\r\n\r\nA student video about Union Sq."
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Drive Through Union Sq.</strong></p>\n<p>This video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:46:56", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": 1, 
+            "last_modified": "2011-07-03 11:53:13", 
+            "desc": "**Drive Through Union Sq.**\r\n\r\nThis video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation."
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Interview with Internacional Market owner</strong></p>\n<p>This video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:46:18", 
+            "desc_markup_type": 2, 
+            "theme": 3, 
+            "station": 1, 
+            "last_modified": "2011-07-03 12:03:46", 
+            "desc": "**Interview with Internacional Market owner**\r\n\r\nThis video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation."
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Walk through union Sq.</strong></p>\n<p>This video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:45:46", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": 1, 
+            "last_modified": "2011-07-03 11:57:41", 
+            "desc": "**Walk through union Sq.**\r\n\r\nThis video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation."
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Introduction to the Greenline</strong></p>\n<p>This video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:45:05", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:58:05", 
+            "desc": "**Introduction to the Greenline**\r\n\r\nThis video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation."
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Interview with McKinnon's Meat Market Davis Square</strong></p>\n<p>The Green Line expansion and how it may affect Somerville.</p>\n<p>This video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:42:41", 
+            "desc_markup_type": 2, 
+            "theme": 3, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:59:51", 
+            "desc": "**Interview with McKinnon's Meat Market Davis Square**\r\n\r\nThe Green Line expansion and how it may affect Somerville.\r\n\r\nThis video was produced by Prospect Hill Academy VAN HOUTEN Team as part of their E-TERM project in collaboration with Somerville Community Corporation."
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Armory</strong><br />\nEntrance to the Armory</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Armory**  \nEntrance to the Armory"
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Washington St. - walking on the tracks</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Washington St. - walking on the tracks**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>WuChon House 2</strong><br />\nThis description says little as it's intended purpose is to be inserted into a database for testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**WuChon House 2**  \nThis description says little as it's intended purpose is to be inserted into a database for testing.\n"
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Square-Historic</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Square-Historic**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Vida Real - Sign</strong><br />\n</p>\n<p>This description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Vida Real - Sign**  \n\nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Vida Real - Tower</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Vida Real - Tower**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Square - Local Specialty Shop</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Square - Local Specialty Shop**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Square  - Renovation</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Square  - Renovation**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Square - Mural</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Square - Mural**  \nThis description says little as it's intended purpose is for layout testing.\n"
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Square Night</strong><br />\nThis description says little as it's intended purpose is for format testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Square Night**  \nThis description says little as it's intended purpose is for format testing."
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Trum Field - Snow and Ice</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Trum Field - Snow and Ice**  \nThis description says little as it's intended purpose is for layout testing.\n"
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>True Grounds Cafe 1</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**True Grounds Cafe 1**  \nThis description says little as it's intended purpose is for layout testing.\n"
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Trum Field - Field House</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Trum Field - Field House**  \nThis description says little as it's intended purpose is for layout testing.\n"
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Prospect Hill - Stars</strong><br />\nSnowy blue day on Prospect Hill.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Prospect Hill - Stars**  \nSnowy blue day on Prospect Hill."
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Prospect Hill - Tower</strong><br />\nComing around the side of tower at Prospect Hill.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Prospect Hill - Tower**  \nComing around the side of tower at Prospect Hill."
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Public Library</strong><br />\nIs the city planning to support free public WIFI here?</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Public Library**  \nIs the city planning to support free public WIFI here?"
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Reliable Market - Crabs</strong><br />\nYum!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Reliable Market - Crabs**  \nYum!"
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Reliable Market</strong><br />\nLove these!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Reliable Market**  \nLove these!"
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Ball Square - Blue Cloud Gallery</strong><br />\nI wish there were more boutique craft stores in this area. I would hate to see these folks put out of business by the development.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Ball Square - Blue Cloud Gallery**  \nI wish there were more boutique craft stores in this area. I would hate to see these folks put out of business by the development."
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Ball Square Fine Wines</strong><br />\nA convenient neighborhood store in Ball Sq. area.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Ball Square Fine Wines**  \nA convenient neighborhood store in Ball Sq. area.\n"
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Powderhouse Park Tree</strong><br />\nHoliday time!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Powderhouse Park Tree**  \nHoliday time!\n"
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Gillman Square - Afternoon</strong><br />\nView of the Sq.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Gillman Square - Afternoon**  \nView of the Sq.\n"
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>True Grounds Cafe</strong><br />\nNice place.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**True Grounds Cafe**  \nNice place."
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>True Grounds Cafe</strong><br />\nI wish there was more outdoor space like this in the area.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**True Grounds Cafe**  \nI wish there was more outdoor space like this in the area.\n"
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>True Grounds Cafe 2</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**True Grounds Cafe 2**  \nThis description says little as it's intended purpose is for layout testing.\n"
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Bloc 11</strong><br />\nGood restaurant!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Bloc 11**  \nGood restaurant!"
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Bloc 11</strong><br />\nExcellent!.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Bloc 11**  \nExcellent!.\n"
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Bombay Market</strong><br />\nWonderful neighborhood store!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Bombay Market**  \nWonderful neighborhood store!\n"
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Brick Bottom Open Studios</strong><br />\nI wish there were more events like this one in my neighborhood.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Brick Bottom Open Studios**  \nI wish there were more events like this one in my neighborhood.\n"
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Community path - Tracks</strong><br />\nA part of the proposed Greenline track that is not being looked at properly.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Community path - Tracks**  \nA part of the proposed Greenline track that is not being looked at properly.\n"
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Community Garden Bike Path</strong><br />\nThis bike path could use some sprucing up!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Community Garden Bike Path**  \nThis bike path could use some sprucing up!"
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Community Path - Multi Use</strong><br />\nWonderful path, hope it doesn't get crowded out by the new station.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Community Path - Multi Use**  \nWonderful path, hope it doesn't get crowded out by the new station.\n"
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Farmers' Market</strong><br />\nSupport the Green Team at Americorps!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Farmers' Market**  \nSupport the Green Team at Americorps!\n"
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Foss Park</strong><br />\nBeautiful Foss Park. What is being done to preserve green spaces near the it?</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Foss Park**  \nBeautiful Foss Park. What is being done to preserve green spaces near the it?"
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Fringe Movement</strong><br />\nThis was a great show of local artists.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Fringe Movement**  \nThis was a great show of local artists."
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Green Space Community Garden</strong><br />\nThese gardens are an integral part of the neighborhood.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Green Space Community Garden**  \nThese gardens are an integral part of the neighborhood.\n"
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Farmers Market - Sunflowers</strong><br />\nNeed more space for the Farmer's Market!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Farmers Market - Sunflowers**  \nNeed more space for the Farmer's Market!"
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Somerville High School</strong><br />\nMy Alma Mater!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Somerville High School**  \nMy Alma Mater!\n"
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Powderhouse Square Landmark</strong><br />\nView from a landmark in Powderhouse.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Powderhouse Square Landmark**  \nView from a landmark in Powderhouse.\n"
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Powderhouse Park View</strong><br />\nView from a graveyard.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Powderhouse Park View**  \nView from a graveyard."
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Powderhouse Park - Marker</strong><br />\nNational  historic register marker.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Powderhouse Park - Marker**  \nNational  historic register marker."
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Prospect Hill - Overlook</strong><br />\nBeautiful Day!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Prospect Hill - Overlook**  \nBeautiful Day!"
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Somerville</strong><br />\nNot sure where this photo was taken. Help!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Somerville**  \nNot sure where this photo was taken. Help!"
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Gilman Station Views</strong><br />\nA view of warehouses near Gilman Sq.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Gilman Station Views**  \nA view of warehouses near Gilman Sq."
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Somerville by Kelly</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Somerville by Kelly**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Somerville by Kelly</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Somerville by Kelly**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Somerville by Kelly</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Somerville by Kelly**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Sq - Citizens</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Sq - Citizens**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Sq - Construction Area</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Sq - Construction Area**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Sq - Road Work</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Sq - Road Work**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Sq - Elegant Furniture</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Sq - Elegant Furniture**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Washington St</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Washington St**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Washington St - Under the Overpass</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Washington St - Under the Overpass**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Washington Street Boys And Girls Club</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Washington Street Boys And Girls Club**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Ball Square</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Ball Square**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Ball Square - Sidewalks</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Ball Square - Sidewalks**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>McGrath Highway Area</strong><br />\n</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**McGrath Highway Area**  \n"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Under Wash Street</strong><br />\nGraffiti!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Under Wash Street**  \nGraffiti!"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>The Neighborhood Restaurant</strong><br />\nGreat place for a summer meal!</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**The Neighborhood Restaurant**  \nGreat place for a summer meal!"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Trum Field - Raining</strong><br />\nCold rainy day.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Trum Field - Raining**  \nCold rainy day."
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Union Square - Local Specialty Shop</strong><br />\nLocal shop under pressure from big box stores?</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Union Square - Local Specialty Shop**  \nLocal shop under pressure from big box stores?"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>The Neighborhood Restaurant</strong><br />\nThis is an affordable place for the neighborhood. </p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**The Neighborhood Restaurant**  \nThis is an affordable place for the neighborhood. "
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Prospect Hill - Tower</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Prospect Hill - Tower**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Prospect Hill - Markers</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Prospect Hill - Markers**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Somerville Museum</strong><br />\nThis description says little as it's intended purpose is for layout testing.</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Somerville Museum**  \nThis description says little as it's intended purpose is for layout testing."
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "participation.shareditem", 
+        "fields": {
+            "itemtype": "e", 
+            "author": 1, 
+            "desc_rendered": "<p><strong>Public Library - Central</strong><br />\nA view of the entrance of the Somerville Main Branch, 79 Highland Ave, near the proposed Gilman Sq</p>", 
+            "ip": "127.0.0.1", 
+            "created": "2011-07-03 11:38:08", 
+            "desc_markup_type": 2, 
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Public Library - Central**  \nA view of the entrance of the Somerville Main Branch, 79 Highland Ave, near the proposed Gilman Sq"
+        }
+    }, 
+    {
         "pk": 5, 
         "model": "participation.shareditem", 
         "fields": {
-            "itemtype": "i", 
+            "itemtype": "e", 
             "author": 1, 
-            "desc_rendered": "<p>Traffic calming measurements along Broadway in the Ball Square area would make it easier for pedestrians to move between local restaurants and businesses, improve a pedestrian friendly \"neighborhood square feeling\" and eventually support local businesses by attracting more customers and encouraging customers to stay longer or return more frequently.</p>", 
+            "desc_rendered": "<p><strong>Public Library - Central Statute</strong><br />\nStatue by the public library, nearest stop is the proposed Gilman Sq.</p>", 
             "ip": "127.0.0.1", 
-            "created": "2011-07-02 21:31:03", 
+            "created": "2011-07-03 11:38:08", 
             "desc_markup_type": 2, 
-            "theme": 7, 
-            "station": 5, 
-            "last_modified": "2011-07-02 21:31:03", 
-            "desc": "Traffic calming measurements along Broadway in the Ball Square area would make it easier for pedestrians to move between local restaurants and businesses, improve a pedestrian friendly \"neighborhood square feeling\" and eventually support local businesses by attracting more customers and encouraging customers to stay longer or return more frequently."
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Public Library - Central Statute**  \nStatue by the public library, nearest stop is the proposed Gilman Sq."
         }
     }, 
     {
         "pk": 4, 
         "model": "participation.shareditem", 
         "fields": {
-            "itemtype": "n", 
+            "itemtype": "e", 
             "author": 1, 
-            "desc_rendered": "<p>This Somerville Patch article talks about land pooling as option for Union Sq. development.</p>", 
+            "desc_rendered": "<p><strong>Prospect Hill - Snow Covering</strong><br />\nAnother view from Prospect Park, beyond the tower and down a ways is the planned Union Sq. station area.</p>", 
             "ip": "127.0.0.1", 
-            "created": "2011-07-02 21:26:30", 
+            "created": "2011-07-03 11:38:08", 
             "desc_markup_type": 2, 
-            "theme": 2, 
-            "station": 1, 
-            "last_modified": "2011-07-02 21:26:30", 
-            "desc": "This Somerville Patch article talks about land pooling as option for Union Sq. development."
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Prospect Hill - Snow Covering**  \nAnother view from Prospect Park, beyond the tower and down a ways is the planned Union Sq. station area."
         }
     }, 
     {
         "pk": 3, 
         "model": "participation.shareditem", 
         "fields": {
-            "itemtype": "m", 
+            "itemtype": "e", 
             "author": 1, 
-            "desc_rendered": "<p>Design Working Group Meeting #3\nTufts University, 51 Winthrop Street, Medford, MA</p>\n<ul>\n<li>Introduce the HDR/Gilbane Project Team; </li>\n<li>Provide an overview of the Preliminary Engineering Phase of the project;</li>\n<li>Provide a project status report; </li>\n<li>Discuss Design Working Group Subcommittee \u201cStation Design Principles\u201d Matrix; and, </li>\n<li>Get Design Working Group Feedback on Schedule, Location, and Outreach for Station Design</li>\n</ul>", 
+            "desc_rendered": "<p><strong>Prospect Hill - Blue Day</strong><br />\nLooking NW on Munroe St towards the tower, to your left is Prospect Hill Parkway, from which one can see the planned site of the future Union Sq. stop. This is also near Senator Corbett Playground. </p>", 
             "ip": "127.0.0.1", 
-            "created": "2011-07-02 21:24:43", 
+            "created": "2011-07-03 11:38:08", 
             "desc_markup_type": 2, 
-            "theme": 9, 
-            "station": 6, 
-            "last_modified": "2011-07-02 21:31:28", 
-            "desc": "Design Working Group Meeting #3\r\nTufts University, 51 Winthrop Street, Medford, MA\r\n\r\n* Introduce the HDR/Gilbane Project Team; \r\n* Provide an overview of the Preliminary Engineering Phase of the project;\r\n* Provide a project status report; \r\n* Discuss Design Working Group Subcommittee \u201cStation Design Principles\u201d Matrix; and, \r\n* Get Design Working Group Feedback on Schedule, Location, and Outreach for Station Design"
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Prospect Hill - Blue Day**  \nLooking NW on Munroe St towards the tower, to your left is Prospect Hill Parkway, from which one can see the planned site of the future Union Sq. stop. This is also near Senator Corbett Playground. "
         }
     }, 
     {
@@ -272,14 +1456,14 @@
         "fields": {
             "itemtype": "e", 
             "author": 1, 
-            "desc_rendered": "<p>The Lowell Neighborhood - Transforming a Residential Area</p>", 
+            "desc_rendered": "<p><strong>Green Line Extension Map</strong><br />\nCurrent map of proposed Green Line Extension project. Map provided by MA Dept. of Transportation and the MBTA: <a href=\"http://greenlineextension.org/\" rel=\"nofollow\">greenlineextension.org/</a></p>", 
             "ip": "127.0.0.1", 
-            "created": "2011-07-02 21:06:05", 
+            "created": "2011-07-03 11:38:08", 
             "desc_markup_type": 2, 
-            "theme": 10, 
-            "station": 4, 
-            "last_modified": "2011-07-02 21:28:35", 
-            "desc": "The Lowell Neighborhood - Transforming a Residential Area"
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Green Line Extension Map**  \nCurrent map of proposed Green Line Extension project. Map provided by MA Dept. of Transportation and the MBTA: <a href=\"http://greenlineextension.org/\" rel=\"nofollow\">greenlineextension.org/</a>"
         }
     }, 
     {
@@ -288,55 +1472,646 @@
         "fields": {
             "itemtype": "e", 
             "author": 1, 
-            "desc_rendered": "<p>This is an affordable place for the neighborhood.</p>", 
+            "desc_rendered": "<p><strong>Homans Building - Gilman Square, Somerville, MA</strong><br />\nA front-view of the Homans Building in Somerville taken from Medford Street, Somerville MA. Photo by Michael Messina</p>", 
             "ip": "127.0.0.1", 
-            "created": "2011-07-02 20:40:20", 
+            "created": "2011-07-03 11:38:08", 
             "desc_markup_type": 2, 
-            "theme": 4, 
-            "station": 3, 
-            "last_modified": "2011-07-02 21:28:43", 
-            "desc": "This is an affordable place for the neighborhood."
+            "theme": null, 
+            "station": null, 
+            "last_modified": "2011-07-03 11:38:08", 
+            "desc": "**Homans Building - Gilman Square, Somerville, MA**  \nA front-view of the Homans Building in Somerville taken from Medford Street, Somerville MA. Photo by Michael Messina"
         }
     }, 
     {
-        "pk": 5, 
-        "model": "participation.idea", 
-        "fields": {
-            "geometry": "POINT (-71.1123561731727847 42.3999461274651281)"
-        }
-    }, 
-    {
-        "pk": 3, 
-        "model": "participation.meetingnote", 
-        "fields": {
-            "geometry": "POINT (-71.1220121256285438 42.4111479285311006)", 
-            "note_file": "", 
-            "note_url": "http://www.greenlineextension.org/documents/wrkGroup/mayMtg2011/DWG_minutes052611.pdf", 
-            "meeting_date": "2011-05-26"
-        }
-    }, 
-    {
-        "pk": 4, 
-        "model": "participation.newsarticle", 
-        "fields": {
-            "url": "http://somerville.patch.com/blog_posts/land-pooling-an-option-for-union-square", 
-            "geometry": "POINT (-71.0959625116747276 42.3797873556319900)"
-        }
-    }, 
-    {
-        "pk": 2, 
+        "pk": 79, 
         "model": "participation.media", 
         "fields": {
             "url": "http://www.youtube.com/watch?v=YKco3fr47gY", 
-            "geometry": "POINT (-71.1066913477332605 42.3920862443523134)"
+            "geometry": "POINT (-71.1056184641367821 42.3935758945776726)"
+        }
+    }, 
+    {
+        "pk": 78, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.youtube.com/watch?v=EruafjTJnn0", 
+            "geometry": "POINT (-71.1116909853357413 42.3997401350275993)"
+        }
+    }, 
+    {
+        "pk": 77, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.youtube.com/watch?v=kWqwbEWBvDc", 
+            "geometry": "POINT (-71.0961449018936946 42.3798666087623559)"
+        }
+    }, 
+    {
+        "pk": 76, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.youtube.com/watch?v=sBlVNzmkdaI", 
+            "geometry": "POINT (-71.0962629190909041 42.3799458617907376)"
+        }
+    }, 
+    {
+        "pk": 75, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.youtube.com/watch?v=NJTOghVrqAU", 
+            "geometry": "POINT (-71.0990416876335587 42.3810355807947516)"
+        }
+    }, 
+    {
+        "pk": 74, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.youtube.com/watch?v=pFMC1OHliIA", 
+            "geometry": "POINT (-71.0960483423700680 42.3798824593720624)"
+        }
+    }, 
+    {
+        "pk": 73, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.youtube.com/watch?v=XfdRkYEW8h4", 
+            "geometry": null
+        }
+    }, 
+    {
+        "pk": 72, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.youtube.com/watch?v=Ff9LUUxQpYI", 
+            "geometry": "POINT (-71.1216580740485398 42.3950734328392969)"
+        }
+    }, 
+    {
+        "pk": 71, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4386528944/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1173339999999996 42.4040740000000014)"
+        }
+    }, 
+    {
+        "pk": 70, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697479623/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0981940000000066 42.3791530000000023)"
+        }
+    }, 
+    {
+        "pk": 69, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698110896/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0944970000000040 42.3792449999999974)"
+        }
+    }, 
+    {
+        "pk": 68, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697479205/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0952539999999971 42.3783999999999992)"
+        }
+    }, 
+    {
+        "pk": 67, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697479455/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1032150000000058 42.3948430000000016)"
+        }
+    }, 
+    {
+        "pk": 66, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698110654/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1032150000000058 42.3948430000000016)"
+        }
+    }, 
+    {
+        "pk": 65, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697478657/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0958550000000002 42.3787960000000012)"
+        }
+    }, 
+    {
+        "pk": 64, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698109946/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0955330000000032 42.3781070000000000)"
+        }
+    }, 
+    {
+        "pk": 63, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698110124/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0952539999999971 42.3788600000000031)"
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698110200/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0952539999999971 42.3788600000000031)"
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697478397/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1074629999999956 42.3982979999999969)"
+        }
+    }, 
+    {
+        "pk": 60, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698109384/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1124570000000062 42.4000119999999967)"
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698109494/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1073350000000062 42.3972339999999974)"
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698107482/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0953899999999948 42.3837890000000002)"
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698107356/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0953899999999948 42.3837890000000002)"
+        }
+    }, 
+    {
+        "pk": 56, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697476783/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0921000000000021 42.3838440000000034)"
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698108260/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0988799999999941 42.3796600000000012)"
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698108332/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0965039999999959 42.3800689999999989)"
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697455101/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0976789999999994 42.3807540000000031)"
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697455213/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1103389999999962 42.3991529999999983)"
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697475599/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1166379999999947 42.4009890000000027)"
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698089830/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0930249999999972 42.3864820000000009)"
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698109196/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1117550000000023 42.3991219999999984)"
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698109242/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1127850000000024 42.4008960000000030)"
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698109314/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1124570000000062 42.4000119999999967)"
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697455513/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0969840000000062 42.3807370000000034)"
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698087174/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1033429999999953 42.3918000000000035)"
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697456009/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0934730000000030 42.3881239999999977)"
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697456099/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0845470000000006 42.3804209999999983)"
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697456885/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0873789999999985 42.3782020000000017)"
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698087948/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1204239999999999 42.4089450000000028)"
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698088074/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1204239999999999 42.4089450000000028)"
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697457157/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1151880000000034 42.4027979999999971)"
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697457333/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0957899999999938 42.3875529999999969)"
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697457587/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1153599999999955 42.4040650000000028)"
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697457771/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1051099999999963 42.3869779999999992)"
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698088462/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1175910000000044 42.4072340000000025)"
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698089602/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0979609999999980 42.3866039999999984)"
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697475757/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1164760000000058 42.4010469999999984)"
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698106788/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1166379999999947 42.4009890000000027)"
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4698106960/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1167329999999964 42.4010869999999969)"
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/4697475967/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0953899999999948 42.3837890000000002)"
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368393593/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1292040000000014 42.4184819999999974)"
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368393765/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0962020000000052 42.3876009999999965)"
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368394017/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1002359999999953 42.3778369999999995)"
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369003928/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1154279999999943 42.4060300000000012)"
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369004166/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0986060000000037 42.3791209999999978)"
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368393073/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0959110000000010 42.3784630000000035)"
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368393153/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0958679999999958 42.3787570000000002)"
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368393327/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0982190000000003 42.3789310000000015)"
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369003118/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0974340000000069 42.3781540000000021)"
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369002478/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0925199999999933 42.3793030000000002)"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368392081/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0898590000000041 42.3800329999999974)"
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368392257/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0907389999999992 42.3797229999999985)"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368391589/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1116180000000071 42.3997790000000023)"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368391759/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1104370000000046 42.3990900000000011)"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369001042/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0897520000000043 42.3811660000000003)"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369001346/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0890229999999974 42.3805869999999985)"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368503131/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1238479999999953 42.4142050000000026)"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368503205/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1057809999999932 42.3977270000000033)"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369112512/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0932499999999976 42.3770840000000035)"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369112540/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1000729999999947 42.3904220000000009)"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368502835/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0916830000000033 42.3842009999999974)"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369112202/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0937430000000035 42.3859050000000011)"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369112338/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.1047700000000020 42.3871889999999993)"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368502779/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0947519999999997 42.3853819999999999)"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368502699/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0936789999999945 42.3851519999999979)"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5368502641/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0948589999999996 42.3831630000000033)"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5369112138/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0940010000000058 42.3816649999999981)"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "participation.media", 
+        "fields": {
+            "url": "http://www.flickr.com/photos/47846239@N04/5869932417/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0982580000000013 42.3866689999999977)"
         }
     }, 
     {
         "pk": 1, 
         "model": "participation.media", 
         "fields": {
-            "url": "http://www.flickr.com/photos/47846239@N04/5369112540/in/pool-1341011@N20/", 
-            "geometry": "POINT (-71.1001467577279413 42.3904222315538490)"
+            "url": "http://www.flickr.com/photos/47846239@N04/5870009511/in/pool-1341011@N20/", 
+            "geometry": "POINT (-71.0965340000000054 42.3884329999999991)"
         }
     }
 ]
