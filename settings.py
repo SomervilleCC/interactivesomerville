@@ -179,6 +179,7 @@ INSTALLED_APPS = [
     # project
     "about",
     "profiles",
+	"oembed",
 
 	# interactivesomerville
 	"participation",

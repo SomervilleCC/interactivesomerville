@@ -6,6 +6,8 @@
 # Put project-specific requirements here.
 # See http://pip-installer.org/requirement-format.html for more information.
 
+BeautifulSoup==3.2.0
+PIL==1.1.7
 GPolyEncode==0.1.1
 psycopg2==2.4.2
 South==0.7.3
@@ -15,4 +17,4 @@ textile==2.1.5
 docutils==0.7
 mercurial==1.8
 wsgiref==0.1.2
-
+-e git://github.com/worldcompany/djangoembed.git@c0e3cd5a55315eb1f502938b9e5ecd261bbb4efe#egg=djangoembed-0.1.1-py2.7-dev
