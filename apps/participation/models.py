@@ -163,7 +163,7 @@ class Media(Shareditem):
 		verbose_name_plural = "Media"
 
 	def save(self, *args, **kwargs):
-		self.itemtype = "m"
+		self.itemtype = "e"
 		super(Media, self).save(*args, **kwargs)
 
 	@permalink
