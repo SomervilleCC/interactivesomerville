@@ -19,8 +19,8 @@
 {% block body %}
 <div class="grid_12"><h2>{{ resource.type|title }} #{{ media.id }}</h2></div>
 <div class="grid_7">
-	{{ media.desc_as_html }}
 	{% if media.url %}{{ embed_code|safe }}{% endif %}
+	{{ media.desc_as_html }}
 	<div class="meta">Posted by <span class="author">{% firstof media.author.username media.author.first_name %}</span> on <span class="timestamp">{{ media.last_modified|date:"F dS Y" }}</span></div>
 </div>
 

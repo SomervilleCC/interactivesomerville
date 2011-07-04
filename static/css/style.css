@@ -532,3 +532,9 @@ ul.tabs li.active a  { /*--Makes sure that the active tab does not listen to the
 	padding-top: 36px;
 }
 
+/* limit embed sizes */
+
+.grid_7 iframe {
+	max-width: 540px;
+}
+
