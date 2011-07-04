@@ -190,3 +190,7 @@ class Data(Shareditem):
 	def save(self, *args, **kwargs):
 		self.itemtype = "d"
 		super(Data, self).save(*args, **kwargs)
+		
+	@permalink
+	def get_absolute_url(self):
+		return ("data_detail", None, { "id": self.id, })
