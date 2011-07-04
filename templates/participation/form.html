@@ -21,7 +21,7 @@
 {% block body %}
 <div class="grid_12">
 	<h2>Share Something!</h2>
-	<p>Please use the map below to indicate the location of the item you want to share and use the form on the right-hand-side to select what you would like to share and to submit your item.
+	<p>Please use the map below to indicate the location of the item you want to share and use the form on the right-hand-side to select what you would like to share and to submit your item.</p>
 </div>
 <div class="grid_7">
 	<div id="form_map">map</div>
@@ -30,11 +30,11 @@
 
 <div class="grid_5">	
 	<ul class="tabs">
-		<li id="idea_tab" class="first"><a href="#idea">Idea</a></li>
-		<li id="meetingnote_tab"><a href="#meetingnote">Meeting Note</a></li>
-		<li id="newsarticle_tab"><a href="#newsarticle">News Article</a></li>
-		<li id="media_tab"><a href="#media">Media</a></li>
-		<li id="dat_tab"><a href="#data">Data</a></li>
+		<li class="first"><a href="#idea">Idea</a></li>
+		<li><a href="#meetingnote">Meeting Note</a></li>
+		<li><a href="#newsarticle">News Article</a></li>
+		<li><a href="#media">Media</a></li>
+		<li><a href="#data">Data</a></li>
 	</ul>	
 	<div class="tab_container">
 		<div id="idea" class="tab_content">
@@ -133,30 +133,30 @@
 		});	
 		{% endfor %}
 		
-		var idea_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/location.png',
+		var location_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/location.png',
 			new google.maps.Size(32,37),
 			new google.maps.Point(0,0),
 			new google.maps.Point(16,37)
 		);
-		var idea_ll = new google.maps.LatLng(42.398, -71.10);
-		var idea = new google.maps.Marker({
-			position: idea_ll, 
+		var location_ll = new google.maps.LatLng(42.398, -71.10);
+		var location = new google.maps.Marker({
+			position: location_ll, 
 			map: greenline.map,
 			title: "Your Idea Location",
 			draggable:true,
 			animation: google.maps.Animation.DROP,
 			shadow: shadow,
-			icon: idea_icon
+			icon: location_icon
 		});		
-		google.maps.event.addListener(idea, 'dragend', function() {
+		google.maps.event.addListener(location, 'dragend', function() {
 			// write loc coord to hidden geometry field (in WGS84)
-			$("#ideaform #id_geometry, #meetingnoteform #id_geometry, #newsarticleform #id_geometry, #mediaform #id_geometry, #dataform #id_geometry").val("POINT (" + idea.position.lng() + " " +  idea.position.lat() + ")");
+			$("#ideaform #id_geometry, #meetingnoteform #id_geometry, #newsarticleform #id_geometry, #mediaform #id_geometry, #dataform #id_geometry").val("POINT (" + location.position.lng() + " " +  location.position.lat() + ")");
 		});
 		
 		// zoom and center
 		greenline.map.setOptions({
 			zoom: 13,
-			center: idea_ll
+			center: location_ll
 		});
 		
 		// form tabs

@@ -5,7 +5,7 @@
 
 {% load participation_tags %}
 
-{% block head_title %}Meeting Note #{{ data.id }}{% endblock %}
+{% block head_title %}Data entry #{{ data.id }}{% endblock %}
 
 {% block extra_head %}
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=geometry&amp;sensor=false&amp;language=en"></script>
@@ -17,7 +17,7 @@
 {% block body_class %}{% endblock %}
 
 {% block body %}
-<div class="grid_12"><h2>Meeting Note #{{ data.id }}</h2></div>
+<div class="grid_12"><h2>Data entry #{{ data.id }}</h2></div>
 <div class="grid_7">
 	{{ data.desc_as_html }}
 	{% if data.data_file or data.data_url %}<h5>Downloads:</h5>
@@ -30,7 +30,7 @@
 
 <div class="grid_5">
 	{% if data.geometry or data.station %}<div id="data_map">map</div>{% endif %}
-	{% if data.station or data.theme %}<h5>This Meeting Note relates to</h5>{% endif %}
+	{% if data.station or data.theme %}<h5>This Data entry relates to</h5>{% endif %}
 	{% if data.station %}<div>Station Area: <a href="{{ data.station.get_absolute_url }}">{{ data.station.name }}</a></div>{% endif %}
 	{% if data.theme %}<div>Theme: <a href="{{ data.theme.get_absolute_url }}">{{ data.theme.title }}</a></div>{% endif %}
 </div>
