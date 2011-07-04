@@ -30,10 +30,11 @@
 
 <div class="grid_5">	
 	<ul class="tabs">
-		<li class="first"><a href="#idea">Idea</a></li>
-		<li><a href="#meetingnote">Meeting Note</a></li>
-		<li><a href="#newsarticle">News Article</a></li>
-		<li><a href="#media">Media</a></li>
+		<li id="idea_tab" class="first"><a href="#idea">Idea</a></li>
+		<li id="meetingnote_tab"><a href="#meetingnote">Meeting Note</a></li>
+		<li id="newsarticle_tab"><a href="#newsarticle">News Article</a></li>
+		<li id="media_tab"><a href="#media">Media</a></li>
+		<li id="dat_tab"><a href="#data">Data</a></li>
 	</ul>	
 	<div class="tab_container">
 		<div id="idea" class="tab_content">
@@ -61,6 +62,13 @@
 			<form id="mediaform" action="{% url participation.views.add_shareditem "media" %}" method="post" class="uniForm">
 				{% csrf_token %}
 				{{ mediaform|as_uni_form }}
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+		<div id="data" class="tab_content">
+			<form enctype="multipart/form-data" id="dataform" action="{% url participation.views.add_shareditem "data" %}" method="post" class="uniForm">
+				{% csrf_token %}
+				{{ dataform|as_uni_form }}
 				<input type="submit" value="Submit" />
 			</form>
 		</div>
@@ -142,7 +150,7 @@
 		});		
 		google.maps.event.addListener(idea, 'dragend', function() {
 			// write loc coord to hidden geometry field (in WGS84)
-			$("#ideaform #id_geometry").val("POINT (" + idea.position.lng() + " " +  idea.position.lat() + ")");
+			$("#ideaform #id_geometry, #meetingnoteform #id_geometry, #newsarticleform #id_geometry, #mediaform #id_geometry, #dataform #id_geometry").val("POINT (" + idea.position.lng() + " " +  idea.position.lat() + ")");
 		});
 		
 		// zoom and center

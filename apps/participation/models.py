@@ -71,6 +71,7 @@ class Shareditem(models.Model):
 		("m", "Meeting Note"),
 		('n', "Newspaper Article"),
 		('e', "External Media"),
+		('d', "Data"),
 	)
 	
 	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
@@ -169,3 +170,23 @@ class Media(Shareditem):
 	@permalink
 	def get_absolute_url(self):
 		return ("media_detail", None, { "id": self.id, })
+
+		
+class Data(Shareditem):
+	""" A data entry provided via file upload or as linked resource. """
+
+	data_file = ContentTypeRestrictedFileField(
+		help_text="Allowed file types are: .xls, .csv., .zip, .json; max. 10MB.", 
+		upload_to="data", 
+		content_types=["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.oasis.opendocument.spreadsheet", "text/csv", "application/json", "application/zip"], 
+		max_upload_size=10485760,
+		blank=True, null=True, 
+	)
+	data_url = models.URLField("URL to external data source", null=True, blank=True)
+
+	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
+	objects = models.GeoManager()
+
+	def save(self, *args, **kwargs):
+		self.itemtype = "d"
+		super(Data, self).save(*args, **kwargs)

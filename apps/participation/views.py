@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.gis.geos import fromstr
 from django.utils import simplejson
 
-from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle, Media
-from participation.forms import IdeaForm, MeetingnoteForm, NewsarticleForm, MediaForm
+from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle, Media, Data
+from participation.forms import IdeaForm, MeetingnoteForm, NewsarticleForm, MediaForm, DataForm
 
 import gpolyencode
 import oembed
@@ -132,6 +132,14 @@ def media_detail(request, id):
 	return render_to_response("participation/media_detail.html", locals(), context_instance=RequestContext(request))
 
 
+def data_detail(request, id):
+
+	data = get_object_or_404(Data.objects.select_related(), pk=id)
+	lines = get_greenline() if data.station else None
+
+	return render_to_response("participation/data_detail.html", locals(), context_instance=RequestContext(request))
+
+
 @login_required
 def share(request):
 	""" Sharing form for all options (models). """
@@ -143,6 +151,7 @@ def share(request):
 	meetingnoteform = MeetingnoteForm()
 	newsarticleform = NewsarticleForm()
 	mediaform = MediaForm()
+	dataform = DataForm()
 
 	return render_to_response("participation/form.html", locals(), context_instance=RequestContext(request))
 
@@ -165,6 +174,9 @@ def add_shareditem(request, itemtype):
 		elif itemtype == "media":
 			shareditem = Media()
 			shareditemform = MediaForm(request.POST, instance=shareditem)
+		elif itemtype == "data":
+			shareditem = Data()
+			shareditemform = DataForm(request.POST, request.FILES, instance=shareditem)
 			
 		shareditem.ip = request.META['REMOTE_ADDR']
 		shareditem.author = request.user
@@ -173,12 +185,9 @@ def add_shareditem(request, itemtype):
 			shareditemform.save()
 			return redirect("%s_detail" % (itemtype), id=shareditem.id)
 		else:
-			return render_to_response("participation/form.html", {
-				"ideaform": shareditemform,
-				"stations": Station.objects.all().order_by('id'),
-				"lines": get_greenline(),
-			},
-			context_instance=RequestContext(request))
+			stations = Station.objects.all().order_by('id')
+			lines = get_greenline()
+			return render_to_response("participation/form.html", locals(), context_instance=RequestContext(request))
 	
 	else:
 		return redirect("share") # empty share form

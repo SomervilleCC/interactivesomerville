@@ -505,8 +505,6 @@ ul.tabs li {
 	position: relative;
 	font-weight: bold;
 	color: #252525;
-	width: 94px;
-	text-align: center;
 	border-bottom: 1px solid #4F7B41;
 }
 ul.tabs li.first {
@@ -516,6 +514,7 @@ ul.tabs li a {
 	text-decoration: none;
 	display: block;
 	outline: none;
+	padding: 0 10px;
 }
 ul.tabs li a:hover {
 	background: #ccc;

@@ -27,8 +27,9 @@ urlpatterns = patterns("",
 	
 	url(r"^ideas/(?P<id>\d+)/$", "participation.views.idea_detail", name="idea_detail"),
 	url(r"^meetingnotes/(?P<id>\d+)/$", "participation.views.meetingnote_detail", name="meetingnote_detail"),
-	url(r"^newsarticle/(?P<id>\d+)/$", "participation.views.newsarticle_detail", name="newsarticle_detail"),
+	url(r"^newsarticles/(?P<id>\d+)/$", "participation.views.newsarticle_detail", name="newsarticle_detail"),
 	url(r"^media/(?P<id>\d+)/$", "participation.views.media_detail", name="media_detail"),
+	url(r"^data/(?P<id>\d+)/$", "participation.views.data_detail", name="data_detail"),
 	
 	url(r"^share/$", "participation.views.share", name="share"),
 	url(r"^share/add/(?P<itemtype>[-\w]+)$", "participation.views.add_shareditem", name="add_shareditem"),
