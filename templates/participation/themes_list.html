@@ -31,7 +31,7 @@
 	{% ifequal activity.theme theme %}
 	<li>
 		<div><a href="{{ activity.get_absolute_url }}" class="title">{{ activity.get_itemtype_display }}</a>: {{ activity.desc_rendered|striptags|truncatewords:30 }}</div>
-		<div class="meta">Posted by <span class="author">{% firstof activity.author.username activity.author.first_name %}</span> on <span class="timestamp">{{ activity.last_modified|date:"F dS Y" }}</span></div>
+		<div class="meta">Posted by <span class="author">{% firstof activity.author.get_full_name activity.author.username %}</span> on <span class="timestamp">{{ activity.last_modified|date:"F dS Y" }}</span></div>
 	</li>
 	{% endifequal %}
 	{% endfor %}

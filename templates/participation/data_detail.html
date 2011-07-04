@@ -25,7 +25,7 @@
 		{% if data.data_file %}<li><a href="{{ data.note_file.url }}">{{ data.data_file.name|slice:"5:" }}</a></li>{% endif %}
 		{% if data.data_url %}<li><a href="{{ data.note_url }}">{{ data.data_url }}</a></li>{% endif %}
 	</ul>{% endif %}
-	<div class="meta">Posted by <span class="author">{% firstof data.author.username data.author.first_name %}</span> on <span class="timestamp">{{ data.last_modified|date:"F dS Y" }}</span></div>
+	<div class="meta">Posted by <span class="author">{% firstof data.author.get_full_name data.author.username %}</span> on <span class="timestamp">{{ data.last_modified|date:"F dS Y" }}</span></div>
 </div>
 
 <div class="grid_5">

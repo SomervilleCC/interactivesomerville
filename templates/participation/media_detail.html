@@ -21,7 +21,7 @@
 <div class="grid_7">
 	{% if media.url %}{{ embed_code|safe }}{% endif %}
 	{{ media.desc_as_html }}
-	<div class="meta">Posted by <span class="author">{% firstof media.author.username media.author.first_name %}</span> on <span class="timestamp">{{ media.last_modified|date:"F dS Y" }}</span></div>
+	<div class="meta">Posted by <span class="author">{% firstof media.author.get_full_name media.author.username %}</span> on <span class="timestamp">{{ media.last_modified|date:"F dS Y" }}</span></div>
 </div>
 
 <div class="grid_5">
