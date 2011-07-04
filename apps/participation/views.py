@@ -120,13 +120,17 @@ def media_detail(request, id):
 	media = get_object_or_404(Media.objects.select_related(), pk=id)
 	
 	oembed.autodiscover()
-	resource = oembed.site.embed(media.url)
 	
-	if resource.provider_name == u"Flickr":
-		embed_code = "<a href='%s'><img src='%s' width='%s' height='%s' alt='%s' ></a>" % (media.url, resource.url, resource.width, resource.height, resource.title)
-	else:
-		embed_code = resource.html
+	try:
+		resource = oembed.site.embed(media.url)
 	
+		if resource.provider_name == u"Flickr":
+			embed_code = "<a href='%s'><img src='%s' width='%s' height='%s' alt='%s' ></a>" % (media.url, resource.url, resource.width, resource.height, resource.title)
+		else:
+			embed_code = resource.html
+	except:
+		pass
+		
 	lines = get_greenline() if media.station else None
 
 	return render_to_response("participation/media_detail.html", locals(), context_instance=RequestContext(request))
