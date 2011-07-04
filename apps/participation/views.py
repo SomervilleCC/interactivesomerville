@@ -187,7 +187,7 @@ def add_shareditem(request, itemtype):
 		else:
 			stations = Station.objects.all().order_by('id')
 			lines = get_greenline()
-			return render_to_response("participation/form.html", locals(), context_instance=RequestContext(request))
+			return render_to_response("participation/fix_form.html", locals(), context_instance=RequestContext(request))
 	
 	else:
 		return redirect("share") # empty share form
