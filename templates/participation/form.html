@@ -19,18 +19,52 @@
 {% block body_class %}{% endblock %}
 
 {% block body %}
-<div class="grid_12"><h2>Share Your Idea</h2></div>
+<div class="grid_12">
+	<h2>Share Something!</h2>
+	<p>Please use the map below to indicate the location of the item you want to share and use the form on the right-hand-side to select what you would like to share and to submit your item.
+</div>
 <div class="grid_7">
 	<div id="form_map">map</div>
-	<div class="map_help">Drag &amp; drop the blue idea marker to locate your idea.</div>
+	<div class="map_help">Drag &amp; drop the marker to locate your item.</div>
 </div>
 
-<div class="grid_5">
-	<form action="{% url participation.views.add_idea %}" method="post" class="uniForm">
-		{% csrf_token %}
-		{{ ideaform|as_uni_form }}
-	<input type="submit" value="Submit" />
-	</form>
+<div class="grid_5">	
+	<ul class="tabs">
+		<li class="first"><a href="#idea">Idea</a></li>
+		<li><a href="#meetingnote">Meeting Note</a></li>
+		<li><a href="#newsarticle">News Article</a></li>
+		<li><a href="#media">Media</a></li>
+	</ul>	
+	<div class="tab_container">
+		<div id="idea" class="tab_content">
+			<form id="ideaform" action="{% url participation.views.add_shareditem "idea" %}" method="post" class="uniForm">
+				{% csrf_token %}
+				{{ ideaform|as_uni_form }}
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+		<div id="meetingnote" class="tab_content">
+			<form enctype="multipart/form-data" id="meetingnoteform" action="{% url participation.views.add_shareditem "meetingnote" %}" method="post" class="uniForm">
+				{% csrf_token %}
+				{{ meetingnoteform|as_uni_form }}
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+		<div id="newsarticle" class="tab_content">
+			<form id="newsarticleform" action="{% url participation.views.add_shareditem "newsarticle" %}" method="post" class="uniForm">
+				{% csrf_token %}
+				{{ newsarticleform|as_uni_form }}
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+		<div id="media" class="tab_content">
+			<form id="mediaform" action="{% url participation.views.add_shareditem "media" %}" method="post" class="uniForm">
+				{% csrf_token %}
+				{{ mediaform|as_uni_form }}
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+	</div>
 </div>
 {% endblock %}
 
@@ -91,7 +125,7 @@
 		});	
 		{% endfor %}
 		
-		var idea_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/idea.png',
+		var idea_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/location.png',
 			new google.maps.Size(32,37),
 			new google.maps.Point(0,0),
 			new google.maps.Point(16,37)
@@ -108,7 +142,7 @@
 		});		
 		google.maps.event.addListener(idea, 'dragend', function() {
 			// write loc coord to hidden geometry field (in WGS84)
-			$("#id_geometry").val("POINT (" + idea.position.lng() + " " +  idea.position.lat() + ")");
+			$("#ideaform #id_geometry").val("POINT (" + idea.position.lng() + " " +  idea.position.lat() + ")");
 		});
 		
 		// zoom and center
@@ -116,6 +150,20 @@
 			zoom: 13,
 			center: idea_ll
 		});
+		
+		// form tabs
+		$(".tab_content").hide(); //Hide all content
+		$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+		$(".tab_content:first").show(); //Show first tab content
+		$("ul.tabs li").click(function() {
+			$("ul.tabs li").removeClass("active"); //Remove any "active" class
+			$(this).addClass("active"); //Add "active" class to selected tab
+			$(".tab_content").hide(); //Hide all tab content
+			var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+			$(activeTab).fadeIn(); //Fade in the active ID content
+			return false;
+		});
+		
 	}
 </script>
 {% endblock %}

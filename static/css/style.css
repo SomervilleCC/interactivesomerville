@@ -483,3 +483,52 @@ ul.activitystream li {
 	font-weight: 900;
 }
 
+/* form tabs */
+
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px; /*--Set height of tabs--*/
+	width: 100%;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 32px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height: 32px; /*--Vertically aligns the text within the tab--*/
+	border-left: 1px solid #ccc;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	font-weight: bold;
+	color: #252525;
+	width: 94px;
+	text-align: center;
+	border-bottom: 1px solid #4F7B41;
+}
+ul.tabs li.first {
+	border-left: none;
+}
+ul.tabs li a {
+	text-decoration: none;
+	display: block;
+	outline: none;
+}
+ul.tabs li a:hover {
+	background: #ccc;
+}
+ul.tabs li.active a  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #4F7B41;
+	color: #fff;
+}
+
+.tab_container {
+	width: 100%;
+}
+.tab_content {
+	padding-top: 36px;
+}
+

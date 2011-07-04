@@ -31,7 +31,7 @@ urlpatterns = patterns("",
 	url(r"^media/(?P<id>\d+)/$", "participation.views.media_detail", name="media_detail"),
 	
 	url(r"^share/$", "participation.views.share", name="share"),
-	url(r"^share/idea/$", "participation.views.add_idea", name="add_idea"),
+	url(r"^share/add/(?P<itemtype>[-\w]+)$", "participation.views.add_shareditem", name="add_shareditem"),
 
     url(r"^admin/invite_user/$", "pinax.apps.signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^admin/", include(admin.site.urls)),
@@ -48,3 +48,5 @@ if settings.SERVE_MEDIA:
     urlpatterns += patterns("",
         url(r"", include("staticfiles.urls")),
     )
+
+

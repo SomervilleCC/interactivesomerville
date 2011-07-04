@@ -6,7 +6,7 @@ from django.contrib.gis.geos import fromstr
 from django.utils import simplejson
 
 from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle, Media
-from participation.forms import IdeaForm
+from participation.forms import IdeaForm, MeetingnoteForm, NewsarticleForm, MediaForm
 
 import gpolyencode
 import oembed
@@ -99,43 +99,6 @@ def idea_detail(request, id):
 		context_instance=RequestContext(request))
 
 
-@login_required
-def share(request):
-	""" Sharing form for all options (models). """
-	
-	ideaform = IdeaForm()
-	
-	return render_to_response("participation/form.html", {
-		"ideaform": ideaform,
-		"stations": Station.objects.all().order_by('id'),
-		"lines": get_greenline(),
-		}, 
-		context_instance=RequestContext(request))
-
-
-@login_required
-def add_idea(request):
-	""" Add a new Idea. """
-	
-	if request.method == "POST":
-		idea = Idea()
-		ideaform = IdeaForm(request.POST, instance=idea)
-		idea.ip = request.META['REMOTE_ADDR']
-		idea.author = request.user
-		
-		if ideaform.is_valid():
-			ideaform.save()
-			return redirect("idea_detail", id=idea.id)
-		else:
-			return render_to_response("participation/form.html", {
-				"ideaform": ideaform,
-				"stations": Station.objects.all().order_by('id'),
-				"lines": get_greenline(),
-			},
-			context_instance=RequestContext(request))
-	else:
-		return redirect("share") # empty share form
-
 def meetingnote_detail(request, id):
 
 	meetingnote = get_object_or_404(Meetingnote.objects.select_related(), pk=id)
@@ -169,3 +132,53 @@ def media_detail(request, id):
 	return render_to_response("participation/media_detail.html", locals(), context_instance=RequestContext(request))
 
 
+@login_required
+def share(request):
+	""" Sharing form for all options (models). """
+
+	stations = Station.objects.all().order_by('id')
+	lines = get_greenline()
+
+	ideaform = IdeaForm()
+	meetingnoteform = MeetingnoteForm()
+	newsarticleform = NewsarticleForm()
+	mediaform = MediaForm()
+
+	return render_to_response("participation/form.html", locals(), context_instance=RequestContext(request))
+
+
+@login_required
+def add_shareditem(request, itemtype):
+	""" Add a new Idea. """
+	
+	if request.method == "POST":
+	
+		if itemtype == "idea":
+			shareditem = Idea()
+			shareditemform = IdeaForm(request.POST, instance=shareditem)
+		elif itemtype == "meetingnote":
+			shareditem = Meetingnote()
+			shareditemform = MeetingnoteForm(request.POST, request.FILES, instance=shareditem)
+		elif itemtype == "newsarticle":
+			shareditem = Newsarticle()
+			shareditemform = NewsarticleForm(request.POST, instance=shareditem)
+		elif itemtype == "media":
+			shareditem = Media()
+			shareditemform = MediaForm(request.POST, instance=shareditem)
+			
+		shareditem.ip = request.META['REMOTE_ADDR']
+		shareditem.author = request.user
+		
+		if shareditemform.is_valid():
+			shareditemform.save()
+			return redirect("%s_detail" % (itemtype), id=shareditem.id)
+		else:
+			return render_to_response("participation/form.html", {
+				"ideaform": shareditemform,
+				"stations": Station.objects.all().order_by('id'),
+				"lines": get_greenline(),
+			},
+			context_instance=RequestContext(request))
+	
+	else:
+		return redirect("share") # empty share form
