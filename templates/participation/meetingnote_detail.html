@@ -19,7 +19,7 @@
 {% block body %}
 <div class="grid_12"><h2>Meeting Note #{{ meetingnote.id }}</h2></div>
 <div class="grid_7">
-	{% if meetingnote.meeting_date %}<h5>Meeting held on {{ meetingnote.meeting_date }}</h5>{% endif %}
+	{% if meetingnote.meeting_date %}<h5>For meeting held on {{ meetingnote.meeting_date }}</h5>{% endif %}
 	{{ meetingnote.desc_as_html }}
 	{% if meetingnote.note_file or meetingnote.note_url %}<h5>Downloads:</h5>
 	<ul>
@@ -56,7 +56,7 @@
 		);
 		
 		{% if meetingnote.geometry %}
-		var idea_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/text.png',
+		var meetingnote_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/text.png',
 			new google.maps.Size(32,37),
 			new google.maps.Point(0,0),
 			new google.maps.Point(16,37)
@@ -67,7 +67,7 @@
 			map: greenline.map,
 			title: "Meeting Note Location",
 			shadow: shadow,
-			icon: idea_icon
+			icon: meetingnote_icon
 		});
 		{% endif %}
 		
@@ -82,7 +82,7 @@
 		var s_{{ meetingnote.station.id }} = new google.maps.Marker({
 			position: s_{{ meetingnote.station.id }}_ll, 
 			map: greenline.map,
-			title:"{{ idea.station.name }}",
+			title:"{{ meetingnote.station.name }}",
 			shadow: shadow,
 			icon: s_icon
 		});
