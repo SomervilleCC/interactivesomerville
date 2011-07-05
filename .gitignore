@@ -5,3 +5,4 @@ dist
 *.pyo
 env
 local_settings.py
+.gitignore
