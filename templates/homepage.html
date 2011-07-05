@@ -4,6 +4,7 @@
 {% load ifsetting_tag %}
 
 {% load participation_tags %}
+{% load pagination_tags %}
 
 {% block head_title %}{% blocktrans %}Welcome{% endblocktrans %}{% endblock %}
 
@@ -36,12 +37,14 @@
 <div class="grid_7">
 	<h2>Recent Community Activity</h2>
 	<ul class="activitystream">
+	{% autopaginate activities 5 %}	    
 	{% for activity in activities %}
 	<li>
 		<div><a href="{{ activity.get_absolute_url }}" class="title">{{ activity.get_itemtype_display }}</a>: {{ activity.desc_rendered|striptags|truncatewords:30 }}</div>
 		<div class="meta">Posted by <span class="author">{% firstof activity.author.get_full_name activity.author.username %}</span> on <span class="timestamp">{{ activity.last_modified|date:"F dS Y" }}</span></div>
 	</li>
 	{% endfor %}
+    {% paginate %}
 	</ul>
 </div>
 	

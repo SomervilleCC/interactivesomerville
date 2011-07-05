@@ -114,7 +114,7 @@ MIDDLEWARE_CLASSES = [
     "django_openid.consumer.SessionConsumer",
     "django.contrib.messages.middleware.MessageMiddleware",
     "pinax.apps.account.middleware.LocaleMiddleware",
-    "pagination.middleware.PaginationMiddleware",
+    "linaro_django_pagination.middleware.PaginationMiddleware",
     "pinax.middleware.security.HideSensistiveFieldsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
@@ -167,7 +167,7 @@ INSTALLED_APPS = [
     "timezones",
     "emailconfirmation",
     "announcements",
-    "pagination",
+    "linaro_django_pagination",
     "idios",
 	"south",
     
