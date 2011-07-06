@@ -77,7 +77,14 @@ def get_nearest_station(request):
 def themes_list(request):
 
 	themes = Theme.objects.all().order_by('id')
-	activities = Shareditem.objects.filter(theme__isnull=False).select_subclasses()
+	activities = []
+	
+	for theme in themes:
+		activities.append({
+			"theme": theme.id,
+			"shareditems": Shareditem.objects.filter(theme=theme)[:5].select_subclasses(),
+		})
+	
 	lines = get_greenline()
 
 	return render_to_response("participation/themes_list.html", locals(), context_instance=RequestContext(request))
