@@ -29,7 +29,7 @@ def home(request):
 	""" Homepage, including Activity Stream. """
 	
 	stations = Station.objects.all()
-	activities = Shareditem.objects.all()[:10].select_subclasses()
+	activities = Shareditem.objects.all().select_subclasses()
 	lines = get_greenline()
 	
 	return render_to_response("homepage.html", locals(), context_instance=RequestContext(request))
@@ -38,8 +38,14 @@ def home(request):
 def station_areas_list(request):
 	
 	stations = Station.objects.all().order_by('id')
-	# TODO: paginate
-	activities = Shareditem.objects.filter(station__isnull=False).select_subclasses()
+	activities = []
+	
+	for station in stations:
+		activities.append({
+			"station": station.id,
+			"shareditems": Shareditem.objects.filter(station=station)[:5].select_subclasses(),
+		})
+	
 	lines = get_greenline()
 	
 	return render_to_response("participation/station_areas_list.html", locals(), context_instance=RequestContext(request))
@@ -48,7 +54,6 @@ def station_areas_list(request):
 def station_area_detail(request, slug):
 
 	station = get_object_or_404(Station.objects, slug=slug)
-	# TODO: paginate
 	activities = Shareditem.objects.filter(station=station).select_subclasses()
 	lines = get_greenline()
 	
