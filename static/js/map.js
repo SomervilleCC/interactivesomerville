@@ -3,7 +3,8 @@ var greenline = {
 	infobubble: {
 		station: new InfoBubble({maxWidth: 400, minborderWidth: 2, borderColor: '#4F7B41'}),
 		photo: new InfoBubble({maxWidth: 400, minborderWidth: 2, borderColor: '#4F7B41'})
-	}
+	},
+	activities: {}
 };
 
 greenline.createBasemap = function (mapdiv) {
@@ -117,6 +118,39 @@ greenline.createBasemap = function (mapdiv) {
 		},
 	});
 	
+	// map icons
+	greenline.icons = {
+		'shadow': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/shadow.png',
+			new google.maps.Size(51,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		),
+		'i': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/idea.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		),
+		'm': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/text.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		),
+		'n': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/text.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		),
+		'e': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/photo.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		),
+		'd': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/chart.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		)
+	};
 }
 
 // requires 3rd party infobubble lib http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/
