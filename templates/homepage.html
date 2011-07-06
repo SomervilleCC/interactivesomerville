@@ -44,7 +44,7 @@
 		<div class="meta">Posted by <span class="author">{% firstof activity.author.get_full_name activity.author.username %}</span> on <span class="timestamp">{{ activity.last_modified|date:"F dS Y" }}</span></div>
 	</li>
 	{% endfor %}
-    {% paginate %}
+	{% paginate %}
 	</ul>
 </div>
 	
@@ -61,10 +61,10 @@
 		new TWTR.Widget({
 			version: 2,
 			type: "profile",
-			rpp: 4,
+			rpp: 7,
 			interval: 6000,
 			width: "auto",
-			height: 300,
+			height: 400,
 			theme: {
 				shell: {
 					background: "#FAFAFA",
