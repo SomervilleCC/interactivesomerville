@@ -25,4 +25,4 @@ django-announcements==0.1.2
 linaro-django-pagination==2.0.2
 django-notification==0.2a1.dev4
 idios==0.2a1.dev2
--e git://github.com/liberation/django-mptt-comments.git
+
