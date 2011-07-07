@@ -24,7 +24,7 @@ margin:0 0 8px;
 }
 
 button {
-background:#69a356;
+background:#4F7B41;
 border:none;
 color:#fff;
 text-transform:uppercase;
@@ -543,5 +543,11 @@ ul.tabs li.active a  { /*--Makes sure that the active tab does not listen to the
 }
 .activity_tn {
 	float: right;
+}
+
+/* pagination bar */
+
+div.pagination {
+	text-align: center;
 }
 
