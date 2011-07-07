@@ -181,6 +181,13 @@ INSTALLED_APPS = [
     "profiles",
 	"oembed",
 
+    # comments
+    "django.contrib.comments",
+    "django.contrib.markup",
+    "template_utils",
+    "mptt",
+    "mptt_comments",
+
 	# interactivesomerville
 	"participation",
 ]
