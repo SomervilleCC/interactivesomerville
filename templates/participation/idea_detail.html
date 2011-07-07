@@ -40,74 +40,48 @@
 		
 	function initialize() {
 		
+		// media url
+		greenline.static_url = '{{ STATIC_URL }}';
+		
 		// basemap
 		greenline.createBasemap('idea_map');
 		
-		var shadow = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/shadow.png',
-			new google.maps.Size(51,37),
-			new google.maps.Point(0,0),
-			new google.maps.Point(16,37)
-		);
-		
 		{% if idea.geometry %}
-		var idea_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/idea.png',
-			new google.maps.Size(32,37),
-			new google.maps.Point(0,0),
-			new google.maps.Point(16,37)
-		);
 		var idea_ll = new google.maps.LatLng({{ idea.geometry.y }},{{ idea.geometry.x }});
 		var idea = new google.maps.Marker({
 			position: idea_ll, 
 			map: greenline.map,
 			title: "Idea Location",
-			shadow: shadow,
-			icon: idea_icon
+			shadow: greenline.icons['shadow'],
+			icon: greenline.icons['i'],
+			zIndex: 1
 		});
 		{% endif %}
 		
+		// add station marker
 		{% if idea.station %}
-		// station icon
-		var s_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/train.png',
-			new google.maps.Size(32,37),
-			new google.maps.Point(0,0),
-			new google.maps.Point(16,37)
-		);
-		var s_{{ idea.station.id }}_ll = new google.maps.LatLng({{ idea.station.geometry.y }},{{ idea.station.geometry.x }});
-		var s_{{ idea.station.id }} = new google.maps.Marker({
-			position: s_{{ idea.station.id }}_ll, 
-			map: greenline.map,
-			title:"{{ idea.station.name }}",
-			shadow: shadow,
-			icon: s_icon
+		greenline.createStationMarker({
+			'title': '{{ idea.station.name }}',
+			'lat': {{ idea.station.geometry.y }},
+			'lon': {{ idea.station.geometry.x }},
+			'desc': '{{ idea.station.desc|truncatewords:30 }}',
+			'url': '{{ idea.station.get_absolute_url }}'
 		});
-		var s_{{ idea.station.id }}_area = new google.maps.Circle({
-			map: greenline.map,
-			fillColor: '#4F7B41',
-			strokeColor: '#FFFFFF',
-			fillOpacity: .3,
-			strokeWeight: .6,
-			radius: 804.67 // 804.67m = 0.5mi
-		});
-		s_{{ idea.station.id }}_area.bindTo('center', s_{{ idea.station.id }}, 'position');
 		{% endif %}
-		
-		{% for line in lines %}		
-		var l_{{ line.id }} = new google.maps.Polyline({
-			path: google.maps.geometry.encoding.decodePath("{{ line.encoded.points|fixbackslash }}"),
-			levels: greenline.decodeLevels("{{ line.encoded.levels }}"),
-			strokeColor: '#4F7B41',
-			strokeOpacity: 0.9,
-			strokeWeight: 6,
-			zoomFactor: {{ line.encoded.zoomFactor }}, 
-			numLevels: {{ line.encoded.numLevels }},
-			map: greenline.map
-		});	
+		// add greenline
+		{% for line in lines %}
+		greenline.createGreenline({
+			'points': '{{ line.encoded.points|fixbackslash }}',
+			'levels': '{{ line.encoded.levels }}',
+			'zoomFactor': {{ line.encoded.zoomFactor }},
+			'numLevels': {{ line.encoded.numLevels }}
+		})
 		{% endfor %}
 		
 		// zoom and center
 		greenline.map.setOptions({
 			zoom: 15,
-			center: {% if idea.geometry %}idea_ll{% else %}s_{{ idea.station.id }}_ll{% endif %}
+			center: {% if idea.geometry %}idea_ll{% else %}new google.maps.LatLng({{ idea.station.geometry.y }},{{ idea.station.geometry.x }}){% endif %}
 		});
 		
 	}

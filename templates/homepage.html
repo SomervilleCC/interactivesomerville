@@ -39,7 +39,7 @@
 <div class="grid_7">
 	<h2>Recent Community Activity</h2>
 	<ul class="activitystream">
-	{% autopaginate activities 5 %}	    
+	{% autopaginate activities 10 %}	    
 	{% for activity in activities %}
 	<li>
 		<div><a href="{{ activity.get_absolute_url }}" class="title">{{ activity.get_itemtype_display }}</a>: {{ activity.desc_rendered|striptags|truncatewords:30 }}</div>
@@ -110,6 +110,7 @@
 		
 	function initialize() {
 		
+		// media url
 		greenline.static_url = '{{ STATIC_URL }}';
 		
 		// basemap
@@ -121,46 +122,27 @@
 			center: new google.maps.LatLng(42.397, -71.13)
 		});
 		
-		// station icon
-		var s_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/train.png',
-			new google.maps.Size(32,37),
-			new google.maps.Point(0,0),
-			new google.maps.Point(16,37)
-		);
+		// add station markers
 		{% for station in stations %}
-		var s_{{ station.id }}_ll = new google.maps.LatLng({{ station.geometry.y }},{{ station.geometry.x }});
-		var s_{{ station.id }} = new google.maps.Marker({
-			position: s_{{ station.id }}_ll, 
-			map: greenline.map,
-			title:"{{ station.name }}",
-			shadow: greenline.icons['shadow'],
-			icon: s_icon
+		greenline.createStationMarker({
+			'title': '{{ station.name }}',
+			'lat': {{ station.geometry.y }},
+			'lon': {{ station.geometry.x }},
+			'desc': '{{ station.desc|truncatewords:30 }}',
+			'url': '{{ station.get_absolute_url }}'
 		});
-		var s_{{ station.id }}_area = new google.maps.Circle({
-			map: greenline.map,
-			fillColor: '#4F7B41',
-			strokeColor: '#FFFFFF',
-			fillOpacity: .3,
-			strokeWeight: .6,
-			radius: 804.67 // 804.67m = 0.5mi
-		});
-		s_{{ station.id }}_area.bindTo('center', s_{{ station.id }}, 'position');
-		greenline.createInfoBubble('station', s_{{ station.id }}, '<div class="infobubble"><span class="title">{{ station.name }}</span><p>{{ station.desc|truncatewords:30 }}<br><a href="{{ station.get_absolute_url }}">Explore the Station Area!</a></p></div>');
+		{% endfor %}
+		// add greenline
+		{% for line in lines %}
+		greenline.createGreenline({
+			'points': '{{ line.encoded.points|fixbackslash }}',
+			'levels': '{{ line.encoded.levels }}',
+			'zoomFactor': {{ line.encoded.zoomFactor }},
+			'numLevels': {{ line.encoded.numLevels }}
+		})
 		{% endfor %}
 		
-		{% for line in lines %}		
-		var l_{{ line.id }} = new google.maps.Polyline({
-			path: google.maps.geometry.encoding.decodePath("{{ line.encoded.points|fixbackslash }}"),
-			levels: greenline.decodeLevels("{{ line.encoded.levels }}"),
-			strokeColor: '#4F7B41',
-			strokeOpacity: 0.9,
-			strokeWeight: 6,
-			zoomFactor: {{ line.encoded.zoomFactor }}, 
-			numLevels: {{ line.encoded.numLevels }},
-			map: greenline.map
-		});	
-		{% endfor %}
-		
+		// find my station area form
 		$('#find_station').bind('click', function() {
 			getStation ();
 		});
@@ -173,16 +155,15 @@
 		// add activities to map
 		for (var key in greenline.activities) {
 			var activity = greenline.activities[key];
-			console.log(activity.id);
 			var activity_marker = new google.maps.Marker({
 				position: new google.maps.LatLng(activity.lat, activity.lon), 
 				map: greenline.map,
 				title: activity.title + ' ' + activity.id,
 				shadow: greenline.icons['shadow'],
-				icon: greenline.icons[activity.itemtype]
+				icon: greenline.icons[activity.itemtype],
+				zIndex: 1
 			});
 		}
-		
 	}
 	
 	// find closest station for entered address
@@ -195,18 +176,16 @@
 			if (status == google.maps.GeocoderStatus.OK) {
 				
 				var user_address_ll = results[0].geometry.location;
-				
+				// bounds allows a nice 'zoom to extent'
 				var user_bounds = new google.maps.LatLngBounds(user_address_ll);
-				
 				var user_address_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/location.png',
 					new google.maps.Size(32,37),
 					new google.maps.Point(0,0),
 					new google.maps.Point(16,37)
 				);
-				
 				// remove previous marker if user tries multiple times
 				if (greenline.user_address_marker) greenline.user_address_marker.setMap(null);
-				
+				// add new marker
 				greenline.user_address_marker = new google.maps.Marker({
 					position: user_address_ll, 
 					map: greenline.map,
@@ -226,7 +205,7 @@
 						var user_station_ll = new google.maps.LatLng(station.lat,station.lng);
 						user_bounds.extend(user_station_ll);
 						
-						// zoom and center map
+						// zoom and center map, with minimum zoom level
 						greenline.map.fitBounds(user_bounds);
 						if ( greenline.map.getZoom() > 15 ) greenline.map.setZoom(15); // min zoom
 						

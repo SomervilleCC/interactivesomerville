@@ -46,74 +46,48 @@
 		
 	function initialize() {
 		
+		// media url
+		greenline.static_url = '{{ STATIC_URL }}';
+		
 		// basemap
 		greenline.createBasemap('meetingnote_map');
 		
-		var shadow = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/shadow.png',
-			new google.maps.Size(51,37),
-			new google.maps.Point(0,0),
-			new google.maps.Point(16,37)
-		);
-		
 		{% if meetingnote.geometry %}
-		var meetingnote_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/text.png',
-			new google.maps.Size(32,37),
-			new google.maps.Point(0,0),
-			new google.maps.Point(16,37)
-		);
 		var meetingnote_ll = new google.maps.LatLng({{ meetingnote.geometry.y }},{{ meetingnote.geometry.x }});
 		var meetingnote = new google.maps.Marker({
 			position: meetingnote_ll, 
 			map: greenline.map,
 			title: "Meeting Note Location",
-			shadow: shadow,
-			icon: meetingnote_icon
+			shadow: greenline.icons['shadow'],
+			icon: greenline.icons['m'],
+			zIndex: 1
 		});
 		{% endif %}
 		
+		// add station marker
 		{% if meetingnote.station %}
-		// station icon
-		var s_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/train.png',
-			new google.maps.Size(32,37),
-			new google.maps.Point(0,0),
-			new google.maps.Point(16,37)
-		);
-		var s_{{ meetingnote.station.id }}_ll = new google.maps.LatLng({{ meetingnote.station.geometry.y }},{{ meetingnote.station.geometry.x }});
-		var s_{{ meetingnote.station.id }} = new google.maps.Marker({
-			position: s_{{ meetingnote.station.id }}_ll, 
-			map: greenline.map,
-			title:"{{ meetingnote.station.name }}",
-			shadow: shadow,
-			icon: s_icon
+		greenline.createStationMarker({
+			'title': '{{ meetingnote.station.name }}',
+			'lat': {{ meetingnote.station.geometry.y }},
+			'lon': {{ meetingnote.station.geometry.x }},
+			'desc': '{{ meetingnote.station.desc|truncatewords:30 }}',
+			'url': '{{ meetingnote.station.get_absolute_url }}'
 		});
-		var s_{{ meetingnote.station.id }}_area = new google.maps.Circle({
-			map: greenline.map,
-			fillColor: '#4F7B41',
-			strokeColor: '#FFFFFF',
-			fillOpacity: .3,
-			strokeWeight: .6,
-			radius: 804.67 // 804.67m = 0.5mi
-		});
-		s_{{ meetingnote.station.id }}_area.bindTo('center', s_{{ meetingnote.station.id }}, 'position');
 		{% endif %}
-		
-		{% for line in lines %}		
-		var l_{{ line.id }} = new google.maps.Polyline({
-			path: google.maps.geometry.encoding.decodePath("{{ line.encoded.points|fixbackslash }}"),
-			levels: greenline.decodeLevels("{{ line.encoded.levels }}"),
-			strokeColor: '#4F7B41',
-			strokeOpacity: 0.9,
-			strokeWeight: 6,
-			zoomFactor: {{ line.encoded.zoomFactor }}, 
-			numLevels: {{ line.encoded.numLevels }},
-			map: greenline.map
-		});	
+		// add greenline
+		{% for line in lines %}
+		greenline.createGreenline({
+			'points': '{{ line.encoded.points|fixbackslash }}',
+			'levels': '{{ line.encoded.levels }}',
+			'zoomFactor': {{ line.encoded.zoomFactor }},
+			'numLevels': {{ line.encoded.numLevels }}
+		})
 		{% endfor %}
 		
 		// zoom and center
 		greenline.map.setOptions({
 			zoom: 15,
-			center: {% if meetingnote.geometry %}meetingnote_ll{% else %}s_{{ meetingnote.station.id }}_ll{% endif %}
+			center: {% if meetingnote.geometry %}meetingnote_ll{% else %}new google.maps.LatLng({{ meetingnote.station.geometry.y }},{{ meetingnote.station.geometry.x }}){% endif %}
 		});
 		
 	}

@@ -125,6 +125,12 @@ greenline.createBasemap = function (mapdiv) {
 			new google.maps.Point(0,0),
 			new google.maps.Point(16,37)
 		),
+		// station icon
+		'station': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/train.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		),
 		'i': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/idea.png',
 			new google.maps.Size(32,37),
 			new google.maps.Point(0,0),
@@ -140,7 +146,12 @@ greenline.createBasemap = function (mapdiv) {
 			new google.maps.Point(0,0),
 			new google.maps.Point(16,37)
 		),
-		'e': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/photo.png',
+		'photo': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/photo.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		),
+		'video': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/video.png',
 			new google.maps.Size(32,37),
 			new google.maps.Point(0,0),
 			new google.maps.Point(16,37)
@@ -151,6 +162,43 @@ greenline.createBasemap = function (mapdiv) {
 			new google.maps.Point(16,37)
 		)
 	};
+}
+
+// render station markers
+greenline.createStationMarker = function (options) {
+	var s_ll = new google.maps.LatLng(options.lat,options.lon);
+	var s_marker = new google.maps.Marker({
+		position: s_ll, 
+		map: greenline.map,
+		title: options.title,
+		shadow: greenline.icons['shadow'],
+		icon: greenline.icons['station'],
+		zIndex: 0
+	});
+	var s_area = new google.maps.Circle({
+		map: greenline.map,
+		fillColor: '#4F7B41',
+		strokeColor: '#FFFFFF',
+		fillOpacity: .3,
+		strokeWeight: .6,
+		radius: 804.67 // 804.67m = 0.5mi
+	});
+	s_area.bindTo('center', s_marker, 'position');
+	greenline.createInfoBubble('station', s_marker, '<div class="infobubble"><span class="title">' + options.title + '</span><p>' + options.desc + '<br><a href="' + options.url + '">Explore the Station Area!</a></p></div>');
+}
+
+// render Greenline
+greenline.createGreenline = function (options) {
+	var line = new google.maps.Polyline({
+		path: google.maps.geometry.encoding.decodePath(options.points),
+		levels: greenline.decodeLevels(options.levels),
+		strokeColor: '#4F7B41',
+		strokeOpacity: 0.9,
+		strokeWeight: 6,
+		zoomFactor: options.zoomFactor, 
+		numLevels: options.numLevels,
+		map: greenline.map
+	});
 }
 
 // requires 3rd party infobubble lib http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/

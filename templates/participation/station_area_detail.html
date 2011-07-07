@@ -47,55 +47,34 @@
 		
 	function initialize() {
 		
+		// media url
+		greenline.static_url = '{{ STATIC_URL }}';
+		
 		// basemap
 		greenline.createBasemap('station_map');
 		
-		// station icon
-		var s_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/train.png',
-			new google.maps.Size(32,37),
-			new google.maps.Point(0,0),
-			new google.maps.Point(16,37)
-		);
-		var s_shadow = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/shadow.png',
-			new google.maps.Size(51,37),
-			new google.maps.Point(0,0),
-			new google.maps.Point(16,37)
-		);
-		var s_{{ station.id }}_ll = new google.maps.LatLng({{ station.geometry.y }},{{ station.geometry.x }});
-		var s_{{ station.id }} = new google.maps.Marker({
-			position: s_{{ station.id }}_ll, 
-			map: greenline.map,
-			title:"{{ station.name }}",
-			shadow: s_shadow,
-			icon: s_icon
+		// add station markers
+		greenline.createStationMarker({
+			'title': '{{ station.name }}',
+			'lat': {{ station.geometry.y }},
+			'lon': {{ station.geometry.x }},
+			'desc': '{{ station.desc|truncatewords:30 }}',
+			'url': '{{ station.get_absolute_url }}'
 		});
-		var s_{{ station.id }}_area = new google.maps.Circle({
-			map: greenline.map,
-			fillColor: '#4F7B41',
-			strokeColor: '#FFFFFF',
-			fillOpacity: .3,
-			strokeWeight: .6,
-			radius: 804.67 // 804.67m = 0.5mi
-		});
-		s_{{ station.id }}_area.bindTo('center', s_{{ station.id }}, 'position');
-		
-		{% for line in lines %}		
-		var l_{{ line.id }} = new google.maps.Polyline({
-			path: google.maps.geometry.encoding.decodePath("{{ line.encoded.points|fixbackslash }}"),
-			levels: greenline.decodeLevels("{{ line.encoded.levels }}"),
-			strokeColor: '#4F7B41',
-			strokeOpacity: 0.9,
-			strokeWeight: 6,
-			zoomFactor: {{ line.encoded.zoomFactor }}, 
-			numLevels: {{ line.encoded.numLevels }},
-			map: greenline.map
-		});	
+		// add greenline
+		{% for line in lines %}
+		greenline.createGreenline({
+			'points': '{{ line.encoded.points|fixbackslash }}',
+			'levels': '{{ line.encoded.levels }}',
+			'zoomFactor': {{ line.encoded.zoomFactor }},
+			'numLevels': {{ line.encoded.numLevels }}
+		})
 		{% endfor %}
 		
 		// zoom and center
 		greenline.map.setOptions({
 			zoom: 15,
-			center: s_{{ station.id }}_ll
+			center: new google.maps.LatLng({{ station.geometry.y }},{{ station.geometry.x }})
 		});
 		
 	}
