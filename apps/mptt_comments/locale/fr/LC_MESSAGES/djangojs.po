@@ -1,0 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-23 12:33+0200\n"
+"PO-Revision-Date: 2011-05-23 12:34+0100\n"
+"Last-Translator: Mathieu Pillard <m.pillard@liberation.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+
+#: medias/js/mptt_comments.js:21
+msgid "%(count)s reply"
+msgid_plural "%(count)s replies"
+msgstr[0] "%(count)s réponse"
+msgstr[1] "%(count)s réponses"
+
+#: medias/js/mptt_comments.js:59
+msgid "Your comment was posted."
+msgstr "Votre commentaire a été posté."
+
+#: medias/js/mptt_comments.js:66
+msgid "Your comment was posted, it is now awaiting moderation to be displayed."
+msgstr "Votre commentaire a été posté, il est en attente de modération."
+
+#~ msgid "replies"
+#~ msgstr "réponses"
+
