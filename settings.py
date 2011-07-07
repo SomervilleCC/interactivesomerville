@@ -169,7 +169,7 @@ INSTALLED_APPS = [
     "announcements",
     "linaro_django_pagination",
     "idios",
-	"south",
+    "south",
     
     # Pinax
     "pinax.apps.account",
@@ -179,7 +179,7 @@ INSTALLED_APPS = [
     # project
     "about",
     "profiles",
-	"oembed",
+    "oembed",
 
     # comments
     "django.contrib.comments",
@@ -188,8 +188,8 @@ INSTALLED_APPS = [
     "mptt",
     "mptt_comments",
 
-	# interactivesomerville
-	"participation",
+    # interactivesomerville
+    "participation",
 ]
 
 FIXTURE_DIRS = [
