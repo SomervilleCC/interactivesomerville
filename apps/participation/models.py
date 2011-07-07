@@ -176,9 +176,9 @@ class Data(Shareditem):
 	""" A data entry provided via file upload or as linked resource. """
 
 	data_file = ContentTypeRestrictedFileField(
-		help_text="Allowed file types are: .xls, .csv., .zip, .json; max. 10MB.", 
+		help_text="Allowed file types are: .xls, .csv., .zip, .kml/kmz, .json; max. 10MB.", 
 		upload_to="data", 
-		content_types=["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.oasis.opendocument.spreadsheet", "text/csv", "application/json", "application/zip"], 
+		content_types=["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.oasis.opendocument.spreadsheet", "text/csv", "application/json", "application/zip", "application/vnd.google-earth.kml+xml", "application/vnd.google-earth.kmz"], 
 		max_upload_size=10485760,
 		blank=True, null=True, 
 	)
