@@ -537,3 +537,11 @@ ul.tabs li.active a  { /*--Makes sure that the active tab does not listen to the
 	max-width: 540px;
 }
 
+/* activity stream */
+.activity_item {
+	min-height: 80px;
+}
+.activity_tn {
+	float: right;
+}
+

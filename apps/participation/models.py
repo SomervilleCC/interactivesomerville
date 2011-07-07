@@ -6,6 +6,7 @@ from utils.markdowner import MarkupField
 from utils.fileupload import ContentTypeRestrictedFileField
 from model_utils.managers import InheritanceManager
 
+import oembed
 
 # South introspection rules for unsupported fields
 try:
@@ -170,6 +171,20 @@ class Media(Shareditem):
 	@permalink
 	def get_absolute_url(self):
 		return ("media_detail", None, { "id": self.id, })
+		
+	
+	def get_oembed(self):
+		oembed.autodiscover()
+		try:
+			resource = oembed.site.embed(self.url)
+			# Flickr doesn't provide thumbnail url through oembed
+			if resource.provider_name == u"Flickr":
+				resource.thumbnail_url = "%s_t.jpg" % (resource.url[:-4])
+				return resource
+			else:
+				return resource
+		except:
+			pass
 
 		
 class Data(Shareditem):

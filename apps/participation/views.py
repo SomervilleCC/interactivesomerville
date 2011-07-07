@@ -31,7 +31,7 @@ def home(request):
 	stations = Station.objects.all()
 	activities = Shareditem.objects.all().select_subclasses()
 	lines = get_greenline()
-	
+
 	return render_to_response("homepage.html", locals(), context_instance=RequestContext(request))
 
 	

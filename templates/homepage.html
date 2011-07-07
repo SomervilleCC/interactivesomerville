@@ -39,16 +39,16 @@
 <div class="grid_7">
 	<h2>Recent Community Activity</h2>
 	<ul class="activitystream">
-	{% autopaginate activities 10 %}	    
+	{% autopaginate activities 5 %}	    
 	{% for activity in activities %}
 	<li>
-		<div><a href="{{ activity.get_absolute_url }}" class="title">{{ activity.get_itemtype_display }}</a>: {{ activity.desc_rendered|striptags|truncatewords:30 }}</div>
+		<div class="activity_item">{% if activity.itemtype == "e" and activity.url %}<a href="{{ activity.get_absolute_url }}" title="Join the discussion!"><img class="activity_tn" src="{{ activity.get_oembed.thumbnail_url }}" height="75" alt="Thumbnail"></a>{% endif %}<a href="{{ activity.get_absolute_url }}" class="title">{% if activity.itemtype == "e" and activity.url %}{{ activity.get_oembed.type|title }}{% else %}{{ activity.get_itemtype_display }}{% endif %}</a>: {{ activity.desc_rendered|striptags|truncatewords:30 }}</div>
 		<div class="meta">Posted by <span class="author">{% firstof activity.author.get_full_name activity.author.username %}</span> on <span class="timestamp">{{ activity.last_modified|date:"F dS Y" }}</span></div>
 		{% if activity.geometry %}<script type="text/javascript">
 			greenline.activities[{{ activity.id }}] = {
 				'id': {{ activity.id }},
-				'title': '{{ activity.get_itemtype_display }}',
-				'itemtype': '{{ activity.itemtype }}',
+				'title': '{% if activity.itemtype == "e" and activity.url %}{{ activity.get_oembed.type|title }}{% else %}{{ activity.get_itemtype_display }}{% endif %}',
+				'itemtype': '{% if activity.itemtype == "e" and activity.url %}{{ activity.get_oembed.type }}{% else %}{{ activity.itemtype }}{% endif %}',
 				'lat': {{ activity.geometry.y }},
 				'lon': {{ activity.geometry.x }},
 				'desc': '{{ activity.desc_rendered|striptags|truncatewords:30 }}',
@@ -156,13 +156,14 @@
 		for (var key in greenline.activities) {
 			var activity = greenline.activities[key];
 			var activity_marker = new google.maps.Marker({
-				position: new google.maps.LatLng(activity.lat, activity.lon), 
+				position: new google.maps.LatLng(activity['lat'], activity['lon']), 
 				map: greenline.map,
-				title: activity.title + ' ' + activity.id,
+				title: activity['title'] + ' #' + activity['id'],
 				shadow: greenline.icons['shadow'],
 				icon: greenline.icons[activity.itemtype],
 				zIndex: 1
 			});
+			greenline.createInfoBubble('activity', activity_marker, '<div class="infobubble"><span class="title">' + activity['title'] + ' #' + activity['id'] + '</span><p>' + activity['desc'] + '<br><a href="' + activity['url'] + '">Join the discussion!</a></p></div>');
 		}
 	}
 	
