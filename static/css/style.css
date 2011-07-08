@@ -551,3 +551,17 @@ div.pagination {
 	text-align: center;
 }
 
+/* profile */
+
+.profile_info h3 {
+	text-transform: none;
+	font-size: 18px;
+}
+
+.profile_info ul {
+	list-style-type: none;
+}
+
+.profile_info .meta {
+	text-align: left;
+}
