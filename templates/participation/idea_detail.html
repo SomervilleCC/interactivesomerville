@@ -24,7 +24,7 @@
 <div class="grid_12"><h2>Idea #{{ idea.id }}</h2></div>
 <div class="grid_7">
 	{{ idea.desc_as_html }}
-	<div class="meta">Posted by <a class="author" href="{{ idea.author.get_absolute_url }}">{% firstof idea.author.get_profile.name data.author.username %}</a> on <span class="timestamp">{{ idea.last_modified|date:"F dS Y" }}</span></div>
+	<div class="meta">Posted by <a class="author" href="{{ idea.author.get_absolute_url }}">{% firstof idea.author.get_profile.name data.author.username %}</a> on <span class="timestamp">{{ idea.last_modified|date:"F jS Y" }}</span></div>
 </div>
 
 <div class="grid_5">

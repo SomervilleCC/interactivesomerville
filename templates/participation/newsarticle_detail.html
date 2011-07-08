@@ -25,7 +25,7 @@
 <div class="grid_7">
 	{{ newsarticle.desc_as_html }}
 	{% if newsarticle.url %}<a href="{{ newsarticle.url }}">Read full article</a></li>{% endif %}
-	<div class="meta">Posted by <a class="author" href="{{ newsarticle.author.get_absolute_url }}">{% firstof newsarticle.author.get_profile.name newsarticle.author.username %}</a> on <span class="timestamp">{{ newsarticle.last_modified|date:"F dS Y" }}</span></div>
+	<div class="meta">Posted by <a class="author" href="{{ newsarticle.author.get_absolute_url }}">{% firstof newsarticle.author.get_profile.name newsarticle.author.username %}</a> on <span class="timestamp">{{ newsarticle.last_modified|date:"F jS Y" }}</span></div>
 </div>
 
 <div class="grid_5">
