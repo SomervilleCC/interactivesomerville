@@ -227,7 +227,6 @@ DEBUG_TOOLBAR_CONFIG = {
     "INTERCEPT_REDIRECTS": False,
 }
 
-FLICKR_API_KEY = "464e5ea966ce1a545a82a089813b81a2"
 FLICKR_GROUP = "1341011@N20"
 
 # local_settings.py can be used to override environment-specific settings
