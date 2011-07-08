@@ -43,7 +43,7 @@
 	{% for activity in activities %}
 	<li>
 		<div class="activity_item">{% if activity.itemtype == "e" and activity.url %}<a href="{{ activity.get_absolute_url }}" title="Join the discussion!"><img class="activity_tn" src="{{ activity.get_oembed.thumbnail_url }}" height="75" alt="Thumbnail"></a>{% endif %}<a href="{{ activity.get_absolute_url }}" class="title">{% if activity.itemtype == "e" and activity.url %}{{ activity.get_oembed.type|title }}{% else %}{{ activity.get_itemtype_display }}{% endif %}</a>: {{ activity.desc_rendered|striptags|truncatewords:30 }}</div>
-		<div class="meta">Posted by <a class="author" href="{{ activity.author.get_absolute_url }}">{% firstof activity.author.get_profile.name activity.author.username %}</a> on <span class="timestamp">{{ activity.last_modified|date:"F jS Y" }}</span></div>
+		<div class="meta">Shared by <a class="author" href="{{ activity.author.get_absolute_url }}">{% firstof activity.author.get_profile.name activity.author.username %}</a> on <span class="timestamp">{{ activity.last_modified|date:"F jS Y" }}</span></div>
 		{% if activity.geometry %}<script type="text/javascript">
 			greenline.activities[{{ activity.id }}] = {
 				'id': {{ activity.id }},
