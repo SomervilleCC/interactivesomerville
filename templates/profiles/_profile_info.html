@@ -1,7 +1,7 @@
 {% load i18n %}
-    {% if profile.name %}<h3>{% trans "Name" %}</h3><ul><li>{{ profile.name }}</li></ul>{% endif %}
-    {% if profile.about %}<h3>{% trans "About" %}</h3><ul><li>{{ profile.about }}</li></ul>{% endif %}
-    {% if profile.website %}<h3>{% trans "Website" %}</h3><ul><li><a href="{{ profile.website }}">{{ profile.website }}</a></li></ul>{% endif %}
+    {% if profile.name %}<h3>{{ profile.name }}</h3>{% endif %}
+    {% if profile.about %}<h3>{% trans "About Me" %}</h3><ul><li>{{ profile.about }}</li></ul>{% endif %}
+    {% if profile.website %}<h3>{% trans "My Website" %}</h3><ul><li><a href="{{ profile.website }}">{{ profile.website }}</a></li></ul>{% endif %}
 	
 	{% if profile.flickr_id or profile.youtube_id or profile.twitter_id or profile.facebook_id %}
 	<h3>Find me on</h3>
@@ -11,13 +11,5 @@
 		{% if profile.twitter_id %}<li><a href="http://www.twitter.com/{{ profile.twitter_id }}/">Twitter</a></li>{% endif %}
 		{% if profile.facebook_id %}<li><a href="http://www.facebook.com/{{ profile.facebook_id }}/">Facebook</a></li>{% endif %}
 	</ul>
-	{% endif %}
-	
-	{% if profile.mystation %}
-	<h3>My Station Area</h3>
-	<div id="profile_map">{{ profile.mystation }}</div>
-	{% endif %}
-	{% if is_me %}
-    <div class="meta"><a href="{% url profile_edit %}" rel="facebox">Edit profile</a></div>
 	{% endif %}
 	

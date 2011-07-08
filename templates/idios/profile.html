@@ -1,5 +1,6 @@
 {% extends "idios/base.html" %}
 
+{% load participation_tags %}
 {% load i18n %}
 {% load uni_form_tags %}
 {% load account_tags %}
@@ -12,14 +13,62 @@
     
 	<div class="grid_7 profile_info">
 		{% include "profiles/_profile_info.html" %}
+		{% if profile.mystation %}
+		<h3>My Station Area</h3>
+		<div id="profile_map">{{ profile.mystation }}</div>
+		{% endif %}
+		{% if is_me %}
+	    <div class="meta"><a href="{% url profile_edit %}" rel="facebox">Edit profile</a></div>
+		{% endif %}
 	</div>
 	<div class="grid_5 profile_info">
-		<h3>Recent Activity</h3>
+		<h3>My Recent Activity</h3>
 		
 		
 	</div>
 {% endblock %}
 
+{% block body_onload %}initialize(){% endblock %}
+
 {% block extra_body %}
     {% include "facebox_js.html" %}
+	<script src="{{ STATIC_URL }}js/mptt_comments.js"type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/map.js" type="text/javascript"></script>
+	<script type="text/javascript">
+
+		function initialize() {
+
+			// media url
+			greenline.static_url = '{{ STATIC_URL }}';
+
+			// basemap
+			greenline.createBasemap('profile_map');
+
+			// add station markers
+			greenline.createStationMarker({
+				'title': '{{ profile.mystation.name }}',
+				'lat': {{ profile.mystation.geometry.y }},
+				'lon': {{ profile.mystation.geometry.x }},
+				'desc': '{{ profile.mystation.desc|truncatewords:30 }}',
+				'url': '{{ profile.mystation.get_absolute_url }}'
+			});
+			// add greenline
+			{% for line in lines %}
+			greenline.createGreenline({
+				'points': '{{ line.encoded.points|fixbackslash }}',
+				'levels': '{{ line.encoded.levels }}',
+				'zoomFactor': {{ line.encoded.zoomFactor }},
+				'numLevels': {{ line.encoded.numLevels }}
+			})
+			{% endfor %}
+
+			// zoom and center
+			greenline.map.setOptions({
+				zoom: 15,
+				center: new google.maps.LatLng({{ profile.mystation.geometry.y }},{{ profile.mystation.geometry.x }})
+			});
+
+		}
+
+	</script>
 {% endblock %}
