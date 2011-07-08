@@ -30,7 +30,7 @@
 		{% if meetingnote.note_file %}<li><a href="{{ meetingnote.note_file.url }}">{{ meetingnote.note_file.name|slice:"13:" }}</a></li>{% endif %}
 		{% if meetingnote.note_url %}<li><a href="{{ meetingnote.note_url }}">{{ meetingnote.note_url }}</a></li>{% endif %}
 	</ul>{% endif %}
-	<div class="meta">Posted by <span class="author">{% firstof meetingnote.author.get_full_name meetingnote.author.username %}</span> on <span class="timestamp">{{ meetingnote.last_modified|date:"F dS Y" }}</span></div>
+	<div class="meta">Posted by <a class="author" href="{{ meetingnote.author.get_absolute_url }}">{% firstof meetingnote.author.get_profile.name meetingnote.author.username %}</a> on <span class="timestamp">{{ meetingnote.last_modified|date:"F dS Y" }}</span></div>
 </div>
 
 <div class="grid_5">
