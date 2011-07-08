@@ -1,6 +1,7 @@
 {% extends "idios/base.html" %}
 
 {% load participation_tags %}
+{% load profile_tags %}
 {% load i18n %}
 {% load uni_form_tags %}
 {% load account_tags %}
@@ -21,10 +22,9 @@
 	    <div class="meta"><a href="{% url profile_edit %}" rel="facebox">Edit profile</a></div>
 		{% endif %}
 	</div>
-	<div class="grid_5 profile_info">
-		<h3>My Recent Activity</h3>
-		
-		
+	<div class="grid_5 profile_activities">
+		<h3>Recently shared</h3>
+		{% get_user_activities %}
 	</div>
 {% endblock %}
 
@@ -33,7 +33,6 @@
 {% block extra_body %}
     {% include "facebox_js.html" %}
 	<script src="{{ STATIC_URL }}js/mptt_comments.js"type="text/javascript"></script>
-	<script src="{{ STATIC_URL }}js/map.js" type="text/javascript"></script>
 	<script type="text/javascript">
 
 		function initialize() {
@@ -67,6 +66,20 @@
 				zoom: 15,
 				center: new google.maps.LatLng({{ profile.mystation.geometry.y }},{{ profile.mystation.geometry.x }})
 			});
+			
+			// add activities to map
+			for (var key in greenline.activities) {
+				var activity = greenline.activities[key];
+				var activity_marker = new google.maps.Marker({
+					position: new google.maps.LatLng(activity['lat'], activity['lon']), 
+					map: greenline.map,
+					title: activity['title'] + ' #' + activity['id'],
+					shadow: greenline.icons['shadow'],
+					icon: greenline.icons[activity.itemtype],
+					zIndex: 1
+				});
+				greenline.createInfoBubble('activity', activity_marker, '<div class="infobubble"><span class="title">' + activity['title'] + ' #' + activity['id'] + '</span><p>' + activity['desc'] + '<br><a href="' + activity['url'] + '">Join the discussion!</a></p></div>');
+			}
 
 		}
 

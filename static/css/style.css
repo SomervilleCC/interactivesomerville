@@ -553,13 +553,17 @@ div.pagination {
 
 /* profile */
 
-.profile_info h3 {
+.profile_info h3, .profile_activities h3 {
 	text-transform: none;
 	font-size: 18px;
 }
 
-.profile_info ul {
+.profile_info ul, .profile_activities ul {
 	list-style-type: none;
+}
+
+.profile_activities li {
+	margin: 0 0 20px 0px;
 }
 
 .profile_info .meta {
