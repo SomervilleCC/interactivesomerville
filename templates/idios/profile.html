@@ -1,7 +1,7 @@
 {% extends "idios/base.html" %}
 
 {% load participation_tags %}
-{% load profile_tags %}
+{% load pagination_tags %}
 {% load i18n %}
 {% load uni_form_tags %}
 {% load account_tags %}
@@ -24,7 +24,13 @@
 	</div>
 	<div class="grid_5 profile_activities">
 		<h3>Recently shared</h3>
-		{% get_user_activities %}
+		{% with activities=profile.get_activities %}
+		{% autopaginate activities 5 %}	
+		{% for activity in activities %}
+		{% get_activity activity %}
+		{% endfor %}
+		{% paginate %}
+		{% endwith %}
 	</div>
 {% endblock %}
 
