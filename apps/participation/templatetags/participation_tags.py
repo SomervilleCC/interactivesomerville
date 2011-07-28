@@ -27,27 +27,32 @@ def get_activity(activity):
 		'activity': activity,
 	}
 
-ITEMTYPES_DISPLAY = {
-	'i': 'Ideas',
-	'm': 'Meeting Notes',
-	'n': 'Newspaper Article',
-	'e': 'Photos & Videos',
-	'd': "Data",
-}
 
-def get_station_stats(station):
-	""" Returns aggregated counts for Shareditems per station """
-
-	stats = Shareditem.objects.filter(station=station).values('itemtype').order_by().annotate(Count('itemtype'))
+def get_activity_stats(section, target):
+	""" Returns aggregated counts for Shareditems """
+	
+	if section == 'station':
+		stats = Shareditem.objects.filter(station=target).values('itemtype').order_by().annotate(Count('itemtype'))
+	elif section == 'theme':
+		stats = Shareditem.objects.filter(theme=target).values('itemtype').order_by().annotate(Count('itemtype'))
 	# [{'itemtype__count': 4, 'itemtype': u'e'}]
 	
+	ITEMTYPES_DISPLAY = {
+		'i': 'Ideas',
+		'm': 'Meeting Notes',
+		'n': 'Newspaper Article',
+		'e': 'Photos & Videos',
+		'd': "Data",
+	}
+	
+	# add a verbose version of the itemtype key
 	for stat in stats:
 		stat['itemtype_display'] = ITEMTYPES_DISPLAY[stat['itemtype']]
 	
 	return {
-		'station': station,
+		'object': target,
 		'stats': stats,
 	}
 
 register.inclusion_tag("participation/_activity.html")(get_activity)
-register.inclusion_tag("participation/_station_stats.html")(get_station_stats)
+register.inclusion_tag("participation/_activity_stats.html")(get_activity_stats)
