@@ -569,3 +569,8 @@ div.pagination {
 .profile_info .meta {
 	text-align: left;
 }
+
+/* station list */
+ul.stats {
+	list-style-type: none;
+}

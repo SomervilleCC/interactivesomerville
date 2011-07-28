@@ -25,20 +25,7 @@
 	{{ station.desc_as_html }}
 </div>
 <div class="grid_5">
-	<h5>Recent Community Activity</h5>
-	<ul class="activitystream">
-	{# NOT PRETTY #}
-	{% for activity in activities %}
-	{% ifequal activity.station station.id %}
-	{% for shareditem in activity.shareditems %}
-	<li>
-		<div><a href="{{ shareditem.get_absolute_url }}" class="title">{{ shareditem.get_itemtype_display }}</a>: {{ shareditem.desc_rendered|striptags|truncatewords:30 }}</div>
-		<div class="meta">Shared by <a class="author" href="{{ shareditem.author.get_absolute_url }}">{% firstof shareditem.author.get_profile.name shareditem.author.username %}</a> on <span class="timestamp">{{ shareditem.last_modified|date:"F jS Y" }}</span></div>
-	</li>
-	{% endfor%}
-	{% endifequal %}
-	{% endfor %}
-	</ul>
+	{% get_station_stats station %}
 </div>
 {% endfor %}
 
