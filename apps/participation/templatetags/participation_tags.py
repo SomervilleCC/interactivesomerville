@@ -14,6 +14,7 @@ def fixbackslash(value):
 
 
 def get_activity(activity):
+	""" Returns resource for given external media object """
 	if activity.itemtype == "e" and activity.url:
 		resource = activity.get_oembed()
 
