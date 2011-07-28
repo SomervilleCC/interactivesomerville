@@ -25,11 +25,13 @@
 	<div class="grid_5 profile_activities">
 		<h3>Recently shared</h3>
 		{% with activities=profile.get_activities %}
-		{% autopaginate activities 5 %}	
+		<ul class="activitystream">
+		{% autopaginate activities 5 %}
 		{% for activity in activities %}
 		{% get_activity activity %}
 		{% endfor %}
 		{% paginate %}
+		</ul>
 		{% endwith %}
 	</div>
 {% endblock %}
