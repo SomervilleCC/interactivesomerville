@@ -1,10 +1,6 @@
 {% load i18n %}
-<ul class="nav">
-	<li><a href="">{% trans "About"%}</a></li>
-	<li><a href="">{% trans "Terms"%}</a></li>
-	<li><a href="">{% trans "Privacy"%}</a></li>
-	<li><a href="/help">{% trans "Help"%}</a></li>
-</ul>
+{% load meta_tags %}
+{% render_meta_links %}
 <p class="copyright">
 	{% trans "&copy; 2011 Somerville Community Corporation"%}
 </p>
