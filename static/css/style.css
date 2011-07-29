@@ -574,3 +574,9 @@ div.pagination {
 ul.stats {
 	list-style-type: none;
 }
+
+/* Google Translate Widget */
+
+#google_translate_element {
+	text-align: center;
+}
