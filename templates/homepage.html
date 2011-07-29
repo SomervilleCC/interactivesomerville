@@ -145,12 +145,12 @@
 			var activity_marker = new google.maps.Marker({
 				position: new google.maps.LatLng(activity['lat'], activity['lon']), 
 				map: greenline.map,
-				title: activity['title'] + ' #' + activity['id'],
+				title: activity['title'],
 				shadow: greenline.icons['shadow'],
 				icon: greenline.icons[activity.itemtype],
 				zIndex: 1
 			});
-			greenline.createInfoBubble('activity', activity_marker, '<div class="infobubble"><span class="title">' + activity['title'] + ' #' + activity['id'] + '</span><p>' + activity['desc'] + '<br><a href="' + activity['url'] + '">Join the discussion!</a></p></div>');
+			greenline.createInfoBubble('activity', activity_marker, '<div class="infobubble"><span class="title">' + activity['title'] + '</span><p>' + activity['desc'] + '<br><a href="' + activity['url'] + '">Join the discussion!</a></p></div>');
 		}
 	}
 	

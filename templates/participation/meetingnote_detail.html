@@ -21,7 +21,7 @@
 {% block body_class %}{% endblock %}
 
 {% block body %}
-<div class="grid_12"><h2>Meeting Note #{{ meetingnote.id }}</h2></div>
+<div class="grid_12"><h2>Meeting Note</h2></div>
 <div class="grid_7">
 	{% if meetingnote.meeting_date %}<h5>For meeting held on {{ meetingnote.meeting_date }}</h5>{% endif %}
 	{{ meetingnote.desc_as_html }}

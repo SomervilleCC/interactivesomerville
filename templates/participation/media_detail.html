@@ -21,7 +21,7 @@
 {% block body_class %}{% endblock %}
 
 {% block body %}
-<div class="grid_12"><h2>{{ resource.type|title }} #{{ media.id }}</h2></div>
+<div class="grid_12"><h2>{{ resource.type|title }}</h2></div>
 <div class="grid_7">
 	{% if media.url %}{{ embed_code|safe }}{% endif %}
 	{{ media.desc_as_html }}
