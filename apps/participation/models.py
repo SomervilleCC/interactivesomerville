@@ -78,8 +78,8 @@ class Shareditem(models.Model):
 	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
 	itemtype = models.CharField(max_length=1, choices=ITEMTYPES, )
 	
-	station = models.ForeignKey("Station", null=True, blank=True)
-	theme = models.ForeignKey("Theme", null=True, blank=True)
+	station = models.ForeignKey("Station", verbose_name="Related Station", null=True, blank=True)
+	theme = models.ForeignKey("Theme", verbose_name="Related Theme", null=True, blank=True)
 	author = models.ForeignKey(User, on_delete=models.SET(get_sentinel_user))
 	
 	ip = models.IPAddressField(default="127.0.0.1")
@@ -114,9 +114,9 @@ class Idea(Shareditem):
 class Meetingnote(Shareditem):
 	""" A Meeting Notes/Minutes document provided via file upload or as linked resource. """
 	
-	meeting_date = models.DateField(blank=True, null=True,)
+	meeting_date = models.DateField(help_text="Please use the 'Month/Day/Year' format", blank=True, null=True,)
 	note_file = ContentTypeRestrictedFileField(
-		help_text="Please upload only .pdf or .doc, max. 2.5MB.", 
+		help_text="Please upload only .pdf or .doc; max. 2.5MB.", 
 		upload_to="meetingnotes", 
 		content_types=["application/pdf", "application/msword", "text/plain", "application/vnd.oasis.opendocument.text", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"], 
 		max_upload_size=2621440,
@@ -139,7 +139,7 @@ class Meetingnote(Shareditem):
 class Newsarticle(Shareditem):
 	""" A Newspaper article as linked resource. """
 
-	url = models.URLField("Article URL", null=True, blank=True)
+	url = models.URLField("URL to article", null=True, blank=True)
 
 	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
 	objects = models.GeoManager()
@@ -156,7 +156,7 @@ class Newsarticle(Shareditem):
 class Media(Shareditem):
 	""" An external media item (photo, video, etc.) linked with oEmbed. """
 
-	url = models.URLField(null=True, blank=True)
+	url = models.URLField("URL to photo or video", help_text="Please use a URL to <b>single</b> photo or video page on <a href='http://flickr.com'>Flickr</a>, <a href='http://youtube.com'>YouTube</a> or <a href='http://vimeo.com'>Vimeo</a>.", null=True, blank=True)
 
 	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
 	objects = models.GeoManager()
@@ -191,7 +191,7 @@ class Data(Shareditem):
 	""" A data entry provided via file upload or as linked resource. """
 
 	data_file = ContentTypeRestrictedFileField(
-		help_text="Allowed file types are: .xls, .csv., .zip, .kml/kmz, .json; max. 10MB.", 
+		help_text="Please upload only .xls, .csv., .zip, .kml/kmz, .json; max. 10MB.", 
 		upload_to="data", 
 		content_types=["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.oasis.opendocument.spreadsheet", "text/csv", "application/json", "application/zip", "application/vnd.google-earth.kml+xml", "application/vnd.google-earth.kmz"], 
 		max_upload_size=10485760,

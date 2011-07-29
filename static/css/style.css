@@ -514,7 +514,7 @@ ul.tabs li a {
 	text-decoration: none;
 	display: block;
 	outline: none;
-	padding: 0 10px;
+	padding: 0 28px;
 }
 ul.tabs li a:hover {
 	background: #ccc;
@@ -526,9 +526,26 @@ ul.tabs li.active a  { /*--Makes sure that the active tab does not listen to the
 
 .tab_container {
 	width: 100%;
+	margin-bottom: 15px;
 }
 .tab_content {
 	padding-top: 36px;
+}
+
+/* form */
+
+.uniForm textarea, .uniForm .blockLabels textarea {
+	width: 100%;
+}
+
+.uniForm .formHint, .uniForm .blockLabels .formHint {
+    margin-top: 8px;
+    width: 100%;
+    float: left;
+}
+
+input[type=submit] {
+	margin-top: 8px;
 }
 
 /* limit embed sizes */
