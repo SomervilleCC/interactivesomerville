@@ -1,7 +1,7 @@
 {% extends "idios/base.html" %}
 
 {% load participation_tags %}
-{% load profile_tags %}
+{% load pagination_tags %}
 {% load i18n %}
 {% load uni_form_tags %}
 {% load account_tags %}
@@ -24,17 +24,25 @@
 	</div>
 	<div class="grid_5 profile_activities">
 		<h3>Recently shared</h3>
-		{% get_user_activities %}
+		{% with activities=profile.get_activities %}
+		<ul class="activitystream">
+		{% autopaginate activities 5 %}
+		{% for activity in activities %}
+		{% get_activity activity %}
+		{% endfor %}
+		{% paginate %}
+		</ul>
+		{% endwith %}
 	</div>
 {% endblock %}
 
-{% block body_onload %}initialize(){% endblock %}
+{% block body_onload %}{% if profile.mystation %}initialize(){% endif %}{% endblock %}
 
 {% block extra_body %}
     {% include "facebox_js.html" %}
 	<script src="{{ STATIC_URL }}js/mptt_comments.js"type="text/javascript"></script>
 	<script type="text/javascript">
-
+		{% if profile.mystation %}
 		function initialize() {
 
 			// media url
@@ -73,15 +81,15 @@
 				var activity_marker = new google.maps.Marker({
 					position: new google.maps.LatLng(activity['lat'], activity['lon']), 
 					map: greenline.map,
-					title: activity['title'] + ' #' + activity['id'],
+					title: activity['title'],
 					shadow: greenline.icons['shadow'],
 					icon: greenline.icons[activity.itemtype],
 					zIndex: 1
 				});
-				greenline.createInfoBubble('activity', activity_marker, '<div class="infobubble"><span class="title">' + activity['title'] + ' #' + activity['id'] + '</span><p>' + activity['desc'] + '<br><a href="' + activity['url'] + '">Join the discussion!</a></p></div>');
+				greenline.createInfoBubble('activity', activity_marker, '<div class="infobubble"><span class="title">' + activity['title'] + '</span><p>' + activity['desc'] + '<br><a href="' + activity['url'] + '">Join the discussion!</a></p></div>');
 			}
 
 		}
-
+		{% endif %}
 	</script>
 {% endblock %}

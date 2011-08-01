@@ -1,0 +1,6 @@
+<h5>Related Items:</h5>
+<ul class="stats">
+	{% for stat in stats %}
+	<li><a href="">{{ stat.itemtype_display }}</a>: {{ stat.itemtype__count}} </li>
+	{% endfor %}
+</ul>

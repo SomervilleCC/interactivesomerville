@@ -177,7 +177,7 @@ INSTALLED_APPS = [
     "pinax.apps.analytics",
     
     # project
-    "about",
+    "meta",
     "profiles",
     "oembed",
 

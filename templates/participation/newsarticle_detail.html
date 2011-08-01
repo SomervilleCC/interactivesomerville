@@ -20,7 +20,7 @@
 {% block body_class %}{% endblock %}
 
 {% block body %}
-<div class="grid_12"><h2>News Article #{{ newsarticle.id }}</h2></div>
+<div class="grid_12"><h2>News Article</h2></div>
 <div class="grid_7">
 	{{ newsarticle.desc_as_html }}
 	{% if newsarticle.url %}<a href="{{ newsarticle.url }}">Read full article</a></li>{% endif %}

@@ -48,13 +48,13 @@ a:hover {
 text-decoration:none;
 }
 
-.nav li {
+.nav li, .meta_links li {
 display:inline;
 list-style:none;
 margin:0 0 0 30px;
 }
 
-.nav a,#user-box a {
+.nav a,#user-box a, .meta_links a {
 color:#fff;
 font-size:20px;
 font-weight:700;
@@ -145,14 +145,14 @@ z-index:10;
 }
 
 /* Footer */
-#footer .nav {
+#footer .nav, #footer .meta_links {
 background:#252525;
 float:left;
 width:550px;
 padding:30px 0;
 }
 
-#footer .nav a {
+#footer .nav a, #footer .meta_links a {
 color:#e2e2e2;
 font-size:12px;
 }
@@ -514,7 +514,7 @@ ul.tabs li a {
 	text-decoration: none;
 	display: block;
 	outline: none;
-	padding: 0 10px;
+	padding: 0 28px;
 }
 ul.tabs li a:hover {
 	background: #ccc;
@@ -526,9 +526,26 @@ ul.tabs li.active a  { /*--Makes sure that the active tab does not listen to the
 
 .tab_container {
 	width: 100%;
+	margin-bottom: 15px;
 }
 .tab_content {
 	padding-top: 36px;
+}
+
+/* form */
+
+.uniForm textarea, .uniForm .blockLabels textarea {
+	width: 100%;
+}
+
+.uniForm .formHint, .uniForm .blockLabels .formHint {
+    margin-top: 8px;
+    width: 100%;
+    float: left;
+}
+
+input[type=submit] {
+	margin-top: 8px;
 }
 
 /* limit embed sizes */
@@ -568,4 +585,15 @@ div.pagination {
 
 .profile_info .meta {
 	text-align: left;
+}
+
+/* station list */
+ul.stats {
+	list-style-type: none;
+}
+
+/* Google Translate Widget */
+
+#google_translate_element {
+	text-align: center;
 }
