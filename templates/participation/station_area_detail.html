@@ -5,6 +5,7 @@
 
 {% load participation_tags %}
 {% load pagination_tags %}
+{% load comments %}
 
 {% block head_title %}{{ station.name }}{% endblock %}
 
@@ -13,9 +14,7 @@
 <script src="{{ STATIC_URL }}js/infobubble-compiled.js"type="text/javascript"></script>
 <script src="{{ STATIC_URL }}js/vote.js"type="text/javascript"></script>
 <script src="{{ STATIC_URL }}js/map.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}js/mptt_comments.js"type="text/javascript"></script>
 <link rel="stylesheet" href="{{ STATIC_URL }}css/maps.css" type="text/css" media="all" charset="utf-8" />
-<link rel="stylesheet" href="{{ STATIC_URL }}css/mptt_comments.css" type="text/css" media="all" charset="utf-8" />
 {% endblock %}
 
 {% block body_class %}{% endblock %}
@@ -25,6 +24,16 @@
 <div class="grid_7">	
 	<div id="station_map">map</div>
 	{{ station.desc_as_html }}
+	
+	{% get_comment_count for station as comment_count %}
+	{% if comment_count > 0 %}
+		{% render_comment_list for station %}
+		<h4>Post a new comment:</h3>
+	{% else %}
+		<ul class="comments"></ul>
+		<h4>Be the first to post a comment:</h3>	
+	{% endif %}
+	{% render_comment_form for station %}
 </div>
 
 <div class="grid_5">
@@ -79,5 +88,5 @@
 	}
 
 </script>
-
+<script src="{{ STATIC_URL }}js/comment.js" type="text/javascript"></script>
 {% endblock %}

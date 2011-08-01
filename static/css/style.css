@@ -597,3 +597,31 @@ ul.stats {
 #google_translate_element {
 	text-align: center;
 }
+
+/* comments */
+
+ul.comments {
+	list-style-type: none;
+}
+
+ul.comments li {
+	margin-bottom: 24px;
+	padding-bottom: 12px;
+	border-bottom: 1px dashed;
+}
+
+ul.comments li .title {
+	font-weight: bold;
+}
+
+ul.comments li .meta {
+	margin-top: 8px;
+}
+
+textarea#id_comment {
+	width: 100%;
+}
+
+#commentform {
+	margin-left: 30px;
+}
