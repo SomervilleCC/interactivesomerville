@@ -35,6 +35,7 @@
 	<div id="form_map">map</div>
 	<div class="map_help">Drag &amp; drop the marker to locate your item.</div>
 </div>
+{% include "participation/_markdown_help.html" %}
 {% endblock %}
 
 {% block body_onload %}initialize(){% endblock %}
@@ -121,6 +122,16 @@
 		});
 		
 	}
+	
+	// cheat sheet (markdown help) lightbox
+	$(document).ready(function() {
+		$(".formHint a").click(function(e) {
+			$("#markdown_help").lightbox_me({
+				centered: true
+			});
+			e.preventDefault();
+		});
+	 });
 </script>
 <script src="{{ STATIC_URL }}uni_form/uni-form.jquery.js" type="text/javascript"></script>
 {% endblock %}

@@ -75,7 +75,7 @@ class Shareditem(models.Model):
 		('d', "Data"),
 	)
 	
-	desc = MarkupField("Description", help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
+	desc = MarkupField("Description", help_text="Please see the <a href='#'>Text formatting cheat sheet</a> for help.")
 	itemtype = models.CharField(max_length=1, choices=ITEMTYPES, )
 	
 	station = models.ForeignKey("Station", verbose_name="Related Station", null=True, blank=True)

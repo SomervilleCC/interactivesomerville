@@ -548,6 +548,18 @@ input[type=submit] {
 	margin-top: 8px;
 }
 
+#markdown_help {
+	display: none;
+	background-color: #fff;
+	padding: 20px;
+	border: #EDEDED solid 6px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	-moz-box-shadow: 5px 5px 10px #333;
+	-webkit-box-shadow: 5px 5px 10px #333;
+	box-shadow: 5px 5px 10px #333;
+}
+
 /* limit embed sizes */
 
 .grid_7 iframe {
