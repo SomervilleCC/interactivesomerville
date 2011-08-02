@@ -13,6 +13,9 @@
     <div class="grid_12"><h2>{% blocktrans %}Profile for {{ page_user_display }}{% endblocktrans %}</h2></div>
     
 	<div class="grid_7 profile_info">
+		{% if is_me %}
+	    <div class="meta"><a href="{% url profile_edit %}" rel="facebox">Edit profile</a></div>
+		{% endif %}
 		{% include "profiles/_profile_info.html" %}
 		{% if profile.mystation %}
 		<h3>My Station Area</h3>

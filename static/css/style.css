@@ -596,7 +596,8 @@ div.pagination {
 }
 
 .profile_info .meta {
-	text-align: left;
+	text-align: right;
+	float: right;
 }
 
 /* station list */
