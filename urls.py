@@ -39,8 +39,6 @@ urlpatterns = patterns("",
     url(r"^meta/", include("meta.urls")),
     url(r"^account/", include("pinax.apps.account.urls")),
     url(r"^openid/", include(PinaxConsumer().urls)),
-	# custom profile view
-	url(r"^profiles/(?P<username>[\w\._-]+)/$", "profiles.views.profile", name="profile_detail"),
     url(r"^profiles/", include("idios.urls")),
     url(r"^notices/", include("notification.urls")),
     url(r"^announcements/", include("announcements.urls")),
