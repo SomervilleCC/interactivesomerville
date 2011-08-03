@@ -2,6 +2,9 @@ from django.contrib.gis.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
 
+from django.contrib.comments.models import Comment
+from django.contrib.contenttypes.models import ContentType
+
 from utils.markdowner import MarkupField
 from utils.fileupload import ContentTypeRestrictedFileField
 from model_utils.managers import InheritanceManager
@@ -63,6 +66,9 @@ class Theme(models.Model):
 	def get_absolute_url(self):
 		return ("theme_detail", None, { "slug": self.slug, })
 		
+	def get_comment_count(self):
+		return Comment.objects.for_model(self).count()
+		
 		
 class Shareditem(models.Model):
 	""" Parent model for all shared items on the page. """
@@ -94,6 +100,21 @@ class Shareditem(models.Model):
 	
 	def __unicode__(self):
 		return u"%i" % self.id
+		
+	def get_comment_count(self):
+		# workaround for problem with for_model method and inheritance
+		contenttype = ContentType.objects.get_for_model(self)
+		return Comment.objects.filter(content_type=contenttype.id, object_pk=self.id).count()
+		
+	def get_child_contenttype(self):
+		CHILDMODELS = {
+			"i": "idea",
+			"m": "meetingnote",
+			"n": "newsarticle",
+			"e": "media",
+			"d": "data",
+		}
+		return ContentType.objects.get(app_label="participation", model=CHILDMODELS[self.itemtype])
 	
 	
 class Idea(Shareditem):

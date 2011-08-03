@@ -1,6 +1,7 @@
 from django import template
 from django.template.defaultfilters import stringfilter
 from django.db.models import Count
+from django.contrib.comments.models import Comment
 
 from participation.models import Shareditem
 
@@ -33,9 +34,18 @@ def get_activity_stats(section, target):
 	
 	if section == 'station':
 		stats = Shareditem.objects.filter(station=target).values('itemtype').order_by().annotate(Count('itemtype'))
+		shareditems = Shareditem.objects.filter(station=target).select_subclasses()
 	elif section == 'theme':
 		stats = Shareditem.objects.filter(theme=target).values('itemtype').order_by().annotate(Count('itemtype'))
+		shareditems = Shareditem.objects.filter(theme=target).select_subclasses()
 	# [{'itemtype__count': 4, 'itemtype': u'e'}]
+	
+	# total comment count for target, theme or station
+	comment_count = Comment.objects.for_model(target).count()
+	for shareditem in shareditems:
+		contenttype = shareditem.get_child_contenttype()
+		comment_count += Comment.objects.filter(content_type=contenttype.id, object_pk=shareditem.id).count()
+		
 	
 	ITEMTYPES_DISPLAY = {
 		'i': 'Ideas',
@@ -52,6 +62,7 @@ def get_activity_stats(section, target):
 	return {
 		'object': target,
 		'stats': stats,
+		'comment_count': comment_count,
 	}
 
 register.inclusion_tag("participation/_activity.html")(get_activity)
