@@ -71,7 +71,12 @@ class Theme(models.Model):
 		
 		
 class Shareditem(models.Model):
-	""" Parent model for all shared items on the page. """
+	"""
+	Parent model for all shared items on the page.
+	The class is using multiple managers for 
+	* inheritance and selecting subclasses (default 'objects'), and
+	* for spatial queries ('geo_objects').
+	"""
 	
 	ITEMTYPES = (
 		("i", "Idea"),
@@ -93,6 +98,9 @@ class Shareditem(models.Model):
 	last_modified = models.DateTimeField(auto_now_add=True, auto_now=True)
 	
 	objects = InheritanceManager()
+	
+	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
+	geo_objects = models.GeoManager()
 	
 	class Meta:
 		ordering = ("-created", "author")
@@ -120,9 +128,6 @@ class Shareditem(models.Model):
 class Idea(Shareditem):
 	""" A user submitted idea relating to a station area, theme. """
 	
-	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
-	objects = models.GeoManager()
-	
 	def save(self, *args, **kwargs):
 		self.itemtype = "i"
 		super(Idea, self).save(*args, **kwargs)
@@ -145,9 +150,6 @@ class Meetingnote(Shareditem):
 	)
 	note_url = models.URLField("URL to external notes", null=True, blank=True)
 	
-	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
-	objects = models.GeoManager()
-	
 	def save(self, *args, **kwargs):
 		self.itemtype = "m"
 		super(Meetingnote, self).save(*args, **kwargs)
@@ -162,9 +164,6 @@ class Newsarticle(Shareditem):
 
 	url = models.URLField("URL to article", null=True, blank=True)
 
-	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
-	objects = models.GeoManager()
-
 	def save(self, *args, **kwargs):
 		self.itemtype = "n"
 		super(Newsarticle, self).save(*args, **kwargs)
@@ -178,9 +177,6 @@ class Media(Shareditem):
 	""" An external media item (photo, video, etc.) linked with oEmbed. """
 
 	url = models.URLField("URL to photo or video", help_text="Please use a URL to <b>single</b> photo or video page on <a href='http://flickr.com'>Flickr</a>, <a href='http://youtube.com'>YouTube</a> or <a href='http://vimeo.com'>Vimeo</a>.", null=True, blank=True)
-
-	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
-	objects = models.GeoManager()
 
 	class Meta:
 		verbose_name_plural = "Media"
@@ -219,9 +215,6 @@ class Data(Shareditem):
 		blank=True, null=True, 
 	)
 	data_url = models.URLField("URL to external data source", null=True, blank=True)
-
-	geometry = models.PointField(geography=True, null=True, blank=True) # default SRS 4326
-	objects = models.GeoManager()
 
 	def save(self, *args, **kwargs):
 		self.itemtype = "d"
