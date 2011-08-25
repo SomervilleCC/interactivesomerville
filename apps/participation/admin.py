@@ -1,6 +1,6 @@
 from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle, Media
 from django.contrib.gis import admin
-
+ 
 class StationAdmin(admin.OSMGeoAdmin):
 	fieldsets = [
 		(None, 
@@ -21,10 +21,12 @@ class ThemeAdmin(admin.ModelAdmin):
 	search_fields = ("title", "desc",)
 	prepopulated_fields = {"slug": ("title",)}
 
-class ShareditemAdmin(admin.ModelAdmin):
+class ShareditemAdmin(admin.OSMGeoAdmin):
 	fieldsets = [
 		(None,
 		{"fields": ["desc", "itemtype",]}),
+		("Map",
+		{"fields": ["geometry"]}),
 		("Relations",
 		{"fields": ["author", "station", "theme",]}),
 		("Meta",
