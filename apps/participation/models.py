@@ -81,10 +81,18 @@ class Shareditem(models.Model):
 	ITEMTYPES = (
 		("i", "Idea"),
 		("m", "Meeting Note"),
-		('n', "Newspaper Article"),
-		('e', "External Media"),
-		('d', "Data"),
+		("n", "Newspaper Article"),
+		("e", "Photo & Video"), # legacy: was 'External Media'
+		("d", "Data"),
 	)
+	
+	ITEMTYPES_PLURAL = {
+		"i": "Ideas",
+		"m": "Meeting Notes",
+		"n": "Newspaper Articles",
+		"e": "Photos & Videos",
+		"d": "Data",
+	}
 	
 	desc = MarkupField("Description", help_text="Please see the <a href='#'>Text formatting cheat sheet</a> for help.")
 	itemtype = models.CharField(max_length=1, choices=ITEMTYPES, )

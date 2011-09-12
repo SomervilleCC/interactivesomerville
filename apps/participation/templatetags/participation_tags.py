@@ -46,18 +46,9 @@ def get_activity_stats(section, target):
 		contenttype = shareditem.get_child_contenttype()
 		comment_count += Comment.objects.filter(content_type=contenttype.id, object_pk=shareditem.id).count()
 		
-	
-	ITEMTYPES_DISPLAY = {
-		'i': 'Ideas',
-		'm': 'Meeting Notes',
-		'n': 'Newspaper Article',
-		'e': 'Photos & Videos',
-		'd': "Data",
-	}
-	
 	# add a verbose version of the itemtype key
 	for stat in stats:
-		stat['itemtype_display'] = ITEMTYPES_DISPLAY[stat['itemtype']]
+		stat['itemtype_display'] = Shareditem.ITEMTYPES_PLURAL[stat['itemtype']]
 	
 	return {
 		'object': target,
