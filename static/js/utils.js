@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	// post commentForm
 	$("#commentForm").submit(function() {
 		// serialize comment form
@@ -22,4 +23,5 @@ $(document).ready(function(){
 		// don't really POST
 		return false;
 	});
+	
 });
