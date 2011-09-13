@@ -51,14 +51,14 @@ text-decoration:none;
 .nav li, .meta_links li {
 display:inline;
 list-style:none;
-margin:0 0 0 30px;
+margin:0 0 0 14px;
 }
 
 .nav a,#user-box a, .meta_links a {
 color:#fff;
 font-size:20px;
 font-weight:700;
-letter-spacing:0.07em;
+letter-spacing:0.06em;
 text-decoration:none;
 }
 
@@ -96,7 +96,7 @@ width:570px;
 #header .nav {
 bottom:0;
 position:absolute;
-padding:0 0 10px 25px;
+padding:0 0 10px 20px;
 }
 
 #user-box {

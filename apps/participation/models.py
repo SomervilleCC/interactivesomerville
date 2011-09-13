@@ -37,6 +37,9 @@ class Station(models.Model):
 	geometry = models.PointField(geography=True) # default SRS 4326
 	objects = models.GeoManager()
 	
+	class Meta:
+		ordering = ("name",)
+	
 	def __unicode__(self):
 		return u"%s"% (self.name)
 		
@@ -58,6 +61,9 @@ class Theme(models.Model):
 	title = models.CharField(max_length=100)
 	slug = models.SlugField(max_length=100)
 	desc = MarkupField("Description", blank=True, null=True, help_text="Use <a href='http://daringfireball.net/projects/markdown/syntax'>Markdown-syntax</a>")
+	
+	class Meta:
+		ordering = ("title",)
 	
 	def __unicode__(self):
 		return u"%s" % self.title
@@ -82,7 +88,7 @@ class Shareditem(models.Model):
 		("i", "Idea"),
 		("m", "Meeting Note"),
 		("n", "Newspaper Article"),
-		("e", "Photo & Video"), # legacy: was 'External Media'
+		("e", "Photo or Video"), # legacy: was 'External Media'
 		("d", "Data"),
 	)
 	
@@ -116,6 +122,19 @@ class Shareditem(models.Model):
 	
 	def __unicode__(self):
 		return u"%i" % self.id
+	
+	# child model per itemtype
+	CHILDMODELS = {
+		"i": "idea",
+		"m": "meetingnote",
+		"n": "newsarticle",
+		"e": "media",
+		"d": "data",
+	}
+	
+	@permalink
+	def get_absolute_url(self):
+		return ("%s_detail" % (Shareditem.CHILDMODELS[self.itemtype]), None, { "id": self.id, })
 		
 	def get_comment_count(self):
 		# workaround for problem with for_model method and inheritance
@@ -123,14 +142,7 @@ class Shareditem(models.Model):
 		return Comment.objects.filter(content_type=contenttype.id, object_pk=self.id).count()
 		
 	def get_child_contenttype(self):
-		CHILDMODELS = {
-			"i": "idea",
-			"m": "meetingnote",
-			"n": "newsarticle",
-			"e": "media",
-			"d": "data",
-		}
-		return ContentType.objects.get(app_label="participation", model=CHILDMODELS[self.itemtype])
+		return ContentType.objects.get(app_label="participation", model=Shareditem.CHILDMODELS[self.itemtype])
 	
 	
 class Idea(Shareditem):

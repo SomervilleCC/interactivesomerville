@@ -2,8 +2,10 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.gis.geos import fromstr
+from django.contrib.gis.geos import fromstr, Polygon
 from django.utils import simplejson
+from django.utils.html import strip_tags
+from django.core import serializers
 
 from participation.models import Station, Line, Theme, Shareditem, Idea, Meetingnote, Newsarticle, Media, Data
 from participation.forms import IdeaForm, MeetingnoteForm, NewsarticleForm, MediaForm, DataForm
@@ -207,3 +209,81 @@ def add_shareditem(request, itemtype):
 	
 	else:
 		return redirect("share") # empty share form
+
+
+def map_page(request):
+	"""Create the explore map page"""
+	stations = Station.objects.all()
+	lines = get_greenline()
+	
+	themes = Theme.objects.all()
+	
+	itemtypes = Shareditem.ITEMTYPES
+	
+	return render_to_response("participation/map.html", locals(), context_instance=RequestContext(request))
+	
+
+def smart_truncate(content, length=100, suffix='...'):
+	if len(content) <= length:
+		return content
+	else:
+		return content[:length].rsplit(' ', 1)[0]+suffix
+
+	
+def get_map_page_items(request):
+	"""
+	Return JSON with 100 most recent shared items within map extent and filter category
+	[{
+		"1": {
+			"desc": 'my photo',
+			"lat": 48,
+			"lon": 16,
+			"url": '/media/1',
+			"itemtype": 'Photo'
+		}	
+	}]
+	
+	GET parameters: bbox, itemtype, station, theme
+	"""
+	
+	# dynamically build filter arguments
+	kwargs = {}
+	
+	# parse GET parameters
+	if request.GET.has_key("bbox"):
+		# turn Google Maps bbox string 
+		bbox = str(request.GET["bbox"]).split(",")
+		# re-order Google Maps LatLngBounds
+		# "lat_lo,lng_lo,lat_hi,lng_hi" => xmin, ymin, xmax, ymax
+		bbox.reverse()
+		# Polygon geoemtry from bbox
+		map_extent = Polygon.from_bbox(bbox)
+		kwargs["geometry__coveredby"] = map_extent
+	
+	if request.GET.has_key("itemtype") and request.GET["itemtype"] != "":
+		kwargs["itemtype__iexact"] = request.GET["itemtype"]
+	if request.GET.has_key("station") and request.GET["station"] != "":
+		station_id = int(request.GET["station"])
+		kwargs["station"] = station_id
+	if request.GET.has_key("theme") and request.GET["theme"] != "":
+		theme_id = int(request.GET["theme"])
+		kwargs["theme"] = theme_id
+	
+	activities = Shareditem.geo_objects.filter(**kwargs)[:100]
+	
+	# compose result dictionary
+	explore_items = {}
+	for activity in activities:
+		explore_items[activity.id] = dict(
+			title = activity.get_itemtype_display(),
+			desc = smart_truncate(strip_tags(activity.desc_rendered)), 
+			lat = activity.geometry.y,
+			lon = activity.geometry.x,
+			url = activity.get_absolute_url(),
+			itemtype = activity.itemtype,
+		)
+	
+	return HttpResponse(simplejson.dumps(explore_items), mimetype='text/plain') # content_type = 'application/javascript; charset=utf8'
+	
+	
+	

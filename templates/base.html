@@ -39,8 +39,9 @@
 					<div class="login">{% block login %}{% endblock %}{% block locale_switcher %}{% endblock %}<div style="text-align: right;"></div></div>
 					<a href="/share" class="share">{% trans "Share Something" %}</a>
 					<ul class="nav">
-						<li><a href="/station-areas">Station Areas</a></li>
-						<li><a href="/themes/">Themes</a></li>
+						<li><a href="{% url participation.views.station_areas_list %}">Station Areas</a></li>
+						<li><a href="{% url participation.views.themes_list %}">Themes</a></li>
+						<li><a href="{% url participation.views.map_page %}">Map</a></li>
 					</ul>
 				</div>
 			</div>

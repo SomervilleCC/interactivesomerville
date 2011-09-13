@@ -33,6 +33,8 @@ urlpatterns = patterns("",
     
     url(r"^share/$", "participation.views.share", name="share"),
     url(r"^share/add/(?P<itemtype>[-\w]+)$", "participation.views.add_shareditem", name="add_shareditem"),
+    url(r"^map/$", "participation.views.map_page", name="map_page"),
+    url(r"^map/items/$", "participation.views.get_map_page_items", name="get_map_page_items"),
 
     url(r"^admin/invite_user/$", "pinax.apps.signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^admin/", include(admin.site.urls)),

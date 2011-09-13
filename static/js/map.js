@@ -4,7 +4,10 @@ var greenline = {
 		station: new InfoBubble({minWidth: 160, maxWidth: 400, minborderWidth: 2, borderColor: '#4F7B41'}),
 		activity: new InfoBubble({minWidth: 160, maxWidth: 400, minborderWidth: 2, borderColor: '#4F7B41'})
 	},
-	activities: {}
+	activities: {},
+	explore: {
+		items: {}
+	}
 };
 
 greenline.createBasemap = function (mapdiv) {
@@ -224,3 +227,40 @@ greenline.decodeLevels = function (encodedLevelsString) {
 	return decodedLevels;
 }
 
+// load shared items for explore page
+greenline.explore.loadItems = function () {
+	// update filter options
+	var filter = {
+		bbox: greenline.map.getBounds().toUrlValue(4),
+		itemtype: $("#select-itemtype option:selected").val(),
+		station: $("#select-station option:selected").val(),
+		theme: $("#select-theme option:selected").val()
+	};
+	// load data
+	$.getJSON('/map/items/',
+	filter,
+	function(data) {
+		// remove markers not matiching the filter
+		$.each(greenline.explore.items, function(i,item){
+			if (data[i] === undefined) { //existing item not found in current filter
+				// remove marker and delete object
+				greenline.explore.items[i].setMap(null);
+				delete greenline.explore.items[i];
+			}
+		});
+		// add new markers to map
+		$.each(data, function(i,item){
+			if (greenline.explore.items[i] === undefined) {
+				greenline.explore.items[i] = new google.maps.Marker({
+					position: new google.maps.LatLng(item.lat, item.lon), 
+					map: greenline.map,
+					title: item.title,
+					shadow: greenline.icons['shadow'],
+					icon: greenline.icons[item.itemtype],
+					zIndex: 1
+				});
+				greenline.createInfoBubble('activity', greenline.explore.items[i], '<div class="infobubble"><span class="title">' + item.title + '</span><p>' + item.desc + '<br><a href="' + item.url + '">View details and discussion!</a></p></div>');
+			}
+		});
+	});
+}
