@@ -184,6 +184,9 @@ INSTALLED_APPS = [
     # comments
     "django.contrib.comments",
 
+	# ratings
+	"djangoratings",
+
     # interactivesomerville
     "participation",
 
@@ -223,8 +226,6 @@ EMAIL_DEBUG = DEBUG
 DEBUG_TOOLBAR_CONFIG = {
     "INTERCEPT_REDIRECTS": False,
 }
-
-FLICKR_GROUP = "1341011@N20"
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.

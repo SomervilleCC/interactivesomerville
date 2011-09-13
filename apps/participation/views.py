@@ -105,12 +105,11 @@ def theme_detail(request, slug):
 def idea_detail(request, id):
 
 	idea = get_object_or_404(Idea.objects.select_related(), pk=id)
+	rating = idea.rating.get_rating()
 	
-	return render_to_response("participation/idea_detail.html", {
-			"idea": idea,
-			"lines": get_greenline() if idea.station else None # render lines only in combination with station
-		}, 
-		context_instance=RequestContext(request))
+	lines = get_greenline() if idea.station else None
+	
+	return render_to_response("participation/idea_detail.html", locals(), context_instance=RequestContext(request))
 
 
 def meetingnote_detail(request, id):
@@ -283,7 +282,22 @@ def get_map_page_items(request):
 			itemtype = activity.itemtype,
 		)
 	
-	return HttpResponse(simplejson.dumps(explore_items), mimetype='text/plain') # content_type = 'application/javascript; charset=utf8'
+	return HttpResponse(simplejson.dumps(explore_items), mimetype='application/json')
+	
+	
+def rate_item(request, id):
+	""" Handler for an AJAX POST from a detail page for a rating score. """
+	
+	if request.method == "POST":
+		item = get_object_or_404(Shareditem.objects, pk=id)
+		try:
+			# add rating
+			item.rating.add(score=request.POST["score"], user=request.user, ip_address=request.META['REMOTE_ADDR'])
+			return HttpResponse(status=200)
+		except:
+			return HttpResponse(status=500)
+	
+	
 	
 	
 	

@@ -36,6 +36,8 @@ urlpatterns = patterns("",
     url(r"^map/$", "participation.views.map_page", name="map_page"),
     url(r"^map/items/$", "participation.views.get_map_page_items", name="get_map_page_items"),
 
+    url(r"^rate/item/(?P<id>\d+)$", "participation.views.rate_item", name="rate_item"),
+
     url(r"^admin/invite_user/$", "pinax.apps.signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^meta/", include("meta.urls")),

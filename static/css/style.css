@@ -638,3 +638,7 @@ textarea#id_comment {
 #commentform {
 	margin-left: 30px;
 }
+
+#rating {
+	display: block;
+}

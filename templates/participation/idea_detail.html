@@ -100,7 +100,30 @@
 		
 	}
 	
-
+		
+	$(document).ready(function(){	
+		// rating
+		$('#rating').raty({
+			// readOnly:  true,
+			start: {{ rating }},
+			path: '{{ STATIC_URL }}/img',
+			click: function(score, evt) {
+				$.post('/rate/item/{{ idea.id }}',
+					{
+						score: score, 
+					}
+					// no success handler required, 
+					// raty plugin provides good visual feedback
+				)
+				.error(
+					function() { 
+						// cancel the rating, no stars highlighted
+						$.fn.raty.cancel('#rating');
+					}
+				);
+			  }
+		});
+	});
 	
 	
 </script>

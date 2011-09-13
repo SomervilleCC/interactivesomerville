@@ -7,6 +7,8 @@ from django.contrib.contenttypes.models import ContentType
 
 from utils.markdowner import MarkupField
 from utils.fileupload import ContentTypeRestrictedFileField
+from djangoratings.fields import RatingField
+
 from model_utils.managers import InheritanceManager
 
 import oembed
@@ -92,6 +94,7 @@ class Shareditem(models.Model):
 		("d", "Data"),
 	)
 	
+	# used in template tags, added here for maintenance reasons
 	ITEMTYPES_PLURAL = {
 		"i": "Ideas",
 		"m": "Meeting Notes",
@@ -110,6 +113,8 @@ class Shareditem(models.Model):
 	ip = models.IPAddressField(default="127.0.0.1")
 	created = models.DateTimeField(auto_now_add=True)
 	last_modified = models.DateTimeField(auto_now_add=True, auto_now=True)
+	
+	rating = RatingField(range=5, can_change_vote=True)
 	
 	objects = InheritanceManager()
 	
