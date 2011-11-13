@@ -1,89 +1,64 @@
 {% load compress %}
 {% load i18n %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-        <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} : {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
-		<!--[if lt IE 9]>
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-        <!--[if IE]><style>
-            div {
-                zoom: 1; /* trigger hasLayout */
-            }
-        </style><![endif]-->
-        {% compress css %}
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css" />
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/960.css" />
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/text.css" />
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/additional.css" />
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/pagination.css" />
-			<link rel="stylesheet" href="{{ STATIC_URL }}uni_form/uni-form.css" />
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
-			<link rel="stylesheet" href="{{ STATIC_URL }}css/navi.css" />
-            {% block extra_head_base %}
-                {% block extra_head %}{% endblock %}
-            {% endblock %}
-        {% endcompress %}
-    </head>
-    
-    <body class="{% block body_class %}{% endblock %}" onload="{% block body_onload %}{% endblock %}">
-		<div id="container" class="container_12">
-			
-			{% block header %}
-			<div id="header">
-				<a href="/" id="logo"><span class="city">Somerville</span> <span class="title">Green Line Project</span></a>
-				<div class="controls">
-					<div class="login">{% block login %}{% endblock %}{% block locale_switcher %}{% endblock %}<div style="text-align: right;"></div></div>
-					<a href="/share" class="share">{% trans "Share Something" %}</a>
-					<ul class="nav">
-						<li><a href="{% url participation.views.station_areas_list %}">Station Areas</a></li>
-						<li><a href="{% url participation.views.themes_list %}">Themes</a></li>
-						<li><a href="{% url participation.views.map_page %}">Map</a></li>
-					</ul>
-				</div>
-			</div>
-			{% endblock %}
-			
-			{% block bodymeta %}{% endblock %}
-			
-			{% if site_wide_announcements %}
-			<div id="site_wide_announcements">
-			    <ul>
-			        {% for announcement in site_wide_announcements %}
-			        <li>
-			        <a href="{{ announcement.get_absolute_url }}">{{ announcement }}</a> -
-			        <a href="{% url announcement_hide announcement.pk %}?next={{ request.path }}">{% trans "Hide announcement"%}</a>
-			        </li>
-			        {% endfor %}
-			    </ul>
-			</div>
-			{% endif %}
-			
-			{% block flash_messages %}{% include "_flash_messages.html" %}{% endblock %}
-			
-			{% block map %}{% endblock %}
-			
-			{% block body_outer %}
-			<div id="main">
-			{% block body %}{% endblock %}
-			<div class="clear"> </div>
-			</div>
-			{% endblock %}
-			
-			<div id="footer">{% block footer %}{% endblock %}</div>
-			
-		</div>
-		
-        {% compress js %}
-            <script src="{% block jquery_src %}{{ STATIC_URL }}pinax/js/jquery-1.5.2.js{% endblock %}" type="text/javascript"></script>
-            <script src="{{ STATIC_URL }}pinax/js/base.js" type="text/javascript"></script>
-			<script src="{{ STATIC_URL }}js/modernizr.js" type="text/javascript"></script>
-            {% block extra_body_base %}
-                {% block extra_body %}{% endblock %}
-            {% endblock %}
-        {% endcompress %}
-    </body>
+{% load participation_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} : {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
+    <meta name="description" content="Interactive Somerville seeks to involve residents in the public participation process for land use planning projects in Somerville, including the Green Line Extension Project, and works to engage residents who may not typically participate in the planning process.">
+    <meta name="author" content="Somerville Community Corporation">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    {% compress css %}
+    <link href="{{ STATIC_URL }}css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet">
+    {% block extra_head_css %}{% endblock %}
+    {% endcompress %}
+
+    {% compress js %}
+    {% block extra_head_js %}{% endblock %}
+    {% endcompress %}  
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    {% block extra_head_base %}{% endblock %}
+
+  </head>
+
+  <body onload="{% block body_onload %}{% endblock %}">
+
+    {% get_topbar_content %}
+    <!-- /topbar -->
+
+    <div class="container">
+
+      {% block body %}{% endblock %}
+      <!-- /body -->
+       
+      {% include "_footer.html" %}
+      <!-- /footer -->
+
+    </div> <!-- /container -->
+
+    {% compress js %}
+    <!-- Bootstrap dependencies -->
+    <script src="{% block jquery_src %}{{ STATIC_URL }}pinax/js/jquery-1.5.2.js{% endblock %}" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}pinax/js/base.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}css/bootstrap/js/bootstrap-dropdown.js"></script>
+    {% block extra_body_base %}
+        {% block extra_body %}{% endblock %}
+    {% endblock %}
+    {% endcompress %}
+  </body>
 </html>

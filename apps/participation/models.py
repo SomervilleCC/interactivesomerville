@@ -239,7 +239,7 @@ class Data(Shareditem):
 		max_upload_size=10485760,
 		blank=True, null=True, 
 	)
-	data_url = models.URLField("URL to external data source", null=True, blank=True)
+	data_url = models.URLField("URL to other data", null=True, blank=True)
 
 	def save(self, *args, **kwargs):
 		self.itemtype = "d"

@@ -1,24 +1,8 @@
 {% extends "base.html" %}
 
 {% load analytics_tags %}
-{% load i18n %}
 
 {% block extra_head_base %}
-	
     {% block extra_head %}{% endblock %}
-{% endblock %}
-
-{% block login %}
-	<div id="user-box">
-    {% include "_account_bar.html" %}
-	</div>
-{% endblock %}
-
-{% block footer %}
-    {% include "_footer.html" %}
-{% endblock %}
-
-{% block extra_body_base %}
     {% analytics %}
-    {% block extra_body %}{% endblock %}
 {% endblock %}

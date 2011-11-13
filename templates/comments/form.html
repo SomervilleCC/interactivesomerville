@@ -9,18 +9,19 @@
     {% else %}
 {% if field.name != "name" and field.name != "email" and field.name != "url" %}
       {% if field.errors %}{{ field.errors }}{% endif %}
-      <p
+      <div
         {% if field.errors %} class="error"{% endif %}
         {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
         {{ field }}
-      </p>
+      </div>
     {% endif %}
 {% endif %}
   {% endfor %}
-	<p class="formHint">Please use plain text only, no HTML tags are allowed.<p>
-  <p class="submit">
-    <input id="commentFormSubmit" type="submit" name="post" class="submit-post" value="{% trans "Post" %}" />
-  </p>
+	<span class="help-block">Please only use plain text without HTML.<span>
+  <div>
+        <button id="commentFormSubmit" name="post" class="btn primary">{% trans "Post Comment" %}</button>
+  </div>
+
 </form>
 {% else %}
     {% url acct_login as acct_login_url %}
@@ -32,5 +33,4 @@
     {% endifsetting %}
 {% endif %}
 </div>
-
 

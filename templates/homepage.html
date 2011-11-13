@@ -1,209 +1,165 @@
-{% extends "site_base.html" %}
-
-{% load i18n %}
-{% load ifsetting_tag %}
+{% extends "base.html" %}
 
 {% load participation_tags %}
 {% load pagination_tags %}
+{% load i18n %}
 
-{% block head_title %}{% blocktrans %}Welcome{% endblocktrans %}{% endblock %}
+{% block head_title %}{% blocktrans %}Welcome!{% endblocktrans %}{% endblock %}
 
-{% block extra_head %}
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=geometry&amp;sensor=false&amp;language=en"></script>
-<script src="{{ STATIC_URL }}js/infobubble-compiled.js"type="text/javascript"></script>
-<script src="{{ STATIC_URL }}js/vote.js"type="text/javascript"></script>
-<script src="{{ STATIC_URL }}js/map.js" type="text/javascript"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}css/maps.css" type="text/css" media="all" charset="utf-8" />
-{% endblock %}
-
-{% block body_class %}{% endblock %}
-
-{% block map %}
-    <div id="the_map"class="mapContainer minor">
-    <div id="map"></div>
-    <div id="map-intro-message">
-    <a href="javascript:document.getElementById('the_map').removeChild(document.getElementById('map-intro-message')); center();" class="close">Close</a>
-  
-      <h3>Get Involved</h3>
-      <p class="focus">
-        <span>The Green Line is coming to Somerville and we need your thoughts! Share your ideas, questions, photos and videos with the community!</span>
-      </p>
-      <a href="/meta/about/">Learn about this project</a>
-      <a href="/meta/help/">View help on using this site</a>
-    </div>
-    </div>
-{% endblock %}
+{% block extra_head_js %}{% include "_map_scripts.html" %}{% endblock %}
 
 {% block body %}
-<div class="grid_7">
-	<h2>Recent Community Activity</h2>
-	<ul class="activitystream">
-	{% autopaginate activities 7 %}
-	{% for activity in activities %}
-	{% get_activity activity %}
-	{% endfor %}
-	{% paginate %}
-	</ul>
-</div>
-	
-<div class="grid_5">
-	<h2>Find Your Station Area</h2>
-	<div class="row" id="address-search">
-		<label id="user_address_label" for="address">Enter your address below to see what's happening.</label>
-		<input type="text" id="user_address">
-		<button id="find_station">Find my Station Area</button>
-		<p class="help-text"><strong>Example:</strong> 83 Highland Avenue, Somerville</p>
-	</div>
-	<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-	<script type="text/javascript">
-		new TWTR.Widget({
-			version: 2,
-			type: "profile",
-			rpp: 6,
-			interval: 6000,
-			width: "auto",
-			height: 400,
-			theme: {
-				shell: {
-					background: "#F8F8F8",
-					color: "#444444"
-				},
-				tweets: {
-					background: "#F8F8F8",
-					color: "#444444",
-					links: "#4F7B41"
-				}
-			},
-			features: {
-				scrollbar: true,
-				loop: false,
-				live: true,
-				hashtags: true,
-				timestamp: true,
-				avatars: false,
-				behavior: "all"
-			}
-		}).render().setUser("i_somerville").start();
-	</script>
-</div>
-{% endblock %}
+  <!-- Main hero unit for a primary marketing message or call to action -->
+  <div class="hero-unit">
+    <h1>Welcome to<br> Interactive Somerville!</h1>
+    <p>I'm the hero.</p>
+  </div>
 
-{% block body_onload %}initialize(){% endblock %}
+  <div class="row" id="activity-stream-header">
+    <div class="span12">
+      <h2>Recent Community Activity</h2>
+    </div>
+    <div id="explore-map-container" class="span4">
+      <a class="btn primary" id="explore-button" href="{% url participation.views.map_page %}">Explore large map</a>
+    </div>
+  </div>
+  <div class="row">
+    <div id="activity-stream" class="span6">
+      <ul class="unstyled">
+      {% autopaginate activities 7 %}
+      {% for activity in activities %}
+      {% get_activity activity %}
+      {% endfor %}
+      </ul>
+      {% paginate %}
+    </div>
+    <div class="span10">
+      <div class="map_container"><div id="map" class="map10"></div></div>
+      <div class="row" id="map-tools">
+        <div class="span4">
+          <p id="station-search-result"></p>
+        </div>
+        <div id="map-search" class="span6">
+          <div class="input">
+            <input class="" id="user_address" name="user_address" type="text" placeholder="Enter your address here">
+            <button id="find_station" class="btn">Search</button>
+          </div>
+        </div>
+      </div>
+   </div>
+  </div>  
+{% endblock %}     
 
 {% block extra_body %}
-
-<script type="text/javascript">
-		
-	function initialize() {
-		
-		// media url
-		greenline.static_url = '{{ STATIC_URL }}';
-		
-		// basemap
-		greenline.createBasemap('map');
-		
-		// zoom and center
-		greenline.map.setOptions({
-			zoom: 13,
-			center: new google.maps.LatLng(42.397, -71.13)
-		});
-		
-		// add station markers
-		{% for station in stations %}
-		greenline.createStationMarker({
-			'title': '{{ station.name }}',
-			'lat': {{ station.geometry.y }},
-			'lon': {{ station.geometry.x }},
-			'desc': '{{ station.desc|truncatewords:30 }}',
-			'url': '{{ station.get_absolute_url }}'
-		});
-		{% endfor %}
-		// add greenline
-		{% for line in lines %}
-		greenline.createGreenline({
-			'points': '{{ line.encoded.points|fixbackslash }}',
-			'levels': '{{ line.encoded.levels }}',
-			'zoomFactor': {{ line.encoded.zoomFactor }},
-			'numLevels': {{ line.encoded.numLevels }}
-		})
-		{% endfor %}
-		
-		// find my station area form
-		$('#find_station').bind('click', function() {
-			getStation ();
-		});
-		$('#user_address').bind('keypress', function(e) {
-			// 'enter'
-			var code = (e.keyCode ? e.keyCode : e.which);
-			if (e.keyCode==13) getStation ();
-		});
-		
-		// add activities to map
-		for (var key in greenline.activities) {
-			var activity = greenline.activities[key];
-			var activity_marker = new google.maps.Marker({
-				position: new google.maps.LatLng(activity['lat'], activity['lon']), 
-				map: greenline.map,
-				title: activity['title'],
-				shadow: greenline.icons['shadow'],
-				icon: greenline.icons[activity.itemtype],
-				zIndex: 1
-			});
-			greenline.createInfoBubble('activity', activity_marker, '<div class="infobubble"><span class="title">' + activity['title'] + '</span><p>' + activity['desc'] + '<br><a href="' + activity['url'] + '">Join the discussion!</a></p></div>');
-		}
-	}
-	
-	// find closest station for entered address
-	function getStation () {
-		
-		var geocoder = new google.maps.Geocoder();
-		var address = $('#user_address').val();
-		
-		geocoder.geocode( { 'address': address }, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				
-				var user_address_ll = results[0].geometry.location;
-				// bounds allows a nice 'zoom to extent'
-				var user_bounds = new google.maps.LatLngBounds(user_address_ll);
-				var user_address_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/location.png',
-					new google.maps.Size(32,37),
-					new google.maps.Point(0,0),
-					new google.maps.Point(16,37)
-				);
-				// remove previous marker if user tries multiple times
-				if (greenline.user_address_marker) greenline.user_address_marker.setMap(null);
-				// add new marker
-				greenline.user_address_marker = new google.maps.Marker({
-					position: user_address_ll, 
-					map: greenline.map,
-					title: "Your Address",
-					shadow: greenline.icons.shadow,
-					icon: user_address_icon
-				});
-				
-				// get nearest station
-				$.get("/getstation/", { 
-						'lat': user_address_ll.lat(), 
-						'lng': user_address_ll.lng()
-					},
-					function(station){
-						$('#user_address_label').html('<strong><a href="' + station.url + '" title="' + station.name + '"> '+ station.name + '</a></strong> is your closest station. <a href="' + station.url + '" title="' + station.name + '">Go there!</a>');
-						
-						var user_station_ll = new google.maps.LatLng(station.lat,station.lng);
-						user_bounds.extend(user_station_ll);
-						
-						// zoom and center map, with minimum zoom level
-						greenline.map.fitBounds(user_bounds);
-						if ( greenline.map.getZoom() > 15 ) greenline.map.setZoom(15); // min zoom
-						
-					}, "json");
-				
-			} else {
-				$('#address-search p.help-text').html('<strong>Sorry, we couldn\'t find your address.</strong>');
-			}
-		});
-	}
-
-</script>
-
+  <script type="text/javascript">
+    $(document).ready(function(){
+     
+      // media url
+      greenline.static_url = '{{ STATIC_URL }}';
+      
+      // basemap
+      greenline.createBasemap('map');
+      
+      // zoom and center
+      greenline.map.setOptions({
+        zoom: 13,
+        center: new google.maps.LatLng(42.395, -71.11)
+      });
+      
+      // add station markers
+      {% for station in stations %}
+      greenline.createStationMarker({
+        'title': '{{ station.name }}',
+        'lat': {{ station.geometry.y }},
+        'lon': {{ station.geometry.x }},
+        'desc': '{{ station.desc|truncatewords:30 }}',
+        'url': '{{ station.get_absolute_url }}'
+      });
+      {% endfor %}
+      // add greenline
+      {% for line in lines %}
+      greenline.createGreenline({
+        'points': '{{ line.encoded.points|fixbackslash }}',
+        'levels': '{{ line.encoded.levels }}',
+        'zoomFactor': {{ line.encoded.zoomFactor }},
+        'numLevels': {{ line.encoded.numLevels }}
+      })
+      {% endfor %}
+      
+      // find my station area form
+      $('#find_station').bind('click', function() {
+        getStation ();
+      });
+      $('#user_address').bind('keypress', function(e) {
+        // 'enter'
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (e.keyCode==13) getStation ();
+      });
+      
+      // add activities to map
+      for (var key in greenline.activities) {
+        var activity = greenline.activities[key];
+        var activity_marker = new google.maps.Marker({
+          position: new google.maps.LatLng(activity['lat'], activity['lon']), 
+          map: greenline.map,
+          title: activity['title'],
+          shadow: greenline.icons['shadow'],
+          icon: greenline.icons[activity.itemtype],
+          zIndex: 1
+        });
+        greenline.createInfoBubble('activity', activity_marker, '<div class="infobubble"><span class="title">' + activity['title'] + '</span><p>' + activity['desc'] + '<br><a href="' + activity['url'] + '">Join the discussion!</a></p></div>');
+      }
+      
+      // find closest station for entered address
+      function getStation () {
+        
+        var geocoder = new google.maps.Geocoder();
+        var address = $('#user_address').val();
+        
+        geocoder.geocode( { 'address': address }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            
+            var user_address_ll = results[0].geometry.location;
+            // bounds allows a nice 'zoom to extent'
+            var user_bounds = new google.maps.LatLngBounds(user_address_ll);
+            var user_address_icon = new google.maps.MarkerImage('{{ STATIC_URL }}img/isicons/location.png',
+              new google.maps.Size(32,37),
+              new google.maps.Point(0,0),
+              new google.maps.Point(16,37)
+            );
+            // remove previous marker if user tries multiple times
+            if (greenline.user_address_marker) greenline.user_address_marker.setMap(null);
+            // add new marker
+            greenline.user_address_marker = new google.maps.Marker({
+              position: user_address_ll, 
+              map: greenline.map,
+              title: "Your Address",
+              shadow: greenline.icons.shadow,
+              icon: user_address_icon
+            });
+            
+            // get nearest station
+            $.get("/getstation/", { 
+                'lat': user_address_ll.lat(), 
+                'lng': user_address_ll.lng()
+              },
+              function(station){
+                $('#station-search-result').html('<strong><a href="' + station.url + '" title="' + station.name + '"> '+ station.name + '</a></strong> is your closest station.<br>Click to find out more!');
+                
+                var user_station_ll = new google.maps.LatLng(station.lat,station.lng);
+                user_bounds.extend(user_station_ll);
+                
+                // zoom and center map, with minimum zoom level
+                greenline.map.fitBounds(user_bounds);
+                if ( greenline.map.getZoom() > 15 ) greenline.map.setZoom(15); // min zoom
+                
+              }, "json");
+            
+          } else {
+            $('#station-search-result').html('<strong>Sorry, we couldn\'t find your address.</strong>');
+          }
+        });
+      }
+    });
+  </script>
 {% endblock %}

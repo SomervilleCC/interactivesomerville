@@ -7,7 +7,8 @@ var greenline = {
 	activities: {},
 	explore: {
 		items: {}
-	}
+	},
+	rating: {}
 };
 
 greenline.createBasemap = function (mapdiv) {

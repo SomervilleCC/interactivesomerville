@@ -24,7 +24,7 @@ class ThemeAdmin(admin.ModelAdmin):
 class ShareditemAdmin(admin.OSMGeoAdmin):
 	fieldsets = [
 		(None,
-		{"fields": ["desc", "itemtype",]}),
+		{"fields": ["desc", "itemtype"]}),
 		("Map",
 		{"fields": ["geometry"]}),
 		("Relations",

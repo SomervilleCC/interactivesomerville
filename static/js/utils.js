@@ -35,10 +35,10 @@ $(document).ready(function(){
 			url: "/comments/post/",
 			data: commentData,
 			success: function(msg){
-				$("ul.comments").append("<li><span class='title'>You</span>: " + commentTxt + "<div class='meta'>Posted now</div></li>");
+				$("ul.comments").append("<li><a href='#' class='title'>You</a>: " + commentTxt + "<div class='meta'>Posted just now</div></li>");
 				if ($("h3.comments").length === 0) { 
 					// insert the header in case of first comment
-					$("ul.comments").before("<h3 class='comments'>Discussion</h3>");
+					$("ul.comments").before("<h3 class='comments'>Discussion:</h3>");
 				}
 				// empty textarea
 				$("#id_comment").val("");
@@ -47,5 +47,29 @@ $(document).ready(function(){
 		// don't really POST
 		return false;
 	});
-	
+
 });
+
+// star rating
+var init_rating = function (start_score, readonly, img_path, item_id) {
+	$('#rating').raty({
+		readOnly: readonly,
+		start: start_score,
+		path: img_path,
+		click: function(score, evt) {
+			$.post('/rate/item/' + item_id,
+				{
+					score: score, 
+				}
+				// no success handler required, 
+				// raty plugin provides good visual feedback
+			)
+			.error(
+				function() { 
+					// cancel the rating, no stars highlighted
+					$.fn.raty.cancel('#rating');
+				}
+			);
+		  }
+	});
+}

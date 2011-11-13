@@ -227,6 +227,16 @@ DEBUG_TOOLBAR_CONFIG = {
     "INTERCEPT_REDIRECTS": False,
 }
 
+# pagination settings
+# http://packages.python.org/linaro-django-pagination/usage.html#custom-pagination-templates
+
+PAGINATION_PREVIOUS_LINK_DECORATOR = '&larr;&nbsp;'
+PAGINATION_NEXT_LINK_DECORATOR = '&nbsp;&rarr;'
+PAGINATION_DISPLAY_DISABLED_PREVIOUS_LINK = True
+PAGINATION_DISPLAY_DISABLED_NEXT_LINK = True
+PAGINATION_DEFAULT_PAGINATION = 5
+PAGINATION_DEFAULT_WINDOW = 2
+
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
 try:

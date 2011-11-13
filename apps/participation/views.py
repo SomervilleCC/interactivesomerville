@@ -30,7 +30,7 @@ def get_greenline():
 def home(request):
 	""" Homepage, including Activity Stream. """
 	
-	stations = Station.objects.all()
+	stations = Station.objects.all().order_by('name')
 	activities = Shareditem.objects.all().select_subclasses()
 	lines = get_greenline()
 
@@ -115,14 +115,18 @@ def idea_detail(request, id):
 def meetingnote_detail(request, id):
 
 	meetingnote = get_object_or_404(Meetingnote.objects.select_related(), pk=id)
-	lines = get_greenline() if meetingnote.station else None
+	rating = meetingnote.rating.get_rating()
 
+	lines = get_greenline() if meetingnote.station else None
+	
 	return render_to_response("participation/meetingnote_detail.html", locals(), context_instance=RequestContext(request))
 
 
 def newsarticle_detail(request, id):
 
 	newsarticle = get_object_or_404(Newsarticle.objects.select_related(), pk=id)
+	rating = newsarticle.rating.get_rating()
+
 	lines = get_greenline() if newsarticle.station else None
 
 	return render_to_response("participation/newsarticle_detail.html", locals(), context_instance=RequestContext(request))
@@ -131,6 +135,8 @@ def newsarticle_detail(request, id):
 def media_detail(request, id):
 	
 	media = get_object_or_404(Media.objects.select_related(), pk=id)
+	rating = media.rating.get_rating()
+
 	
 	oembed.autodiscover()
 	
@@ -152,6 +158,8 @@ def media_detail(request, id):
 def data_detail(request, id):
 
 	data = get_object_or_404(Data.objects.select_related(), pk=id)
+	rating = data.rating.get_rating()
+	
 	lines = get_greenline() if data.station else None
 
 	return render_to_response("participation/data_detail.html", locals(), context_instance=RequestContext(request))
