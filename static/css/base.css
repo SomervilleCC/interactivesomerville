@@ -10,6 +10,21 @@ body {
 	margin-right: 10px;
 }
 
+/* Hero */
+
+.hero-unit {
+	min-height: 235px;
+}
+
+.hero_media {
+	float: right;
+	margin-left: 20px; 
+}
+
+li.sm_icon {
+	display: inline;
+}
+
 /* Map */
 
 .map_container {

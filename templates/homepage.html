@@ -11,8 +11,14 @@
 {% block body %}
   <!-- Main hero unit for a primary marketing message or call to action -->
   <div class="hero-unit">
-    <h1>Welcome to<br> Interactive Somerville!</h1>
-    <p>I'm the hero.</p>
+    <div class="hero_media"><iframe width="452" height="230" src="http://www.youtube.com/embed/7gaOciO-WcI?rel=0" frameborder="0" allowfullscreen></iframe></div>
+    <p>Connecting Somerville community members to each other and to the <br>Green Line Extension planning process.</p>
+    <ul class="unstyled">
+      <li class="sm_icon"><a href="http://www.facebook.com/interactivesomerville" title="Like us on Facebook!"><img src="{{ STATIC_URL }}img/icon-facebook.png" alt="Facebook icon" /></a></li>
+      <li class="sm_icon"><a href="https://twitter.com/#!/i_Somerville" title="Follow us on Twitter!"><img src="{{ STATIC_URL }}img/icon-twitter.png" alt="Twitter icon" /></a></li>
+      <li class="sm_icon"><a href="http://www.flickr.com/photos/interactivesomerville/" title="See our Fotos on Flickr!"><img src="{{ STATIC_URL }}img/icon-flickr.png" alt="Flickr icon" /></a></li>
+      <li class="sm_icon"><a href="http://www.youtube.com/interactsomerville" title="Watch our Videos on YouTube!"><img src="{{ STATIC_URL }}img/icon-youtube.png" alt="YouTube icon" /></a></li>
+    </ul>
   </div>
 
   <div class="row" id="activity-stream-header">
@@ -51,7 +57,8 @@
 {% endblock %}     
 
 {% block extra_body %}
-  <script type="text/javascript">
+<script type="text/javascript" src="{{ STATIC_URL }}css/bootstrap/js/bootstrap-twipsy.js"></script>
+<script type="text/javascript">
     $(document).ready(function(){
      
       // media url
@@ -160,6 +167,10 @@
           }
         });
       }
+      // tooltip
+      $(".sm_icon a").twipsy({
+        placement: "below"
+      });
     });
-  </script>
+</script>
 {% endblock %}
