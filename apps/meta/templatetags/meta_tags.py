@@ -4,16 +4,16 @@ from meta.models import Page
 
 register = template.Library()
 
-def render_meta_links():
+def page_links(placement):
 	""" 
 	Returns a list with links to all available meta pages.
 	Used as footer for instance.
 	"""
 	
-	pages = Page.objects.all()
+	pages = Page.objects.filter(placement=placement)
 	
 	return {
 		'pages': pages,
 	}
 
-register.inclusion_tag("meta/_meta_links.html")(render_meta_links)
+register.inclusion_tag("meta/_page_links.html")(page_links)

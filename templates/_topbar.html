@@ -1,5 +1,6 @@
 {% load i18n ifsetting_tag account_tags %}
 {% load participation_tags %}
+{% load meta_tags %}
 {% load static %}
 
 <div class="topbar" data-dropdown="dropdown">
@@ -8,7 +9,7 @@
       <a href="/" title="Interactive Somerville" class="logo"><img src="{% get_static_prefix %}img/logo_small.png" alt="Interactive Somerville" width="90" height="35" /></a>
       <ul class="nav">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle"><b>Station Areas</b></a>
+          <a href="#" class="dropdown-toggle">Station Areas</a>
           <ul class="dropdown-menu">
           {% for station in stations  %}
             <li><a href="{{ station.get_absolute_url }}">{{ station.name }}</a></li>
@@ -16,15 +17,15 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle"><b>Themes</b></a>
+          <a href="#" class="dropdown-toggle">Themes</a>
           <ul class="dropdown-menu">
           {% for theme in themes  %}
             <li><a href="{{ theme.get_absolute_url }}">{{ theme.title }}</a></li>
           {% endfor %}
           </ul>
         </li>
-        <li><a href="#about"><b>The Challenge</b></a></li>
-        <li><a href="{% url share %}"><b>Share something!</b></a></li>
+        {% page_links 't' %}
+        <li><a href="{% url share %}"><strong>Share something!</strong></a></li>
       </ul>
       <ul class="nav secondary-nav">
       {% if user.is_authenticated %}
