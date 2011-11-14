@@ -18,4 +18,4 @@ docutils==0.7
 mercurial==1.8
 wsgiref==0.1.2
 -e git://github.com/worldcompany/djangoembed.git#egg=djangoembed
-
+django-ratings==0.3.6
