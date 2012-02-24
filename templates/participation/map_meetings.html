@@ -1,0 +1,82 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% load participation_tags %}
+
+{% block head_title %}Explore our map{% endblock %}
+
+{% block extra_head_js %}{% include "_map_scripts.html" %}{% endblock %}
+
+{% block body %}
+<h2>Community Meeting Map</h2>
+<h3>{{ meeting.title }} <small>{{ meeting.date|date:"l dS F Y" }}</small></h3>
+<p>{{ meeting.desc }}</p>
+<div class="map_container"><div id="map" class="map16"></div></div>
+
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript">
+		
+	$(document).ready(function(){
+		
+		// media url
+		greenline.static_url = '{{ STATIC_URL }}';
+		
+		// basemap
+		greenline.createBasemap('map');
+		
+		// zoom and center
+		greenline.map.setOptions({
+			zoom: 13,
+			center: new google.maps.LatLng(42.397, -71.11)
+		});
+		
+		// add station markers
+		{% for station in stations %}
+		greenline.createStationMarker({
+			'title': '{{ station.name }}',
+			'lat': {{ station.geometry.y }},
+			'lon': {{ station.geometry.x }},
+			'desc': '{{ station.desc|truncatewords:30 }}',
+			'url': '{{ station.get_absolute_url }}'
+		});
+		{% endfor %}
+		// add greenline
+		{% for line in lines %}
+		greenline.createGreenline({
+			'points': '{{ line.encoded.points|fixbackslash }}',
+			'levels': '{{ line.encoded.levels }}',
+			'zoomFactor': {{ line.encoded.zoomFactor }},
+			'numLevels': {{ line.encoded.numLevels }}
+		})
+		{% endfor %}
+
+		{% if meeting.geometry %}
+		var meeting = new google.maps.Marker({
+			position: new google.maps.LatLng({{ meeting.geometry.y }},{{ meeting.geometry.x }}), 
+			map: greenline.map,
+			title: "{{ meeting.title }}",
+			shadow: greenline.icons['shadow'],
+			icon: greenline.icons['meeting'],
+			zIndex: 1
+		});
+		{% endif %}
+
+		{% for checkin in checkins %}
+		{% if checkin.geometry or checkin.station %}
+		var checkin_{{ checkin.id }} = new google.maps.Marker({
+			position: new google.maps.LatLng({% if checkin.geometry %}{{ checkin.geometry.y }},{{ checkin.geometry.x }}{% else %}{{ checkin.station.geometry.y }},{{ checkin.station.geometry.x }}{% endif %}), 
+			map: greenline.map,
+			shadow: greenline.icons['shadow'],
+			icon: greenline.icons['user'],
+			zIndex: 2
+		});
+		{% endif %}
+		{% endfor %}
+
+	});
+
+</script>
+{% endblock %}

@@ -169,6 +169,16 @@ greenline.createBasemap = function (mapdiv) {
 			new google.maps.Size(32,37),
 			new google.maps.Point(0,0),
 			new google.maps.Point(16,37)
+		),
+		'user': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/user.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
+		),
+		'meeting': new google.maps.MarkerImage(greenline.static_url + 'img/isicons/meeting.png',
+			new google.maps.Size(32,37),
+			new google.maps.Point(0,0),
+			new google.maps.Point(16,37)
 		)
 	};
 }

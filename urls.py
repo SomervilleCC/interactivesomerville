@@ -35,6 +35,8 @@ urlpatterns = patterns("",
     url(r"^share/add/(?P<itemtype>[-\w]+)$", "participation.views.add_shareditem", name="add_shareditem"),
     url(r"^map/$", "participation.views.map_page", name="map_page"),
     url(r"^map/items/$", "participation.views.get_map_page_items", name="get_map_page_items"),
+    url(r"^map/meetings/$", "participation.views.meeting_map_page", name="meeting_map_page"),
+    url(r"^map/meetings/(?P<id>\d+)/$", "participation.views.meeting_map_page", name="meeting_map_page"),
 
     url(r"^rate/item/(?P<id>\d+)$", "participation.views.rate_item", name="rate_item"),
 
